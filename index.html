@@ -1,0 +1,2863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snaarp — Everything for £1</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            DEFAULT: '#7C3AED',
+            light: '#F3EFFE',
+          }
+        },
+        fontFamily: {
+          sans: ['Poppins', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root {
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+
+    --duration-fast: 150ms;
+    --duration-normal: 250ms;
+    --duration-reveal: 650ms;
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+    --color-brand: #7C3AED;
+    --color-brand-dark: #6D28D9;
+    --color-brand-subtle: #F3EFFE;
+
+    --text-primary: hsl(220, 15%, 10%);
+    --text-secondary: hsl(220, 10%, 40%);
+    --text-tertiary: hsl(220, 8%, 55%);
+
+    --border-subtle: hsl(220, 12%, 92%);
+    --border-default: hsl(220, 10%, 85%);
+  }
+
+  html, body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    color: var(--text-primary);
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--space-4);
+    background: var(--color-brand);
+    color: #fff;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    z-index: 400;
+    transition: top var(--duration-fast) var(--ease-out);
+  }
+  .skip-link:focus { top: var(--space-4); }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+  :focus:not(:focus-visible) { outline: none; }
+
+  /* ===================== SCROLL REVEAL SYSTEM ===================== */
+  /* Global entrance animation. [data-reveal] triggers the first time an
+     element scrolls into view; [data-reveal-load] triggers once on page
+     load (used for the hero, which is visible without any scrolling).
+     Trigger logic lives in the reveal-system script near the end of
+     <body>. Elements keep their layout box from the start — only
+     opacity/transform are hidden, so nothing shifts when they animate in. */
+  [data-reveal],
+  [data-reveal-load] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity var(--duration-reveal) var(--ease-out),
+                transform var(--duration-reveal) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  [data-reveal].is-revealed,
+  [data-reveal-load].is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal],
+    [data-reveal-load],
+    .icon-tile,
+    .icon-visual {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  .hero-bg {
+    background: linear-gradient(135deg, #ffffff 0%, #fbfbfc 45%, #f4f4f6 100%);
+  }
+
+  .nav-link {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .nav-link:hover { color: var(--text-primary); }
+
+  .btn-dark {
+    background: #17171a;
+    color: #fff;
+    font-weight: 600;
+    transition: transform var(--duration-fast) var(--ease-spring), background var(--duration-fast) var(--ease-out);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn-dark:hover { background: #000; }
+    .btn-dark:active { transform: scale(0.97); }
+  }
+
+  .btn-primary {
+    background: var(--color-brand);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 8px 20px -6px hsla(262, 83%, 58%, 0.45);
+    transition: transform var(--duration-fast) var(--ease-spring), background var(--duration-fast) var(--ease-out);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn-primary:hover { background: var(--color-brand-dark); }
+    .btn-primary:active { transform: scale(0.97); }
+  }
+
+  .btn-outline {
+    background: #fff;
+    color: var(--text-primary);
+    font-weight: 600;
+    border: 1px solid var(--border-subtle);
+    transition: transform var(--duration-fast) var(--ease-spring), border-color var(--duration-fast) var(--ease-out), background var(--duration-fast) var(--ease-out);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn-outline:hover { background: hsl(220, 20%, 98%); border-color: hsl(220, 10%, 80%); }
+    .btn-outline:active { transform: scale(0.97); }
+  }
+
+  .badge-pill {
+    background: var(--color-brand-subtle);
+    color: var(--color-brand);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .icon-tile {
+    width: 92px;
+    height: 92px;
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px hsla(0,0%,0%,.04);
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.9) translateY(12px);
+    transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--tile-delay, 0ms);
+  }
+  .icon-tile.is-revealed {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  .icon-grid-outer {
+    background: #F7F7F7;
+    border-radius: var(--radius-xl);
+  }
+
+  /* The 16 tiles are static background slots (they never move — only the
+     icons riding on top of them do). position:relative turns this into
+     the containing block for .icon-grid-movers below. */
+  .icon-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 92px);
+    gap: 12px;
+    justify-content: center;
+  }
+
+  /* Overlay matching the grid's actual 4x4 track area (404x404 — 4 tiles
+     of 92px + 3 gaps of 12px). .icon-grid itself stretches to fill its
+     wider parent and centers the tracks with justify-content, so this
+     layer re-centers the same way with left:50%/translateX(-50%) rather
+     than a naive inset:0, which would span the full fluid-width box and
+     throw off every icon's computed position. */
+  .icon-grid-movers {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 404px;
+    height: 404px;
+    transform: translate(-50%, 0);
+  }
+
+  /* Each icon lives in its own absolutely-positioned mover so the ambient
+     shuffle (see reveal-system script) can relocate it between grid cells
+     purely via transform — no layout recalculation, no re-mount. Position
+     is always snapped instantly (no transition here): the shuffle hides
+     the icon at its old spot, repositions while invisible, then reveals it
+     at the new spot, so it never visibly travels across the grid. */
+  .icon-mover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 92px;
+    height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .icon-visual {
+    width: 92px;
+    height: 92px;
+    max-width: none;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+    opacity: 0;
+    transform: scale(0.9) translateY(12px);
+    transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--tile-delay, 0ms);
+  }
+  .icon-visual.is-revealed {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  .trust-item {
+    color: var(--text-tertiary);
+    font-size: 0.8125rem;
+    font-weight: 400;
+  }
+
+  /* ===== Apps to Explore spotlight ===== */
+  .apps-spotlight-card {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 20px 25px -5px hsla(0,0%,0%,.06), 0 10px 10px -5px hsla(0,0%,0%,.03);
+    overflow: hidden;
+  }
+
+  .neoleads-card {
+    background: hsl(240, 25%, 8%);
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-8) var(--space-6) 0;
+    position: relative;
+    min-height: 460px;
+    overflow: hidden;
+  }
+
+  .neoleads-card-inner {
+    text-align: center;
+    max-width: 340px;
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+
+  .neoleads-wordmark {
+    font-size: 1.375rem;
+    font-weight: 700;
+    margin: 0 0 var(--space-4);
+  }
+  .neoleads-wordmark-neo { color: #ffffff; }
+  .neoleads-wordmark-leads { color: hsl(262, 83%, 65%); }
+
+  .neoleads-copy {
+    color: hsl(220, 10%, 70%);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0 0 var(--space-6);
+  }
+
+  .neoleads-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-brand);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-full);
+    min-height: 44px;
+    transition: background var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-spring);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .neoleads-cta:hover { background: var(--color-brand-dark); }
+    .neoleads-cta:active { transform: scale(0.97); }
+  }
+
+  .neoleads-dashboard-wrap {
+    flex: 1;
+    position: relative;
+    margin-top: var(--space-6);
+    overflow: hidden;
+  }
+
+  .neoleads-dashboard-img {
+    position: absolute;
+    left: 50%;
+    bottom: -28px;
+    transform: translateX(-50%);
+    width: 122%;
+    max-width: none;
+    display: block;
+  }
+
+  .apps-grid-col {
+    padding: var(--space-10) var(--space-8);
+  }
+
+  .apps-grid-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-8);
+  }
+
+  .apps-grid-label {
+    color: var(--color-brand);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .apps-grid-viewall {
+    color: var(--color-brand);
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .apps-grid-viewall:hover { color: var(--color-brand-dark); }
+
+  /* Two 3x2 sets share the same footprint; only one is ever laid out
+     (display: none on the other) so swapping never leaves a moment where
+     both occupy space at once. JS crossfades between them with a
+     scale-out/scale-in, mirroring the ambient icon-grid shuffle above. */
+  .apps-grid-set {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+  }
+  .apps-grid-set.is-active {
+    display: grid;
+  }
+
+  .apps-grid-cell {
+    display: block;
+    padding: var(--space-4) var(--space-5) var(--space-10);
+    border-right: 1px dashed var(--border-default);
+    border-bottom: 1px dashed var(--border-default);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+  }
+  .apps-grid-set .apps-grid-cell:nth-child(1),
+  .apps-grid-set .apps-grid-cell:nth-child(2),
+  .apps-grid-set .apps-grid-cell:nth-child(3) {
+    padding-top: 0;
+  }
+  .apps-grid-set .apps-grid-cell:nth-child(4),
+  .apps-grid-set .apps-grid-cell:nth-child(5),
+  .apps-grid-set .apps-grid-cell:nth-child(6) {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .apps-grid-cell-last-col {
+    border-right: none;
+  }
+  .apps-grid-set .apps-grid-cell:first-child,
+  .apps-grid-set .apps-grid-cell:nth-child(4) {
+    padding-left: 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .apps-grid-cell:hover,
+    .apps-grid-cell:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px -10px hsla(0,0%,0%,.15), 0 4px 8px -4px hsla(0,0%,0%,.08);
+    }
+    .apps-grid-cell:hover .apps-grid-icon,
+    .apps-grid-cell:focus-visible .apps-grid-icon {
+      transform: scale(1.05);
+    }
+  }
+
+  .apps-grid-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .apps-grid-name {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    margin: 0 0 var(--space-3);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .apps-grid-cell:hover .apps-grid-name,
+  .apps-grid-cell:focus-visible .apps-grid-name {
+    color: var(--color-brand);
+  }
+
+  .apps-grid-desc {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 30ch;
+  }
+
+  @media (max-width: 1023px) {
+    .neoleads-card { min-height: 0; padding-bottom: var(--space-8); }
+    .apps-grid-set { grid-template-columns: repeat(1, 1fr); }
+    .apps-grid-cell,
+    .apps-grid-cell-last-col {
+      border-right: none;
+      border-bottom: 1px dashed var(--border-default);
+      padding-left: 0;
+    }
+    .apps-grid-set .apps-grid-cell:nth-child(1) { padding-top: 0; }
+    .apps-grid-set .apps-grid-cell:last-child { border-bottom: none; padding-bottom: 0; }
+  }
+
+  /* ===== Why Snaarp Mail 3-card feature row ===== */
+  .why-mail-heading {
+    font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: var(--text-primary);
+  }
+  .why-mail-heading-accent { color: var(--color-brand); }
+
+  .why-mail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+  @media (max-width: 1023px) {
+    .why-mail-grid { grid-template-columns: 1fr; }
+  }
+
+  .why-mail-card {
+    position: relative;
+    overflow: hidden;
+    background: hsl(220, 14%, 95%);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .why-mail-icon-badge {
+    width: 44px;
+    height: 44px;
+    background: var(--color-brand-subtle);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-brand);
+    flex-shrink: 0;
+    margin-bottom: var(--space-4);
+  }
+
+  .why-mail-icon-at {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .why-mail-card-title {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.0625rem;
+    line-height: 1.35;
+    margin: 0 0 var(--space-2);
+  }
+
+  .why-mail-card-desc {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0 0 var(--space-6);
+  }
+
+  .why-mail-card-img-wrap {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: auto;
+  }
+
+  .why-mail-card-img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .why-mail-card-img-wrap-lg {
+    margin-left: calc(-1 * var(--space-6));
+    margin-right: calc(-1 * var(--space-6));
+  }
+
+  .why-mail-card-img-lg {
+    max-width: 420px;
+  }
+
+  /* Overflows past the card's own bottom edge without growing the card */
+  .why-mail-card-img-wrap-overflow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -32px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ===== Who Uses Snaarp Mail phone showcase ===== */
+  .who-uses-section {
+    background: linear-gradient(180deg, hsl(262, 65%, 96%) 0%, #ffffff 65%);
+  }
+
+  .who-uses-heading {
+    font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: var(--text-primary);
+  }
+  .who-uses-heading-accent { color: var(--color-brand); }
+
+  .who-uses-subtext {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 46ch;
+  }
+
+  .who-uses-stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr minmax(260px, 340px) 1fr;
+    align-items: center;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .who-uses-phone-wrap {
+    grid-column: 2;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-self: end;
+  }
+
+  .who-uses-phone-img {
+    width: 100%;
+    max-width: 340px;
+    display: block;
+    /* the source image's opaque phone shape sits off-center within its canvas
+       (116px left margin vs 13px right margin) — shift left to true-center it */
+    transform: translateX(-7.8%);
+  }
+
+  .who-uses-cards {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .who-uses-cards-left {
+    grid-column: 1;
+    align-items: flex-end;
+    margin-right: -48px;
+    transform: translateX(-56px);
+    align-self: end;
+  }
+
+  .who-uses-cards-right {
+    grid-column: 3;
+    align-items: flex-start;
+    margin-left: -48px;
+    transform: translateX(56px);
+  }
+
+  .who-uses-card {
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    box-shadow: 0 10px 20px -8px hsla(230, 30%, 20%, 0.1);
+    max-width: 220px;
+  }
+
+  .who-uses-card-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--color-brand-subtle);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-brand);
+    margin-bottom: var(--space-3);
+  }
+
+  .who-uses-card-title {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1.35;
+    margin: 0 0 var(--space-2);
+  }
+
+  .who-uses-card-desc {
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  @media (max-width: 1023px) {
+    .who-uses-stage {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: var(--space-6);
+    }
+    .who-uses-phone-wrap { grid-column: 1; }
+    .who-uses-cards-left,
+    .who-uses-cards-right {
+      grid-column: 1;
+      align-items: stretch;
+      margin-left: 0;
+      margin-right: 0;
+      transform: none;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+    .who-uses-card { max-width: 280px; flex: 1 1 220px; }
+  }
+
+  .who-uses-stats-bar {
+    background: hsl(262, 55%, 96%);
+    border-top: 1px solid hsl(262, 40%, 90%);
+  }
+
+  .who-uses-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8) var(--space-4);
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .who-uses-stats-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .who-uses-stat-number {
+    color: var(--color-brand);
+    font-weight: 700;
+    font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem);
+    line-height: 1.1;
+    margin: 0 0 var(--space-2);
+  }
+
+  .who-uses-stat-label {
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    margin: 0;
+  }
+
+  /* ===== Built For Modern Businesses bento grid ===== */
+  .bento-section {
+    background: hsl(240, 30%, 97%);
+  }
+
+  .bento-badge {
+    background: var(--color-brand-subtle);
+    color: var(--color-brand);
+    font-weight: 700;
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+  }
+
+  .bento-heading {
+    font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .bento-heading-modern {
+    color: var(--color-brand);
+  }
+
+  .bento-subtext {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 46ch;
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .bento-grid-row2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+
+  .bento-card {
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px hsla(0,0%,0%,.05);
+  }
+
+  .bento-card-title {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 0 0 var(--space-2);
+    line-height: 1.3;
+  }
+
+  .bento-card-desc {
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    margin: 0 0 var(--space-4);
+  }
+
+  .bento-card-img-wrap {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
+  .bento-card-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .bento-card-violet {
+    background: var(--color-brand);
+  }
+
+  .bento-card-violet .bento-card-title,
+  .bento-card-violet .bento-card-desc {
+    color: #ffffff;
+  }
+  .bento-card-violet .bento-card-desc {
+    color: hsla(0,0%,100%,.85);
+  }
+
+  @media (max-width: 1023px) {
+    .bento-grid { grid-template-columns: 1fr; }
+    .bento-grid-row2 { grid-template-columns: 1fr; }
+  }
+
+  /* ===== Stats / Statement card ===== */
+  .stats-card {
+    background: #0B0E2E;
+    border-radius: 28px;
+  }
+
+  .stats-heading {
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.35;
+    font-size: clamp(1.375rem, 1.6vw + 1rem, 1.75rem);
+    margin: 0 0 var(--space-10);
+  }
+  .stats-heading-line1 {
+    display: block;
+    color: #ffffff;
+  }
+  .stats-heading-accent {
+    display: block;
+    color: #A78BFA;
+    margin-top: var(--space-2);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-10) var(--space-4);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .stats-item { text-align: center; }
+
+  .stats-number {
+    font-weight: 700;
+    color: #A78BFA;
+    font-size: clamp(2.25rem, 3vw + 1rem, 2.75rem);
+    line-height: 1.1;
+    margin: 0 0 var(--space-2);
+  }
+
+  .stats-label {
+    color: hsl(230, 15%, 68%);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 18ch;
+    margin: 0 auto;
+  }
+
+  /* ===== Closer Look 6-card grid ===== */
+  .closer-look-section {
+    background: hsl(220, 20%, 97%);
+  }
+
+  .closer-look-badge {
+    background: var(--color-brand-subtle);
+    color: var(--color-brand);
+    font-weight: 700;
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+  }
+
+  .closer-look-heading {
+    font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: var(--text-primary);
+    max-width: 640px;
+  }
+  .closer-look-heading-accent { color: var(--color-brand); }
+
+  .closer-look-subtext {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 46ch;
+  }
+
+  .closer-look-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+  @media (max-width: 1023px) {
+    .closer-look-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 639px) {
+    .closer-look-grid { grid-template-columns: 1fr; }
+  }
+
+  .closer-look-card {
+    background: hsl(220, 14%, 94%);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .closer-look-illustration {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: var(--space-4);
+  }
+
+  .closer-look-illustration-img {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
+  .closer-look-card-title {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 0 0 var(--space-1);
+  }
+
+  .closer-look-card-desc {
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ===== The Snaarp Stack ===== */
+  .stack-card {
+    position: relative;
+    overflow: hidden;
+    background: #0B0E2E;
+    border-radius: 28px;
+    padding: var(--space-8) var(--space-6);
+  }
+  @media (min-width: 1024px) {
+    .stack-card { padding: var(--space-12); }
+  }
+
+  .stack-card::before {
+    content: "";
+    position: absolute;
+    top: -25%;
+    right: -12%;
+    width: 60%;
+    height: 150%;
+    background: radial-gradient(circle at center, hsla(262, 83%, 60%, 0.4), transparent 70%);
+    filter: blur(50px);
+    pointer-events: none;
+  }
+
+  .stack-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 11fr 9fr;
+    gap: var(--space-10);
+    align-items: center;
+  }
+  @media (max-width: 1023px) {
+    .stack-grid { grid-template-columns: 1fr; }
+  }
+
+  .stack-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: hsl(38, 85%, 62%);
+    font-weight: 700;
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 var(--space-4);
+  }
+  .stack-eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  .stack-heading {
+    font-weight: 700;
+    font-size: clamp(1.5rem, 2vw + 1rem, 2.125rem);
+    line-height: 1.35;
+    margin: 0 0 var(--space-5);
+  }
+  .stack-heading-line1,
+  .stack-heading-line2 {
+    display: block;
+    color: #ffffff;
+  }
+  .stack-heading-accent { color: #A78BFA; }
+
+  .stack-copy {
+    color: hsl(230, 12%, 68%);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    max-width: 48ch;
+    margin: 0 0 var(--space-6);
+  }
+
+  .stack-checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .stack-checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    color: hsl(230, 12%, 82%);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .stack-check-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: hsl(152, 60%, 55%);
+  }
+
+  .stack-price-card {
+    position: relative;
+    background: hsla(0, 0%, 100%, 0.1);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid hsla(0, 0%, 100%, 0.14);
+    border-radius: var(--radius-xl);
+    box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, 0.1);
+    padding: var(--space-10) var(--space-6);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stack-price {
+    font-weight: 700;
+    color: #ffffff;
+    font-size: clamp(2.75rem, 4vw + 1rem, 3.75rem);
+    line-height: 1;
+    margin: 0 0 var(--space-3);
+  }
+
+  .stack-price-label {
+    color: hsl(230, 10%, 72%);
+    font-size: 0.8125rem;
+    margin: 0 0 var(--space-5);
+  }
+
+  .stack-price-copy {
+    color: hsl(230, 10%, 74%);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    margin: 0 0 var(--space-6);
+  }
+
+  .stack-price-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: #ffffff;
+    color: #0B0E2E;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-full);
+    min-height: 44px;
+    transition: transform var(--duration-fast) var(--ease-spring), background var(--duration-fast) var(--ease-out);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .stack-price-btn:hover { background: hsl(220, 20%, 92%); }
+    .stack-price-btn:active { transform: scale(0.97); }
+  }
+
+  .stack-price-fine {
+    color: hsl(230, 8%, 55%);
+    font-size: 0.6875rem;
+    line-height: 1.5;
+    margin: var(--space-4) 0 0;
+  }
+
+  /* ===== Business Moves Fast app-download block ===== */
+  .moves-fast-section {
+    position: relative;
+    overflow: hidden;
+    background-image: url('assets/images/Black background2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: var(--space-16) 0;
+  }
+
+  .moves-fast-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    align-items: center;
+  }
+
+  .moves-fast-heading {
+    font-size: clamp(1.75rem, 2.6vw + 1rem, 2.75rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: #ffffff;
+    margin: 0 0 var(--space-5);
+  }
+
+  .moves-fast-copy {
+    color: hsl(220, 10%, 78%);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 46ch;
+    margin: 0 0 var(--space-8);
+  }
+
+  .moves-fast-badges {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .moves-fast-badge-img {
+    height: 48px;
+    width: auto;
+    display: block;
+  }
+
+  .moves-fast-right {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-self: stretch;
+    min-height: 440px;
+  }
+
+  .moves-fast-mockup {
+    position: absolute;
+    bottom: -72px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 1023px) {
+    .moves-fast-grid { grid-template-columns: 1fr; text-align: center; }
+    .moves-fast-copy { margin-left: auto; margin-right: auto; }
+    .moves-fast-badges { justify-content: center; }
+    .moves-fast-right { margin-top: var(--space-8); min-height: 340px; }
+    .moves-fast-mockup { max-width: 420px; bottom: -48px; }
+  }
+
+  /* ===== Testimonial 3-card row ===== */
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+  @media (max-width: 1023px) {
+    .testimonial-grid { grid-template-columns: 1fr; }
+  }
+
+  .testimonial-card {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: 0 20px 25px -5px hsla(220, 20%, 10%, 0.06), 0 8px 10px -6px hsla(220, 20%, 10%, 0.04);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonial-stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: var(--space-4);
+  }
+
+  .testimonial-star { flex-shrink: 0; }
+  .testimonial-star-filled { color: var(--color-brand); }
+  .testimonial-star-empty { color: hsl(220, 10%, 82%); }
+
+  .testimonial-quote {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin: 0 0 var(--space-6);
+    flex: 1;
+  }
+
+  .testimonial-footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: auto;
+  }
+
+  .testimonial-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #17171a;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .testimonial-name {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .testimonial-role {
+    color: var(--text-tertiary);
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  /* ===== Before You Start FAQ accordion ===== */
+  .faq-heading {
+    font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    text-align: center;
+    margin: 0;
+  }
+
+  .faq-container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .faq-item {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5) var(--space-6);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+  .faq-item:hover { border-color: var(--border-default); }
+
+  .faq-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq-summary::-webkit-details-marker { display: none; }
+  .faq-summary::marker { content: ''; }
+
+  .faq-question {
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    color: hsl(245, 30%, 22%);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .faq-item[open] .faq-question { color: var(--color-brand); }
+
+  .faq-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: hsl(220, 14%, 95%);
+    color: hsl(220, 8%, 55%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+  }
+  .faq-item[open] .faq-icon {
+    background: var(--color-brand);
+    color: #ffffff;
+  }
+
+  .faq-icon svg {
+    transform: rotate(-90deg);
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+  .faq-item[open] .faq-icon svg { transform: rotate(0deg); }
+
+  .faq-answer {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.65;
+    margin: var(--space-3) 0 0;
+    padding-right: var(--space-10);
+  }
+
+  @media (max-width: 639px) {
+    .faq-answer { padding-right: 0; }
+  }
+
+  /* ===== Final CTA block ===== */
+  .final-cta-card {
+    background: var(--color-brand);
+    border-radius: 28px;
+    box-shadow: 0 30px 40px -15px hsla(262, 83%, 40%, 0.35);
+    text-align: center;
+    padding: var(--space-12) var(--space-6);
+  }
+  @media (min-width: 768px) {
+    .final-cta-card { padding: var(--space-16) var(--space-12); }
+  }
+
+  .final-cta-eyebrow {
+    color: hsla(0, 0%, 100%, 0.85);
+    font-weight: 700;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 var(--space-4);
+  }
+
+  .final-cta-heading {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: clamp(1.75rem, 2.8vw + 1rem, 2.75rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    max-width: 20ch;
+    margin: 0 auto var(--space-5);
+  }
+
+  .final-cta-copy {
+    color: hsla(255, 100%, 96%, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 46ch;
+    margin: 0 auto var(--space-8);
+  }
+
+  .final-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: #17171a;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    padding: 18px 36px;
+    border-radius: var(--radius-full);
+    min-height: 44px;
+    transition: transform var(--duration-fast) var(--ease-spring), background var(--duration-fast) var(--ease-out);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .final-cta-btn:hover { background: hsl(220, 20%, 94%); }
+    .final-cta-btn:active { transform: scale(0.97); }
+  }
+
+  /* ===== Footer ===== */
+  .site-footer {
+    background: hsl(230, 20%, 6%);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.8fr repeat(4, 1fr);
+    gap: var(--space-10) var(--space-6);
+  }
+  @media (max-width: 1023px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 639px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  .footer-brand-name {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.375rem;
+    margin: 0 0 var(--space-4);
+  }
+
+  .footer-brand-desc {
+    color: hsl(230, 10%, 60%);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: 32ch;
+    margin: 0 0 var(--space-6);
+  }
+
+  .footer-socials {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .footer-social-link {
+    color: hsl(230, 10%, 60%);
+    display: inline-flex;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .footer-social-link:hover { color: #ffffff; }
+
+  .footer-col-title {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.875rem;
+    margin: 0 0 var(--space-4);
+  }
+
+  .footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer-link {
+    color: hsl(230, 10%, 60%);
+    font-size: 0.875rem;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .footer-link:hover { color: #ffffff; }
+
+  .footer-divider {
+    border: none;
+    border-top: 1px solid hsla(0, 0%, 100%, 0.1);
+    margin: var(--space-12) 0 var(--space-6);
+  }
+
+  .footer-bottom {
+    color: hsl(230, 10%, 50%);
+    font-size: 0.8125rem;
+    margin: 0;
+  }
+</style>
+</head>
+<body class="hero-bg">
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- ===================== HEADER ===================== -->
+<header class="bg-white border-b border-[var(--border-subtle)] relative z-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+
+    <div class="flex items-center gap-10">
+      <a href="#" class="text-xl font-bold tracking-tight text-[var(--text-primary)]" aria-label="Snaarp home">
+        Snaarp
+      </a>
+
+      <nav aria-label="Primary navigation" class="hidden md:block">
+        <ul class="flex items-center gap-8 list-none m-0 p-0">
+          <li><a href="#" class="nav-link">Products</a></li>
+          <li><a href="#" class="nav-link">Solution</a></li>
+          <li><a href="#" class="nav-link">Pricing</a></li>
+          <li><a href="#" class="nav-link">Contact Sales</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <a href="#" class="nav-link hidden sm:inline">Get App</a>
+      <a href="#" class="nav-link hidden sm:inline">Login</a>
+      <a href="#" class="btn-dark inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm min-h-[44px]">
+        Get Started
+      </a>
+      <button type="button" class="nav-link inline-flex items-center gap-1 min-h-[44px]" aria-label="Select region, currently Global">
+        Global
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<main id="main-content">
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+
+      <!-- Left column -->
+      <div>
+        <div class="badge-pill inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs uppercase mb-6" data-reveal-load>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M13 2L4.5 13.5H11L10 22L19.5 9.5H13L14 2Z"/>
+          </svg>
+          20+ Apps · One Login · One Price
+        </div>
+
+        <h1 class="font-bold leading-[1.1] tracking-tight mb-6" style="font-size: clamp(2rem, 3.2vw + 1rem, 3rem);" data-reveal-load>
+          <span class="block text-[var(--text-primary)]">Your whole business, in one place.</span>
+          <span class="block text-[var(--color-brand)]">Get everything for £1</span>
+        </h1>
+
+        <p class="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style="font-size: 1.0625rem;" data-reveal-load>
+          Mail, CRM, Docs, Meet, Books, a password manager and eleven more — every app your business runs on, under one login. Your first month is £1. Full stop.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-8" data-reveal-load>
+          <a href="#" class="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3.5 min-h-[44px]">
+            Start for £1/month
+          </a>
+          <a href="#" class="btn-outline inline-flex items-center justify-center rounded-full px-6 py-3.5 min-h-[44px]">
+            See how it works
+          </a>
+        </div>
+
+        <ul class="flex flex-wrap items-center gap-6 list-none m-0 p-0" data-reveal-load>
+          <li class="trust-item flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="2"/>
+              <path d="M3 9H21" stroke-linecap="round"/>
+              <path d="M8 3V6M16 3V6" stroke-linecap="round"/>
+            </svg>
+            14-day free trial
+          </li>
+          <li class="trust-item flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M12 2L4 5V11C4 16 7.5 19.5 12 21C16.5 19.5 20 16 20 11V5L12 2Z" stroke-linejoin="round"/>
+            </svg>
+            No credit card required
+          </li>
+          <li class="trust-item flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M6 6L18 18M18 6L6 18" stroke-linecap="round"/>
+            </svg>
+            Cancel anytime
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right column: icon grid -->
+      <div class="icon-grid-outer p-6 lg:p-8" role="img" aria-label="Grid of icons representing Snaarp's suite of business apps: search, documents, cube, calendar, security, mail, presentations, notes, video meetings, chat, AI, and team collaboration">
+        <div class="icon-grid">
+
+          <!-- 16 static background slots (row 1..4, reading order). These
+               never move — they're the "cells" the icons below sit on top
+               of and relocate between during the ambient shuffle. -->
+          <div class="icon-tile"></div>
+          <div class="icon-tile"></div>
+          <div class="icon-tile"></div>
+          <div class="icon-tile"></div>
+
+          <div class="icon-tile"></div>
+          <div class="icon-tile"></div>
+          <div class="icon-tile"></div>
+          <div class="icon-tile"></div>
+
+          <div class="icon-tile"></div>
+          <div class="icon-tile"></div>
+          <div class="icon-tile"></div>
+          <div class="icon-tile"></div>
+
+          <div class="icon-tile"></div>
+          <div class="icon-tile"></div>
+          <div class="icon-tile"></div>
+          <div class="icon-tile"></div>
+
+          <!-- The 12 icons: absolutely positioned on top of the slots
+               above via transform, so the reveal-system script can move
+               them between tiles (data-slot = 0-15, reading order) without
+               ever re-mounting or touching layout. -->
+          <div class="icon-grid-movers" aria-hidden="true">
+            <div class="icon-mover" data-slot="0"><img class="icon-visual" src="assets/icons/search.jpg" alt=""></div>
+            <div class="icon-mover" data-slot="1"><img class="icon-visual" src="assets/icons/layered-pages.png" alt=""></div>
+            <div class="icon-mover" data-slot="3"><img class="icon-visual" src="assets/icons/cube.jpg" alt=""></div>
+            <div class="icon-mover" data-slot="4"><img class="icon-visual" src="assets/icons/k-icon.jpg" alt=""></div>
+            <div class="icon-mover" data-slot="6"><img class="icon-visual" src="assets/icons/padlock.jpg" alt=""></div>
+            <div class="icon-mover" data-slot="8"><img class="icon-visual" src="assets/icons/envelope.jpg" alt=""></div>
+            <div class="icon-mover" data-slot="9"><img class="icon-visual" src="assets/icons/p-icon.jpg" alt=""></div>
+            <div class="icon-mover" data-slot="10"><img class="icon-visual" src="assets/icons/document.jpg" alt=""></div>
+            <div class="icon-mover" data-slot="11"><img class="icon-visual" src="assets/icons/video.jpg" alt=""></div>
+            <div class="icon-mover" data-slot="12"><img class="icon-visual" src="assets/icons/chat-bubbles.jpg" alt=""></div>
+            <div class="icon-mover" data-slot="14"><img class="icon-visual" src="assets/icons/ai-sparkle.jpg" alt=""></div>
+            <div class="icon-mover" data-slot="15"><img class="icon-visual" src="assets/icons/people-check.jpg" alt=""></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== APPS TO EXPLORE SPOTLIGHT ===================== -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 pb-16 lg:pb-24">
+    <div class="apps-spotlight-card grid grid-cols-1 lg:grid-cols-[2fr_3fr]">
+
+      <!-- Left column: NeoLeads spotlight -->
+      <div class="neoleads-card" data-reveal data-reveal-group="apps-explore">
+        <div class="neoleads-card-inner">
+          <p class="neoleads-wordmark">
+            <span class="neoleads-wordmark-neo">Neo</span><span class="neoleads-wordmark-leads">Leads</span>
+          </p>
+          <p class="neoleads-copy">
+            Automate your outbound sales from lead generation to first contact. You only pay when a prospect actually replies.
+          </p>
+          <a href="#" class="neoleads-cta">Start for Free</a>
+        </div>
+        <div class="neoleads-dashboard-wrap">
+          <img src="assets/images/neoleads-dashboard.png" alt="NeoLeads sales dashboard showing customer analytics, revenue charts and a deals table" class="neoleads-dashboard-img">
+        </div>
+      </div>
+
+      <!-- Right column: apps grid -->
+      <div class="apps-grid-col">
+        <div class="apps-grid-header" data-reveal data-reveal-group="apps-explore">
+          <span class="apps-grid-label">Apps to Explore</span>
+          <a href="#" class="apps-grid-viewall">View All <span aria-hidden="true">&rarr;</span></a>
+        </div>
+
+        <div class="apps-grid">
+          <!-- Set A: shown first, on screen ~4-5s before crossfading to Set B (see rotation script at the bottom of the page). -->
+          <div class="apps-grid-set is-active" data-set="a">
+            <a href="#" class="apps-grid-cell" data-reveal data-reveal-group="apps-explore" data-reveal-batch="apps-grid">
+              <p class="apps-grid-name"><img src="assets/icons/apps-kalender.jpg" alt="" aria-hidden="true" class="apps-grid-icon">Kalender</p>
+              <p class="apps-grid-desc">Shared calendars and booking links that keep every meeting in sync.</p>
+            </a>
+            <a href="#" class="apps-grid-cell" data-reveal data-reveal-group="apps-explore" data-reveal-batch="apps-grid">
+              <p class="apps-grid-name"><img src="assets/icons/apps-document.png" alt="" aria-hidden="true" class="apps-grid-icon">Document</p>
+              <p class="apps-grid-desc">Write and co-edit docs with your team, live.</p>
+            </a>
+            <a href="#" class="apps-grid-cell apps-grid-cell-last-col" data-reveal data-reveal-group="apps-explore" data-reveal-batch="apps-grid">
+              <p class="apps-grid-name"><img src="assets/icons/apps-meet.jpg" alt="" aria-hidden="true" class="apps-grid-icon">Meet</p>
+              <p class="apps-grid-desc">Video calls with screen share, notes and recording built in.</p>
+            </a>
+
+            <a href="#" class="apps-grid-cell" data-reveal data-reveal-group="apps-explore" data-reveal-batch="apps-grid">
+              <p class="apps-grid-name"><img src="assets/icons/apps-sheet.jpg" alt="" aria-hidden="true" class="apps-grid-icon">Sheet</p>
+              <p class="apps-grid-desc">Spreadsheets that stay accurate when three people are in them at once.</p>
+            </a>
+            <a href="#" class="apps-grid-cell" data-reveal data-reveal-group="apps-explore" data-reveal-batch="apps-grid">
+              <p class="apps-grid-name"><img src="assets/icons/apps-sendrit.jpg" alt="" aria-hidden="true" class="apps-grid-icon">Sendrit</p>
+              <p class="apps-grid-desc">Outbound sequences that land in the inbox, not the spam folder.</p>
+            </a>
+            <a href="#" class="apps-grid-cell apps-grid-cell-last-col" data-reveal data-reveal-group="apps-explore" data-reveal-batch="apps-grid">
+              <p class="apps-grid-name"><img src="assets/icons/apps-lock.jpg" alt="" aria-hidden="true" class="apps-grid-icon">Lock</p>
+              <p class="apps-grid-desc">A shared password manager, so &ldquo;ask Dami for the login&rdquo; retires for good.</p>
+            </a>
+          </div>
+
+          <!-- Set B: hidden until the rotation script activates it; aria-hidden + tabindex=-1 are set on the links by JS so they can't be tabbed to while off-screen. -->
+          <div class="apps-grid-set" data-set="b" aria-hidden="true">
+            <a href="#" class="apps-grid-cell">
+              <p class="apps-grid-name"><img src="assets/icons/envelope.jpg" alt="" aria-hidden="true" class="apps-grid-icon">Mail</p>
+              <p class="apps-grid-desc">Business email on your own domain, with unlimited mailboxes and no per-seat email tax.</p>
+            </a>
+            <a href="#" class="apps-grid-cell">
+              <p class="apps-grid-name"><img src="assets/icons/p-icon.jpg" alt="" aria-hidden="true" class="apps-grid-icon">Presentation</p>
+              <p class="apps-grid-desc">Build and present decks straight from the browser.</p>
+            </a>
+            <a href="#" class="apps-grid-cell apps-grid-cell-last-col">
+              <p class="apps-grid-name"><img src="assets/icons/ai-sparkle.jpg" alt="" aria-hidden="true" class="apps-grid-icon">AI Compose</p>
+              <p class="apps-grid-desc">Drafts emails, replies and documents in your voice, everywhere you type.</p>
+            </a>
+
+            <a href="#" class="apps-grid-cell">
+              <p class="apps-grid-name"><img src="assets/icons/people-check.jpg" alt="" aria-hidden="true" class="apps-grid-icon">Contacts</p>
+              <p class="apps-grid-desc">One address book, shared across the whole team.</p>
+            </a>
+            <a href="#" class="apps-grid-cell">
+              <p class="apps-grid-name"><img src="assets/icons/cube.jpg" alt="" aria-hidden="true" class="apps-grid-icon">Work Drive</p>
+              <p class="apps-grid-desc">Shared storage for every file, with version history baked in.</p>
+            </a>
+            <a href="#" class="apps-grid-cell apps-grid-cell-last-col">
+              <p class="apps-grid-name"><img src="assets/icons/chat-bubbles.jpg" alt="" aria-hidden="true" class="apps-grid-icon">Teams</p>
+              <p class="apps-grid-desc">Group chat and channels, so email stops being a to-do list.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== WHY SNAARP MAIL 3-CARD FEATURE ROW ===================== -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 pb-16 lg:pb-24">
+
+    <!-- Section header -->
+    <div class="flex flex-col items-center text-center mb-12">
+      <div class="badge-pill inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs uppercase mb-5" data-reveal data-reveal-group="why-mail">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+          <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+          <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+          <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+        </svg>
+        Why Snaarp Mail
+      </div>
+
+      <h2 class="why-mail-heading" data-reveal data-reveal-group="why-mail">
+        <span class="block">Empower Your Team with</span>
+        <span class="block"><span class="why-mail-heading-accent">Next-Gen</span> &#128231; Email</span>
+      </h2>
+    </div>
+
+    <!-- 3-card grid -->
+    <div class="why-mail-grid">
+      <div class="why-mail-card" data-reveal data-reveal-group="why-mail" data-reveal-batch="why-mail-cards">
+        <div class="why-mail-icon-badge" aria-hidden="true"><span class="why-mail-icon-at">@</span></div>
+        <h3 class="why-mail-card-title">Unlimited Addresses for Every Department</h3>
+        <p class="why-mail-card-desc">Stop paying per inbox. Instantly set up dedicated mailboxes like sales@, support@, or billing@ with zero restrictions.</p>
+        <div class="why-mail-card-img-wrap why-mail-card-img-wrap-lg">
+          <img src="Unlimited Addresses for Every Department.png" alt="Sample dedicated mailbox addresses: hello@yourbrand.com, sarah@yourbrand.com, and support@yourbrand.com" class="why-mail-card-img why-mail-card-img-lg" loading="lazy">
+        </div>
+      </div>
+
+      <div class="why-mail-card" data-reveal data-reveal-group="why-mail" data-reveal-batch="why-mail-cards">
+        <div class="why-mail-icon-badge" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="4" width="22" height="16" rx="2"/>
+            <line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
+        </div>
+        <h3 class="why-mail-card-title">Predictable, Fair Pricing</h3>
+        <p class="why-mail-card-desc">Forget confusing per-user fees. Pay one simple, transparent monthly rate that covers everyone in your organization.</p>
+        <div class="why-mail-card-img-wrap why-mail-card-img-wrap-lg">
+          <img src="Predictable, Fair Pricing.png" alt="Credit cards and coins representing one simple monthly rate" class="why-mail-card-img why-mail-card-img-lg" loading="lazy">
+        </div>
+      </div>
+
+      <div class="why-mail-card" data-reveal data-reveal-group="why-mail" data-reveal-batch="why-mail-cards">
+        <div class="why-mail-icon-badge" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="12" x2="2" y2="12"/>
+            <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+            <line x1="6" y1="16" x2="6.01" y2="16"/>
+            <line x1="10" y1="16" x2="10.01" y2="16"/>
+          </svg>
+        </div>
+        <h3 class="why-mail-card-title">Storage That Scales Alongside Your Business</h3>
+        <p class="why-mail-card-desc">Start with exactly what you need today and seamlessly upgrade your capacity as your team grows—without disrupting your workflow.</p>
+        <div class="why-mail-card-img-wrap-overflow">
+          <img src="assets/images/Storage That Scales Alongside Your Business2.png" alt="Upward arrows chart with an Upgrade Plan button" class="why-mail-card-img why-mail-card-img-lg" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===================== BUILT FOR MODERN BUSINESSES BENTO GRID ===================== -->
+  <section class="bento-section py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <!-- Section header -->
+      <div class="flex flex-col items-center text-center mb-12">
+        <div class="bento-badge inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs uppercase mb-5" data-reveal data-reveal-group="bento">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="M3 7L12 13L21 7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Elevate Your Inbox
+        </div>
+
+        <h2 class="bento-heading mb-4" data-reveal data-reveal-group="bento">
+          Built For <span class="bento-heading-modern">Modern</span> Businesses
+        </h2>
+
+        <p class="bento-subtext" data-reveal data-reveal-group="bento">
+          Transform how your team communicates with powerful tools designed for the way you work.
+        </p>
+      </div>
+
+      <!-- Row 1: 3 cards -->
+      <div class="bento-grid">
+        <div class="bento-card" data-reveal data-reveal-group="bento" data-reveal-batch="bento-cards">
+          <h3 class="bento-card-title">Powerful Analytics &amp; Insights</h3>
+          <p class="bento-card-desc">Track performance, monitor your team, and gain actionable insights.</p>
+          <div class="bento-card-img-wrap">
+            <img src="assets/images/bento-analytics.png" alt="Dashboard showing organizational user summary with active and inactive user counts" class="bento-card-img">
+          </div>
+        </div>
+
+        <div class="bento-card" data-reveal data-reveal-group="bento" data-reveal-batch="bento-cards">
+          <h3 class="bento-card-title">Enterprise-Grade Security</h3>
+          <p class="bento-card-desc">Advanced threat detection and encryption meeting global GDPR and HIPAA standards.</p>
+          <div class="bento-card-img-wrap">
+            <img src="assets/images/bento-security.png" alt="Security standard diagram linking to AICPA SOC, GDPR, and HIPAA compliance badges" class="bento-card-img">
+          </div>
+        </div>
+
+        <div class="bento-card" data-reveal data-reveal-group="bento" data-reveal-batch="bento-cards">
+          <h3 class="bento-card-title">Scalable storage tiers</h3>
+          <p class="bento-card-desc">Pay for what you need and upgrade as you grow.</p>
+          <div class="bento-card-img-wrap">
+            <img src="assets/images/bento-storage-tiers.png" alt="List of storage plan tiers from Starter to Scale with an upward arrow" class="bento-card-img">
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: 2 cards -->
+      <div class="bento-grid-row2">
+        <div class="bento-card" data-reveal data-reveal-group="bento" data-reveal-batch="bento-cards">
+          <h3 class="bento-card-title">Secure Business Email For Your Organization</h3>
+          <p class="bento-card-desc">Get professional addresses on your custom domain with total privacy and control.</p>
+          <div class="bento-card-img-wrap">
+            <img src="assets/images/bento-secure-email.png" alt="Custom email address input with sample addresses on a company domain" class="bento-card-img">
+          </div>
+        </div>
+
+        <div class="bento-card bento-card-violet" data-reveal data-reveal-group="bento" data-reveal-batch="bento-cards">
+          <h3 class="bento-card-title">Integrated Drive Access</h3>
+          <p class="bento-card-desc">Manage, store, and attach files without ever switching tabs.</p>
+          <div class="bento-card-img-wrap">
+            <img src="assets/images/bento-drive-access.png" alt="Snaarp storage interface showing folders and files with storage usage overview" class="bento-card-img">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== STATS / STATEMENT ===================== -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+    <div class="stats-card px-8 py-12 lg:px-16 lg:py-16">
+      <h2 class="stats-heading" data-reveal data-reveal-group="stats">
+        <span class="stats-heading-line1">Every App Your Business Needs.</span>
+        <span class="stats-heading-accent">One Login, One Price.</span>
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stats-item" data-reveal data-reveal-group="stats" data-reveal-batch="stats-items">
+          <p class="stats-number">20+</p>
+          <p class="stats-label">apps, one login</p>
+        </div>
+        <div class="stats-item" data-reveal data-reveal-group="stats" data-reveal-batch="stats-items">
+          <p class="stats-number">1</p>
+          <p class="stats-label">invoice</p>
+        </div>
+        <div class="stats-item" data-reveal data-reveal-group="stats" data-reveal-batch="stats-items">
+          <p class="stats-number">£1</p>
+          <p class="stats-label">per month, No hidden charges</p>
+        </div>
+        <div class="stats-item" data-reveal data-reveal-group="stats" data-reveal-batch="stats-items">
+          <p class="stats-number">1min</p>
+          <p class="stats-label">setup migrate from Gmail or Outlook fast</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CLOSER LOOK 6-CARD GRID ===================== -->
+  <section class="closer-look-section py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <!-- Section header -->
+      <div class="flex flex-col items-center text-center mb-12">
+        <div class="closer-look-badge inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs uppercase mb-5" data-reveal data-reveal-group="closer-look">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="M3 7L12 13L21 7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          A Closer Look
+        </div>
+
+        <h2 class="closer-look-heading mb-4" data-reveal data-reveal-group="closer-look">
+          Built To Replace <span class="closer-look-heading-accent">The Tools</span> You&rsquo;re Already Tolerating.
+        </h2>
+
+        <p class="closer-look-subtext" data-reveal data-reveal-group="closer-look">
+          Transform how your team communicates with powerful tools designed for the way you work.
+        </p>
+      </div>
+
+      <!-- 3x2 card grid -->
+      <div class="closer-look-grid">
+        <div class="closer-look-card" data-reveal data-reveal-group="closer-look" data-reveal-batch="closer-look-cards">
+          <div class="closer-look-illustration">
+            <img src="assets/images/business-email.png" alt="Business Email interface showing inbox with custom domain address" class="closer-look-illustration-img">
+          </div>
+          <h3 class="closer-look-card-title">Business Email</h3>
+          <p class="closer-look-card-desc">Custom domains, shared inboxes, calendars and contacts.</p>
+        </div>
+
+        <div class="closer-look-card" data-reveal data-reveal-group="closer-look" data-reveal-batch="closer-look-cards">
+          <div class="closer-look-illustration">
+            <img src="assets/images/crm-sales.png" alt="CRM sales pipeline dashboard with deal stages and revenue" class="closer-look-illustration-img">
+          </div>
+          <h3 class="closer-look-card-title">CRM &amp; Sales</h3>
+          <p class="closer-look-card-desc">Pipeline, outreach, verified leads and follow-ups.</p>
+        </div>
+
+        <div class="closer-look-card" data-reveal data-reveal-group="closer-look" data-reveal-batch="closer-look-cards">
+          <div class="closer-look-illustration">
+            <img src="assets/images/password-manager.png" alt="Password manager vault showing saved logins" class="closer-look-illustration-img">
+          </div>
+          <h3 class="closer-look-card-title">Password Manager</h3>
+          <p class="closer-look-card-desc">Shared vaults, access control and login security.</p>
+        </div>
+
+        <div class="closer-look-card" data-reveal data-reveal-group="closer-look" data-reveal-batch="closer-look-cards">
+          <div class="closer-look-illustration">
+            <img src="assets/images/cloud-storage.png" alt="Cloud storage file browser with folders and documents" class="closer-look-illustration-img">
+          </div>
+          <h3 class="closer-look-card-title">Cloud Storage</h3>
+          <p class="closer-look-card-desc">Files, docs, sheets and slides, stored together.</p>
+        </div>
+
+        <div class="closer-look-card" data-reveal data-reveal-group="closer-look" data-reveal-batch="closer-look-cards">
+          <div class="closer-look-illustration">
+            <img src="assets/images/video-meetings.png" alt="Video meeting call interface with participants and screen share" class="closer-look-illustration-img">
+          </div>
+          <h3 class="closer-look-card-title">Video Meetings</h3>
+          <p class="closer-look-card-desc">HD calls, screen share, notes and recordings.</p>
+        </div>
+
+        <div class="closer-look-card" data-reveal data-reveal-group="closer-look" data-reveal-batch="closer-look-cards">
+          <div class="closer-look-illustration">
+            <img src="assets/images/accounting-software.png" alt="Accounting software financial overview with invoices and expenses" class="closer-look-illustration-img">
+          </div>
+          <h3 class="closer-look-card-title">Accounting Software</h3>
+          <p class="closer-look-card-desc">Invoicing, bookkeeping and financial reporting.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== THE SNAARP STACK ===================== -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+    <div class="stack-card">
+      <div class="stack-grid">
+
+        <div class="stack-left">
+          <p class="stack-eyebrow" data-reveal data-reveal-group="stack"><span class="stack-eyebrow-dot" aria-hidden="true"></span>The Snaarp Stack</p>
+
+          <h2 class="stack-heading" data-reveal data-reveal-group="stack">
+            <span class="stack-heading-line1">One subscription. <span class="stack-heading-accent">20+ apps.</span></span>
+            <span class="stack-heading-line2">No add-ons to chase.</span>
+          </h2>
+
+          <p class="stack-copy" data-reveal data-reveal-group="stack">Most teams buy email from one place, a CRM from another, and a password manager from a third — then pay full price for each. The Stack replaces all of it.</p>
+
+          <ul class="stack-checklist" data-reveal data-reveal-group="stack">
+            <li>
+              <svg class="stack-check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+              Every app on this page, for every user on your team
+            </li>
+            <li>
+              <svg class="stack-check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+              One login, one admin console, one invoice
+            </li>
+            <li>
+              <svg class="stack-check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+              New apps added to the Stack at no extra cost
+            </li>
+            <li>
+              <svg class="stack-check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+              UK &amp; EU hosting options, GDPR-ready by default
+            </li>
+            <li>
+              <svg class="stack-check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+              Cancel or downgrade anytime, no lock-in contract
+            </li>
+          </ul>
+        </div>
+
+        <div class="stack-right">
+          <div class="stack-price-card" data-reveal data-reveal-group="stack">
+            <p class="stack-price">£1</p>
+            <p class="stack-price-label">Starter plan, per user / month*</p>
+            <p class="stack-price-copy">Higher plans with more storage, seats and premium apps are on the way — you&rsquo;ll always see the price before anything changes.</p>
+            <a href="#" class="stack-price-btn">Start the Stack for £1</a>
+            <p class="stack-price-fine">*Introductory offer for new business accounts. Illustrative pricing — confirm current rates on the pricing page.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHO USES SNAARP MAIL PHONE SHOWCASE ===================== -->
+  <section class="who-uses-section">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-16 lg:pt-24 pb-0">
+
+      <!-- Section header -->
+      <div class="flex flex-col items-center text-center mb-12 lg:mb-16">
+        <div class="badge-pill inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs uppercase mb-5" data-reveal data-reveal-group="who-uses-main" data-reveal-delay="0">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>
+          </svg>
+          Who Uses Snaarp Mail
+        </div>
+
+        <h2 class="who-uses-heading mb-4" data-reveal data-reveal-group="who-uses-main" data-reveal-delay="100">
+          <span class="block">Business Email That Scales With Your</span>
+          <span class="block who-uses-heading-accent">Growing Team</span>
+        </h2>
+
+        <p class="who-uses-subtext" data-reveal data-reveal-group="who-uses-main" data-reveal-delay="200">See how teams across different sectors use Snaarp Mail to communicate faster and stay organized.</p>
+      </div>
+
+      <!-- Phone + surrounding cards. The phone leads (delay 300) and the four
+           cards follow just after (400-670) — hand-tuned via data-reveal-delay
+           because CSS grid-column placement (not DOM order) controls their
+           visual position, so automatic DOM-order sequencing can't infer it. -->
+      <div class="who-uses-stage">
+
+        <div class="who-uses-cards who-uses-cards-left">
+          <div class="who-uses-card" data-reveal data-reveal-group="who-uses-main" data-reveal-delay="400">
+            <div class="who-uses-card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <h3 class="who-uses-card-title">Handle high-volume support</h3>
+            <p class="who-uses-card-desc">Keep your customers happy and your team organized, no matter how busy the inbox gets.</p>
+          </div>
+
+          <div class="who-uses-card" data-reveal data-reveal-group="who-uses-main" data-reveal-delay="490">
+            <div class="who-uses-card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+            </div>
+            <h3 class="who-uses-card-title">Scale seats instantly</h3>
+            <p class="who-uses-card-desc">Add or remove team members in seconds without any admin headaches.</p>
+          </div>
+        </div>
+
+        <div class="who-uses-phone-wrap" data-reveal data-reveal-group="who-uses-main" data-reveal-delay="300">
+          <img src="Who Uses Snaarp mail.png" alt="Snaarp Mail inbox on a phone showing the Primary tab with unread messages and category labels like Promotions and Updates" class="who-uses-phone-img">
+        </div>
+
+        <div class="who-uses-cards who-uses-cards-right">
+          <div class="who-uses-card" data-reveal data-reveal-group="who-uses-main" data-reveal-delay="580">
+            <div class="who-uses-card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10L12 5 2 10l10 5 10-5z"/>
+                <path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/>
+              </svg>
+            </div>
+            <h3 class="who-uses-card-title">Manage multiple client accounts</h3>
+            <p class="who-uses-card-desc">Juggle different brands and projects smoothly without ever crossing your wires.</p>
+          </div>
+
+          <div class="who-uses-card" data-reveal data-reveal-group="who-uses-main" data-reveal-delay="670">
+            <div class="who-uses-card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/>
+              </svg>
+            </div>
+            <h3 class="who-uses-card-title">Secure document sharing</h3>
+            <p class="who-uses-card-desc">Exchange sensitive files and contracts with total peace of mind.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Stats bar -->
+    <div class="who-uses-stats-bar pt-6 pb-12 lg:pt-8 lg:pb-14">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="who-uses-stats-grid">
+          <div data-reveal data-reveal-group="who-uses-stats" data-reveal-batch="who-uses-stats-items">
+            <p class="who-uses-stat-number">99.9%</p>
+            <p class="who-uses-stat-label">Uptime SLA</p>
+          </div>
+          <div data-reveal data-reveal-group="who-uses-stats" data-reveal-batch="who-uses-stats-items">
+            <p class="who-uses-stat-number">50GB</p>
+            <p class="who-uses-stat-label">Per User Storage</p>
+          </div>
+          <div data-reveal data-reveal-group="who-uses-stats" data-reveal-batch="who-uses-stats-items">
+            <p class="who-uses-stat-number">256-bit</p>
+            <p class="who-uses-stat-label">Per User Storage</p>
+          </div>
+          <div data-reveal data-reveal-group="who-uses-stats" data-reveal-batch="who-uses-stats-items">
+            <p class="who-uses-stat-number">24/7</p>
+            <p class="who-uses-stat-label">Support</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BUSINESS MOVES FAST APP DOWNLOAD ===================== -->
+  <section class="moves-fast-section">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="moves-fast-grid">
+
+        <div class="moves-fast-left">
+          <h2 class="moves-fast-heading" data-reveal data-reveal-group="moves-fast">
+            <span class="block">Business Moves Fast.</span>
+            <span class="block">Your Email Should Too</span>
+          </h2>
+          <p class="moves-fast-copy" data-reveal data-reveal-group="moves-fast">Switch effortlessly between your desktop and phone without missing a single thread.</p>
+          <div class="moves-fast-badges">
+            <a href="#" aria-label="Get it on Google Play" data-reveal data-reveal-group="moves-fast" data-reveal-batch="moves-fast-badges">
+              <img src="assets/images/Google Play (1).png" alt="Get it on Google Play" class="moves-fast-badge-img">
+            </a>
+            <a href="#" aria-label="Download on the App Store" data-reveal data-reveal-group="moves-fast" data-reveal-batch="moves-fast-badges">
+              <img src="assets/images/App Store.png" alt="Download on the App Store" class="moves-fast-badge-img">
+            </a>
+          </div>
+        </div>
+
+        <div class="moves-fast-right">
+          <img src="assets/images/Get started (4).png" alt="Snaarp Mail shown across two overlapping phone screens: a sidebar inbox view and a message list view" class="moves-fast-mockup" data-reveal data-reveal-group="moves-fast">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TESTIMONIAL 3-CARD ROW ===================== -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card" data-reveal data-reveal-group="testimonials" data-reveal-batch="testimonial-cards">
+        <div class="testimonial-stars" role="img" aria-label="Rated 4 out of 5 stars">
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+          <svg class="testimonial-star testimonial-star-empty" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-quote">&ldquo;We were paying for email, a CRM, a password manager, e-signatures and accounting software separately. Moving the whole team onto the Stack took an afternoon, and cut our software bill by more than half.&rdquo;</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar" aria-hidden="true">AO</div>
+          <div>
+            <p class="testimonial-name">Amara O.</p>
+            <p class="testimonial-role">Operations Lead, logistics startup</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card" data-reveal data-reveal-group="testimonials" data-reveal-batch="testimonial-cards">
+        <div class="testimonial-stars" role="img" aria-label="Rated 4 out of 5 stars">
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+          <svg class="testimonial-star testimonial-star-empty" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-quote">&ldquo;As a five-person agency, we didn&rsquo;t have the budget or the patience for ten different logins. Snaarp gave us email, docs and a CRM on day one, and we&rsquo;ve added tools as we&rsquo;ve grown into them.&rdquo;</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar" aria-hidden="true">TA</div>
+          <div>
+            <p class="testimonial-name">Tunde A.</p>
+            <p class="testimonial-role">Founder, design agency</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card" data-reveal data-reveal-group="testimonials" data-reveal-batch="testimonial-cards">
+        <div class="testimonial-stars" role="img" aria-label="Rated 5 out of 5 stars">
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+          <svg class="testimonial-star testimonial-star-filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-quote">&ldquo;Onboarding new hires used to mean setting up accounts across six different platforms. Now it&rsquo;s one invite, one login, and they&rsquo;re working within minutes. IT tickets for &lsquo;forgot my password&rsquo; dropped almost overnight.&rdquo;</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar" aria-hidden="true">GM</div>
+          <div>
+            <p class="testimonial-name">Grace M.</p>
+            <p class="testimonial-role">IT Administrator, fintech company</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== BEFORE YOU START FAQ ACCORDION ===================== -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+    <div class="flex flex-col items-center text-center mb-10">
+      <div class="badge-pill inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs uppercase mb-5" data-reveal data-reveal-group="faq">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>
+        </svg>
+        Questions
+      </div>
+      <h2 class="faq-heading" data-reveal data-reveal-group="faq">Before You Start</h2>
+    </div>
+
+    <div class="faq-container" data-reveal data-reveal-group="faq">
+      <div class="faq-list">
+
+        <details class="faq-item" open>
+          <summary class="faq-summary">
+            <span class="faq-question">What does the £1 plan include?</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="12" height="8" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <p class="faq-answer">£1 is the starting price of our Starter plan, per user per month — not a limited-time trial. It includes access to the Stack; more plans with additional storage, seats and premium apps are on the way. You&rsquo;ll always see the price before anything changes.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span class="faq-question">Do I have to use all 27 apps?</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="12" height="8" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <p class="faq-answer">No. Every app is included in the Stack, but your team only needs to switch on what it actually uses. Turn apps on or off per user from the admin console.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span class="faq-question">Can I move my existing email and files over?</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="12" height="8" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <p class="faq-answer">Yes. Snaarp Mail and Work Drive both include guided migration from Gmail, Outlook and most common storage providers.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span class="faq-question">What&rsquo;s the difference between Books and Accounting Software?</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="12" height="8" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <p class="faq-answer">Books covers everyday invoicing and bookkeeping. Accounting Software adds full double-entry accounting and financial reporting for teams that have outgrown the basics.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span class="faq-question">Is this suitable for a team of one?</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="12" height="8" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <p class="faq-answer">Yes — solo founders use the Stack to replace half a dozen separate subscriptions with one. Pricing scales down with your team size.</p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+    <div class="final-cta-card">
+      <p class="final-cta-eyebrow" data-reveal data-reveal-group="final-cta">Ready When You Are</p>
+      <h2 class="final-cta-heading" data-reveal data-reveal-group="final-cta">Plans start at £1. Every app included.</h2>
+      <p class="final-cta-copy" data-reveal data-reveal-group="final-cta">No separate bills, no ten different logins to remember. Just one Stack, running your whole business.</p>
+      <a href="#" class="final-cta-btn" data-reveal data-reveal-group="final-cta">Start the Stack for £1</a>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
+    <div class="footer-grid">
+
+      <div class="footer-brand" data-reveal data-reveal-group="footer" data-reveal-batch="footer-columns">
+        <p class="footer-brand-name">Snaarp Inc.</p>
+        <p class="footer-brand-desc">20+ business apps. One login. One price. Built for teams who are done juggling subscriptions.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" aria-label="Snaarp on X">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z"/></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="Snaarp on Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="Snaarp on Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="Snaarp on LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3a1.96 1.96 0 1 0 0 3.92A1.96 1.96 0 0 0 5.25 3zM20.45 21h-3.37v-6.4c0-1.53-.03-3.49-2.13-3.49-2.13 0-2.46 1.66-2.46 3.38V21H9.12V8.5h3.24v1.71h.05c.45-.85 1.56-1.75 3.2-1.75 3.42 0 4.05 2.25 4.05 5.18V21z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col" data-reveal data-reveal-group="footer" data-reveal-batch="footer-columns">
+        <p class="footer-col-title">Products</p>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">Snaarp Mail</a></li>
+          <li><a href="#" class="footer-link">CRM</a></li>
+          <li><a href="#" class="footer-link">Work Drive</a></li>
+          <li><a href="#" class="footer-link">Neo AI</a></li>
+          <li><a href="#" class="footer-link">All 20+ apps</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col" data-reveal data-reveal-group="footer" data-reveal-batch="footer-columns">
+        <p class="footer-col-title">Solutions</p>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">For startups</a></li>
+          <li><a href="#" class="footer-link">For agencies</a></li>
+          <li><a href="#" class="footer-link">For sales teams</a></li>
+          <li><a href="#" class="footer-link">Security</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col" data-reveal data-reveal-group="footer" data-reveal-batch="footer-columns">
+        <p class="footer-col-title">Company</p>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">About us</a></li>
+          <li><a href="#" class="footer-link">Blog</a></li>
+          <li><a href="#" class="footer-link">Careers</a></li>
+          <li><a href="#" class="footer-link">Contact sales</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col" data-reveal data-reveal-group="footer" data-reveal-batch="footer-columns">
+        <p class="footer-col-title">Legal</p>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">Privacy policy</a></li>
+          <li><a href="#" class="footer-link">Terms &amp; conditions</a></li>
+          <li><a href="#" class="footer-link">Cookie policy</a></li>
+          <li><a href="#" class="footer-link">Acceptable use</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr class="footer-divider">
+    <p class="footer-bottom" data-reveal data-reveal-group="footer" data-reveal-delay="450">&copy; 2026 Snaarp. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // ===================== SCROLL REVEAL SYSTEM =====================
+  // Reusable, site-wide entrance animation.
+  //
+  //   data-reveal-load   — animates once, automatically, on page load.
+  //                        Used only for the hero, which is visible before
+  //                        any scrolling happens so an IntersectionObserver
+  //                        would fire immediately (or never) instead of
+  //                        feeling like an intentional entrance.
+  //   data-reveal        — animates once, the first time it scrolls into
+  //                        view. Used for everything below the hero.
+  //   data-reveal-group  — elements sharing a group name are sequenced
+  //                        together in document order (eyebrow, then
+  //                        headline, then subtext, ...), independent of
+  //                        which DOM parent they live in.
+  //   data-reveal-batch  — consecutive elements in a group sharing the
+  //                        same batch name are treated as ONE step in the
+  //                        sequence, but cascade among themselves with a
+  //                        stagger capped so a big grid doesn't take
+  //                        forever to finish (card grids, stat rows).
+  //   data-reveal-delay  — explicit millisecond override, for the rare
+  //                        layout (e.g. a phone mockup flanked by cards
+  //                        placed via CSS grid columns) where visual
+  //                        "lead" order doesn't match DOM order.
+  (function () {
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var hasIO = 'IntersectionObserver' in window;
+
+    var loadElements = Array.prototype.slice.call(document.querySelectorAll('[data-reveal-load]'));
+    var scrollElements = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    var iconTiles = Array.prototype.slice.call(document.querySelectorAll('.icon-grid .icon-tile'));
+    var iconMovers = Array.prototype.slice.call(document.querySelectorAll('.icon-mover'));
+    var iconGridOuter = document.querySelector('.icon-grid-outer');
+
+    // ---- Icon grid geometry: 4x4 grid of 92px tiles with a 12px gap ----
+    var GRID_COLS = 4;
+    var GRID_STEP = 104; // tile (92px) + gap (12px)
+
+    function slotPosition(slot) {
+      return {
+        x: (slot % GRID_COLS) * GRID_STEP,
+        y: Math.floor(slot / GRID_COLS) * GRID_STEP
+      };
+    }
+
+    function placeMover(mover, slot) {
+      var pos = slotPosition(slot);
+      mover.style.transform = 'translate3d(' + pos.x + 'px, ' + pos.y + 'px, 0)';
+      mover.setAttribute('data-slot', slot);
+    }
+
+    // Occupied/empty bookkeeping for the ambient shuffle (Phase 2), seeded
+    // from each mover's starting data-slot in the markup. Set synchronously
+    // (before first paint) so icons are never visibly unpositioned.
+    var occupiedSlots = new Map(); // slot number -> mover element
+    iconMovers.forEach(function (mover) {
+      var slot = Number(mover.getAttribute('data-slot'));
+      occupiedSlots.set(slot, mover);
+      placeMover(mover, slot);
+    });
+    var emptySlots = [];
+    for (var s = 0; s < iconTiles.length; s++) {
+      if (!occupiedSlots.has(s)) emptySlots.push(s);
+    }
+
+    if (prefersReducedMotion || !hasIO) {
+      loadElements.forEach(function (el) { el.classList.add('is-revealed'); });
+      scrollElements.forEach(function (el) { el.classList.add('is-revealed'); });
+      iconTiles.forEach(function (el) { el.classList.add('is-revealed'); });
+      iconMovers.forEach(function (mover) {
+        var visual = mover.querySelector('.icon-visual');
+        if (visual) visual.classList.add('is-revealed');
+      });
+      // Phase 2 (ambient shuffle) never starts here: reduced motion or no
+      // IntersectionObserver support both mean "settle instantly, stay put".
+      return;
+    }
+
+    var SLOT_STEP_MS = 100;   // gap between sequential elements/batches
+    var BATCH_CAP_MS = 500;   // max total spread within one card-grid batch
+
+    // Turns a group's elements (already in document order) into a
+    // Map<element, delayMs>: each plain element gets the next sequential
+    // slot; a run of same-batch elements shares one slot but cascades
+    // internally with a capped per-item stagger.
+    function computeDelays(elements) {
+      var delays = new Map();
+      var slot = 0;
+      var i = 0;
+      while (i < elements.length) {
+        var el = elements[i];
+        if (el.hasAttribute('data-reveal-delay')) {
+          delays.set(el, Number(el.getAttribute('data-reveal-delay')));
+          i++;
+          continue;
+        }
+        var batchId = el.getAttribute('data-reveal-batch');
+        if (batchId) {
+          var batch = [el];
+          i++;
+          while (
+            i < elements.length &&
+            elements[i].getAttribute('data-reveal-batch') === batchId &&
+            !elements[i].hasAttribute('data-reveal-delay')
+          ) {
+            batch.push(elements[i]);
+            i++;
+          }
+          var base = slot * SLOT_STEP_MS;
+          var innerStep = batch.length > 1
+            ? Math.min(SLOT_STEP_MS, BATCH_CAP_MS / (batch.length - 1))
+            : 0;
+          batch.forEach(function (bEl, idx) {
+            delays.set(bEl, Math.round(base + idx * innerStep));
+          });
+          slot += 1;
+        } else {
+          delays.set(el, slot * SLOT_STEP_MS);
+          slot += 1;
+          i++;
+        }
+      }
+      return delays;
+    }
+
+    // ---- Hero: animate immediately on load, own short stagger ----
+    if (loadElements.length) {
+      var heroDelays = computeDelays(loadElements);
+      // Double rAF guarantees the browser has painted the hidden state at
+      // least once before we flip to revealed, so the transition actually
+      // plays instead of the element just appearing already-visible.
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          loadElements.forEach(function (el) {
+            el.style.setProperty('--reveal-delay', heroDelays.get(el) + 'ms');
+            el.classList.add('is-revealed');
+          });
+        });
+      });
+    }
+
+    // ---- Hero icon grid — Phase 1: reveal all 16 tiles (and whichever
+    // icon rides on top of each) in a shuffled order, one turn each.
+    // ICON_GRID_BASE_DELAY_MS lines up with the slot the grid used to
+    // occupy in the hero's own stagger, so it starts right where the hero
+    // text leaves off instead of feeling disconnected.
+    if (iconTiles.length) {
+      var ICON_GRID_BASE_DELAY_MS = 500;
+      var ICON_TILE_STEP_MS = 60;
+
+      var shuffledSlots = iconTiles.map(function (_, slot) { return slot; });
+      for (var shuffleIdx = shuffledSlots.length - 1; shuffleIdx > 0; shuffleIdx--) {
+        var swapIdx = Math.floor(Math.random() * (shuffleIdx + 1));
+        var tmpSlot = shuffledSlots[shuffleIdx];
+        shuffledSlots[shuffleIdx] = shuffledSlots[swapIdx];
+        shuffledSlots[swapIdx] = tmpSlot;
+      }
+      var slotDelay = new Map();
+      shuffledSlots.forEach(function (slot, orderIndex) {
+        slotDelay.set(slot, ICON_GRID_BASE_DELAY_MS + orderIndex * ICON_TILE_STEP_MS);
+      });
+
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          iconTiles.forEach(function (el, slot) {
+            el.style.setProperty('--tile-delay', slotDelay.get(slot) + 'ms');
+            el.classList.add('is-revealed');
+          });
+          iconMovers.forEach(function (mover) {
+            var slot = Number(mover.getAttribute('data-slot'));
+            var visual = mover.querySelector('.icon-visual');
+            if (!visual) return;
+            visual.style.setProperty('--tile-delay', slotDelay.get(slot) + 'ms');
+            visual.classList.add('is-revealed');
+          });
+        });
+      });
+
+      // ---- Phase 2: ambient shuffle loop ----
+      // Starts a couple seconds after Phase 1 settles, moves 1-2 icons at
+      // a time into currently-empty slots every 3-4s, and pauses/resumes
+      // as the grid scrolls out of / back into view.
+      var phase1TotalMs = ICON_GRID_BASE_DELAY_MS + shuffledSlots.length * ICON_TILE_STEP_MS + 400;
+
+      function pickRandomDistinct(arr, count) {
+        var pool = arr.slice();
+        for (var i = pool.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+        }
+        return pool.slice(0, count);
+      }
+
+      // Moves one icon to a new slot without ever visibly traveling: scale
+      // + fade out at the current spot, reposition (instant, while
+      // invisible) after a brief pause, then scale + fade back in at the
+      // new spot. Inline transition/opacity/transform are used instead of
+      // toggling CSS classes so this doesn't collide with Phase 1's
+      // class-based reveal transition (different durations/easings/delay).
+      var SCALE_OUT_MS = 280;
+      var SCALE_PAUSE_MS = 120;
+      var SCALE_IN_MS = 280;
+
+      function scaleOutThenIn(mover, toSlot) {
+        var visual = mover.querySelector('.icon-visual');
+        if (!visual) { placeMover(mover, toSlot); return; }
+
+        visual.style.transition = 'opacity ' + SCALE_OUT_MS + 'ms ease-in, transform ' + SCALE_OUT_MS + 'ms ease-in';
+        visual.style.opacity = '0';
+        visual.style.transform = 'scale(0.6)';
+
+        setTimeout(function () {
+          placeMover(mover, toSlot); // instant — happens while fully invisible
+          setTimeout(function () {
+            visual.style.transition = 'opacity ' + SCALE_IN_MS + 'ms var(--ease-out), transform ' + SCALE_IN_MS + 'ms var(--ease-out)';
+            visual.style.opacity = '1';
+            visual.style.transform = 'scale(1)';
+          }, SCALE_PAUSE_MS);
+        }, SCALE_OUT_MS);
+      }
+
+      function shuffleStep() {
+        var currentlyOccupied = Array.from(occupiedSlots.keys());
+        var moveCount = Math.random() < 0.65 ? 1 : 2;
+        moveCount = Math.min(moveCount, emptySlots.length, currentlyOccupied.length);
+        if (moveCount < 1) return;
+
+        var sources = pickRandomDistinct(currentlyOccupied, moveCount);
+        var destinations = pickRandomDistinct(emptySlots, moveCount);
+
+        sources.forEach(function (fromSlot, i) {
+          var toSlot = destinations[i];
+          var mover = occupiedSlots.get(fromSlot);
+
+          occupiedSlots.delete(fromSlot);
+          occupiedSlots.set(toSlot, mover);
+          emptySlots.splice(emptySlots.indexOf(toSlot), 1);
+          emptySlots.push(fromSlot);
+
+          scaleOutThenIn(mover, toSlot);
+        });
+      }
+
+      var shuffleTimeoutId = null;
+      var shuffleRunning = false;
+      var gridInView = true;
+      var phase1Settled = false;
+
+      function nextShuffleDelayMs() {
+        return 3000 + Math.random() * 1000; // every 3-4s
+      }
+
+      function scheduleShuffle(delay) {
+        clearTimeout(shuffleTimeoutId);
+        shuffleTimeoutId = setTimeout(function () {
+          shuffleStep();
+          scheduleShuffle(nextShuffleDelayMs());
+        }, delay);
+      }
+
+      function startShuffle() {
+        if (shuffleRunning) return;
+        shuffleRunning = true;
+        scheduleShuffle(nextShuffleDelayMs());
+      }
+
+      function stopShuffle() {
+        shuffleRunning = false;
+        clearTimeout(shuffleTimeoutId);
+      }
+
+      setTimeout(function () {
+        phase1Settled = true;
+        if (gridInView) startShuffle();
+      }, phase1TotalMs + 2000);
+
+      if (iconGridOuter) {
+        var gridObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            gridInView = entry.isIntersecting;
+            if (gridInView) {
+              if (phase1Settled) startShuffle();
+            } else {
+              stopShuffle();
+            }
+          });
+        }, { threshold: 0.1 });
+        gridObserver.observe(iconGridOuter);
+      }
+    }
+
+    // ---- Everything else: reveal on first scroll into view ----
+    if (scrollElements.length) {
+      // Group by explicit data-reveal-group name; anything left ungrouped
+      // falls back to grouping by its literal DOM parent (safety net).
+      var namedGroups = new Map();
+      var parentGroups = new Map();
+      scrollElements.forEach(function (el) {
+        var groupName = el.getAttribute('data-reveal-group');
+        if (groupName) {
+          if (!namedGroups.has(groupName)) namedGroups.set(groupName, []);
+          namedGroups.get(groupName).push(el);
+        } else {
+          var parent = el.parentElement;
+          if (!parentGroups.has(parent)) parentGroups.set(parent, []);
+          parentGroups.get(parent).push(el);
+        }
+      });
+
+      var delayForEl = new Map();
+      namedGroups.forEach(function (els) {
+        computeDelays(els).forEach(function (d, el) { delayForEl.set(el, d); });
+      });
+      parentGroups.forEach(function (els) {
+        computeDelays(els).forEach(function (d, el) { delayForEl.set(el, d); });
+      });
+
+      var pending = new Set(scrollElements);
+      function reveal(el) {
+        if (!pending.has(el)) return;
+        el.style.setProperty('--reveal-delay', (delayForEl.get(el) || 0) + 'ms');
+        el.classList.add('is-revealed');
+        pending.delete(el);
+        observer.unobserve(el);
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) reveal(entry.target);
+        });
+      }, {
+        threshold: 0,
+        // Shrinks the viewport's bottom edge by 15%, so an element is
+        // considered "entered" once it's roughly 15% into the viewport
+        // rather than only once fully visible.
+        rootMargin: '0px 0px -15% 0px'
+      });
+
+      scrollElements.forEach(function (el) { observer.observe(el); });
+
+      // Safety net: elements near the very end of the page can sit inside
+      // that shrunk bottom-15% strip permanently once the user reaches max
+      // scroll — there's no further scrolling that would bring them into
+      // the "entered" zone. Reveal whatever's left the moment we detect
+      // we're at (or already loaded at) the true bottom of the page.
+      function checkAtBottom() {
+        if (!pending.size) return;
+        var atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+        if (atBottom) pending.forEach(reveal);
+      }
+      window.addEventListener('scroll', function () {
+        requestAnimationFrame(checkAtBottom);
+      }, { passive: true });
+      checkAtBottom();
+    }
+  })();
+
+  // ===================== APPS TO EXPLORE ROTATION =====================
+  // Crossfades the "Apps to Explore" grid between Set A and Set B every
+  // ~4-5s (scale-out the active set, swap, scale-in the other — same
+  // pattern as the ambient icon-grid shuffle above). Hovering or
+  // keyboard-focusing anywhere in the grid pauses rotation immediately;
+  // leaving resumes with a fresh, full-length hold rather than a stale
+  // partially-elapsed one. Touch devices skip the hover-pause mechanic
+  // entirely (there's no real "hover" to pause on) but keep rotating.
+  (function () {
+    var appsGrid = document.querySelector('.apps-grid');
+    if (!appsGrid) return;
+
+    var setA = appsGrid.querySelector('.apps-grid-set[data-set="a"]');
+    var setB = appsGrid.querySelector('.apps-grid-set[data-set="b"]');
+    if (!setA || !setB) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var ROTATE_HOLD_MS = 4500;
+    var SET_TRANSITION_MS = 260;
+
+    var activeSet = setA;
+    var rotationTimeoutId = null;
+    var pausedByPointer = false;
+    var pausedByFocus = false;
+
+    function isPaused() { return pausedByPointer || pausedByFocus; }
+
+    function setInteractive(setEl, interactive) {
+      var links = setEl.querySelectorAll('.apps-grid-cell');
+      links.forEach(function (link) {
+        if (interactive) link.removeAttribute('tabindex');
+        else link.setAttribute('tabindex', '-1');
+      });
+    }
+
+    function swapSets() {
+      var next = activeSet === setA ? setB : setA;
+      var prev = activeSet;
+
+      prev.style.transition = 'opacity ' + SET_TRANSITION_MS + 'ms ease-in, transform ' + SET_TRANSITION_MS + 'ms ease-in';
+      prev.style.opacity = '0';
+      prev.style.transform = 'scale(0.97)';
+
+      setTimeout(function () {
+        prev.classList.remove('is-active');
+        prev.setAttribute('aria-hidden', 'true');
+        setInteractive(prev, false);
+
+        next.classList.add('is-active');
+        next.removeAttribute('aria-hidden');
+        setInteractive(next, true);
+        next.style.transition = 'none';
+        next.style.opacity = '0';
+        next.style.transform = 'scale(0.97)';
+
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            next.style.transition = 'opacity ' + SET_TRANSITION_MS + 'ms var(--ease-out), transform ' + SET_TRANSITION_MS + 'ms var(--ease-out)';
+            next.style.opacity = '1';
+            next.style.transform = 'scale(1)';
+          });
+        });
+
+        activeSet = next;
+      }, SET_TRANSITION_MS);
+    }
+
+    function scheduleRotation(delay) {
+      clearTimeout(rotationTimeoutId);
+      rotationTimeoutId = setTimeout(function () {
+        swapSets();
+        scheduleRotation(ROTATE_HOLD_MS);
+      }, delay);
+    }
+
+    function pauseRotation() {
+      clearTimeout(rotationTimeoutId);
+    }
+
+    function resumeRotation() {
+      if (isPaused()) return;
+      scheduleRotation(ROTATE_HOLD_MS); // always a fresh full-length hold, never a resumed remainder
+    }
+
+    setInteractive(setB, false);
+    scheduleRotation(ROTATE_HOLD_MS);
+
+    // Hover-pause only makes sense on devices with a real hover state —
+    // touch "hover" is a synthetic ghost event, so gating on this keeps
+    // rotation running uninterrupted on phones/tablets.
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      appsGrid.addEventListener('mouseenter', function () {
+        pausedByPointer = true;
+        pauseRotation();
+      });
+      appsGrid.addEventListener('mouseleave', function () {
+        pausedByPointer = false;
+        resumeRotation();
+      });
+    }
+
+    // Keyboard focus pauses on every device — a touch device can still
+    // have an external/on-screen keyboard driving focus.
+    appsGrid.addEventListener('focusin', function () {
+      pausedByFocus = true;
+      pauseRotation();
+    });
+    appsGrid.addEventListener('focusout', function (e) {
+      if (e.relatedTarget && appsGrid.contains(e.relatedTarget)) return;
+      pausedByFocus = false;
+      resumeRotation();
+    });
+  })();
+
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      document.querySelectorAll('.faq-item').forEach((other) => {
+        if (other !== item) other.open = false;
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

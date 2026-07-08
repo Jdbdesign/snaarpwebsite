@@ -254,7 +254,29 @@ body {
   border-radius: var(--radius-xl);
   box-shadow: 0 20px 25px -5px hsla(0,0%,0%,.06), 0 10px 10px -5px hsla(0,0%,0%,.03);
   overflow: hidden;
+  /* Columns sit at their own natural height instead of the default grid
+     stretch, so the apps grid and the NeoLeads panel never inflate to
+     match each other — the fixed min-height below (desktop only) is what
+     keeps the card itself from resizing when Set A/B rotate; any leftover
+     space just shows as blank padding at the bottom of the shorter side. */
+  align-items: start;
 }
+
+/* Set B's grid column (the taller of the two sets — "Teams"/"AI Compose"
+   wrap to 3 lines) needs less room as the 3-col grid gets wider and text
+   wraps less, so a single flat min-height either overshoots badly at
+   typical desktop widths or has to be sized for the narrowest case. These
+   breakpoints instead track Set B's actual measured height step-by-step
+   (each threshold matches where its wrap count actually drops, +6px
+   buffer for font-rendering variance), so the card is only ever as tall
+   as it needs to be at the current width while still never having to
+   grow when Set B rotates in. Desktop-only: below 1024px the two sides
+   stack vertically instead of sharing a row, so there's nothing to lock. */
+@media (min-width: 1024px) { .apps-spotlight-card { min-height: 531px; } }
+@media (min-width: 1030px) { .apps-spotlight-card { min-height: 513px; } }
+@media (min-width: 1080px) { .apps-spotlight-card { min-height: 491px; } }
+@media (min-width: 1130px) { .apps-spotlight-card { min-height: 486px; } }
+@media (min-width: 1160px) { .apps-spotlight-card { min-height: 466px; } }
 
 .neoleads-card {
   background: hsl(240, 25%, 8%);
@@ -324,7 +346,7 @@ body {
 }
 
 .apps-grid-col {
-  padding: var(--space-10) var(--space-8);
+  padding: var(--space-10) var(--space-8) var(--space-6);
 }
 
 .apps-grid-header {
@@ -365,7 +387,7 @@ body {
 
 .apps-grid-cell {
   display: block;
-  padding: var(--space-4) var(--space-5) var(--space-10);
+  padding: var(--space-4) var(--space-5) var(--space-6);
   border-right: 1px dashed var(--border-default);
   border-bottom: 1px dashed var(--border-default);
   border-radius: var(--radius-md);
@@ -374,16 +396,22 @@ body {
   cursor: pointer;
   transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
 }
-.apps-grid-set .apps-grid-cell:nth-child(1),
-.apps-grid-set .apps-grid-cell:nth-child(2),
-.apps-grid-set .apps-grid-cell:nth-child(3) {
-  padding-top: 0;
-}
-.apps-grid-set .apps-grid-cell:nth-child(4),
-.apps-grid-set .apps-grid-cell:nth-child(5),
-.apps-grid-set .apps-grid-cell:nth-child(6) {
-  border-bottom: none;
-  padding-bottom: 0;
+/* Scoped to the 3-col desktop layout (only ever rendered at
+   min-width:1024px) so it can't collide with the single-column mobile
+   version of these same selectors below — equal specificity means
+   whichever isn't media-scoped would otherwise always win. */
+@media (min-width: 1024px) {
+  .apps-grid-set .apps-grid-cell:nth-child(1),
+  .apps-grid-set .apps-grid-cell:nth-child(2),
+  .apps-grid-set .apps-grid-cell:nth-child(3) {
+    padding-top: 0;
+  }
+  .apps-grid-set .apps-grid-cell:nth-child(4),
+  .apps-grid-set .apps-grid-cell:nth-child(5),
+  .apps-grid-set .apps-grid-cell:nth-child(6) {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
 }
 .apps-grid-cell-last-col {
   border-right: none;
@@ -1154,11 +1182,22 @@ body {
   position: absolute;
   bottom: -72px;
   left: 50%;
-  transform: translateX(-50%);
   width: 100%;
-  max-width: 640px;
+  max-width: clamp(360px, 40vw, 640px);
   height: auto;
   display: block;
+}
+
+/* Own the transform at higher specificity than the generic [data-reveal]
+   rule (globals.css ~line 79), which would otherwise win on `.is-revealed`
+   and wipe out the -50% centering, shifting the mockup a half-width to the
+   right and off-screen at laptop widths. Composes centering with a fade-up
+   reveal instead of the generic translateY so both apply together. */
+.moves-fast-mockup[data-reveal] {
+  transform: translate(-50%, 36px);
+}
+.moves-fast-mockup[data-reveal].is-revealed {
+  transform: translate(-50%, 0);
 }
 
 @media (max-width: 1023px) {
@@ -1166,7 +1205,11 @@ body {
   .moves-fast-copy { margin-left: auto; margin-right: auto; }
   .moves-fast-badges { justify-content: center; }
   .moves-fast-right { margin-top: var(--space-8); min-height: 340px; }
-  .moves-fast-mockup { max-width: 420px; bottom: -48px; }
+  .moves-fast-mockup { max-width: clamp(300px, 46vw, 420px); bottom: -48px; }
+}
+
+@media (max-width: 639px) {
+  .moves-fast-mockup { max-width: clamp(240px, 74vw, 340px); bottom: -32px; }
 }
 
 /* ===== Testimonial 3-card row ===== */

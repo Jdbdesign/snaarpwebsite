@@ -1,48 +1,20 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import Link from 'next/link';
 import { ProductsMegaMenu } from '@/components/ProductsMegaMenu';
 
 export function Header() {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const menuWrapRef = useRef<HTMLDivElement>(null);
-
-  function closeProducts() {
-    setIsProductsOpen(false);
-  }
-
-  useEffect(() => {
-    if (!isProductsOpen) return;
-
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
-        setIsProductsOpen(false);
-        triggerRef.current?.focus();
-      }
-    }
-    function onPointerDown(e: MouseEvent) {
-      const target = e.target as Node;
-      if (triggerRef.current?.contains(target)) return;
-      if (menuWrapRef.current?.contains(target)) return;
-      setIsProductsOpen(false);
-    }
-
-    document.addEventListener('keydown', onKeyDown);
-    document.addEventListener('mousedown', onPointerDown);
-    return () => {
-      document.removeEventListener('keydown', onKeyDown);
-      document.removeEventListener('mousedown', onPointerDown);
-    };
-  }, [isProductsOpen]);
 
   return (
-    <header className="bg-white border-b border-[var(--border-subtle)] relative z-10">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+    <header className="bg-white border-b border-[var(--border-subtle)] sticky top-0 z-50">
+      <div className="px-6 lg:px-40 h-16 flex items-center justify-between">
         <div className="flex items-center gap-10">
-          <a href="#" className="text-xl font-bold tracking-tight text-[var(--text-primary)]" aria-label="Snaarp home">
+          <Link href="/" className="text-xl font-bold tracking-tight text-[var(--text-primary)]" aria-label="Snaarp home">
             Snaarp
-          </a>
+          </Link>
 
           <nav aria-label="Primary navigation" className="hidden md:block">
             <ul className="flex items-center gap-8 list-none m-0 p-0">
@@ -90,9 +62,11 @@ export function Header() {
         </div>
       </div>
 
-      <div ref={menuWrapRef}>
-        <ProductsMegaMenu isOpen={isProductsOpen} onNavigate={closeProducts} />
-      </div>
+      <ProductsMegaMenu
+        isOpen={isProductsOpen}
+        onClose={() => setIsProductsOpen(false)}
+        triggerRef={triggerRef}
+      />
     </header>
   );
 }

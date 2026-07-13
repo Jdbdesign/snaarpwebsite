@@ -4333,7 +4333,6 @@ body {
   width: 100%;
   height: auto;
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-lift);
 }
 
 /* ----- Reusable trust-logo-bar marquee (components/sections/TrustLogoBar.tsx),

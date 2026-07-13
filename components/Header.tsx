@@ -10,7 +10,7 @@ export function Header() {
 
   return (
     <header className="bg-white border-b border-[var(--border-subtle)] sticky top-0 z-50">
-      <div className="px-6 lg:px-40 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
         <div className="flex items-center gap-10">
           <Link href="/" className="text-xl font-bold tracking-tight text-[var(--text-primary)]" aria-label="Snaarp home">
             Snaarp

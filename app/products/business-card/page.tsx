@@ -11,6 +11,7 @@ import { BusinessCardBentoGrid } from '@/components/business-card/BusinessCardBe
 import { BusinessCardFortune500 } from '@/components/business-card/BusinessCardFortune500';
 import { AppLogoStrip } from '@/components/sections/AppLogoStrip';
 import { FinalCTA } from '@/components/FinalCTA';
+import { Price } from '@/components/currency/Price';
 
 export const metadata: Metadata = {
   title: 'Business Card — Your card updates the instant you do | Snaarp',
@@ -42,7 +43,7 @@ export default function BusinessCardProductPage() {
           />
         </section>
 
-        <BusinessCardSteps ctaLabel="Start for £1/month" />
+        <BusinessCardSteps ctaLabel={<>Start for <Price amount={1} />/month</>} />
 
         <BusinessCardFeatureRow
           eyebrow="Always Current"
@@ -91,7 +92,7 @@ export default function BusinessCardProductPage() {
         <FinalCTA
           heading="Your card, always up to date. Every app included."
           copy="No reprinting, no handing out outdated info. Just one Stack, running your whole business."
-          buttonLabel="Start the Stack for £1"
+          buttonLabel={<>Start the Stack for <Price amount={1} /></>}
         />
       </main>
       <Footer />

@@ -1,7 +1,9 @@
+import type { ReactNode } from 'react';
 import { RevealSection } from '@/components/reveal/RevealSection';
 import { FAQAccordion } from '@/components/FAQAccordion';
+import { Price } from '@/components/currency/Price';
 
-const FAQS = [
+const FAQS: { q: ReactNode; a: ReactNode; open?: boolean }[] = [
   {
     q: 'How is this different from Meet?',
     a: 'Teams is for chat, channels, and file sharing. Meet is Snaarp’s separate video calling app — you can jump from a Teams channel straight into a Meet call.',
@@ -20,7 +22,7 @@ const FAQS = [
     a: 'Yes — anything shared in a channel stays linked to that thread, and is searchable later.',
   },
   {
-    q: 'Is Teams included in the £1 Starter plan?',
+    q: <>Is Teams included in the <Price amount={1} /> Starter plan?</>,
     a: 'Yes — Teams is included in every plan, no add-on required.',
   },
 ];
@@ -44,8 +46,8 @@ export function TeamsFAQ() {
         <div className="faq-container" data-reveal data-reveal-group="teams-faq">
           <FAQAccordion>
             <div className="faq-list">
-              {FAQS.map((item) => (
-                <details key={item.q} className="faq-item" open={item.open}>
+              {FAQS.map((item, index) => (
+                <details key={index} className="faq-item" open={item.open}>
                   <summary className="faq-summary">
                     <span className="faq-question">{item.q}</span>
                     <span className="faq-icon" aria-hidden="true">

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { CurrencyProvider } from '@/components/currency/CurrencyContext';
 
 export const metadata: Metadata = {
   title: 'Snaarp — Everything for £1',
@@ -15,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="hero-bg">
         <a href="#main-content" className="skip-link">Skip to main content</a>
-        {children}
+        <CurrencyProvider>{children}</CurrencyProvider>
       </body>
     </html>
   );

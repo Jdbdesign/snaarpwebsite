@@ -1,7 +1,9 @@
+import type { ReactNode } from 'react';
 import { RevealSection } from '@/components/reveal/RevealSection';
 import { FAQAccordion } from '@/components/FAQAccordion';
+import { Price } from '@/components/currency/Price';
 
-const FAQS = [
+const FAQS: { q: ReactNode; a: ReactNode; open?: boolean }[] = [
   {
     q: 'Do I have to manually add contacts to each app?',
     a: 'No — save once in Contacts, or let Snaarp save them automatically from an email or meeting, and it syncs everywhere.',
@@ -20,7 +22,7 @@ const FAQS = [
     a: 'Yes — use tags and groups to filter your list however works for your team.',
   },
   {
-    q: 'Is Contacts included in the £1 Starter plan?',
+    q: <>Is Contacts included in the <Price amount={1} /> Starter plan?</>,
     a: 'Yes — Contacts is included in every plan, no add-on required.',
   },
 ];
@@ -44,8 +46,8 @@ export function ContactsFAQ() {
         <div className="faq-container" data-reveal data-reveal-group="contacts-faq">
           <FAQAccordion>
             <div className="faq-list">
-              {FAQS.map((item) => (
-                <details key={item.q} className="faq-item" open={item.open}>
+              {FAQS.map((item, index) => (
+                <details key={index} className="faq-item" open={item.open}>
                   <summary className="faq-summary">
                     <span className="faq-question">{item.q}</span>
                     <span className="faq-icon" aria-hidden="true">

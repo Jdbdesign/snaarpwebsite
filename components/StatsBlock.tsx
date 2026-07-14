@@ -1,4 +1,5 @@
 import { RevealSection } from '@/components/reveal/RevealSection';
+import { Price } from '@/components/currency/Price';
 
 export function StatsBlock() {
   return (
@@ -20,7 +21,7 @@ export function StatsBlock() {
               <p className="stats-label">invoice</p>
             </div>
             <div className="stats-item" data-reveal data-reveal-group="stats" data-reveal-batch="stats-items">
-              <p className="stats-number">£1</p>
+              <p className="stats-number"><Price amount={1} /></p>
               <p className="stats-label">per month, No hidden charges</p>
             </div>
             <div className="stats-item" data-reveal data-reveal-group="stats" data-reveal-batch="stats-items">

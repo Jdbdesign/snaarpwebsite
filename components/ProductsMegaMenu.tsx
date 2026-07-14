@@ -19,6 +19,7 @@ import {
   BrainCircuit,
   type LucideIcon,
 } from 'lucide-react';
+import { Price } from '@/components/currency/Price';
 
 type AppIcon = { kind: 'img'; src: string } | { kind: 'lucide'; Icon: LucideIcon };
 
@@ -45,7 +46,7 @@ const CATEGORIES: ProductCategory[] = [
     id: 'communicate',
     label: 'Communicate',
     apps: [
-      { name: 'Snaarp Mail', desc: 'Business email on your own domain', icon: { kind: 'img', src: '/assets/icons/envelope.jpg' } },
+      { name: 'Snaarp Mail', desc: 'Business email on your own domain', icon: { kind: 'img', src: '/assets/icons/envelope.jpg' }, href: '/products/mail' },
       { name: 'Kalender', desc: 'Shared calendars & booking links', icon: { kind: 'img', src: '/assets/icons/apps-kalender.jpg' }, href: '/products/kalender' },
       { name: 'Contacts', desc: 'One shared address book', icon: { kind: 'img', src: '/assets/icons/search.jpg' }, href: '/products/contacts' },
       { name: 'Meet', desc: 'Video calls, screen share & recording', icon: { kind: 'img', src: '/assets/icons/apps-meet.jpg' }, href: '/products/meet' },
@@ -222,7 +223,7 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef }: ProductsMegaMe
             </div>
             <div className="mega-menu-promo-text">
               <p className="mega-menu-promo-title">One Login. Every App.</p>
-              <p className="mega-menu-promo-desc">27 tools built into a single Stack — starting from £1.</p>
+              <p className="mega-menu-promo-desc">27 tools built into a single Stack — starting from <Price amount={1} />.</p>
               <a href="#" className="mega-menu-promo-cta" onClick={onClose}>
                 Get Started
                 <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">

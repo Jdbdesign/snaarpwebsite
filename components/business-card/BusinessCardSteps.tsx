@@ -1,5 +1,6 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { Check, Link2, QrCode, SmartphoneNfc, User, Mail, Phone, Briefcase, Image as ImageIcon } from 'lucide-react';
 
@@ -23,7 +24,7 @@ const PROFILE_FIELDS = [
   { label: 'Phone', value: '+1 (555) 123-4567', icon: Phone },
 ];
 
-export function BusinessCardSteps({ ctaLabel, ctaHref = '#' }: { ctaLabel: string; ctaHref?: string }) {
+export function BusinessCardSteps({ ctaLabel, ctaHref = '#' }: { ctaLabel: ReactNode; ctaHref?: string }) {
   return (
     <section className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
       <div className="text-center mb-16">

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { RevealSection } from '@/components/reveal/RevealSection';
 import { Play } from 'lucide-react';
 
@@ -5,7 +6,7 @@ interface DemoVideoSectionProps {
   eyebrow?: string;
   headline: string;
   subtext: string;
-  ctaLabel: string;
+  ctaLabel: ReactNode;
   ctaHref?: string;
   className?: string;
   /** Optional real video to autoplay/loop in place of the placeholder CSS

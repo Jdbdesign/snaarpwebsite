@@ -7,6 +7,7 @@ import { KalenderTrustBar } from '@/components/kalender/KalenderTrustBar';
 import { KalenderScheduling } from '@/components/kalender/KalenderScheduling';
 import { KalenderMasterSchedule } from '@/components/kalender/KalenderMasterSchedule';
 import { KalenderIntegrations } from '@/components/kalender/KalenderIntegrations';
+import { Price } from '@/components/currency/Price';
 
 export const metadata: Metadata = {
   title: 'Kalender | Snaarp',
@@ -27,7 +28,7 @@ export default function KalenderProductPage() {
         <FinalCTA
           heading="Every meeting, on time. Every app included."
           copy="No double-bookings, no back-and-forth emails, no separate scheduling tool to pay for. Just one Stack, running your whole business."
-          buttonLabel="Start the Stack for £1"
+          buttonLabel={<>Start the Stack for <Price amount={1} /></>}
         />
       </main>
       <Footer />

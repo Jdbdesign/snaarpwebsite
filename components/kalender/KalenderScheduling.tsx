@@ -1,5 +1,6 @@
 import { RevealSection } from '@/components/reveal/RevealSection';
 import { FeatureAccordion, type FeatureAccordionItem } from '@/components/sections/FeatureAccordion';
+import { Price } from '@/components/currency/Price';
 
 const SCHEDULING_ITEMS: FeatureAccordionItem[] = [
   {
@@ -46,7 +47,7 @@ export function KalenderScheduling() {
             data-reveal
             data-reveal-group="kalender-scheduling-top"
           >
-            Start for £1/month
+            Start for <Price amount={1} />/month
           </a>
         </div>
 

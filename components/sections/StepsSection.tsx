@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { RevealSection } from '@/components/reveal/RevealSection';
 
 export interface Step {
@@ -8,12 +9,12 @@ export interface Step {
 interface StepsSectionProps {
   heading: string;
   steps: Step[];
-  ctaLabel: string;
+  ctaLabel?: ReactNode;
   ctaHref?: string;
   className?: string;
 }
 
-// Generic 3-numbered-step section with a connecting line and a CTA below.
+// Generic 3-numbered-step section with a connecting line and an optional CTA below.
 export function StepsSection({ heading, steps, ctaLabel, ctaHref = '#', className }: StepsSectionProps) {
   return (
     <section className={`bento-section py-16 lg:py-24 ${className ?? ''}`}>
@@ -34,14 +35,16 @@ export function StepsSection({ heading, steps, ctaLabel, ctaHref = '#', classNam
           ))}
         </div>
 
-        <div className="sec-steps-cta-wrap" data-reveal data-reveal-group="steps-section">
-          <a href={ctaHref} className="btn-primary inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 min-h-[44px]">
-            {ctaLabel}
-            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
-              <path d="M1 5h11.5M8 1l4.5 4L8 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
-        </div>
+        {ctaLabel && (
+          <div className="sec-steps-cta-wrap" data-reveal data-reveal-group="steps-section">
+            <a href={ctaHref} className="btn-primary inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 min-h-[44px]">
+              {ctaLabel}
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                <path d="M1 5h11.5M8 1l4.5 4L8 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+          </div>
+        )}
       </RevealSection>
     </section>
   );

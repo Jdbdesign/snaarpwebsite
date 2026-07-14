@@ -1,25 +1,43 @@
+import type { ReactNode } from 'react';
 import { RevealSection } from '@/components/reveal/RevealSection';
 import { FAQAccordion } from '@/components/FAQAccordion';
+import { Price } from '@/components/currency/Price';
 
-const FAQS = [
+interface FaqItem {
+  key: string;
+  q: ReactNode;
+  a: ReactNode;
+  open?: boolean;
+}
+
+const FAQS: FaqItem[] = [
   {
-    q: 'What does the £1 plan include?',
-    a: '£1 is the starting price of our Starter plan, per user per month — not a limited-time trial. It includes access to the Stack; more plans with additional storage, seats and premium apps are on the way. You’ll always see the price before anything changes.',
+    key: 'plan-included',
+    q: <>What does the <Price amount={1} /> plan include?</>,
+    a: (
+      <>
+        <Price amount={1} /> is the starting price of our Starter plan, per user per month — not a limited-time trial. It includes access to the Stack; more plans with additional storage, seats and premium apps are on the way. You’ll always see the price before anything changes.
+      </>
+    ),
     open: true,
   },
   {
+    key: 'all-apps',
     q: 'Do I have to use all 27 apps?',
     a: 'No. Every app is included in the Stack, but your team only needs to switch on what it actually uses. Turn apps on or off per user from the admin console.',
   },
   {
+    key: 'migration',
     q: 'Can I move my existing email and files over?',
     a: 'Yes. Snaarp Mail and Work Drive both include guided migration from Gmail, Outlook and most common storage providers.',
   },
   {
+    key: 'books-vs-accounting',
     q: 'What’s the difference between Books and Accounting Software?',
     a: 'Books covers everyday invoicing and bookkeeping. Accounting Software adds full double-entry accounting and financial reporting for teams that have outgrown the basics.',
   },
   {
+    key: 'team-of-one',
     q: 'Is this suitable for a team of one?',
     a: 'Yes — solo founders use the Stack to replace half a dozen separate subscriptions with one. Pricing scales down with your team size.',
   },
@@ -45,7 +63,7 @@ export function FAQ() {
           <FAQAccordion>
             <div className="faq-list">
               {FAQS.map((item) => (
-                <details key={item.q} className="faq-item" open={item.open}>
+                <details key={item.key} className="faq-item" open={item.open}>
                   <summary className="faq-summary">
                     <span className="faq-question">{item.q}</span>
                     <span className="faq-icon" aria-hidden="true">

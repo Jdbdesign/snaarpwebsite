@@ -232,7 +232,7 @@ export function Hero() {
             20+ Apps · One Login · One Price
           </div>
 
-          <h1 className="font-bold leading-[1.1] tracking-tight mb-6" style={{ fontSize: 'clamp(2rem, 3.2vw + 1rem, 3rem)' }} data-reveal-load>
+          <h1 className="home-hero-heading font-bold leading-[1.1] tracking-tight mb-6" data-reveal-load>
             {/* Default arrangement — mobile through laptop (below 1440px), unchanged */}
             <span className="hero-heading-line hero-heading-line--default block text-[var(--text-primary)]">Your whole business, in one place.</span>
             <span className="hero-heading-line hero-heading-line--default block text-[var(--color-brand)]">Get everything for <Price amount={1} /></span>
@@ -243,7 +243,7 @@ export function Hero() {
             <span className="hero-heading-line hero-heading-line--wide block text-[var(--color-brand)]">for <Price amount={1} /></span>
           </h1>
 
-          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.0625rem' }} data-reveal-load>
+          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.125rem' }} data-reveal-load>
             Mail, CRM, Docs, Meet, Books, a password manager and eleven more — every app your business runs on, under one login. Your first month is <Price amount={1} />. Full stop.
           </p>
 

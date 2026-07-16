@@ -30,7 +30,7 @@ export function BusinessCardBentoGrid() {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
       <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
+        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight">
           Why teams choose Business Card
         </h2>
       </div>
@@ -145,7 +145,7 @@ export function BusinessCardBentoGrid() {
               <RefreshCw size={20} />
             </div>
             <div className="flex flex-col pt-1">
-              <h3 className="text-[17px] font-bold text-gray-900 mb-1 leading-tight">Live updates</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-1 leading-tight">Live updates</h3>
               <p className="text-[14px] text-gray-500 leading-relaxed max-w-sm">
                 Change your info once, and every shared card updates instantly — nothing to resend, nothing to reprint.
               </p>
@@ -203,7 +203,7 @@ export function BusinessCardBentoGrid() {
               <Share2 size={20} />
             </div>
             <div className="flex flex-col pt-1">
-              <h3 className="text-[17px] font-bold text-gray-900 mb-1 leading-tight">Share via QR, link, or NFC</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-1 leading-tight">Share via QR, link, or NFC</h3>
               <p className="text-[14px] text-gray-500 leading-relaxed">Whatever&rsquo;s fastest for the moment.</p>
             </div>
           </div>
@@ -329,7 +329,7 @@ export function BusinessCardBentoGrid() {
               <UserPlus size={20} />
             </div>
             <div className="flex flex-col pt-1">
-              <h3 className="text-[17px] font-bold text-gray-900 mb-1 leading-tight">Auto-save to Contacts</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-1 leading-tight">Auto-save to Contacts</h3>
               <p className="text-[14px] text-gray-500 leading-relaxed">Your details land straight in their address book when shared.</p>
             </div>
           </div>
@@ -479,7 +479,7 @@ export function BusinessCardBentoGrid() {
               <BarChart3 size={20} />
             </div>
             <div className="flex flex-col pt-1">
-              <h3 className="text-[17px] font-bold text-gray-900 mb-1 leading-tight">View analytics</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-1 leading-tight">View analytics</h3>
               <p className="text-[14px] text-gray-500 leading-relaxed max-w-sm">See views, saves, and shares on your card.</p>
             </div>
           </div>

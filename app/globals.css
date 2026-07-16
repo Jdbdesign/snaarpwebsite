@@ -56,6 +56,19 @@
 
   --border-subtle: hsl(220, 12%, 92%);
   --border-default: hsl(220, 10%, 85%);
+
+  /* Standard type scale for section headline / title+subtitle blocks.
+     H2 = section headline, section-title = a card/item title, section-body
+     = the description under a section-title. Reuse these across sections
+     instead of one-off font-sizes. Synced to the AI Compose page's scale
+     (72/60/48/20/18/14px tiers) — --font-size-h2 is the 60px "top of
+     section" tier, mobile base here with the desktop override below. */
+  --font-size-h2: 2.25rem;
+  --font-size-section-title: 1.25rem;
+  --font-size-section-body: 0.875rem;
+}
+@media (min-width: 768px) {
+  :root { --font-size-h2: 3.75rem; }
 }
 
 html, body {
@@ -268,6 +281,12 @@ body {
 .mega-menu-app:hover,
 .mega-menu-app:focus-visible {
   background: hsl(220, 20%, 96%);
+}
+.mega-menu-app.is-active {
+  background: var(--color-brand-subtle);
+}
+.mega-menu-app.is-active .mega-menu-app-title {
+  color: var(--color-brand);
 }
 
 .mega-app-icon {
@@ -752,102 +771,145 @@ body {
   .apps-grid-set .apps-grid-cell:last-child { border-bottom: none; padding-bottom: 0; }
 }
 
-/* ===== Why Snaarp Mail 3-card feature row ===== */
+/* ===== Why Snaarp Mail: illustration + accordion ===== */
+.why-mail-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+}
+
+.why-mail-top-left { max-width: 720px; }
+
 .why-mail-heading {
-  font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+  font-size: var(--font-size-h2);
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.25;
+  line-height: 1.2;
   color: var(--text-primary);
+  text-align: center;
 }
 .why-mail-heading-accent { color: var(--color-brand); }
 
-.why-mail-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
-}
-@media (max-width: 1023px) {
-  .why-mail-grid { grid-template-columns: 1fr; }
+.why-mail-top-desc {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: 450px;
+  margin: 0 auto;
 }
 
-.why-mail-card {
-  position: relative;
-  overflow: hidden;
-  background: hsl(220, 14%, 95%);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
+.why-mail-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+@media (max-width: 1023px) {
+  .why-mail-body { grid-template-columns: 1fr; }
+}
+
+.why-mail-illustration-wrap { width: 100%; max-width: 550px; }
+@media (min-width: 1440px) {
+  .why-mail-illustration-wrap { max-width: 650px; }
+}
+
+.why-mail-illustration-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.why-mail-accordion {
   display: flex;
   flex-direction: column;
 }
 
-.why-mail-icon-badge {
-  width: 44px;
-  height: 44px;
-  background: var(--color-brand-subtle);
-  border-radius: var(--radius-lg);
+.why-mail-accordion-item {
+  display: flex;
+  gap: var(--space-4);
+  padding: 40px 0;
+  border-top: 1px solid var(--border-subtle);
+}
+.why-mail-accordion-item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.why-mail-accordion-bar {
+  width: 3px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background: var(--border-default);
+  transition: background var(--duration-normal) var(--ease-out);
+}
+.why-mail-accordion-item.is-active .why-mail-accordion-bar { background: var(--color-brand); }
+
+.why-mail-accordion-content {
+  flex: 1;
+  min-width: 0;
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.why-mail-accordion-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.why-mail-accordion-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--color-brand);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-brand);
-  flex-shrink: 0;
-  margin-bottom: var(--space-4);
 }
+.why-mail-accordion-icon svg { width: 24px; height: 24px; }
 
 .why-mail-icon-at {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 1;
 }
 
-.why-mail-card-title {
+.why-mail-accordion-title {
   color: var(--text-primary);
   font-weight: 700;
-  font-size: 1.0625rem;
+  font-size: var(--font-size-section-title);
   line-height: 1.35;
-  margin: 0 0 var(--space-2);
+  max-width: 500px;
+  transition: color var(--duration-normal) var(--ease-out);
 }
+.why-mail-accordion-item.is-active .why-mail-accordion-title { color: var(--color-brand); }
 
-.why-mail-card-desc {
+.why-mail-accordion-desc {
   color: var(--text-secondary);
-  font-size: 0.875rem;
+  font-size: var(--font-size-section-body);
   line-height: 1.6;
-  margin: 0 0 var(--space-6);
+  max-width: 500px;
+  margin: 0;
 }
 
-.why-mail-card-img-wrap {
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  margin-top: auto;
-}
-
-.why-mail-card-img {
-  width: 100%;
-  max-width: 280px;
-  height: auto;
-  display: block;
-  object-fit: contain;
-}
-
-.why-mail-card-img-wrap-lg {
-  margin-left: calc(-1 * var(--space-6));
-  margin-right: calc(-1 * var(--space-6));
-}
-
-.why-mail-card-img-lg {
-  max-width: 420px;
-}
-
-/* Overflows past the card's own bottom edge without growing the card */
-.why-mail-card-img-wrap-overflow {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -32px;
-  display: flex;
-  justify-content: center;
+/* Laptop range (below the 1440px large-screen cutover used sitewide):
+   the desktop sizes read oversized on a ~1200px viewport, so scale down. */
+@media (max-width: 1439px) {
+  .why-mail-heading { font-size: 33px; }
+  .why-mail-accordion-title { font-size: 20px; }
+  .why-mail-accordion-desc { font-size: 16px; }
 }
 
 /* ===== Who Uses Snaarp Mail phone showcase ===== */
@@ -1008,11 +1070,11 @@ body {
 }
 
 /* ===== Built For Modern Businesses bento grid ===== */
-.bento-section {
-  background: hsl(240, 30%, 97%);
+.bmb-section {
+  background: transparent;
 }
 
-.bento-badge {
+.bmb-badge {
   background: var(--color-brand-subtle);
   color: var(--color-brand);
   font-weight: 700;
@@ -1020,92 +1082,382 @@ body {
   letter-spacing: 0.06em;
 }
 
-.bento-heading {
-  font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+.bmb-heading {
+  font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
+@media (min-width: 768px) {
+  .bmb-heading { font-size: 3.75rem; }
+}
 
-.bento-heading-modern {
+.bmb-heading-accent {
   color: var(--color-brand);
 }
 
-.bento-subtext {
+.bmb-subtext {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   max-width: 46ch;
 }
 
-.bento-grid {
+/* Grid: left tall card + top-right wide card + two bottom cards */
+.bmb-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
+  grid-template-columns: 1.05fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: var(--space-5);
 }
 
-.bento-grid-row2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-6);
-  margin-top: var(--space-6);
-}
-
-.bento-card {
+.bmb-card {
   background: #ffffff;
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 1px 3px hsla(0,0%,0%,.05);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.04);
 }
 
-.bento-card-title {
+.bmb-card-title {
   color: var(--text-primary);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.25rem;
   margin: 0 0 var(--space-2);
-  line-height: 1.3;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
-.bento-card-desc {
+.bmb-card-desc {
   color: var(--text-secondary);
-  font-size: 0.8125rem;
-  line-height: 1.5;
-  margin: 0 0 var(--space-4);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  margin: 0;
 }
 
-.bento-card-img-wrap {
+/* Left: tall photo card spanning both rows */
+.bmb-card--secure {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  position: relative;
+  min-height: 440px;
+  display: flex;
+}
+
+.bmb-secure-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bmb-secure-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 20, 0) 30%, rgba(10, 10, 20, 0.55) 62%, rgba(10, 10, 20, 0.9) 100%);
+}
+
+.bmb-secure-text {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  padding: var(--space-8);
+}
+
+.bmb-secure-title {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-3);
+}
+
+.bmb-secure-desc {
+  color: hsla(0, 0%, 100%, 0.82);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 34ch;
+}
+
+/* Top-right: Integrated Drive Access (text left, image right) */
+.bmb-card--integrated {
+  grid-column: 2 / span 2;
+  grid-row: 1;
+  background: hsl(240, 22%, 96%);
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-8) 0 var(--space-8) var(--space-8);
+}
+
+.bmb-integrated-text {
+  min-width: 0;
+}
+
+.bmb-integrated-img-wrap {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  border-radius: 14px 0 0 14px;
+}
+
+.bmb-integrated-img {
+  width: 108%;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+  border-radius: 14px;
+}
+
+/* Bottom cards: image on top, text below */
+.bmb-card--analytics,
+.bmb-card--tiers {
+  grid-row: 2;
+  background: hsl(240, 22%, 96%);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6);
+}
+.bmb-card--analytics { grid-column: 2; }
+.bmb-card--tiers { grid-column: 3; }
+
+.bmb-analytics-img-wrap,
+.bmb-tiers-img-wrap {
   flex: 1;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  overflow: hidden;
-  border-radius: var(--radius-md);
+  min-height: 170px;
+  margin-bottom: var(--space-5);
 }
 
-.bento-card-img {
+.bmb-analytics-img {
   width: 100%;
   height: auto;
-  display: block;
   object-fit: contain;
 }
 
-.bento-card-violet {
-  background: var(--color-brand);
+.bmb-tiers-img {
+  max-width: 100%;
+  max-height: 190px;
+  height: auto;
+  object-fit: contain;
 }
 
-.bento-card-violet .bento-card-title,
-.bento-card-violet .bento-card-desc {
-  color: #ffffff;
-}
-.bento-card-violet .bento-card-desc {
-  color: hsla(0,0%,100%,.85);
-}
-
+/* Responsive: tablet — stack right column under the left photo */
 @media (max-width: 1023px) {
-  .bento-grid { grid-template-columns: 1fr; }
-  .bento-grid-row2 { grid-template-columns: 1fr; }
+  .bmb-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .bmb-card--secure { grid-column: 1 / span 2; grid-row: 1; min-height: 360px; }
+  .bmb-card--integrated { grid-column: 1 / span 2; grid-row: 2; }
+  .bmb-card--analytics { grid-column: 1; grid-row: 3; }
+  .bmb-card--tiers { grid-column: 2; grid-row: 3; }
+}
+
+@media (max-width: 639px) {
+  .bmb-grid { grid-template-columns: 1fr; grid-template-rows: none; }
+  .bmb-card--secure,
+  .bmb-card--integrated,
+  .bmb-card--analytics,
+  .bmb-card--tiers {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .bmb-card--integrated { grid-template-columns: 1fr; }
+  .bmb-integrated-img-wrap { justify-content: center; }
+}
+
+/* ===== Business Email That Scales — six-cell bento ===== */
+.be-section {
+  background: linear-gradient(180deg, hsl(262, 65%, 97%) 0%, #ffffff 55%);
+}
+
+.be-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+@media (min-width: 768px) {
+  .be-heading { font-size: 3.75rem; }
+}
+.be-heading-accent { color: var(--color-brand); }
+
+.be-subtext {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: 52ch;
+}
+
+/* Outer: narrow left column + wider right region. The 2:1 gap is absorbed
+   by the fr split so the three visible columns read as near-equal thirds. */
+.be-bento {
+  display: grid;
+  grid-template-columns: 0.96fr 2fr;
+  gap: var(--space-5);
+  align-items: stretch;
+}
+
+/* Left column — two equal-height stacked cards */
+.be-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.be-left > .be-card { flex: 1; }
+
+/* Right region — phone spans the two top rows, Synced spans the full width */
+.be-right {
+  display: grid;
+  grid-template-columns: 1fr 1.04fr;
+  grid-template-rows: auto auto auto;
+  gap: var(--space-5);
+  grid-template-areas:
+    "fivemin  phone"
+    "oneinbox phone"
+    "synced   synced";
+}
+.be-area-fivemin { grid-area: fivemin; }
+.be-area-oneinbox { grid-area: oneinbox; }
+.be-area-phone { grid-area: phone; }
+.be-area-synced { grid-area: synced; }
+
+/* Shared card shell */
+.be-card {
+  background: hsl(240, 22%, 96%);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.be-card-title {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-2);
+}
+
+.be-card-desc {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Media cards (50 GB + Scale seats): graphic on top, copy below */
+.be-card--media {
+  padding: var(--space-6);
+  gap: var(--space-5);
+}
+.be-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.be-media-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Stat cards (5 min + 1 inbox): big number, label, copy */
+.be-card--stat {
+  padding: var(--space-8);
+  justify-content: center;
+}
+.be-stat-number {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 1.6vw + 1.5rem, 2.875rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--space-4);
+}
+.be-stat-label {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-3);
+}
+
+/* Phone card — purple frame, image fills */
+.be-card--phone {
+  background: var(--color-brand);
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+.be-phone-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+/* Synced card — copy left, connected-app logos right */
+.be-card--synced {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-8);
+}
+.be-synced-body { flex: 1 1 0; min-width: 0; }
+.be-synced-body .be-card-desc { max-width: 42ch; }
+.be-synced-media {
+  flex: 0 0 44%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.be-synced-img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Tablet — left stack sits above the right region, each full width */
+@media (max-width: 1023px) {
+  .be-bento { grid-template-columns: 1fr; }
+  .be-left { flex-direction: row; }
+  .be-left > .be-card { flex: 1; }
+}
+
+/* Mobile — everything in one column */
+@media (max-width: 767px) {
+  .be-left { flex-direction: column; }
+  .be-right {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "fivemin"
+      "oneinbox"
+      "phone"
+      "synced";
+  }
+  .be-card--phone { min-height: 360px; }
+  .be-card--synced { flex-direction: column; align-items: stretch; }
+  .be-synced-media { flex-basis: auto; justify-content: center; }
 }
 
 /* ===== Stats / Statement card ===== */
@@ -1118,8 +1470,11 @@ body {
   text-align: center;
   font-weight: 700;
   line-height: 1.35;
-  font-size: clamp(1.375rem, 1.6vw + 1rem, 1.75rem);
+  font-size: 2.25rem;
   margin: 0 0 var(--space-10);
+}
+@media (min-width: 768px) {
+  .stats-heading { font-size: 3.75rem; }
 }
 .stats-heading-line1 {
   display: block;
@@ -1147,14 +1502,14 @@ body {
 .stats-number {
   font-weight: 700;
   color: #A78BFA;
-  font-size: clamp(2.25rem, 3vw + 1rem, 2.75rem);
+  font-size: 2.25rem;
   line-height: 1.1;
   margin: 0 0 var(--space-2);
 }
 
 .stats-label {
   color: hsl(230, 15%, 68%);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
   max-width: 18ch;
@@ -1175,67 +1530,92 @@ body {
 }
 
 .closer-look-heading {
-  font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+  font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
   color: var(--text-primary);
-  max-width: 640px;
+  max-width: 900px;
+}
+@media (min-width: 768px) {
+  .closer-look-heading { font-size: 3.75rem; }
 }
 .closer-look-heading-accent { color: var(--color-brand); }
 
 .closer-look-subtext {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   max-width: 46ch;
 }
 
-.closer-look-grid {
+.closer-look-grid-simple {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
+  column-gap: var(--space-8);
+  row-gap: var(--space-8);
 }
 @media (max-width: 1023px) {
-  .closer-look-grid { grid-template-columns: repeat(2, 1fr); }
+  .closer-look-grid-simple { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 639px) {
-  .closer-look-grid { grid-template-columns: 1fr; }
+  .closer-look-grid-simple { grid-template-columns: 1fr; }
 }
 
-.closer-look-card {
-  background: hsl(220, 14%, 94%);
-  border-radius: var(--radius-lg);
-  padding: var(--space-4);
+.closer-look-item {
+  position: relative;
+  padding: 0 var(--space-6) var(--space-8) 0;
+}
+.closer-look-grid-simple > .closer-look-item:nth-child(3n+1),
+.closer-look-grid-simple > .closer-look-item:nth-child(3n+2) {
+  border-right: 1px dashed hsl(220, 15%, 82%);
+}
+.closer-look-grid-simple > .closer-look-item:nth-child(-n+3) {
+  border-bottom: 1px dashed hsl(220, 15%, 82%);
+}
+@media (max-width: 1023px) {
+  .closer-look-grid-simple > .closer-look-item { border-right: none !important; }
+  .closer-look-grid-simple > .closer-look-item:nth-child(2n+1) {
+    border-right: 1px dashed hsl(220, 15%, 82%) !important;
+  }
+  .closer-look-grid-simple > .closer-look-item:nth-child(-n+4) {
+    border-bottom: 1px dashed hsl(220, 15%, 82%);
+  }
+}
+@media (max-width: 639px) {
+  .closer-look-grid-simple > .closer-look-item {
+    border-right: none !important;
+    border-bottom: 1px dashed hsl(220, 15%, 82%) !important;
+    padding-right: 0;
+  }
+  .closer-look-grid-simple > .closer-look-item:last-child { border-bottom: none !important; }
+}
+
+.closer-look-item-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  color: #ffffff;
   display: flex;
-  flex-direction: column;
-}
-
-.closer-look-illustration {
-  background: #ffffff;
-  border-radius: var(--radius-md);
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
   margin-bottom: var(--space-4);
 }
 
-.closer-look-illustration-img {
-  width: 100%;
-  display: block;
-  object-fit: contain;
-}
-
-.closer-look-card-title {
+.closer-look-item-title {
   color: var(--text-primary);
   font-weight: 700;
-  font-size: 1rem;
-  margin: 0 0 var(--space-1);
+  font-size: 1.25rem;
+  margin: 0 0 var(--space-2);
 }
 
-.closer-look-card-desc {
+.closer-look-item-desc {
   color: var(--text-secondary);
-  font-size: 0.8125rem;
-  line-height: 1.5;
+  font-size: 0.875rem;
+  line-height: 1.6;
   margin: 0;
+  max-width: 32ch;
 }
 
 /* ===== The Snaarp Stack ===== */
@@ -1295,9 +1675,12 @@ body {
 
 .stack-heading {
   font-weight: 700;
-  font-size: clamp(1.5rem, 2vw + 1rem, 2.125rem);
+  font-size: 2.25rem;
   line-height: 1.35;
   margin: 0 0 var(--space-5);
+}
+@media (min-width: 768px) {
+  .stack-heading { font-size: 3rem; }
 }
 .stack-heading-line1,
 .stack-heading-line2 {
@@ -1308,7 +1691,7 @@ body {
 
 .stack-copy {
   color: hsl(230, 12%, 68%);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   line-height: 1.65;
   max-width: 48ch;
   margin: 0 0 var(--space-6);
@@ -1419,16 +1802,19 @@ body {
 }
 
 .moves-fast-heading {
-  font-size: clamp(1.75rem, 2.6vw + 1rem, 2.75rem);
+  font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.25;
   color: #ffffff;
   margin: 0 0 var(--space-5);
 }
+@media (min-width: 768px) {
+  .moves-fast-heading { font-size: 3rem; }
+}
 
 .moves-fast-copy {
   color: hsl(220, 10%, 78%);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   max-width: 46ch;
   margin: 0 0 var(--space-8);
@@ -1520,7 +1906,7 @@ body {
 
 .testimonial-quote {
   color: var(--text-secondary);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   line-height: 1.65;
   margin: 0 0 var(--space-6);
   flex: 1;
@@ -1564,12 +1950,15 @@ body {
 
 /* ===== Before You Start FAQ accordion ===== */
 .faq-heading {
-  font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+  font-size: 1.875rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   text-align: center;
   margin: 0;
+}
+@media (min-width: 768px) {
+  .faq-heading { font-size: 3rem; }
 }
 
 .faq-container {
@@ -1605,7 +1994,7 @@ body {
 
 .faq-question {
   font-weight: 700;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.4;
   color: hsl(245, 30%, 22%);
   transition: color var(--duration-fast) var(--ease-out);
@@ -1662,7 +2051,7 @@ body {
 .final-cta-eyebrow {
   color: hsla(0, 0%, 100%, 0.85);
   font-weight: 700;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin: 0 0 var(--space-4);
@@ -1671,16 +2060,19 @@ body {
 .final-cta-heading {
   color: #ffffff;
   font-weight: 700;
-  font-size: clamp(1.75rem, 2.8vw + 1rem, 2.75rem);
+  font-size: 2.25rem;
   line-height: 1.25;
   letter-spacing: -0.01em;
   max-width: 20ch;
   margin: 0 auto var(--space-5);
 }
+@media (min-width: 768px) {
+  .final-cta-heading { font-size: 3.75rem; }
+}
 
 .final-cta-copy {
   color: hsla(255, 100%, 96%, 0.8);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   max-width: 46ch;
   margin: 0 auto var(--space-8);
@@ -1795,10 +2187,13 @@ body {
 
 /* ----- Hero ----- */
 .contacts-hero-heading {
-  font-size: clamp(2rem, 3.2vw + 1rem, 3rem);
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .contacts-hero-heading { font-size: 4.5rem; }
 }
 
 /* ----- Photo collage hero visual (reusable across product-page heroes) -----
@@ -2337,10 +2732,13 @@ body {
 
 /* ----- Hero ----- */
 .teams-hero-heading {
-  font-size: clamp(2rem, 3.2vw + 1rem, 3rem);
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .teams-hero-heading { font-size: 4.5rem; }
 }
 
 /* ----- Hero visual: team avatars + composer photo (replaces the diagram
@@ -2677,7 +3075,7 @@ body {
 .sec-stat-number {
   color: var(--color-brand);
   font-weight: 700;
-  font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem);
+  font-size: 2.25rem;
   line-height: 1.1;
   margin: 0 0 var(--space-2);
 }
@@ -2698,16 +3096,19 @@ body {
   margin: 0 0 var(--space-4);
 }
 .sec-demo-heading {
-  font-size: clamp(1.75rem, 2.6vw + 1rem, 2.75rem);
+  font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
   color: var(--text-primary);
   margin: 0 0 var(--space-4);
 }
+@media (min-width: 768px) {
+  .sec-demo-heading { font-size: 3.75rem; }
+}
 .sec-demo-subtext {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.65;
   max-width: 52ch;
   margin: 0 auto var(--space-10);
@@ -2799,6 +3200,23 @@ body {
   .sec-steps-grid { grid-template-columns: 1fr; }
   .sec-steps-grid::before { display: none; }
 }
+/* .bento-heading previously had no dedicated rule at all — it inherited
+   the ambient body font-size (16px) via Tailwind's preflight reset, so
+   every "Get started in N steps" heading (Mail/Teams/Contacts) rendered
+   the same size as its own body copy. Sized here to match the AI Compose
+   scale's top-of-section tier (bento-heading sits centered above a 3-col
+   step grid, the same role as AI Compose's "How It Works" heading). */
+.bento-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .bento-heading { font-size: 3.75rem; }
+}
 .sec-step-card { position: relative; z-index: 1; text-align: center; padding: 0 var(--space-4); }
 .sec-step-number {
   width: 40px;
@@ -2814,7 +3232,7 @@ body {
   margin: 0 auto var(--space-4);
   box-shadow: 0 0 0 6px var(--color-brand-subtle);
 }
-.sec-step-title { color: var(--text-primary); font-weight: 700; font-size: 1rem; margin: 0 0 var(--space-2); }
+.sec-step-title { color: var(--text-primary); font-weight: 700; font-size: 1.25rem; margin: 0 0 var(--space-2); }
 .sec-step-desc { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; margin: 0 auto; max-width: 30ch; }
 .sec-steps-cta-wrap { text-align: center; }
 /* ----- Alternating feature row ----- */
@@ -2844,16 +3262,19 @@ body {
   margin: 0 0 var(--space-3);
 }
 .sec-alt-row-heading {
-  font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+  font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
   color: var(--text-primary);
   margin: 0 0 var(--space-4);
 }
+@media (min-width: 768px) {
+  .sec-alt-row-heading { font-size: 3rem; }
+}
 .sec-alt-row-subtext {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.65;
   margin: 0 0 var(--space-8);
   max-width: 50ch;
@@ -2867,13 +3288,13 @@ body {
   background: var(--color-brand-subtle);
   color: var(--color-brand);
   font-weight: 700;
-  font-size: 0.8125rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-.sec-alt-row-item-title { color: var(--text-primary); font-weight: 700; font-size: 0.9375rem; margin: 0 0 var(--space-1); }
+.sec-alt-row-item-title { color: var(--text-primary); font-weight: 700; font-size: 0.875rem; margin: 0 0 var(--space-1); }
 .sec-alt-row-item-desc { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; margin: 0; }
 
 /* ----- Feature accordion (reusable — see FeatureAccordion.tsx) -----
@@ -2913,7 +3334,7 @@ body {
   padding: var(--space-4) 0;
 }
 .feature-accordion-item-title {
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-tertiary);
   transition: color var(--duration-normal) var(--ease-out);
@@ -2934,7 +3355,7 @@ body {
 .feature-accordion-item-body { padding: 0 0 var(--space-5); }
 .feature-accordion-item-desc {
   color: var(--text-secondary);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   line-height: 1.6;
   margin: 0 0 var(--space-4);
   max-width: 42ch;
@@ -2983,12 +3404,15 @@ body {
 
 /* ----- Icon grid 2x2 ----- */
 .sec-icons-heading {
-  font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+  font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   text-align: center;
   margin: 0;
+}
+@media (min-width: 768px) {
+  .sec-icons-heading { font-size: 3.75rem; }
 }
 .sec-icon-grid-2x2 {
   display: grid;
@@ -3595,10 +4019,13 @@ body {
 
 /* ----- Hero ----- */
 .bcard-hero-heading {
-  font-size: clamp(2rem, 3.2vw + 1rem, 3rem);
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .bcard-hero-heading { font-size: 4.5rem; }
 }
 
 /* ----- Hero visual: high-fidelity rendered card mockup, mid-tap-to-share ----- */
@@ -4000,10 +4427,13 @@ body {
 
 /* ----- Hero ----- */
 .kalender-hero-heading {
-  font-size: clamp(2rem, 3.2vw + 1rem, 3rem);
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .kalender-hero-heading { font-size: 4.5rem; }
 }
 
 /* ----- Hero visual: booking-widget mockup image, scaled to match the
@@ -4086,17 +4516,20 @@ body {
 /* ----- Master schedule: left-aligned heading + subtext, 3-col text-only
    feature row, large dashboard screenshot shown unframed. ----- */
 .kalender-master-heading {
-  font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+  font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
   color: var(--text-primary);
   flex-shrink: 0;
 }
+@media (min-width: 768px) {
+  .kalender-master-heading { font-size: 3.75rem; }
+}
 
 .kalender-master-subtext {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   max-width: 36ch;
 }
@@ -4119,13 +4552,13 @@ body {
 .kalender-master-item-title {
   color: var(--text-primary);
   font-weight: 700;
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
   margin: 0 0 var(--space-2);
 }
 
 .kalender-master-item-desc {
   color: var(--text-secondary);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   line-height: 1.6;
   margin: 0;
 }
@@ -4277,13 +4710,13 @@ body {
 .kalender-integrations-suite-name {
   color: var(--text-primary);
   font-weight: 700;
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
   margin: 0 0 var(--space-2);
 }
 
 .kalender-integrations-suite-desc {
   color: var(--text-secondary);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   line-height: 1.6;
   margin: 0;
   max-width: 42ch;
@@ -4311,10 +4744,13 @@ body {
 }
 
 .meet-hero-heading {
-  font-size: clamp(2rem, 3.2vw + 1rem, 3rem);
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .meet-hero-heading { font-size: 4.5rem; }
 }
 .meet-hero-heading-accent {
   color: var(--color-brand);
@@ -4388,13 +4824,16 @@ body {
 }
 
 .meet-why-heading {
-  font-size: clamp(1.75rem, 2.6vw + 1rem, 2.75rem);
+  font-size: 2.25rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.3;
   color: var(--text-primary);
-  max-width: 700px;
+  max-width: 920px;
   margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .meet-why-heading { font-size: 3.75rem; }
 }
 .meet-why-heading-accent { color: var(--color-brand); }
 
@@ -4418,7 +4857,7 @@ body {
 }
 
 .meet-why-card-title {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.3;
@@ -4426,7 +4865,7 @@ body {
 }
 
 .meet-why-card-desc {
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
   line-height: 1.6;
   max-width: 34ch;
@@ -4487,13 +4926,16 @@ body {
 }
 
 .meet-features-heading {
-  font-size: clamp(1.75rem, 2.6vw + 1rem, 2.75rem);
+  font-size: 2.25rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.3;
   color: var(--text-primary);
   text-align: center;
   margin: 0;
+}
+@media (min-width: 768px) {
+  .meet-features-heading { font-size: 3.75rem; }
 }
 .meet-features-heading-accent { color: var(--color-brand); }
 
@@ -4523,7 +4965,7 @@ body {
 
 .meet-features-title {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: var(--text-primary);
   margin: 0 0 var(--space-2);
 }
@@ -4549,13 +4991,16 @@ body {
 }
 
 .meet-how-heading {
-  font-size: clamp(1.75rem, 2.6vw + 1rem, 2.75rem);
+  font-size: 2.25rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.3;
   color: var(--text-primary);
   text-align: center;
   margin: 0;
+}
+@media (min-width: 768px) {
+  .meet-how-heading { font-size: 3.75rem; }
 }
 .meet-how-heading-accent { color: var(--color-brand); font-style: italic; }
 
@@ -4575,7 +5020,7 @@ body {
   line-height: 1;
   margin: 0 0 var(--space-4);
 }
-.meet-how-step-title { font-weight: 700; font-size: 1rem; color: var(--text-primary); margin: 0 0 var(--space-2); }
+.meet-how-step-title { font-weight: 700; font-size: 1.25rem; color: var(--text-primary); margin: 0 0 var(--space-2); }
 .meet-how-step-desc { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; margin: 0; max-width: 34ch; }
 
 .meet-stats-card {
@@ -4607,7 +5052,7 @@ body {
 }
 
 .meet-stats-value {
-  font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem);
+  font-size: 2.25rem;
   font-weight: 800;
   color: var(--text-primary);
   line-height: 1;
@@ -4615,7 +5060,7 @@ body {
 }
 .meet-stats-value-accent { color: var(--color-brand); }
 
-.meet-stats-label { font-weight: 700; font-size: 0.9375rem; color: var(--text-primary); margin: 0 0 var(--space-1); }
+.meet-stats-label { font-weight: 700; font-size: 0.875rem; color: var(--text-primary); margin: 0 0 var(--space-1); }
 .meet-stats-desc { color: var(--text-secondary); font-size: 0.8125rem; line-height: 1.6; margin: 0; max-width: 30ch; }
 
 /* ----- Meet FAQ (components/meet/MeetFAQ.tsx): plain violet eyebrow +
@@ -4632,12 +5077,15 @@ body {
 }
 
 .meet-faq-heading {
-  font-size: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+  font-size: 1.875rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   text-align: center;
   margin: 0;
+}
+@media (min-width: 768px) {
+  .meet-faq-heading { font-size: 3rem; }
 }
 .meet-faq-heading-accent { color: var(--color-brand); }
 
@@ -4675,7 +5123,7 @@ body {
 
 .meet-faq-question {
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.4;
   color: var(--text-primary);
 }
@@ -4696,7 +5144,7 @@ body {
 
 .meet-faq-answer {
   color: var(--text-secondary);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.65;
   margin: var(--space-3) 0 0;
   padding-right: var(--space-10);
@@ -4716,7 +5164,7 @@ body {
    narrowest (70px), the footer sits in the middle (100px), and the main
    content — hero through the last section before the footer, on every
    page (home, Business Card, Contacts, Teams) — gets the most room
-   (150px). `<main id="main-content">` / `<footer>` are the same shared
+   (130px). `<main id="main-content">` / `<footer>` are the same shared
    wrapper elements on every page, so scoping by ancestor here covers all
    of them without a page-specific class. */
 @media (min-width: 1440px) {
@@ -4733,8 +5181,8 @@ body {
   }
 
   main#main-content .max-w-7xl.mx-auto.px-6.lg\:px-10:not(.header-container) {
-    padding-left: 150px;
-    padding-right: 150px;
+    padding-left: 130px;
+    padding-right: 130px;
   }
 }
 
@@ -4748,12 +5196,22 @@ body {
   .hero-heading-line--wide { display: block; }
 }
 
+.home-hero-heading {
+  font-size: 3rem;
+}
+@media (min-width: 768px) {
+  .home-hero-heading { font-size: 4.5rem; }
+}
+
 /* ===== Mail Hero ===== */
 .mail-hero-heading {
-  font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .mail-hero-heading { font-size: 4.5rem; }
 }
 
 .mail-hero-inline-link {
@@ -5267,12 +5725,15 @@ body {
 }
 
 .mail-features-heading {
-  font-size: clamp(1.875rem, 2.6vw + 1rem, 2.75rem);
+  font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin: 0 0 var(--space-5);
+}
+@media (min-width: 768px) {
+  .mail-features-heading { font-size: 3.75rem; }
 }
 
 .mail-features-heading-accent {
@@ -5281,7 +5742,7 @@ body {
 
 .mail-features-subhead {
   color: var(--text-secondary);
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   max-width: 46ch;
   margin: 0;
@@ -5313,7 +5774,7 @@ body {
 }
 
 .mail-features-card-title {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-primary);
   margin: 0 0 var(--space-2);
@@ -5321,7 +5782,7 @@ body {
 
 .mail-features-card-desc {
   color: var(--text-secondary);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   line-height: 1.6;
   margin: 0;
 }
@@ -5331,23 +5792,24 @@ body {
 }
 
 .mail-team-heading {
-  font-size: clamp(1.5rem, 1.8vw + 1rem, 2rem);
+  font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin: 0 0 var(--space-4);
 }
+@media (min-width: 768px) {
+  .mail-team-heading { font-size: 3.75rem; }
+}
 
 .mail-team-heading-accent {
   color: var(--color-brand);
-  font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
-  line-height: 1.2;
 }
 
 .mail-team-subhead {
   color: var(--text-secondary);
-  font-size: 0.9375rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   max-width: 56ch;
   margin: 0 0 var(--space-8);
@@ -5367,7 +5829,7 @@ body {
   display: flex;
   align-items: flex-start;
   gap: var(--space-2);
-  max-width: 22ch;
+  max-width: 210px;
   text-align: left;
   color: var(--text-primary);
   font-size: 0.875rem;
@@ -5397,17 +5859,20 @@ body {
 }
 
 .mail-usecases-heading {
-  font-size: clamp(1.875rem, 2.6vw + 1rem, 2.75rem);
+  font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin: 0 0 var(--space-5);
 }
+@media (min-width: 768px) {
+  .mail-usecases-heading { font-size: 3.75rem; }
+}
 
 .mail-usecases-subhead {
   color: var(--text-secondary);
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   max-width: 52ch;
   margin: 0;
@@ -5442,14 +5907,14 @@ body {
 .mail-usecases-card-title {
   color: var(--text-primary);
   font-weight: 700;
-  font-size: 0.9375rem;
+  font-size: 1.25rem;
   line-height: 1.35;
   margin: 0 0 var(--space-2);
 }
 
 .mail-usecases-card-desc {
   color: var(--text-secondary);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.6;
   margin: 0;
 }
@@ -5939,3 +6404,883 @@ body {
   color: var(--text-tertiary);
   font-size: 0.75rem;
 }
+
+/* ============================================================================
+   AI COMPOSE  (app/products/ai-compose)
+
+   The AI Compose design was built against a shadcn-style token set that this
+   site doesn't otherwise use. The tokens are registered in `@theme inline` so
+   Tailwind emits the utilities (`bg-card`, `text-muted-foreground`, …), but
+   every *value* is defined only under `.ai-compose`. Nothing here applies
+   outside that wrapper, so the rest of the site is untouched.
+
+   `@theme inline` matters: it makes the utilities compile to `var(--card)`
+   rather than baking the value in, which is what lets the scoping work.
+   Verified: none of these token names collide with existing site variables,
+   and no page outside AI Compose uses these utility names.
+   ========================================================================== */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-mint: var(--accent-mint);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-rose: var(--accent-rose);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+.ai-compose {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #17151c;
+  --card: #ffffff;
+  --card-foreground: #17151c;
+  --popover: #ffffff;
+  --popover-foreground: #17151c;
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --secondary: #f7f7f7;
+  --secondary-foreground: #17151c;
+  --muted: #f7f7f7;
+  --muted-foreground: #68636f;
+  --accent: #f0e9ff;
+  --accent-foreground: #5b21b6;
+  --destructive: #dc2626;
+  --border: #e7e4eb;
+  --input: #e7e4eb;
+  --ring: #7c3aed;
+
+  /* Scoped locally rather than in @theme: the site's rounded-* utilities read
+     these same variables, so overriding them globally would resize corners on
+     every existing page. */
+  --radius: .75rem;
+  --radius-sm: calc(var(--radius) * .65);
+  --radius-md: calc(var(--radius) * .8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.35);
+  --radius-2xl: calc(var(--radius) * 1.75);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.7);
+
+  /* The design deliberately renders its `font-mono` labels (FIG 01, THREAD
+     CONTEXT) in Poppins, not a monospace face. */
+  --font-mono: 'Poppins', sans-serif;
+  --font-sans: 'Poppins', sans-serif;
+
+  color: var(--foreground);
+}
+
+.ai-compose *,
+.ai-compose *::before,
+.ai-compose *::after {
+  border-color: var(--border);
+  outline-color: color-mix(in srgb, var(--ring) 50%, transparent);
+}
+
+html:has(.ai-compose) {
+  scroll-behavior: smooth;
+}
+
+.ai-compose :is(button, summary, a):focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+.ai-compose .page-grid {
+  background-image: linear-gradient(to right, color-mix(in srgb, var(--border) 65%, transparent) 1px, transparent 1px);
+  background-size: 72px 100%;
+  mask-image: linear-gradient(to bottom, black 15%, transparent 90%);
+}
+
+.ai-compose .workflow-section {
+  background-color: var(--secondary);
+  background-image: linear-gradient(to right, color-mix(in srgb, var(--border) 55%, transparent) 1px, transparent 1px);
+  background-size: 80px 100%;
+}
+
+@media (min-width: 768px) {
+  .ai-compose .workflow-rail::before {
+    position: absolute;
+    top: 14rem;
+    right: 12%;
+    left: 12%;
+    height: 1px;
+    content: "";
+    background: var(--primary);
+    opacity: .28;
+  }
+}
+
+.ai-compose .made-real {
+  --work-surface: #211a2b;
+  --work-panel: #17131f;
+  background-color: var(--work-surface);
+}
+
+.ai-compose .real-work-trigger {
+  border-color: color-mix(in srgb, var(--primary-foreground) 12%, transparent);
+  background: color-mix(in srgb, var(--primary-foreground) 3%, transparent);
+  color: color-mix(in srgb, var(--primary-foreground) 62%, transparent);
+}
+
+.ai-compose .real-work-trigger:hover {
+  border-color: color-mix(in srgb, var(--primary-foreground) 22%, transparent);
+  color: var(--primary-foreground);
+  transform: translateX(2px);
+}
+
+.ai-compose .real-work-trigger[data-active="true"] {
+  border-color: color-mix(in srgb, var(--primary) 72%, var(--primary-foreground));
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
+  color: var(--primary-foreground);
+  box-shadow: inset 3px 0 0 var(--primary);
+}
+
+.ai-compose .real-work-console {
+  box-shadow: 0 28px 80px color-mix(in srgb, var(--work-panel) 70%, transparent), inset 0 1px 0 color-mix(in srgb, var(--primary-foreground) 8%, transparent);
+}
+
+.ai-compose .real-work-panel {
+  animation: real-work-enter .45s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+@keyframes real-work-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ai-compose .compose-demo-caret {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  margin-left: 1px;
+  vertical-align: -0.15em;
+  background: var(--primary);
+  animation: compose-caret-blink 1s steps(1) infinite;
+}
+
+@keyframes compose-caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(.ai-compose) { scroll-behavior: auto; }
+  .ai-compose *, .ai-compose *::before, .ai-compose *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  .ai-compose .real-work-trigger:hover { transform: none; }
+}
+
+/* ============================================================================
+   WORK DRIVE  (app/products/work-drive)
+
+   Same pattern as AI Compose above: a shadcn-style token set scoped under
+   `.work-drive` so it rides the shared `@theme inline` utility registration
+   without leaking values onto the rest of the site.
+   ========================================================================== */
+
+.work-drive {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #17151c;
+  --card: #ffffff;
+  --card-foreground: #17151c;
+  --popover: #ffffff;
+  --popover-foreground: #17151c;
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --secondary: #ede9fe;
+  --secondary-foreground: #4c1d95;
+  --muted: #f5f3ff;
+  --muted-foreground: #625b70;
+  --accent: #ddd6fe;
+  --accent-foreground: #4c1d95;
+  --accent-mint: #f5f3ff;
+  --accent-amber: #ede9fe;
+  --accent-rose: #ddd6fe;
+  --destructive: #c83242;
+  --border: #ddd6fe;
+  --input: #ddd6fe;
+  --ring: #7c3aed;
+
+  /* Scoped locally, not in @theme: the site's rounded-* utilities read these
+     same variables, so overriding them globally would resize corners on
+     every existing page. */
+  --radius: 1rem;
+  --radius-sm: calc(var(--radius) * .65);
+  --radius-md: calc(var(--radius) * .8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.35);
+  --radius-2xl: calc(var(--radius) * 1.7);
+  --radius-3xl: calc(var(--radius) * 2.1);
+  --radius-4xl: calc(var(--radius) * 2.5);
+
+  color: var(--foreground);
+}
+
+.work-drive *,
+.work-drive *::before,
+.work-drive *::after {
+  border-color: var(--border);
+  outline-color: color-mix(in srgb, var(--ring) 50%, transparent);
+}
+
+html:has(.work-drive) {
+  scroll-behavior: smooth;
+}
+
+.work-drive :is(button, summary, a):focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+.work-drive ::selection { background: color-mix(in srgb, var(--primary) 20%, transparent); color: var(--foreground); }
+
+.work-drive .section-pad { padding-top: 6rem; padding-bottom: 6rem; }
+
+.work-drive .eyebrow {
+  display: inline-flex;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  padding: .5rem 1rem;
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  color: var(--primary);
+}
+
+.work-drive .shared-work-section {
+  position: relative;
+  background: color-mix(in srgb, var(--muted) 52%, var(--background));
+}
+
+.work-drive .bento-card {
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-radius: 1.75rem;
+  background: var(--card);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--background) 85%, transparent),
+    0 28px 70px -52px color-mix(in srgb, var(--primary) 55%, transparent);
+  transition: transform 500ms cubic-bezier(.16, 1, .3, 1), box-shadow 500ms cubic-bezier(.16, 1, .3, 1);
+}
+.work-drive .bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--background) 85%, transparent),
+    0 34px 78px -48px color-mix(in srgb, var(--primary) 62%, transparent);
+}
+.work-drive .bento-card-accent {
+  border-color: color-mix(in srgb, var(--primary-foreground) 14%, transparent);
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.work-drive .bento-icon {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: .875rem;
+  background: color-mix(in srgb, var(--primary) 11%, transparent);
+  color: var(--primary);
+}
+.work-drive .bento-icon-inverse {
+  background: color-mix(in srgb, var(--primary-foreground) 13%, transparent);
+  color: var(--primary-foreground);
+}
+
+.work-drive .reveal { animation: work-drive-reveal-up .65s ease-out both; }
+.work-drive .reveal-delay { animation-delay: 120ms; }
+
+/* Faint dotted texture behind the shared-work bento */
+.work-drive .shared-work-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(color-mix(in srgb, var(--primary) 24%, transparent) 1px, transparent 1.5px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 78% 55% at 50% 0%, #000, transparent 72%);
+  mask-image: radial-gradient(ellipse 78% 55% at 50% 0%, #000, transparent 72%);
+  opacity: .55;
+  pointer-events: none;
+  z-index: 0;
+}
+.work-drive .shared-work-section > * { position: relative; z-index: 1; }
+
+/* Live presence dot with an expanding ping */
+.work-drive .live-dot { position: relative; display: inline-flex; }
+.work-drive .live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: work-drive-live-ping 1.9s cubic-bezier(0, 0, .2, 1) infinite;
+}
+
+/* Gentle perpetual float for the connective file chip */
+.work-drive .float-soft { animation: work-drive-float-soft 5.5s ease-in-out infinite; }
+
+/* Flowing dashes along the sync connectors */
+.work-drive .flow-line { stroke-dasharray: 5 8; animation: work-drive-flow-dash 1.2s linear infinite; }
+
+/* Slow rotate for the sync glyph */
+.work-drive .spin-slow { animation: work-drive-spin-slow 7s linear infinite; }
+
+@keyframes work-drive-reveal-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes work-drive-live-ping {
+  0% { transform: scale(1); opacity: .55; }
+  75%, 100% { transform: scale(2.4); opacity: 0; }
+}
+@keyframes work-drive-float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes work-drive-flow-dash { to { stroke-dashoffset: -26; } }
+@keyframes work-drive-spin-slow { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(.work-drive) { scroll-behavior: auto; }
+  .work-drive .reveal { animation: none; }
+  .work-drive *, .work-drive *::before, .work-drive *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ----- Work Drive hero: AnimatedDriveDemo -----
+   Self-contained entrance + loop animation for the animated file-browser
+   demo (components/work-drive/AnimatedDriveDemo.tsx). Deliberately not
+   scoped under .work-drive (unlike the .reveal system above) so the
+   component stays portable to other pages that don't have that wrapper
+   class, matching the drive-demo-prefixed keyframe convention used by the
+   other product pages' self-contained animation systems. */
+.drive-demo-stage {
+  position: relative;
+  transition: opacity .5s ease;
+}
+.drive-demo-fade-out { opacity: 0; }
+
+/* Locks to the measured height of the taller ("All files") state so the
+   card frame doesn't grow/shrink when the folder-open view swaps in
+   shorter content — see AnimatedDriveDemo's frameHeight measurement. */
+.drive-demo-frame {
+  overflow-y: auto;
+}
+
+.drive-demo-view {
+  transition: opacity .22s ease, transform .22s ease;
+}
+.drive-demo-view-switching {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.drive-demo-reveal {
+  opacity: 0;
+  animation: drive-demo-reveal-up .55s cubic-bezier(.16, 1, .3, 1) both;
+}
+@keyframes drive-demo-reveal-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Brief pulse on the folder card the simulated cursor "clicks" */
+.drive-demo-card-clicked { animation: drive-demo-card-pulse .3s ease; }
+@keyframes drive-demo-card-pulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(.96); }
+  100% { transform: scale(1); }
+}
+
+.drive-demo-storage-fill { width: 60%; }
+.drive-demo-storage-animate {
+  width: 0;
+  animation: drive-demo-bar-fill .9s cubic-bezier(.16, 1, .3, 1) both;
+}
+@keyframes drive-demo-bar-fill { from { width: 0; } to { width: 60%; } }
+
+.drive-demo-caret {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  margin-left: 1px;
+  background: currentColor;
+  animation: drive-demo-caret-blink 1s step-end infinite;
+}
+@keyframes drive-demo-caret-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+.drive-demo-cursor {
+  position: absolute;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(124, 58, 237, .35));
+  transition: left .7s cubic-bezier(.16, 1, .3, 1), top .7s cubic-bezier(.16, 1, .3, 1), opacity .25s ease, transform .18s ease;
+}
+.drive-demo-cursor-visible { opacity: 1; }
+.drive-demo-cursor-clicking { transform: scale(.85); }
+
+.drive-demo-click-ripple {
+  position: absolute;
+  left: -8px;
+  top: -8px;
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  background: rgba(124, 58, 237, .35);
+  animation: drive-demo-click-ripple .4s ease-out;
+}
+@keyframes drive-demo-click-ripple {
+  from { transform: scale(.3); opacity: .8; }
+  to { transform: scale(1.4); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drive-demo-reveal, .drive-demo-storage-animate, .drive-demo-caret, .drive-demo-click-ripple {
+    animation: none;
+  }
+  .drive-demo-stage, .drive-demo-view, .drive-demo-cursor {
+    transition: none;
+  }
+}
+
+/* ===== Sheets product page ===== */
+/* Ported verbatim from the standalone Sheets design bundle. This page's
+   entrance timing/easing (660ms, cubic-bezier(.22,.61,.36,1)) intentionally
+   differs from the site's shared [data-reveal] system in hooks/useScrollReveal.ts
+   (650ms, cubic-bezier(.16,1,.3,1)), so it uses its own data-sheets-reveal
+   attribute/hook (components/sheets/useSheetsReveal.ts) instead of colliding
+   with the shared one. Keyframe names are sheets-prefixed for the same reason. */
+.sheets-page [data-sheets-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .66s cubic-bezier(.22,.61,.36,1), transform .66s cubic-bezier(.22,.61,.36,1);
+}
+.sheets-page [data-sheets-reveal].sheets-is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Typography — the original bundle had every heading at its own one-off
+   px value. These map 1:1 onto the equivalent shared classes used by the
+   other product pages (bento-heading, sec-icons-heading, sec-alt-row-heading,
+   faq-heading, final-cta-heading, sec-step-title/desc, sec-alt-row-item-title/
+   desc) so Sheets reads at the same scale as the rest of the site. Kept as
+   sheets-prefixed classes rather than reusing those classes directly, since
+   this page's headings/cards still carry their own inline color/spacing. */
+.sheets-hero-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .sheets-hero-heading { font-size: 4.5rem; }
+}
+
+.sheets-lede {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* Top-of-section centered H2 (matches .bento-heading / .sec-icons-heading) */
+.sheets-section-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+@media (min-width: 768px) {
+  .sheets-section-heading { font-size: 3.75rem; }
+}
+
+/* Left-aligned alternating-row H2 (matches .sec-alt-row-heading) */
+.sheets-row-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .sheets-row-heading { font-size: 3rem; }
+}
+
+/* Numbered list item title/desc inside an alternating row (matches
+   .sec-alt-row-item-title / .sec-alt-row-item-desc) */
+.sheets-row-item-title {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+.sheets-row-item-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Bento/step card title+desc (matches .bmb-card-title/.sec-step-title and
+   .bmb-card-desc/.sec-step-desc) */
+.sheets-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.sheets-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Stat number (matches .stats-number) */
+.sheets-stat-number {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* FAQ heading (matches .faq-heading) */
+.sheets-faq-heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .sheets-faq-heading { font-size: 3rem; }
+}
+.sheets-faq-question {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.sheets-faq-answer {
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* Final CTA heading (matches .final-cta-heading) */
+.sheets-final-cta-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 768px) {
+  .sheets-final-cta-heading { font-size: 3.75rem; }
+}
+
+@keyframes sheets-crm-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(20,184,166,.45); } 50% { box-shadow: 0 0 0 7px rgba(20,184,166,0); } }
+@keyframes sheets-cell-flash-v { 0%,100% { background: transparent; } 45% { background: rgba(124,58,237,.16); } }
+@keyframes sheets-cell-flash-m { 0%,100% { background: transparent; } 55% { background: rgba(20,184,166,.18); } }
+@keyframes sheets-flow-dot { 0% { left: 6%; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { left: 94%; opacity: 0; } }
+@keyframes sheets-floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes sheets-cursor-drift-a { 0%,100% { transform: translate(0,0); } 50% { transform: translate(14px,20px); } }
+@keyframes sheets-cursor-drift-b { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-16px,12px); } }
+@keyframes sheets-cursor-drift-c { 0%,100% { transform: translate(0,0); } 50% { transform: translate(8px,-14px); } }
+@keyframes sheets-badge-glow { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+@keyframes sheets-spark-pulse { 0%,100% { opacity: .7; } 50% { opacity: 1; } }
+@keyframes sheets-draw-line { 0% { stroke-dashoffset: 220; } 100% { stroke-dashoffset: 0; } }
+@keyframes sheets-cell-fill { 0%,12% { opacity: 0; } 24% { opacity: 1; background: rgba(124,58,237,.22); } 55% { background: transparent; } 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes sheets-sel-blink { 0%,16% { box-shadow: inset 0 0 0 0 transparent; } 30%,80% { box-shadow: inset 0 0 0 2px var(--sel); } 94%,100% { box-shadow: inset 0 0 0 0 transparent; } }
+@keyframes sheets-caret-blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+@keyframes sheets-range-hi { 0%,100% { background: transparent; } 45% { background: #EDE9FE; } }
+@keyframes sheets-result-pop { 0%,42% { transform: scale(1); } 50% { transform: scale(1.13); } 62%,100% { transform: scale(1); } }
+@keyframes sheets-drop-in { 0% { transform: translateY(-30px) scale(.8) rotate(-5deg); opacity: 0; } 26% { opacity: 1; } 52%,100% { transform: translateY(0) scale(1) rotate(0); opacity: 1; } }
+@keyframes sheets-check-pop { 0%,50% { transform: scale(0); } 64% { transform: scale(1.28); } 76%,100% { transform: scale(1); } }
+@keyframes sheets-travel-to-drive { 0%,12% { transform: translateX(0) scale(1); opacity: 0; } 18% { opacity: 1; } 58% { transform: translateX(var(--tx)) scale(.6); opacity: 1; } 66%,100% { transform: translateX(var(--tx)) scale(.6); opacity: 0; } }
+@keyframes sheets-work-nudge { 0%,100% { transform: translate(0,0); } 25% { transform: translate(5px,4px); } 60% { transform: translate(-3px,6px); } }
+@keyframes sheets-comment-pop { 0%,18% { opacity: 0; transform: scale(.7) translateY(5px); } 27%,52% { opacity: 1; transform: scale(1) translateY(0); } 60%,100% { opacity: 0; transform: scale(.7) translateY(5px); } }
+@keyframes sheets-click-tap { 0%,16% { transform: scale(1); } 20% { transform: scale(.8); } 25% { transform: scale(1); } 54% { transform: scale(1); } 58% { transform: scale(.8); } 63% { transform: scale(1); } 100% { transform: scale(1); } }
+@keyframes sheets-click-ring { 0%,17% { opacity: 0; transform: scale(.4); } 20% { opacity: .6; transform: scale(.5); } 32% { opacity: 0; transform: scale(1.6); } 55% { opacity: 0; transform: scale(.4); } 58% { opacity: .6; transform: scale(.5); } 70% { opacity: 0; transform: scale(1.6); } 100% { opacity: 0; } }
+@keyframes sheets-edit-sel { 0%,30% { box-shadow: inset 0 0 0 0 transparent; } 36%,86% { box-shadow: inset 0 0 0 2px #0E9384; } 92%,100% { box-shadow: inset 0 0 0 0 transparent; } }
+@keyframes sheets-edit-caret { 0%,34%,90%,100% { opacity: 0; } 40%,52%,64%,76%,88% { opacity: 1; } 46%,58%,70%,82% { opacity: 0; } }
+@keyframes sheets-typed-val { 0%,22% { opacity: 0; transform: translateY(3px); } 36%,88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sheets-page *, .sheets-page *::before, .sheets-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =====================================================================
+   PDF READER PRODUCT PAGE (/products/pdf-reader)
+   Ported from the standalone design bundle the same way as Sheets above:
+   inline styles/colors are kept as-is per component, section containers
+   use the site's shared max-w-7xl mx-auto px-6 lg:px-10 layout (not a
+   page-specific width — see the container-width note in Sheets' section
+   above), and headings map onto the equivalent shared classes' scale
+   (bento-heading, sec-icons-heading, sec-alt-row-heading, faq-heading,
+   final-cta-heading, sec-step-title/desc, sec-alt-row-item-title/desc,
+   sec-bento-feature-title) instead of the bundle's one-off px values. The
+   bundle's entrance timing (660ms, cubic-bezier(.22,.61,.36,1)) differs
+   from the shared [data-reveal] system (650ms, cubic-bezier(.16,1,.3,1)),
+   so it uses its own data-pdf-reveal attribute/hook
+   (components/pdf-reader/usePdfReaderReveal.ts), same rationale as Sheets'
+   data-sheets-reveal. Keyframe names are pdf-reader-prefixed for the same
+   reason. ===================================================================== */
+.pdf-reader-page [data-pdf-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .66s cubic-bezier(.22,.61,.36,1), transform .66s cubic-bezier(.22,.61,.36,1);
+}
+.pdf-reader-page [data-pdf-reveal].pdf-reader-is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pdf-reader-hero-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .pdf-reader-hero-heading { font-size: 4.5rem; }
+}
+
+.pdf-reader-lede {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* Top-of-section centered H2 (matches .bento-heading / .sec-icons-heading) */
+.pdf-reader-section-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+@media (min-width: 768px) {
+  .pdf-reader-section-heading { font-size: 3.75rem; }
+}
+
+/* Left-aligned alternating-row H2 (matches .sec-alt-row-heading) */
+.pdf-reader-row-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .pdf-reader-row-heading { font-size: 3rem; }
+}
+
+/* Numbered list item title/desc inside an alternating row (matches
+   .sec-alt-row-item-title / .sec-alt-row-item-desc) */
+.pdf-reader-row-item-title {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+.pdf-reader-row-item-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Bento/step card title+desc (matches .bmb-card-title/.sec-step-title and
+   .bmb-card-desc/.sec-step-desc) */
+.pdf-reader-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.pdf-reader-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Bento feature grid's large hero-cell title (matches
+   .sec-bento-feature-cell--hero .sec-bento-feature-title) */
+.pdf-reader-bento-hero-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Stats bento card titles (matches .sec-bento-feature-title scale, plus a
+   larger tier for the "0 min" numeral card) */
+.pdf-reader-stat-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.pdf-reader-stat-number-lg {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* FAQ heading (matches .faq-heading) */
+.pdf-reader-faq-heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .pdf-reader-faq-heading { font-size: 3rem; }
+}
+.pdf-reader-faq-question {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.pdf-reader-faq-answer {
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* Final CTA heading (matches .final-cta-heading) */
+.pdf-reader-final-cta-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 768px) {
+  .pdf-reader-final-cta-heading { font-size: 3.75rem; }
+}
+
+/* Hero document paragraph — hover/highlight state can't be expressed with
+   inline styles (inline always beats a :hover rule), so background comes
+   from these classes instead while everything else affecting a paragraph
+   (tool cursor, etc.) stays inline, ported 1:1 from the bundle. */
+.pdf-reader-para { background: transparent; }
+.pdf-reader-para:hover { background: #F6F4FC; }
+.pdf-reader-para.is-hi,
+.pdf-reader-para.is-hi:hover { background: #FDE68A; }
+.pdf-reader-para.is-underlined {
+  text-decoration: underline;
+  text-decoration-color: #7C3AED;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+@keyframes pdf-reader-hl-sweep-loop { 0%,10% { width: 0; } 34%,74% { width: 100%; } 96%,100% { width: 0; } }
+@keyframes pdf-reader-draw-stroke { 0%,10% { stroke-dashoffset: 300; } 55% { stroke-dashoffset: 0; } 84% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 300; } }
+@keyframes pdf-reader-sig-draw { 0%,8% { stroke-dashoffset: 520; } 52% { stroke-dashoffset: 0; } 86% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 520; } }
+@keyframes pdf-reader-signed-pop { 0%,58% { transform: scale(0); opacity: 0; } 70% { transform: scale(1.25); opacity: 1; } 82%,100% { transform: scale(1); opacity: 1; } }
+@keyframes pdf-reader-pen-move { 0%,8% { transform: translate(0,0); opacity: 0; } 13% { opacity: 1; } 52% { transform: translate(120px,-3px); opacity: 1; } 60% { opacity: 0; } 100% { transform: translate(120px,-3px); opacity: 0; } }
+@keyframes pdf-reader-comment-pop { 0%,16% { opacity: 0; transform: scale(.7) translateY(6px); } 26%,60% { opacity: 1; transform: scale(1) translateY(0); } 70%,100% { opacity: 0; transform: scale(.7) translateY(6px); } }
+@keyframes pdf-reader-env-send { 0%,14% { transform: translate(0,0); opacity: 0; } 22% { opacity: 1; } 66% { transform: translate(58px,-24px); opacity: 1; } 76%,100% { transform: translate(58px,-24px); opacity: 0; } }
+@keyframes pdf-reader-field-focus { 0%,20% { box-shadow: inset 0 0 0 0 transparent; } 30%,80% { box-shadow: inset 0 0 0 2px #7C3AED; } 92%,100% { box-shadow: inset 0 0 0 0 transparent; } }
+@keyframes pdf-reader-tick-pop { 0%,55% { transform: scale(0); } 68% { transform: scale(1.25); } 80%,100% { transform: scale(1); } }
+@keyframes pdf-reader-audit-in { 0%,12% { opacity: 0; transform: translateY(7px); } 28%,100% { opacity: 1; transform: translateY(0); } }
+@keyframes pdf-reader-tool-active { 0%,100% { box-shadow: 0 0 0 0 rgba(124,58,237,.45); } 50% { box-shadow: 0 0 0 6px rgba(124,58,237,0); } }
+
+/* Hero signature demo (components/pdf-reader/SignatureFlow.tsx) — a plain
+   canvas 2D signature pad. Drawn ink uses the site's existing dark heading
+   ink (#211C36, same tone as the original pre-interactive signature SVG)
+   rather than the violet brand accent, which stays reserved for UI chrome. */
+.pdf-reader-sig-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+.pdf-reader-sig-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #A99FC8;
+  pointer-events: none;
+}
+.pdf-reader-sig-baseline {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 13px;
+  border-top: 1.5px dashed #DCD5F0;
+  pointer-events: none;
+}
+.pdf-reader-sig-hint-svg {
+  position: absolute;
+  left: 12px;
+  top: 9px;
+  width: 132px;
+  height: 38px;
+  pointer-events: none;
+}
+.pdf-reader-sig-hint-svg path {
+  animation: pdf-reader-draw-stroke 1.6s ease-in-out 1;
+}
+
+.pdf-reader-caret-blink {
+  display: inline-block;
+  width: 1px;
+  height: 13px;
+  background: #7C3AED;
+  animation: pdf-reader-caret-blink 1s step-end infinite;
+}
+@keyframes pdf-reader-caret-blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+.pdf-reader-lock-flash { animation: pdf-reader-lock-flash .65s ease-out forwards; }
+@keyframes pdf-reader-lock-flash { 0% { background-color: #F5F3FF; } 100% { background-color: #FBFAFE; } }
+
+.pdf-reader-spin-icon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border: 2px solid rgba(180,174,198,.4);
+  border-top-color: #8B85A0;
+  border-radius: 50%;
+  animation: pdf-reader-spin .7s linear infinite;
+  vertical-align: -1px;
+}
+@keyframes pdf-reader-spin { to { transform: rotate(360deg); } }
+
+.pdf-reader-status-dot-pulse { animation: pdf-reader-status-dot-pulse 1s ease-in-out infinite; }
+@keyframes pdf-reader-status-dot-pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+
+.pdf-reader-toast {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  background: #211C36;
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 14px 30px -12px rgba(37,22,84,.5);
+  border: 1px solid rgba(124,58,237,.4);
+  animation: pdf-reader-toast-in .3s ease;
+  z-index: 5;
+}
+@keyframes pdf-reader-toast-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pdf-reader-page *, .pdf-reader-page *::before, .pdf-reader-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+

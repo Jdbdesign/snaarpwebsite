@@ -37,6 +37,8 @@
   ],
   "exclude": [
     "node_modules",
-    "temporary screenshots"
+    "temporary screenshots",
+    "AI-composer",
+    "Drive"
   ]
 }

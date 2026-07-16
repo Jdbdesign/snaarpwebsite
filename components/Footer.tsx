@@ -29,7 +29,7 @@ export function Footer() {
             <ul className="footer-links">
               <li><a href="#" className="footer-link">Snaarp Mail</a></li>
               <li><a href="#" className="footer-link">CRM</a></li>
-              <li><a href="#" className="footer-link">Work Drive</a></li>
+              <li><a href="/products/work-drive" className="footer-link">Work Drive</a></li>
               <li><a href="#" className="footer-link">Neo AI</a></li>
               <li><a href="#" className="footer-link">All 20+ apps</a></li>
             </ul>

@@ -175,7 +175,7 @@ export function BusinessCardFortune500() {
   return (
     <section className="bg-white py-24 sm:py-32 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center mb-12 sm:mb-24 relative z-40">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight max-w-4xl mx-auto">
+        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight max-w-4xl mx-auto">
           Used by employees at more than 93% of Fortune 500 companies
         </h2>
       </div>

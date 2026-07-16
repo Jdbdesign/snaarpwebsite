@@ -1,7 +1,9 @@
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { AppsToExplore } from '@/components/AppsToExplore';
-import { WhyMail } from '@/components/WhyMail';
+// import { WhyMail } from '@/components/WhyMail';
+import { IconShowcaseSection } from '@/components/IconShowcaseSection';
+import { IconShowcaseFeatures } from '@/components/IconShowcaseFeatures';
 import { BuiltForModernBusinesses } from '@/components/BuiltForModernBusinesses';
 import { StatsBlock } from '@/components/StatsBlock';
 import { BuiltToReplace } from '@/components/BuiltToReplace';
@@ -20,7 +22,9 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <AppsToExplore />
-        <WhyMail />
+        {/* <WhyMail /> */}
+        <IconShowcaseSection />
+        <IconShowcaseFeatures />
         <BuiltForModernBusinesses />
         <StatsBlock />
         <BuiltToReplace />

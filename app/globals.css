@@ -3178,6 +3178,75 @@ body {
   .sec-demo-play:hover { transform: translate(-50%, -50%) scale(1.06); }
 }
 
+/* ----- Icon Showcase section (homepage, above Elevate Your Inbox) ----- */
+.icon-showcase-section {
+  background: transparent;
+}
+.icon-showcase-card {
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  aspect-ratio: 1298 / 786;
+}
+.icon-showcase-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ----- Icon showcase feature strip ----- */
+.icon-showcase-features-section {
+  background: transparent;
+}
+.icon-showcase-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-10) var(--space-8);
+}
+.icon-showcase-feature {
+  text-align: left;
+}
+.icon-showcase-feature-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-3);
+}
+.icon-showcase-feature-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-subtle);
+  color: var(--color-brand);
+}
+.icon-showcase-feature-title {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  margin: 0;
+}
+.icon-showcase-feature-desc {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 34ch;
+}
+@media (max-width: 1023px) {
+  .icon-showcase-features-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
+
 /* ----- Steps section ----- */
 .sec-steps-grid {
   position: relative;

@@ -13,7 +13,11 @@ export function useSheetsReveal(containerRef: RefObject<HTMLElement | null>) {
     if (!container) return;
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // querySelectorAll only matches descendants, so a container that is
+    // itself the reveal target (the `reveal` prop case in
+    // SheetsRevealSection) has to be added in separately.
     const els = Array.from(container.querySelectorAll<HTMLElement>('[data-sheets-reveal]'));
+    if (container.hasAttribute('data-sheets-reveal')) els.unshift(container);
     if (!els.length) return;
 
     if (reduce) {

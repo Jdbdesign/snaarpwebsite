@@ -24,7 +24,7 @@ export function MeetHero() {
             <span className="block meet-hero-heading-accent">to show up for</span>
           </h1>
 
-          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.0625rem' }} data-reveal-load>
+          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.125rem' }} data-reveal-load>
             HD video, screen sharing, and recording &mdash; all in your browser. No downloads. No friction.
           </p>
 

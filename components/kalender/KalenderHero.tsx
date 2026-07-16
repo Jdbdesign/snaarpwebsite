@@ -27,7 +27,7 @@ export function KalenderHero() {
             <span className="block text-[var(--color-brand)]">In one link.</span>
           </h1>
 
-          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.0625rem' }} data-reveal-load>
+          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.125rem' }} data-reveal-load>
             Share one link, let people pick a time that works, and never double-book again &mdash; synced with the rest of the Stack.
           </p>
 

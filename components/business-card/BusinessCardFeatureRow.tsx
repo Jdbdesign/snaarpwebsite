@@ -52,7 +52,7 @@ export function BusinessCardFeatureRow({
           </motion.div>
 
           <motion.h2
-            className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-6 leading-[1.1]"
+            className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6 leading-[1.1]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -87,8 +87,8 @@ export function BusinessCardFeatureRow({
                   {item.icon}
                 </div>
                 <div className={`flex flex-col gap-1 ${i < items.length - 1 ? 'pb-8 border-b border-gray-100' : ''}`}>
-                  <h4 className="text-[17px] font-bold text-gray-900">{item.title}</h4>
-                  <p className="text-[15px] text-gray-500 leading-relaxed">{item.desc}</p>
+                  <h4 className="text-xl font-bold text-gray-900">{item.title}</h4>
+                  <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}

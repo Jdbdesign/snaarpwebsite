@@ -1,0 +1,177 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-poppins);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-mint: var(--accent-mint);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-rose: var(--accent-rose);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --radius-sm: calc(var(--radius) * .65);
+  --radius-md: calc(var(--radius) * .8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.35);
+  --radius-2xl: calc(var(--radius) * 1.7);
+  --radius-3xl: calc(var(--radius) * 2.1);
+  --radius-4xl: calc(var(--radius) * 2.5);
+}
+
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #17151c;
+  --card: #ffffff;
+  --card-foreground: #17151c;
+  --popover: #ffffff;
+  --popover-foreground: #17151c;
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --secondary: #ede9fe;
+  --secondary-foreground: #4c1d95;
+  --muted: #f5f3ff;
+  --muted-foreground: #625b70;
+  --accent: #ddd6fe;
+  --accent-foreground: #4c1d95;
+  --accent-mint: #f5f3ff;
+  --accent-amber: #ede9fe;
+  --accent-rose: #ddd6fe;
+  --destructive: #c83242;
+  --border: #ddd6fe;
+  --input: #ddd6fe;
+  --ring: #7c3aed;
+  --radius: 1rem;
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background font-sans text-foreground; }
+  button:not(:disabled), [role="button"]:not(:disabled), summary { cursor: pointer; }
+  summary::-webkit-details-marker { display: none; }
+  ::selection { @apply bg-primary/20 text-foreground; }
+}
+
+@layer components {
+  .section-pad { @apply py-20 md:py-28; }
+  .eyebrow { @apply inline-flex rounded-full border border-primary/15 bg-primary/8 px-4 py-2 text-xs font-semibold uppercase tracking-[.16em] text-primary; }
+  .product-shell { @apply rounded-[2rem] bg-primary/8 p-3 shadow-[0_30px_80px_-34px_rgba(76,29,149,.45)]; }
+  .product-window { @apply overflow-hidden rounded-[1.4rem] border bg-card shadow-lg; }
+  .shared-work-section {
+    background: color-mix(in srgb, var(--muted) 52%, var(--background));
+  }
+  .bento-card {
+    border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+    border-radius: 1.75rem;
+    background: var(--card);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--background) 85%, transparent),
+      0 28px 70px -52px color-mix(in srgb, var(--primary) 55%, transparent);
+    transition: transform 500ms cubic-bezier(.16, 1, .3, 1), box-shadow 500ms cubic-bezier(.16, 1, .3, 1);
+  }
+  .bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--background) 85%, transparent),
+      0 34px 78px -48px color-mix(in srgb, var(--primary) 62%, transparent);
+  }
+  .bento-card-accent {
+    border-color: color-mix(in srgb, var(--primary-foreground) 14%, transparent);
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  .bento-icon {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border-radius: .875rem;
+    background: color-mix(in srgb, var(--primary) 11%, transparent);
+    color: var(--primary);
+  }
+  .bento-icon-inverse {
+    background: color-mix(in srgb, var(--primary-foreground) 13%, transparent);
+    color: var(--primary-foreground);
+  }
+  .reveal { animation: reveal-up .65s ease-out both; }
+  .reveal-delay { animation-delay: 120ms; }
+
+  /* Faint dotted texture behind the shared-work bento */
+  .shared-work-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(color-mix(in srgb, var(--primary) 24%, transparent) 1px, transparent 1.5px);
+    background-size: 26px 26px;
+    -webkit-mask-image: radial-gradient(ellipse 78% 55% at 50% 0%, #000, transparent 72%);
+    mask-image: radial-gradient(ellipse 78% 55% at 50% 0%, #000, transparent 72%);
+    opacity: .55;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .shared-work-section > * { position: relative; z-index: 1; }
+
+  /* Live presence dot with an expanding ping */
+  .live-dot { position: relative; display: inline-flex; }
+  .live-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: currentColor;
+    animation: live-ping 1.9s cubic-bezier(0, 0, .2, 1) infinite;
+  }
+
+  /* Gentle perpetual float for the connective file chip */
+  .float-soft { animation: float-soft 5.5s ease-in-out infinite; }
+
+  /* Flowing dashes along the sync connectors */
+  .flow-line { stroke-dasharray: 5 8; animation: flow-dash 1.2s linear infinite; }
+
+  /* Storage bars grow in */
+  .bar-rise { transform-origin: bottom; animation: bar-rise .9s cubic-bezier(.16, 1, .3, 1) both; }
+
+  /* Slow rotate for the sync glyph */
+  .spin-slow { animation: spin-slow 7s linear infinite; }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes live-ping {
+  0% { transform: scale(1); opacity: .55; }
+  75%, 100% { transform: scale(2.4); opacity: 0; }
+}
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes flow-dash { to { stroke-dashoffset: -26; } }
+@keyframes bar-rise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { animation: none; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}

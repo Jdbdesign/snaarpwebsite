@@ -1,0 +1,132 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@theme inline {
+  --font-sans: var(--font-poppins), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-poppins), ui-monospace, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * .65);
+  --radius-md: calc(var(--radius) * .8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.35);
+  --radius-2xl: calc(var(--radius) * 1.75);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.7);
+}
+
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #17151c;
+  --card: #ffffff;
+  --card-foreground: #17151c;
+  --popover: #ffffff;
+  --popover-foreground: #17151c;
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --secondary: #f7f7f7;
+  --secondary-foreground: #17151c;
+  --muted: #f7f7f7;
+  --muted-foreground: #68636f;
+  --accent: #f0e9ff;
+  --accent-foreground: #5b21b6;
+  --destructive: #dc2626;
+  --border: #e7e4eb;
+  --input: #e7e4eb;
+  --ring: #7c3aed;
+  --radius: .75rem;
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background font-sans text-foreground; }
+  button, summary, a { @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary; }
+}
+
+.page-grid {
+  background-image: linear-gradient(to right, color-mix(in srgb, var(--border) 65%, transparent) 1px, transparent 1px);
+  background-size: 72px 100%;
+  mask-image: linear-gradient(to bottom, black 15%, transparent 90%);
+}
+
+.workflow-section {
+  background-color: var(--secondary);
+  background-image: linear-gradient(to right, color-mix(in srgb, var(--border) 55%, transparent) 1px, transparent 1px);
+  background-size: 80px 100%;
+}
+
+@media (min-width: 768px) {
+  .workflow-rail::before {
+    position: absolute;
+    top: 14rem;
+    right: 12%;
+    left: 12%;
+    height: 1px;
+    content: "";
+    background: var(--primary);
+    opacity: .28;
+  }
+}
+
+.made-real {
+  --work-surface: #211a2b;
+  --work-panel: #17131f;
+  background-color: var(--work-surface);
+}
+
+.real-work-trigger {
+  border-color: color-mix(in srgb, var(--primary-foreground) 12%, transparent);
+  background: color-mix(in srgb, var(--primary-foreground) 3%, transparent);
+  color: color-mix(in srgb, var(--primary-foreground) 62%, transparent);
+}
+
+.real-work-trigger:hover {
+  border-color: color-mix(in srgb, var(--primary-foreground) 22%, transparent);
+  color: var(--primary-foreground);
+  transform: translateX(2px);
+}
+
+.real-work-trigger[data-active="true"] {
+  border-color: color-mix(in srgb, var(--primary) 72%, var(--primary-foreground));
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
+  color: var(--primary-foreground);
+  box-shadow: inset 3px 0 0 var(--primary);
+}
+
+.real-work-console {
+  box-shadow: 0 28px 80px color-mix(in srgb, var(--work-panel) 70%, transparent), inset 0 1px 0 color-mix(in srgb, var(--primary-foreground) 8%, transparent);
+}
+
+.real-work-panel {
+  animation: real-work-enter .45s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+@keyframes real-work-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .real-work-trigger:hover { transform: none; }
+}

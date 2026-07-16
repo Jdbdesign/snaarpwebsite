@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
+import { usePathname } from 'next/navigation';
 import {
   Contact,
   FileType,
@@ -51,7 +52,7 @@ const CATEGORIES: ProductCategory[] = [
       { name: 'Contacts', desc: 'One shared address book', icon: { kind: 'img', src: '/assets/icons/search.jpg' }, href: '/products/contacts' },
       { name: 'Meet', desc: 'Video calls, screen share & recording', icon: { kind: 'img', src: '/assets/icons/apps-meet.jpg' }, href: '/products/meet' },
       { name: 'Teams', desc: 'Group chat & channels', icon: { kind: 'img', src: '/assets/icons/chat-bubbles.jpg' }, href: '/products/teams' },
-      { name: 'AI Compose', desc: 'AI drafting across every app', icon: { kind: 'img', src: '/assets/icons/ai-sparkle.jpg' } },
+      { name: 'AI Compose', desc: 'AI drafting across every app', icon: { kind: 'img', src: '/assets/icons/ai-sparkle.jpg' }, href: '/products/ai-compose' },
       { name: 'Business Card', desc: 'Digital business card sharing', icon: { kind: 'lucide', Icon: Contact }, href: '/products/business-card' },
     ],
   },
@@ -59,11 +60,11 @@ const CATEGORIES: ProductCategory[] = [
     id: 'create-store',
     label: 'Create & Store',
     apps: [
-      { name: 'Work Drive', desc: 'Shared file storage', icon: { kind: 'img', src: '/assets/icons/cube.jpg' } },
+      { name: 'Work Drive', desc: 'Shared file storage', icon: { kind: 'img', src: '/assets/icons/cube.jpg' }, href: '/products/work-drive' },
       { name: 'Document', desc: 'Real-time co-editing docs', icon: { kind: 'img', src: '/assets/icons/apps-document.png' } },
-      { name: 'Sheet', desc: 'Collaborative spreadsheets', icon: { kind: 'img', src: '/assets/icons/apps-sheet.jpg' } },
+      { name: 'Sheet', desc: 'Collaborative spreadsheets', icon: { kind: 'img', src: '/assets/icons/apps-sheet.jpg' }, href: '/products/sheets' },
       { name: 'Presentation', desc: 'Build & present decks', icon: { kind: 'img', src: '/assets/icons/p-icon.jpg' } },
-      { name: 'PDF Reader', desc: 'View, annotate & merge PDFs', icon: { kind: 'lucide', Icon: FileType } },
+      { name: 'PDF Reader', desc: 'View, annotate & merge PDFs', icon: { kind: 'lucide', Icon: FileType }, href: '/products/pdf-reader' },
       { name: 'NotePad', desc: 'Notes & reminders, synced', icon: { kind: 'lucide', Icon: NotebookPen } },
     ],
   },
@@ -101,6 +102,14 @@ const CATEGORIES: ProductCategory[] = [
   },
 ];
 
+// Reuses CATEGORIES (the same data the sidebar/app-grid render from) as the
+// route-to-category lookup, rather than maintaining a second mapping that
+// could drift out of sync with it.
+function findCategoryIdForPath(pathname: string | null): string | undefined {
+  if (!pathname) return undefined;
+  return CATEGORIES.find((cat) => cat.apps.some((app) => app.href === pathname))?.id;
+}
+
 function AppIconView({ icon }: { icon: AppIcon }) {
   if (icon.kind === 'img') {
     return <img src={icon.src} alt="" aria-hidden="true" className="mega-app-icon-img" />;
@@ -116,8 +125,20 @@ interface ProductsMegaMenuProps {
 }
 
 export function ProductsMegaMenu({ isOpen, onClose, triggerRef }: ProductsMegaMenuProps) {
-  const [activeCategoryId, setActiveCategoryId] = useState(CATEGORIES[0].id);
+  const pathname = usePathname();
+  // Falls back to the first category on non-product pages (home, pricing,
+  // etc.) where there's no "current product" to reflect.
+  const currentCategoryId = findCategoryIdForPath(pathname) ?? CATEGORIES[0].id;
+  const [activeCategoryId, setActiveCategoryId] = useState(currentCategoryId);
   const activeCategory = CATEGORIES.find((c) => c.id === activeCategoryId) ?? CATEGORIES[0];
+
+  // Re-sync the sidebar to the current page's category every time the menu
+  // opens, so it reflects where the user is rather than remembering
+  // whichever category was last clicked.
+  useEffect(() => {
+    if (!isOpen) return;
+    setActiveCategoryId(currentCategoryId);
+  }, [isOpen, currentCategoryId]);
 
   const panelRef = useRef<HTMLDivElement>(null);
   // Left offset (px, from the viewport edge) that anchors the panel's left
@@ -198,17 +219,26 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef }: ProductsMegaMe
 
           {/* Column 2: app grid for the active category */}
           <div className="mega-menu-apps" key={activeCategory.id}>
-            {activeCategory.apps.map((app) => (
-              <a key={app.name} href={app.href ?? '#'} className="mega-menu-app" onClick={onClose}>
-                <span className="mega-app-icon">
-                  <AppIconView icon={app.icon} />
-                </span>
-                <span className="mega-menu-app-text">
-                  <span className="mega-menu-app-title">{app.name}</span>
-                  <span className="mega-menu-app-desc">{app.desc}</span>
-                </span>
-              </a>
-            ))}
+            {activeCategory.apps.map((app) => {
+              const isCurrentPage = Boolean(app.href) && app.href === pathname;
+              return (
+                <a
+                  key={app.name}
+                  href={app.href ?? '#'}
+                  className={`mega-menu-app${isCurrentPage ? ' is-active' : ''}`}
+                  aria-current={isCurrentPage ? 'page' : undefined}
+                  onClick={onClose}
+                >
+                  <span className="mega-app-icon">
+                    <AppIconView icon={app.icon} />
+                  </span>
+                  <span className="mega-menu-app-text">
+                    <span className="mega-menu-app-title">{app.name}</span>
+                    <span className="mega-menu-app-desc">{app.desc}</span>
+                  </span>
+                </a>
+              );
+            })}
           </div>
 
           {/* Column 3: promo panel */}

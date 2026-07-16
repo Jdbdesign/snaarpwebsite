@@ -6,7 +6,7 @@ import { BuiltForModernBusinesses } from '@/components/BuiltForModernBusinesses'
 import { StatsBlock } from '@/components/StatsBlock';
 import { BuiltToReplace } from '@/components/BuiltToReplace';
 import { SnaarpStack } from '@/components/SnaarpStack';
-import { WhoUsesSnaarpMail } from '@/components/WhoUsesSnaarpMail';
+import { BusinessEmailScales } from '@/components/BusinessEmailScales';
 import { BusinessMovesFast } from '@/components/BusinessMovesFast';
 import { Testimonials } from '@/components/Testimonials';
 import { FAQ } from '@/components/FAQ';
@@ -25,7 +25,7 @@ export default function Home() {
         <StatsBlock />
         <BuiltToReplace />
         <SnaarpStack />
-        <WhoUsesSnaarpMail />
+        <BusinessEmailScales />
         <BusinessMovesFast />
         <Testimonials />
         <FAQ />

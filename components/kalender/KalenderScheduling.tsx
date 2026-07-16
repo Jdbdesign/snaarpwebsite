@@ -38,7 +38,7 @@ export function KalenderScheduling() {
             <span className="block">Effortless scheduling</span>
             <span className="block text-[var(--color-brand)]">with Kalender</span>
           </h2>
-          <p className="text-[var(--text-secondary)] leading-relaxed mb-8" data-reveal data-reveal-group="kalender-scheduling-top">
+          <p className="text-[var(--text-secondary)] text-lg leading-relaxed mb-8" data-reveal data-reveal-group="kalender-scheduling-top">
             Kalender is simple enough for individuals, yet powerful enough to coordinate schedules across your whole team.
           </p>
           <a

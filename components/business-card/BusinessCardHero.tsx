@@ -39,7 +39,7 @@ export function BusinessCardHero() {
             <span className="block text-[var(--color-brand)]">the instant you do.</span>
           </h1>
 
-          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.0625rem' }} data-reveal-load>
+          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.125rem' }} data-reveal-load>
             Change your title, number, or company and every card you&rsquo;ve ever shared updates automatically &mdash; no reprinting, no handing out outdated info.
           </p>
 

@@ -51,7 +51,7 @@ export function ContactsHero() {
             <span className="block text-[var(--color-brand)]">Everywhere you work.</span>
           </h1>
 
-          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.0625rem' }} data-reveal-load>
+          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.125rem' }} data-reveal-load>
             Save a contact once in Snaarp Contacts and it&rsquo;s already there in Mail, Meet, and CRM — no exporting, no re-typing, no three different versions of the same person.
           </p>
 

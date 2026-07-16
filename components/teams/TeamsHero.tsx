@@ -41,7 +41,7 @@ export function TeamsHero() {
             <span className="block text-[var(--color-brand)]">organized, not overwhelming.</span>
           </h1>
 
-          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.0625rem' }} data-reveal-load>
+          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.125rem' }} data-reveal-load>
             Channels for every project, threads that don&rsquo;t get lost, and files that stay attached to the conversation they came from.
           </p>
 

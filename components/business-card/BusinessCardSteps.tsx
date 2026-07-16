@@ -28,7 +28,7 @@ export function BusinessCardSteps({ ctaLabel, ctaHref = '#' }: { ctaLabel: React
   return (
     <section className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
       <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
+        <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900">
           Get started in 3 easy steps
         </h2>
       </div>

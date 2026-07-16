@@ -34,12 +34,21 @@ export function MailHero() {
           </div>
 
           <h1 className="mail-hero-heading mb-6" data-reveal-load>
-            <span className="block text-[var(--text-primary)]">Premium business email</span>
-            <span className="block text-[var(--text-primary)]">without the enterprise</span>
-            <span className="block text-[var(--color-brand)]">price tag.</span>
+            <span className="lg:hidden">
+              <span className="block text-[var(--text-primary)]">Premium business email</span>
+              <span className="block text-[var(--text-primary)]">without the enterprise</span>
+              <span className="block text-[var(--color-brand)]">price tag.</span>
+            </span>
+            <span className="hidden lg:block">
+              <span className="block text-[var(--text-primary)]">Premium business</span>
+              <span className="block text-[var(--text-primary)]">email without the</span>
+              <span className="block text-[var(--text-primary)]">
+                enterprise <span className="text-[var(--color-brand)]">price tag.</span>
+              </span>
+            </span>
           </h1>
 
-          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[48ch]" style={{ fontSize: '1.0625rem' }} data-reveal-load>
+          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[48ch]" style={{ fontSize: '1.125rem' }} data-reveal-load>
             yourname@yourcompany.com in minutes &mdash; not a support ticket. Set up your domain, invite your team, and every inbox syncs straight into{' '}
             <a href="/products/contacts" className="mail-hero-inline-link">Contacts</a> and{' '}
             <a href="/products/kalender" className="mail-hero-inline-link">Kalender</a>.

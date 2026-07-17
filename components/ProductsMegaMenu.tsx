@@ -61,9 +61,9 @@ const CATEGORIES: ProductCategory[] = [
     label: 'Create & Store',
     apps: [
       { name: 'Work Drive', desc: 'Shared file storage', icon: { kind: 'img', src: '/assets/icons/cube.jpg' }, href: '/products/work-drive' },
-      { name: 'Document', desc: 'Real-time co-editing docs', icon: { kind: 'img', src: '/assets/icons/apps-document.png' } },
+      { name: 'Document', desc: 'Real-time co-editing docs', icon: { kind: 'img', src: '/assets/icons/apps-document.png' }, href: '/products/docs' },
       { name: 'Sheet', desc: 'Collaborative spreadsheets', icon: { kind: 'img', src: '/assets/icons/apps-sheet.jpg' }, href: '/products/sheets' },
-      { name: 'Presentation', desc: 'Build & present decks', icon: { kind: 'img', src: '/assets/icons/p-icon.jpg' } },
+      { name: 'Presentation', desc: 'Build & present decks', icon: { kind: 'img', src: '/assets/icons/p-icon.jpg' }, href: '/products/presentation' },
       { name: 'PDF Reader', desc: 'View, annotate & merge PDFs', icon: { kind: 'lucide', Icon: FileType }, href: '/products/pdf-reader' },
       { name: 'NotePad', desc: 'Notes & reminders, synced', icon: { kind: 'lucide', Icon: NotebookPen } },
     ],

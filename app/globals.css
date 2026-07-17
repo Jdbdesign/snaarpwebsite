@@ -7352,4 +7352,322 @@ html:has(.work-drive) {
   }
 }
 
+/* =====================================================================
+   DOCUMENT PRODUCT PAGE (/products/docs)
+   Ported from the standalone design bundle the same way as Sheets/PDF
+   Reader above: inline styles/colors are kept as-is per component, section
+   containers use the site's shared max-w-7xl mx-auto px-6 lg:px-10 layout
+   (not a page-specific width — see the container-width note in Sheets'
+   section above), and headings map onto the equivalent shared classes'
+   scale (bento-heading, sec-icons-heading, sec-alt-row-heading, faq-heading,
+   final-cta-heading, sec-step-title/desc, sec-alt-row-item-title/desc,
+   sec-bento-feature-title) instead of the bundle's one-off px values. The
+   bundle's entrance timing (660ms, cubic-bezier(.22,.61,.36,1)) differs
+   from the shared [data-reveal] system (650ms, cubic-bezier(.16,1,.3,1)),
+   so it uses its own data-docs-reveal attribute/hook
+   (components/docs/useDocsReveal.ts), same rationale as Sheets' and PDF
+   Reader's own reveal systems. Keyframes are docs-prefixed for the same
+   reason. ===================================================================== */
+.docs-page [data-docs-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .66s cubic-bezier(.22,.61,.36,1), transform .66s cubic-bezier(.22,.61,.36,1);
+}
+.docs-page [data-docs-reveal].docs-is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.docs-hero-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .docs-hero-heading { font-size: 4.5rem; }
+}
+
+.docs-lede {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* Top-of-section centered H2 (matches .bento-heading / .sec-icons-heading) */
+.docs-section-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+@media (min-width: 768px) {
+  .docs-section-heading { font-size: 3.75rem; }
+}
+
+/* Left-aligned alternating-row H2 (matches .sec-alt-row-heading) */
+.docs-row-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .docs-row-heading { font-size: 3rem; }
+}
+
+/* Numbered list item title/desc inside an alternating row (matches
+   .sec-alt-row-item-title / .sec-alt-row-item-desc) */
+.docs-row-item-title {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+.docs-row-item-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Bento/step card title+desc (matches .bmb-card-title/.sec-step-title and
+   .bmb-card-desc/.sec-step-desc) */
+.docs-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.docs-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Bento feature grid's large hero-cell title (matches
+   .sec-bento-feature-cell--hero .sec-bento-feature-title) */
+.docs-bento-hero-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Stats bento card titles (matches the "Real-time / Unlimited / 1 place"
+   cards' original 26px headline) plus a larger tier for the "0 min"
+   numeral card, which already matched the shared scale at its original
+   56px so it's kept as-is. */
+.docs-stat-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.docs-stat-number-lg {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* FAQ heading (matches .faq-heading) */
+.docs-faq-heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .docs-faq-heading { font-size: 3rem; }
+}
+.docs-faq-question {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.docs-faq-answer {
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* Final CTA heading (matches .final-cta-heading) */
+.docs-final-cta-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 768px) {
+  .docs-final-cta-heading { font-size: 3.75rem; }
+}
+
+/* Hero document paragraph — hover/highlight state can't be expressed with
+   inline styles (inline always beats a :hover rule), so background comes
+   from these classes instead while everything else affecting a paragraph
+   (tool cursor, etc.) stays inline, ported 1:1 from the bundle. */
+.docs-para { background: transparent; }
+.docs-para:hover { background: #F6F4FC; }
+.docs-para.is-hi,
+.docs-para.is-hi:hover { background: #FDE68A; }
+
+@keyframes docs-floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes docs-hl-sweep-loop { 0%,10% { width: 0; } 34%,74% { width: 100%; } 96%,100% { width: 0; } }
+@keyframes docs-comment-pop { 0%,14% { opacity: 0; transform: scale(.7) translateY(6px); } 26%,66% { opacity: 1; transform: scale(1) translateY(0); } 78%,100% { opacity: 0; transform: scale(.7) translateY(6px); } }
+@keyframes docs-audit-in { 0%,12% { opacity: 0; transform: translateY(7px); } 28%,100% { opacity: 1; transform: translateY(0); } }
+@keyframes docs-caret-blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+@keyframes docs-saved-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.14); } }
+@keyframes docs-live-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(20,184,166,.5); } 70%,100% { box-shadow: 0 0 0 6px rgba(20,184,166,0); } }
+@keyframes docs-glide-a { 0% { transform: translate(14px,10px); } 22% { transform: translate(150px,34px); } 46% { transform: translate(64px,86px); } 70% { transform: translate(196px,64px); } 88% { transform: translate(40px,120px); } 100% { transform: translate(14px,10px); } }
+@keyframes docs-glide-b { 0% { transform: translate(210px,120px); } 24% { transform: translate(70px,132px); } 50% { transform: translate(188px,52px); } 74% { transform: translate(96px,30px); } 100% { transform: translate(210px,120px); } }
+@keyframes docs-type-in { 0%,6% { width: 0; } 44%,88% { width: 176px; } 98%,100% { width: 0; } }
+@keyframes docs-glide-mini { 0% { transform: translate(8px,6px); } 30% { transform: translate(96px,30px); } 60% { transform: translate(30px,58px); } 100% { transform: translate(8px,6px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .docs-page *, .docs-page *::before, .docs-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =====================================================================
+   PRESENTATION PRODUCT PAGE (/products/presentation)
+   Ported from the standalone design bundle the same way as Sheets/PDF
+   Reader/Document above: inline styles/colors are kept as-is per
+   component, section containers use the site's shared max-w-7xl mx-auto
+   px-6 lg:px-10 layout (not the bundle's own max-width:1200px/1160px/1080px
+   values), and headings map onto the equivalent shared classes' scale
+   instead of the bundle's one-off px values. The bundle's entrance timing
+   (660ms, cubic-bezier(.22,.61,.36,1)) differs from the shared [data-reveal]
+   system (650ms, cubic-bezier(.16,1,.3,1)), so it uses its own
+   data-presentation-reveal attribute/hook
+   (components/presentation/usePresentationReveal.ts), same rationale as
+   Document's own reveal system. Keyframes are presentation-prefixed for the
+   same reason. ===================================================================== */
+.presentation-page [data-presentation-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .66s cubic-bezier(.22,.61,.36,1), transform .66s cubic-bezier(.22,.61,.36,1);
+}
+.presentation-page [data-presentation-reveal].presentation-is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.presentation-hero-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .presentation-hero-heading { font-size: 4.5rem; }
+}
+
+.presentation-lede {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* Top-of-section centered H2 (matches .docs-section-heading) */
+.presentation-section-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+@media (min-width: 768px) {
+  .presentation-section-heading { font-size: 3.75rem; }
+}
+
+/* Left-aligned alternating-row H2 (matches .docs-row-heading) */
+.presentation-row-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .presentation-row-heading { font-size: 3rem; }
+}
+
+/* Numbered list item title/desc inside an alternating row */
+.presentation-row-item-title {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+.presentation-row-item-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Bento/step card title+desc */
+.presentation-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.presentation-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Bento feature grid's large hero-cell title */
+.presentation-bento-hero-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Stats bento card titles (the "Real-time / Unlimited / 1 place" cards'
+   original 26px headline) plus a larger tier for the "0 min" numeral card,
+   which already matched the shared scale at its original 56px so it's
+   kept as-is. */
+.presentation-stat-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.presentation-stat-number-lg {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* FAQ / testimonials heading */
+.presentation-faq-heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .presentation-faq-heading { font-size: 3rem; }
+}
+.presentation-faq-question {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.presentation-faq-answer {
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* Final CTA heading */
+.presentation-final-cta-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 768px) {
+  .presentation-final-cta-heading { font-size: 3.75rem; }
+}
+
+@keyframes presentation-floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes presentation-hl-sweep-loop { 0%,10% { width: 0; } 34%,74% { width: 100%; } 96%,100% { width: 0; } }
+@keyframes presentation-comment-pop { 0%,14% { opacity: 0; transform: scale(.7) translateY(6px); } 26%,66% { opacity: 1; transform: scale(1) translateY(0); } 78%,100% { opacity: 0; transform: scale(.7) translateY(6px); } }
+@keyframes presentation-caret-blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+@keyframes presentation-saved-pop { 0% { transform: scale(1); } 32% { transform: scale(1.55); } 100% { transform: scale(1); } }
+@keyframes presentation-live-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(20,184,166,.5); } 70%,100% { box-shadow: 0 0 0 6px rgba(20,184,166,0); } }
+@keyframes presentation-glide-a { 0% { transform: translate(14px,10px); } 22% { transform: translate(150px,34px); } 46% { transform: translate(64px,86px); } 70% { transform: translate(196px,64px); } 88% { transform: translate(40px,120px); } 100% { transform: translate(14px,10px); } }
+@keyframes presentation-glide-b { 0% { transform: translate(210px,120px); } 24% { transform: translate(70px,132px); } 50% { transform: translate(188px,52px); } 74% { transform: translate(96px,30px); } 100% { transform: translate(210px,120px); } }
+@keyframes presentation-type-in { 0%,6% { width: 0; } 44%,88% { width: 178px; } 98%,100% { width: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .presentation-page *, .presentation-page *::before, .presentation-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 

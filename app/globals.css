@@ -338,27 +338,12 @@ body {
   background: linear-gradient(155deg, #2b3350 0%, #171b2e 55%, #0b0d17 100%);
 }
 
-.mega-menu-promo-play {
+.mega-menu-promo-video {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
-  border: none;
-  border-radius: var(--radius-full);
-  background: hsla(0, 0%, 100%, 0.92);
-  color: #17171a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 8px 20px -6px hsla(0, 0%, 0%, 0.35);
-  transition: transform var(--duration-fast) var(--ease-spring), background var(--duration-fast) var(--ease-out);
-}
-.mega-menu-promo-play svg { margin-left: 2px; }
-@media (prefers-reduced-motion: no-preference) {
-  .mega-menu-promo-play:hover { transform: translate(-50%, -50%) scale(1.06); background: #fff; }
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .mega-menu-promo-title {

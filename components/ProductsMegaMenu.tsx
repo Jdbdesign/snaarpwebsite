@@ -132,6 +132,36 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef }: ProductsMegaMe
   const [activeCategoryId, setActiveCategoryId] = useState(currentCategoryId);
   const activeCategory = CATEGORIES.find((c) => c.id === activeCategoryId) ?? CATEGORIES[0];
 
+  const promoVideoRef = useRef<HTMLVideoElement>(null);
+  const [promoVideoLoaded, setPromoVideoLoaded] = useState(false);
+
+  // Deferred until the menu is first opened (never on initial page load),
+  // and skipped entirely under prefers-reduced-motion — the panel's
+  // gradient background shows through instead.
+  useEffect(() => {
+    if (!isOpen || promoVideoLoaded) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    setPromoVideoLoaded(true);
+  }, [isOpen, promoVideoLoaded]);
+
+  useEffect(() => {
+    if (!promoVideoLoaded) return;
+    const video = promoVideoRef.current;
+    if (!video) return;
+    // A <source> added after mount isn't picked up automatically.
+    video.load();
+    video.play().catch(() => {});
+  }, [promoVideoLoaded]);
+
+  // Pause while the menu is closed so the loop isn't burning cycles offscreen.
+  useEffect(() => {
+    if (!promoVideoLoaded) return;
+    const video = promoVideoRef.current;
+    if (!video) return;
+    if (isOpen) video.play().catch(() => {});
+    else video.pause();
+  }, [isOpen, promoVideoLoaded]);
+
   // Re-sync the sidebar to the current page's category every time the menu
   // opens, so it reflects where the user is rather than remembering
   // whichever category was last clicked.
@@ -244,12 +274,17 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef }: ProductsMegaMe
           {/* Column 3: promo panel */}
           <div className="mega-menu-promo">
             <div className="mega-menu-promo-media">
-              {/* Placeholder gradient — swap for a real office/team photo or product video still */}
-              <button type="button" className="mega-menu-promo-play" aria-label="Play video">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </button>
+              <video
+                ref={promoVideoRef}
+                className="mega-menu-promo-video"
+                muted
+                loop
+                playsInline
+                preload="none"
+                aria-hidden="true"
+              >
+                {promoVideoLoaded && <source src="/assets/videos/snaarp-icon-showcase.mp4" type="video/mp4" />}
+              </video>
             </div>
             <div className="mega-menu-promo-text">
               <p className="mega-menu-promo-title">One Login. Every App.</p>

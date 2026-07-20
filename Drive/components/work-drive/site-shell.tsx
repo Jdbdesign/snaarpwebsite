@@ -34,7 +34,7 @@ export function Header() {
         </nav>
         <div className="hidden md:block">
           <Link href="#get-started" className={buttonVariants({ size: "lg", className: "rounded-full" })}>
-            Start for £1/month <ArrowRight data-icon="inline-end" />
+            Start for £2/month <ArrowRight data-icon="inline-end" />
           </Link>
         </div>
         <details className="group md:hidden">
@@ -47,7 +47,7 @@ export function Header() {
             <Link href="#features" className="rounded-xl px-4 py-3 hover:bg-muted">Features</Link>
             <Link href="#how-it-works" className="rounded-xl px-4 py-3 hover:bg-muted">How it works</Link>
             <Link href="#faq" className="rounded-xl px-4 py-3 hover:bg-muted">FAQ</Link>
-            <Link href="#get-started" className={buttonVariants({ size: "lg", className: "mt-2 rounded-full" })}>Start for £1/month</Link>
+            <Link href="#get-started" className={buttonVariants({ size: "lg", className: "mt-2 rounded-full" })}>Start for £2/month</Link>
           </nav>
         </details>
       </div>

@@ -44,10 +44,10 @@ export function SnaarpStack() {
 
           <div className="stack-right">
             <div className="stack-price-card" data-reveal data-reveal-group="stack">
-              <p className="stack-price"><Price amount={1} /></p>
+              <p className="stack-price"><Price amount={2} /></p>
               <p className="stack-price-label">Starter plan, per user / month*</p>
               <p className="stack-price-copy">Higher plans with more storage, seats and premium apps are on the way — you’ll always see the price before anything changes.</p>
-              <a href="#" className="stack-price-btn">Start the Stack for <Price amount={1} /></a>
+              <a href="#" className="stack-price-btn">Start the Stack for <Price amount={2} /></a>
               <p className="stack-price-fine">*Introductory offer for new business accounts. Illustrative pricing — confirm current rates on the pricing page.</p>
             </div>
           </div>

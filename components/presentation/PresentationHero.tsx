@@ -60,7 +60,7 @@ export function PresentationHero() {
           <h1 className="presentation-hero-heading" style={{ margin: '22px 0 0', color: '#1B1730' }}>Build the deck.<br /><span style={{ color: '#7C3AED' }}>Together, live.</span></h1>
           <p className="presentation-lede" style={{ color: '#5B5670', margin: '22px 0 0', maxWidth: '506px' }}>Slides, templates, and real-time collaboration — all in the Stack. Start from a blank canvas or a ready-made template, and watch your team build it out with you, live.</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '13px', marginTop: '32px' }}>
-            <a href="#" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '15px 28px', borderRadius: '999px', background: '#7C3AED', color: '#fff', fontWeight: '600', fontSize: '15.5px', cursor: 'pointer', boxShadow: '0 12px 26px -8px rgba(124,58,237,.6)' }}>Start for <Price amount={1} />/month</a>
+            <a href="#" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '15px 28px', borderRadius: '999px', background: '#7C3AED', color: '#fff', fontWeight: '600', fontSize: '15.5px', cursor: 'pointer', boxShadow: '0 12px 26px -8px rgba(124,58,237,.6)' }}>Start for <Price amount={2} />/month</a>
             <a href="#" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '15px 26px', borderRadius: '999px', background: '#fff', color: '#2A2440', fontWeight: '600', fontSize: '15.5px', cursor: 'pointer', border: '1.5px solid #E4DFF2' }}>See how it works
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>

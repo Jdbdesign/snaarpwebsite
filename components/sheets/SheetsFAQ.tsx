@@ -9,7 +9,7 @@ const FAQS: { q: ReactNode; a: ReactNode }[] = [
   { q: 'Can multiple people edit a sheet at the same time?', a: 'Yes — edits and cursors sync in real time for everyone in the sheet.' },
   { q: 'Where are my sheets saved?', a: "Every sheet saves automatically to Work Drive, so it's backed up and easy to find." },
   { q: 'Can I import an existing spreadsheet?', a: 'Yes — import from CSV or most common spreadsheet formats.' },
-  { q: <>Is Sheets included in the <Price amount={1} /> Starter plan?</>, a: 'Yes — included in every plan, no add-on required.' },
+  { q: <>Is Sheets included in the <Price amount={2} /> Starter plan?</>, a: 'Yes — included in every plan, no add-on required.' },
 ];
 
 // Ported from the standalone bundle's Component class (state = { open: 0 }):

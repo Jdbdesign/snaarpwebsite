@@ -57,7 +57,7 @@ export function ContactsHero() {
 
           <div className="flex flex-wrap items-center gap-4 mb-8" data-reveal-load>
             <a href="#" className="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3.5 min-h-[44px]">
-              Start for <Price amount={1} />/month
+              Start for <Price amount={2} />/month
             </a>
             <a href="#" className="btn-outline inline-flex items-center justify-center rounded-full px-6 py-3.5 min-h-[44px]">
               See how it works

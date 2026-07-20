@@ -65,14 +65,14 @@ const CATEGORIES: ProductCategory[] = [
       { name: 'Sheet', desc: 'Collaborative spreadsheets', icon: { kind: 'img', src: '/assets/icons/apps-sheet.jpg' }, href: '/products/sheets' },
       { name: 'Presentation', desc: 'Build & present decks', icon: { kind: 'img', src: '/assets/icons/p-icon.jpg' }, href: '/products/presentation' },
       { name: 'PDF Reader', desc: 'View, annotate & merge PDFs', icon: { kind: 'lucide', Icon: FileType }, href: '/products/pdf-reader' },
-      { name: 'NotePad', desc: 'Notes & reminders, synced', icon: { kind: 'lucide', Icon: NotebookPen } },
+      { name: 'NotePad', desc: 'Notes & reminders, synced', icon: { kind: 'lucide', Icon: NotebookPen }, href: '/products/notepad' },
     ],
   },
   {
     id: 'grow-revenue',
     label: 'Grow Revenue',
     apps: [
-      { name: 'CRM', desc: 'Pipeline & deal tracking', icon: { kind: 'lucide', Icon: UsersRound } },
+      { name: 'CRM', desc: 'Pipeline & deal tracking', icon: { kind: 'lucide', Icon: UsersRound }, href: '/products/crm' },
       { name: 'Zeus Contacts', desc: 'Enriched lead data', icon: { kind: 'lucide', Icon: Zap } },
       { name: 'Sendrit', desc: 'Outbound email sequences', icon: { kind: 'img', src: '/assets/icons/apps-sendrit.jpg' } },
       { name: 'VerifyRit', desc: 'Email verification', icon: { kind: 'lucide', Icon: ShieldCheck } },
@@ -288,7 +288,7 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef }: ProductsMegaMe
             </div>
             <div className="mega-menu-promo-text">
               <p className="mega-menu-promo-title">One Login. Every App.</p>
-              <p className="mega-menu-promo-desc">27 tools built into a single Stack — starting from <Price amount={1} />.</p>
+              <p className="mega-menu-promo-desc">27 tools built into a single Stack — starting from <Price amount={2} />.</p>
               <a href="#" className="mega-menu-promo-cta" onClick={onClose}>
                 Get Started
                 <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">

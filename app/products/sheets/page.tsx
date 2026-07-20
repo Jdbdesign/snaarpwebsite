@@ -9,7 +9,7 @@ import { SheetsBentoGrid } from '@/components/sheets/SheetsBentoGrid';
 import { SheetsAltCSV } from '@/components/sheets/SheetsAltCSV';
 import { SheetsAltCollab } from '@/components/sheets/SheetsAltCollab';
 import { SheetsFAQ } from '@/components/sheets/SheetsFAQ';
-import { SheetsFinalCTA } from '@/components/sheets/SheetsFinalCTA';
+import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 
 export const metadata: Metadata = {
   title: 'Sheets — Spreadsheets that talk to your business | Snaarp',
@@ -30,7 +30,7 @@ export default function SheetsProductPage() {
         <SheetsAltCSV />
         <SheetsAltCollab />
         <SheetsFAQ />
-        <SheetsFinalCTA />
+        <HomeFinalCTA />
       </main>
       <Footer />
     </>

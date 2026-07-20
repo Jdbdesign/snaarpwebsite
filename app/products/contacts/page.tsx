@@ -10,7 +10,7 @@ import { AppLogoStrip } from '@/components/sections/AppLogoStrip';
 import { DemoVideoSection } from '@/components/sections/DemoVideoSection';
 import { StepsSection } from '@/components/sections/StepsSection';
 import { AlternatingFeatureRow } from '@/components/sections/AlternatingFeatureRow';
-import { FinalCTA } from '@/components/FinalCTA';
+import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 import { Price } from '@/components/currency/Price';
 
 export const metadata: Metadata = {
@@ -56,12 +56,12 @@ export default function ContactsProductPage() {
         <DemoVideoSection
           headline="See Contacts in action."
           subtext="A 90-second look at how one saved contact shows up everywhere you work, automatically."
-          ctaLabel={<>Start for <Price amount={1} />/month</>}
+          ctaLabel={<>Start for <Price amount={2} />/month</>}
           className="sec-alt-bg"
           videoSrc="/assets/videos/contacts-walkthrough.mp4"
         />
 
-        <StepsSection heading="Get started in 3 easy steps" steps={STEPS} ctaLabel={<>Start for <Price amount={1} />/month</>} />
+        <StepsSection heading="Get started in 3 easy steps" steps={STEPS} ctaLabel={<>Start for <Price amount={2} />/month</>} />
 
         <AlternatingFeatureRow
           revealGroup="alt-row-merge"
@@ -130,11 +130,7 @@ export default function ContactsProductPage() {
 
         <ContactsFAQ />
 
-        <FinalCTA
-          heading="One address book. Every app included."
-          copy="No exporting, no re-typing, no three different versions of the same person. Just one Stack, running your whole business."
-          buttonLabel={<>Start the Stack for <Price amount={1} /></>}
-        />
+        <HomeFinalCTA />
       </main>
       <Footer />
     </>

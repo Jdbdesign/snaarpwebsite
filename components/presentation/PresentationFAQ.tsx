@@ -7,7 +7,7 @@ const FAQS = [
   { q: 'Can multiple people edit a presentation at the same time?', a: 'Yes — edits, cursors, and selections update live for everyone in the deck.' },
   { q: 'Do people I share a deck with need a Snaarp account?', a: 'No — share a link and anyone can view; editing may require an account.' },
   { q: 'Does Presentation come with templates?', a: 'Yes — start from a blank deck or a library of pre-built templates and themes.' },
-  { q: 'Is Presentation included in the £1 Starter plan?', a: 'Yes — included in every plan, no add-on required.' },
+  { q: 'Is Presentation included in the £2 Starter plan?', a: 'Yes — included in every plan, no add-on required.' },
   { q: 'Do decks save automatically to Work Drive?', a: 'Yes — every deck lives in Work Drive without any manual export or upload step.' },
 ];
 

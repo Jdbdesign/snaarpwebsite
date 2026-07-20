@@ -17,7 +17,7 @@ Reuse existing Snaarp header exactly as built.
 - **Eyebrow pill:** COMMUNICATE · CONTACTS
 - **Headline (two-line, second line violet):** "One address book." / **"Everywhere you work."**
 - **Subtext:** Save a contact once in Snaarp Contacts and it's already there in Mail, Meet, and CRM — no exporting, no re-typing, no three different versions of the same person.
-- **CTAs:** "Start for £1/month" (violet filled), "See how it works" (outline)
+- **CTAs:** "Start for £2/month" (violet filled), "See how it works" (outline)
 - **Trust line:** GDPR compliant · No credit card required
 - **Visual (right side, same "chaos → order" diagram pattern as Teams):** left card "Scattered Across Apps" (three loose contact cards, disconnected) → Snaarp Contacts icon in the middle → right card "One Synced Card" (single clean contact card with name, photo, email, phone, tags)
 
@@ -43,7 +43,7 @@ Reuse existing Snaarp header exactly as built.
 - **Headline:** See Contacts in action.
 - **Subtext:** A 90-second look at how one saved contact shows up everywhere you work, automatically.
 - **Visual:** video thumbnail, center play button, rounded card, light violet-tinted frame.
-- **CTA below:** "Start for £1/month →"
+- **CTA below:** "Start for £2/month →"
 
 ---
 
@@ -53,7 +53,7 @@ Reuse existing Snaarp header exactly as built.
 2. **It syncs instantly** — No import/export — the same card appears in Mail, Meet, and CRM the moment it's saved.
 3. **Stay organized as you grow** — Tag, group, and search as your list grows — no cleanup projects, ever.
 
-CTA below: **"Start for £1/month →"**
+CTA below: **"Start for £2/month →"**
 
 ---
 
@@ -112,7 +112,7 @@ Warm, professional, real-feeling team photos (diverse, natural settings) — 4�
 2. **Can I import my existing contacts?** Yes — import from Gmail, Outlook, or a CSV file in a couple of clicks.
 3. **What happens to duplicate contacts?** Contacts detects matching emails or phone numbers and merges them automatically, with a review step before anything's combined.
 4. **Can I organize contacts by team or client?** Yes — use tags and groups to filter your list however works for your team.
-5. **Is Contacts included in the £1 Starter plan?** Yes — Contacts is included in every plan, no add-on required.
+5. **Is Contacts included in the £2 Starter plan?** Yes — Contacts is included in every plan, no add-on required.
 
 ---
 
@@ -120,7 +120,7 @@ Warm, professional, real-feeling team photos (diverse, natural settings) — 4�
 
 - **Background:** dark navy, rounded inset card
 - **Headline:** One address book. / Every app.
-- **Subtext:** £1 to start. Syncs the moment you save.
+- **Subtext:** £2 to start. Syncs the moment you save.
 - **Floating pills:** "Add a Contact," "Import Contacts," "Merge Duplicates"
 
 ---

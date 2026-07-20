@@ -7,7 +7,7 @@ const FAQS = [
   { q: 'Can multiple people edit a document at the same time?', a: 'Yes — edits, cursors, and selections update live for everyone in the doc.' },
   { q: 'Do people I share a doc with need a Snaarp account?', a: 'No — share a link and anyone can view or comment; editing may require an account.' },
   { q: 'Can I recover an earlier version of a document?', a: 'Yes — full revision history is kept, and you can restore any previous version.' },
-  { q: 'Is Document included in the £1 Starter plan?', a: 'Yes — included in every plan, no add-on required.' },
+  { q: 'Is Document included in the £2 Starter plan?', a: 'Yes — included in every plan, no add-on required.' },
   { q: 'Do documents save automatically to Work Drive?', a: 'Yes — every doc lives in Work Drive without any manual export or upload step.' },
 ];
 

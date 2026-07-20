@@ -528,7 +528,366 @@ body {
   font-weight: 400;
 }
 
+/* ===== Trusted By Forward (logos + single testimonial) ===== */
+.tbf-section {
+  background: #ffffff;
+}
+
+.tbf-ticks {
+  display: flex;
+  justify-content: space-around;
+  max-width: 640px;
+  margin: 0 auto var(--space-8);
+}
+.tbf-tick {
+  width: 0;
+  height: 28px;
+  border-left: 1px dashed var(--border-default);
+}
+
+.tbf-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-6);
+  align-items: stretch;
+}
+@media (max-width: 767px) {
+  .tbf-grid { grid-template-columns: 1fr; }
+}
+
+.tbf-logos-card,
+.tbf-testimonial-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-8);
+}
+
+.tbf-logos-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tbf-logos-title {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0 0 var(--space-6);
+}
+
+.tbf-logos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6) var(--space-8);
+}
+
+.tbf-logo {
+  width: auto;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.tbf-testimonial-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tbf-stars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: #F59E0B;
+  margin-bottom: var(--space-4);
+}
+
+.tbf-quote {
+  color: var(--text-primary);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0 0 var(--space-6);
+}
+
+.tbf-testimonial-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.tbf-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tbf-name {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.tbf-role {
+  color: var(--text-tertiary);
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  margin: 0;
+}
+
+@media (max-width: 639px) {
+  .tbf-logos-grid { gap: var(--space-4) var(--space-6); }
+}
+
+/* ===== Simple Plan / Ready To Get Started (pricing + CTA cards) ===== */
+.spc-section {
+  background: #ffffff;
+}
+
+.spc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: stretch;
+}
+@media (max-width: 767px) {
+  .spc-grid { grid-template-columns: 1fr; }
+}
+
+.spc-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Simple Plan card --- */
+.spc-plan-heading {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1.15;
+  margin: 0 0 var(--space-3);
+}
+
+.spc-plan-subtext {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  margin: 0 0 var(--space-4);
+}
+
+.spc-plan-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-top: var(--space-2);
+}
+
+.spc-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.spc-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.spc-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #16A34A;
+  flex-shrink: 0;
+}
+
+.spc-price-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.spc-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-brand);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.01em;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-3);
+}
+
+.spc-price {
+  color: var(--text-primary);
+  font-weight: 800;
+  font-size: 6rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .spc-price { font-size: 7.5rem; }
+}
+
+.spc-price-note {
+  color: var(--text-tertiary);
+  font-size: 0.8125rem;
+  margin: var(--space-2) 0 0;
+  white-space: nowrap;
+}
+
+/* --- Ready To Get Started card --- */
+.spc-cta-heading {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1.15;
+  text-align: center;
+  margin: 0 0 var(--space-2);
+}
+
+.spc-cta-subtext {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  text-align: center;
+  margin: 0 0 var(--space-6);
+}
+
+.spc-cta-btn-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-8);
+}
+
+.spc-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-brand);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 12px 28px;
+  border-radius: var(--radius-full);
+  min-height: 44px;
+  transition: transform var(--duration-fast) var(--ease-spring), filter var(--duration-fast) var(--ease-out);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .spc-cta-btn:hover { filter: brightness(1.08); }
+  .spc-cta-btn:active { transform: scale(0.97); }
+}
+
+.spc-mockup-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.spc-mockup {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 639px) {
+  .spc-plan-body { flex-direction: column; align-items: stretch; }
+  .spc-price-block { align-items: flex-start; text-align: left; }
+}
+
+/* ===== Trusted Tools bar ===== */
+.trusted-tools-section {
+  background: #ffffff;
+}
+
+.trusted-tools-inner {
+  padding-top: var(--space-10);
+  padding-bottom: var(--space-12);
+}
+@media (min-width: 768px) {
+  .trusted-tools-inner {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-16);
+  }
+}
+
+.trusted-tools-label {
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin: 0 0 var(--space-8);
+}
+
+.trusted-tools-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-10);
+}
+
+.trusted-tools-logo {
+  width: auto;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.trusted-tools-and-more {
+  color: var(--text-tertiary);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .trusted-tools-row { gap: var(--space-6); }
+}
+
 /* ===== Apps to Explore spotlight ===== */
+.apps-to-explore-section {
+  padding-top: var(--space-12);
+}
+@media (min-width: 768px) {
+  .apps-to-explore-section { padding-top: var(--space-16); }
+}
+
 .apps-spotlight-card {
   background: #ffffff;
   border-radius: var(--radius-xl);
@@ -1261,244 +1620,785 @@ body {
   .bmb-integrated-img-wrap { justify-content: center; }
 }
 
-/* ===== Business Email That Scales — six-cell bento ===== */
-.be-section {
-  background: linear-gradient(180deg, hsl(262, 65%, 97%) 0%, #ffffff 55%);
+/* ===== Everything You Need — suite category cards ===== */
+.eyn-section {
+  background: transparent;
 }
 
-.be-heading {
+.eyn-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.eyn-heading {
   font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
-  color: var(--text-primary);
+  margin: 0 0 var(--space-4);
 }
 @media (min-width: 768px) {
-  .be-heading { font-size: 3.75rem; }
+  .eyn-heading { font-size: 3.75rem; }
 }
-.be-heading-accent { color: var(--color-brand); }
 
-.be-subtext {
+.eyn-heading-accent {
+  color: var(--color-brand);
+}
+
+.eyn-subtext {
   color: var(--text-secondary);
   font-size: 1.125rem;
   line-height: 1.6;
-  max-width: 52ch;
-}
-
-/* Outer: narrow left column + wider right region. The 2:1 gap is absorbed
-   by the fr split so the three visible columns read as near-equal thirds. */
-.be-bento {
-  display: grid;
-  grid-template-columns: 0.96fr 2fr;
-  gap: var(--space-5);
-  align-items: stretch;
-}
-
-/* Left column — two equal-height stacked cards */
-.be-left {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-}
-.be-left > .be-card { flex: 1; }
-
-/* Right region — phone spans the two top rows, Synced spans the full width */
-.be-right {
-  display: grid;
-  grid-template-columns: 1fr 1.04fr;
-  grid-template-rows: auto auto auto;
-  gap: var(--space-5);
-  grid-template-areas:
-    "fivemin  phone"
-    "oneinbox phone"
-    "synced   synced";
-}
-.be-area-fivemin { grid-area: fivemin; }
-.be-area-oneinbox { grid-area: oneinbox; }
-.be-area-phone { grid-area: phone; }
-.be-area-synced { grid-area: synced; }
-
-/* Shared card shell */
-.be-card {
-  background: hsl(240, 22%, 96%);
-  border-radius: 20px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.be-card-title {
-  color: var(--text-primary);
-  font-weight: 700;
-  font-size: 1.25rem;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  margin: 0 0 var(--space-2);
-}
-
-.be-card-desc {
-  color: var(--text-secondary);
-  font-size: 0.875rem;
-  line-height: 1.55;
+  max-width: 46ch;
   margin: 0;
 }
 
-/* Media cards (50 GB + Scale seats): graphic on top, copy below */
-.be-card--media {
-  padding: var(--space-6);
-  gap: var(--space-5);
-}
-.be-media {
+.eyn-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 14px;
-  overflow: hidden;
-}
-.be-media-img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-/* Stat cards (5 min + 1 inbox): big number, label, copy */
-.be-card--stat {
-  padding: var(--space-8);
-  justify-content: center;
-}
-.be-stat-number {
-  color: var(--text-primary);
-  font-weight: 700;
-  font-size: clamp(2.25rem, 1.6vw + 1.5rem, 2.875rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  margin: 0 0 var(--space-4);
-}
-.be-stat-label {
-  color: var(--text-primary);
-  font-weight: 700;
-  font-size: 0.8125rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin: 0 0 var(--space-3);
-}
-
-/* Phone card — purple frame, image fills */
-.be-card--phone {
-  background: var(--color-brand);
-  align-items: center;
-  justify-content: center;
-  min-height: 420px;
-}
-.be-phone-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-}
-
-/* Synced card — copy left, connected-app logos right */
-.be-card--synced {
-  flex-direction: row;
-  align-items: center;
   gap: var(--space-6);
-  padding: var(--space-8);
 }
-.be-synced-body { flex: 1 1 0; min-width: 0; }
-.be-synced-body .be-card-desc { max-width: 42ch; }
-.be-synced-media {
-  flex: 0 0 44%;
+
+/* Carousel-style swap: both card groups stay mounted, stacked in the same
+   grid cell, and cross-fade/slide via visibility+opacity+transform so the
+   arrow always replaces (never appends into) the visible set. */
+.eyn-grid-stage {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+
+.eyn-grid {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  gap: var(--space-5);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition: opacity var(--duration-normal) var(--ease-out), transform var(--duration-normal) var(--ease-out),
+    visibility 0s linear 0s;
+}
+
+/* Primary and secondary share the exact same column template at every
+   breakpoint (set once here, overridden together in the tablet/mobile
+   media queries below) so the 2 secondary cards render at the identical
+   fixed size as the 4 primary ones — they occupy the first 2 tracks and
+   leave the rest of the row empty, rather than stretching to fill it. */
+.eyn-grid-primary,
+.eyn-grid-secondary {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.eyn-row.is-secondary .eyn-grid-primary {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-24px);
+  transition: opacity var(--duration-normal) var(--ease-out), transform var(--duration-normal) var(--ease-out),
+    visibility 0s linear var(--duration-normal);
+}
+.eyn-grid-secondary {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(24px);
+  transition: opacity var(--duration-normal) var(--ease-out), transform var(--duration-normal) var(--ease-out),
+    visibility 0s linear var(--duration-normal);
+}
+.eyn-row.is-secondary .eyn-grid-secondary {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition: opacity var(--duration-normal) var(--ease-out), transform var(--duration-normal) var(--ease-out),
+    visibility 0s linear 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .eyn-grid { transition: none; }
+}
+
+.eyn-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out);
+}
+.eyn-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+@media (prefers-reduced-motion: reduce) {
+  .eyn-card { transition: none; }
+  .eyn-card:hover { transform: none; }
+}
+
+.eyn-card-top {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-}
-.be-synced-img {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  object-fit: contain;
-  display: block;
+  margin-bottom: var(--space-4);
 }
 
-/* Tablet — left stack sits above the right region, each full width */
+.eyn-card-count {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--color-brand-subtle);
+  color: var(--color-brand);
+}
+.eyn-card[data-accent="mint"] .eyn-card-count { background: var(--color-mint-subtle); color: var(--color-mint); }
+.eyn-card[data-accent="amber"] .eyn-card-count { background: var(--color-amber-subtle); color: var(--color-amber); }
+.eyn-card[data-accent="teal"] .eyn-card-count { background: var(--color-teal-subtle); color: var(--color-teal); }
+.eyn-card[data-accent="rose"] .eyn-card-count { background: var(--color-rose-subtle); color: var(--color-rose); }
+
+.eyn-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--color-brand-subtle);
+  color: var(--color-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+.eyn-card[data-accent="mint"] .eyn-card-icon { background: var(--color-mint-subtle); color: var(--color-mint); }
+.eyn-card[data-accent="amber"] .eyn-card-icon { background: var(--color-amber-subtle); color: var(--color-amber); }
+.eyn-card[data-accent="teal"] .eyn-card-icon { background: var(--color-teal-subtle); color: var(--color-teal); }
+.eyn-card[data-accent="rose"] .eyn-card-icon { background: var(--color-rose-subtle); color: var(--color-rose); }
+
+.eyn-card-title {
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-2);
+  letter-spacing: -0.01em;
+}
+
+.eyn-card-desc {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  margin: 0 0 var(--space-5);
+}
+
+.eyn-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.eyn-pagination-label {
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+}
+
+.eyn-pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--color-brand);
+  background: none;
+  border: none;
+  cursor: pointer;
+  min-height: 44px;
+  padding: var(--space-3) var(--space-1);
+  margin: calc(var(--space-3) * -1) calc(var(--space-1) * -1);
+}
+.eyn-pagination-btn:hover { color: var(--color-brand-dark); }
+
+.eyn-app-list {
+  list-style: none;
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+}
+.eyn-app-list.is-swapping {
+  opacity: 0;
+  transform: translateX(6px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .eyn-app-list { transition: none; }
+}
+
+.eyn-app-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.eyn-app-row:last-child { border-bottom: none; }
+
+.eyn-app-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.eyn-app-icon-chip {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-brand-subtle);
+  color: var(--color-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.eyn-card[data-accent="mint"] .eyn-app-icon-chip { background: var(--color-mint-subtle); color: var(--color-mint); }
+.eyn-card[data-accent="amber"] .eyn-app-icon-chip { background: var(--color-amber-subtle); color: var(--color-amber); }
+.eyn-card[data-accent="teal"] .eyn-app-icon-chip { background: var(--color-teal-subtle); color: var(--color-teal); }
+.eyn-card[data-accent="rose"] .eyn-app-icon-chip { background: var(--color-rose-subtle); color: var(--color-rose); }
+
+.eyn-app-name {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eyn-card-explore {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-brand);
+  text-decoration: none;
+  min-height: 44px;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+.eyn-card-explore:hover { border-color: var(--color-brand); }
+
+.eyn-card-explore-arrow {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-brand-subtle);
+  color: var(--color-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eyn-reveal-arrow {
+  order: 1;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-brand);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-lift);
+  transition: transform var(--duration-normal) var(--ease-spring), background var(--duration-fast) var(--ease-out);
+}
+.eyn-reveal-arrow:hover { background: var(--color-brand-dark); transform: scale(1.06); }
+.eyn-reveal-arrow:active { transform: scale(0.97); }
+.eyn-reveal-arrow.is-flipped { transform: scaleX(-1); }
+.eyn-reveal-arrow.is-flipped:hover { transform: scaleX(-1) scale(1.06); }
+/* Secondary state: arrow moves to the opposite (left) side of the 2 visible
+   cards, flipped to point left — reordered via flex `order`, not DOM order,
+   so the button element itself never remounts. */
+.eyn-row.is-secondary .eyn-reveal-arrow {
+  order: -1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .eyn-reveal-arrow { transition: background var(--duration-fast) var(--ease-out); }
+  .eyn-reveal-arrow:hover, .eyn-reveal-arrow:active { transform: none; }
+  .eyn-reveal-arrow.is-flipped { transform: scaleX(-1); }
+}
+
+/* Tablet: 2-up grid — kept identical between primary and secondary so
+   card size never changes when the arrow swaps the visible set. */
 @media (max-width: 1023px) {
-  .be-bento { grid-template-columns: 1fr; }
-  .be-left { flex-direction: row; }
-  .be-left > .be-card { flex: 1; }
-}
-
-/* Mobile — everything in one column */
-@media (max-width: 767px) {
-  .be-left { flex-direction: column; }
-  .be-right {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "fivemin"
-      "oneinbox"
-      "phone"
-      "synced";
+  .eyn-grid-primary,
+  .eyn-grid-secondary {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .be-card--phone { min-height: 360px; }
-  .be-card--synced { flex-direction: column; align-items: stretch; }
-  .be-synced-media { flex-basis: auto; justify-content: center; }
 }
 
-/* ===== Stats / Statement card ===== */
-.stats-card {
+/* Mobile: single column; arrow drops below the grid, centered */
+@media (max-width: 767px) {
+  .eyn-row {
+    flex-direction: column;
+  }
+  .eyn-row.is-secondary .eyn-reveal-arrow {
+    order: 1;
+  }
+  .eyn-grid-primary,
+  .eyn-grid-secondary {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
+
+/* ===== Pricing banner ("All apps. One price.") ===== */
+.pricing-banner-card {
   background: #0B0E2E;
   border-radius: 28px;
-}
-
-.stats-heading {
-  text-align: center;
-  font-weight: 700;
-  line-height: 1.35;
-  font-size: 2.25rem;
-  margin: 0 0 var(--space-10);
+  padding: var(--space-8) var(--space-6);
 }
 @media (min-width: 768px) {
-  .stats-heading { font-size: 3.75rem; }
-}
-.stats-heading-line1 {
-  display: block;
-  color: #ffffff;
-}
-.stats-heading-accent {
-  display: block;
-  color: #A78BFA;
-  margin-top: var(--space-2);
+  .pricing-banner-card { padding: var(--space-12) var(--space-12); }
 }
 
-.stats-grid {
+.pricing-banner-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-10) var(--space-4);
-  max-width: 720px;
-  margin: 0 auto;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .pricing-banner-grid { grid-template-columns: 1.15fr 0.85fr; gap: var(--space-16); }
+}
+
+.pricing-banner-heading {
+  font-weight: 700;
+  line-height: 1.2;
+  font-size: 1.875rem;
+  margin: 0 0 var(--space-5);
 }
 @media (min-width: 768px) {
-  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .pricing-banner-heading { font-size: 2.75rem; }
+}
+.pricing-banner-heading-line { display: block; color: #ffffff; }
+.pricing-banner-heading-accent { display: block; color: #A78BFA; }
+
+.pricing-banner-subtext {
+  color: hsl(230, 15%, 72%);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  max-width: 42ch;
+  margin: 0 0 var(--space-6);
 }
 
-.stats-item { text-align: center; }
-
-.stats-number {
-  font-weight: 700;
-  color: #A78BFA;
-  font-size: 2.25rem;
-  line-height: 1.1;
-  margin: 0 0 var(--space-2);
+.pricing-banner-checklist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.stats-label {
-  color: hsl(230, 15%, 68%);
+.pricing-banner-checklist-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: hsl(230, 15%, 80%);
   font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.5;
-  max-width: 18ch;
-  margin: 0 auto;
+  font-weight: 500;
+}
+
+.pricing-banner-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background: hsla(255, 100%, 100%, 0.1);
+  color: #A78BFA;
+  flex-shrink: 0;
+}
+
+.pricing-banner-price-card {
+  background: hsla(255, 60%, 100%, 0.04);
+  border: 1px solid hsla(255, 60%, 100%, 0.1);
+  border-radius: 20px;
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+}
+
+.pricing-banner-price-eyebrow {
+  color: hsl(230, 15%, 68%);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-5);
+}
+
+.pricing-banner-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-8);
+}
+
+.pricing-banner-price-amount {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.pricing-banner-price-period {
+  color: hsl(230, 15%, 68%);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.pricing-banner-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: linear-gradient(90deg, #8B5CF6, #7C3AED);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 16px 24px;
+  border-radius: var(--radius-full);
+  min-height: 44px;
+  transition: transform var(--duration-fast) var(--ease-spring), filter var(--duration-fast) var(--ease-out);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pricing-banner-cta:hover { filter: brightness(1.08); }
+  .pricing-banner-cta:active { transform: scale(0.97); }
+}
+
+.pricing-banner-price-note {
+  color: hsl(230, 15%, 60%);
+  font-size: 0.75rem;
+  margin: var(--space-4) 0 0;
+}
+
+/* ===================== WORKFLOW CONNECTED SECTION =====================
+   "One Platform. Every Workflow Connected." — sits directly under the
+   pricing banner. The right-side 6-step strip is the section's signature
+   moment: a violet gradient loops along the connecting line, pulsing each
+   circle in its own accent color as it arrives. The loop is gated on the
+   shared [data-reveal].is-revealed system (hooks/useScrollReveal.ts) so it
+   only starts once the section scrolls into view (never on load, never
+   re-triggering), and everything resolves to a static fully-lit state
+   under prefers-reduced-motion via that hook's own instant-reveal path.
+
+   Looping strategy: every animated element shares one infinite 5000ms
+   animation so their relative phase never drifts across iterations.
+   Each circle/label's "active"
+   window is compressed into the first ~11% of that shared cycle, offset
+   by an inline animation-delay (index * 720ms, set from
+   components/WorkflowConnected.tsx) — so within its own delayed cycle it
+   pulses once, then holds flat for the remainder, which is what makes a
+   single-duration infinite animation read as "pulses in sequence, then
+   pauses before the next pass" instead of firing every element at once.
+   The connecting line follows the same cycle: travel (0–72%), a brief
+   lit hold (72–90%), then a fade-out (90–100%) that finishes at opacity 0
+   right as the loop wraps back to its scaleX(0) start, so the reset is
+   invisible instead of a visible jump-cut. 5000ms cycle = 3600ms travel
+   (within the 3-4s "energetic" pass target) + 1400ms pause. ===================== */
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+}
+@media (min-width: 1024px) {
+  .workflow-grid {
+    grid-template-columns: 0.85fr 1.55fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+}
+
+.workflow-heading {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-5);
+}
+@media (min-width: 768px) {
+  .workflow-heading { font-size: 2.5rem; }
+}
+
+.workflow-subtext {
+  color: var(--text-secondary);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  max-width: 40ch;
+  margin: 0 0 var(--space-6);
+}
+
+.workflow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-brand);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+.workflow-link svg { transition: transform var(--duration-fast) var(--ease-out); }
+@media (prefers-reduced-motion: no-preference) {
+  .workflow-link:hover svg { transform: translateX(3px); }
+}
+
+.workflow-visual {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.workflow-steps {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.workflow-line {
+  position: absolute;
+  top: 27px;
+  left: calc(100% / 12);
+  right: calc(100% / 12);
+  height: 2px;
+}
+@media (max-width: 639px) {
+  .workflow-line { top: 21px; }
+}
+
+.workflow-line-base {
+  position: absolute;
+  inset: 0;
+  background: var(--border-subtle);
+  border-radius: var(--radius-full);
+}
+
+.workflow-line-progress {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-brand) 0%, var(--color-brand) 78%, #C4B5FD 92%, #EDE9FE 100%);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.workflow-visual.is-revealed .workflow-line-progress {
+  animation: workflow-line-travel 5000ms linear infinite;
+}
+.workflow-line-progress::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  box-shadow: 0 0 14px 4px hsla(262, 83%, 58%, 0.55);
+  transform: translate(50%, -50%);
+  opacity: 0;
+}
+.workflow-visual.is-revealed .workflow-line-progress::after {
+  animation: workflow-line-head 5000ms linear infinite;
+}
+
+.workflow-step {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-1);
+}
+
+.workflow-step-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--step-tint);
+  border: 1.5px solid var(--step-ring);
+  color: var(--step-color);
+}
+@media (max-width: 639px) {
+  .workflow-step-circle { width: 44px; height: 44px; }
+}
+/* Per-step accent — resting state already shows each step's own color
+   (not a single shared accent), matching the reference. Pulsing only
+   flashes brighter in this same color, then settles back to it. */
+.workflow-step-circle[data-accent="brand"] {
+  --step-color: var(--color-brand);
+  --step-tint: var(--color-brand-subtle);
+  --step-ring: hsla(262, 83%, 58%, 0.3);
+  --step-glow: hsla(262, 83%, 58%, 0.45);
+}
+.workflow-step-circle[data-accent="mint"] {
+  --step-color: var(--color-mint);
+  --step-tint: var(--color-mint-subtle);
+  --step-ring: hsla(168, 76%, 32%, 0.3);
+  --step-glow: hsla(168, 76%, 32%, 0.4);
+}
+.workflow-step-circle[data-accent="amber"] {
+  --step-color: var(--color-amber);
+  --step-tint: var(--color-amber-subtle);
+  --step-ring: hsla(32, 90%, 45%, 0.3);
+  --step-glow: hsla(32, 90%, 45%, 0.45);
+}
+.workflow-visual.is-revealed .workflow-step-circle {
+  animation: workflow-step-pulse 5000ms var(--ease-spring) infinite,
+             workflow-step-glow 5000ms ease-out infinite;
+}
+
+.workflow-step-label {
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  opacity: 0.55;
+  transform: translateY(2px);
+}
+.workflow-step-caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  max-width: 12ch;
+  opacity: 0.55;
+  transform: translateY(2px);
+}
+.workflow-visual.is-revealed .workflow-step-label,
+.workflow-visual.is-revealed .workflow-step-caption {
+  animation: workflow-step-text-pulse 5000ms var(--ease-out) infinite;
+}
+
+/* Percentages below are all fractions of the shared 5000ms cycle. */
+@keyframes workflow-line-travel {
+  0% { transform: scaleX(0); opacity: 1; }
+  72% { transform: scaleX(1); opacity: 1; }
+  90% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; animation-timing-function: ease-out; }
+}
+@keyframes workflow-line-head {
+  0% { opacity: 0; }
+  2% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes workflow-step-pulse {
+  0%, 100% { transform: scale(1); }
+  5% { transform: scale(1.12); }
+  10% { transform: scale(1); }
+}
+@keyframes workflow-step-glow {
+  0%, 100% { box-shadow: 0 0 0 0 transparent; filter: brightness(1); }
+  5% { box-shadow: 0 0 0 7px var(--step-tint), 0 10px 26px -6px var(--step-glow); filter: brightness(1.12); }
+  10% { box-shadow: 0 0 0 0 transparent; filter: brightness(1); }
+}
+@keyframes workflow-step-text-pulse {
+  0%, 100% { opacity: 0.55; transform: translateY(2px); }
+  5% { opacity: 1; transform: translateY(0); }
+  10% { opacity: 0.55; transform: translateY(2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workflow-line-progress { transform: scaleX(1) !important; opacity: 1 !important; animation: none !important; }
+  .workflow-line-progress::after { opacity: 1 !important; animation: none !important; }
+  .workflow-step-circle { animation: none !important; box-shadow: none !important; filter: none !important; }
+  .workflow-step-label,
+  .workflow-step-caption {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.workflow-ai-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: var(--color-brand-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-5) var(--space-6);
+}
+@media (max-width: 639px) {
+  .workflow-ai-card { flex-wrap: wrap; }
+}
+
+.workflow-ai-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-brand);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.workflow-ai-copy { flex: 1; min-width: 0; }
+.workflow-ai-title {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  margin: 0 0 2px;
+}
+.workflow-ai-caption {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.workflow-ai-cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: linear-gradient(90deg, #8B5CF6, #7C3AED);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  padding: 12px 20px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  transition: transform var(--duration-fast) var(--ease-spring), filter var(--duration-fast) var(--ease-out);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .workflow-ai-cta:hover { filter: brightness(1.08); }
+  .workflow-ai-cta:active { transform: scale(0.97); }
 }
 
 /* ===== Closer Look 6-card grid ===== */
@@ -1859,80 +2759,6 @@ body {
   .moves-fast-mockup { max-width: clamp(240px, 74vw, 340px); bottom: -32px; }
 }
 
-/* ===== Testimonial 3-card row ===== */
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
-}
-@media (max-width: 1023px) {
-  .testimonial-grid { grid-template-columns: 1fr; }
-}
-
-.testimonial-card {
-  background: #ffffff;
-  border-radius: var(--radius-xl);
-  padding: var(--space-8);
-  box-shadow: 0 20px 25px -5px hsla(220, 20%, 10%, 0.06), 0 8px 10px -6px hsla(220, 20%, 10%, 0.04);
-  display: flex;
-  flex-direction: column;
-}
-
-.testimonial-stars {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-bottom: var(--space-4);
-}
-
-.testimonial-star { flex-shrink: 0; }
-.testimonial-star-filled { color: var(--color-brand); }
-.testimonial-star-empty { color: hsl(220, 10%, 82%); }
-
-.testimonial-quote {
-  color: var(--text-secondary);
-  font-size: 0.875rem;
-  line-height: 1.65;
-  margin: 0 0 var(--space-6);
-  flex: 1;
-}
-
-.testimonial-footer {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin-top: auto;
-}
-
-.testimonial-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #17171a;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 0.8125rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.testimonial-name {
-  color: var(--text-primary);
-  font-weight: 700;
-  font-size: 0.9375rem;
-  line-height: 1.3;
-  margin: 0;
-}
-
-.testimonial-role {
-  color: var(--text-tertiary);
-  font-size: 0.8125rem;
-  line-height: 1.3;
-  margin: 0;
-}
-
 /* ===== Before You Start FAQ accordion ===== */
 .faq-heading {
   font-size: 1.875rem;
@@ -2079,6 +2905,63 @@ body {
 @media (prefers-reduced-motion: no-preference) {
   .final-cta-btn:hover { background: hsl(220, 20%, 94%); }
   .final-cta-btn:active { transform: scale(0.97); }
+}
+
+/* ===== Home Final CTA ("Ready to transform how you work?") ===== */
+.home-final-cta-section {
+  background: hsl(230, 20%, 6%);
+}
+
+.home-final-cta-inner {
+  text-align: center;
+}
+
+.home-final-cta-eyebrow {
+  color: hsla(0, 0%, 100%, 0.6);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-4);
+}
+
+.home-final-cta-heading {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  max-width: 20ch;
+  margin: 0 auto var(--space-5);
+}
+@media (min-width: 768px) {
+  .home-final-cta-heading { font-size: 3.5rem; }
+}
+
+.home-final-cta-copy {
+  color: hsla(220, 15%, 85%, 0.75);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 46ch;
+  margin: 0 auto var(--space-8);
+}
+
+.home-final-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #17171a;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 16px 32px;
+  border-radius: var(--radius-full);
+  min-height: 44px;
+  transition: transform var(--duration-fast) var(--ease-spring), background var(--duration-fast) var(--ease-out);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .home-final-cta-btn:hover { background: hsl(220, 20%, 94%); }
+  .home-final-cta-btn:active { transform: scale(0.97); }
 }
 
 /* ===== Footer ===== */
@@ -7650,6 +8533,300 @@ html:has(.work-drive) {
 
 @media (prefers-reduced-motion: reduce) {
   .presentation-page *, .presentation-page *::before, .presentation-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =====================================================================
+   NOTEPAD PRODUCT PAGE (/products/notepad)
+   Ported from the standalone design bundle the same way as
+   Sheets/PDF Reader/Document/Presentation above: inline styles/colors are
+   kept as-is per component, section containers use the site's shared
+   max-w-7xl mx-auto px-6 lg:px-10 layout (not the bundle's own
+   max-width:1200px/1160px/1080px/820px values), and headings map onto the
+   equivalent shared classes' scale instead of the bundle's one-off px
+   values. The bundle's entrance timing (660ms, cubic-bezier(.22,.61,.36,1))
+   differs from the shared [data-reveal] system (650ms,
+   cubic-bezier(.16,1,.3,1)), so it uses its own data-notepad-reveal
+   attribute/hook (components/notepad/useNotepadReveal.ts), same rationale
+   as Presentation's own reveal system. Keyframes are notepad-prefixed for
+   the same reason. ===================================================================== */
+.notepad-page [data-notepad-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .66s cubic-bezier(.22,.61,.36,1), transform .66s cubic-bezier(.22,.61,.36,1);
+}
+.notepad-page [data-notepad-reveal].notepad-is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notepad-hero-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .notepad-hero-heading { font-size: 4.5rem; }
+}
+
+.notepad-lede {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* Top-of-section centered H2 (matches .presentation-section-heading) */
+.notepad-section-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+@media (min-width: 768px) {
+  .notepad-section-heading { font-size: 3.75rem; }
+}
+
+/* Left-aligned alternating-row H2 (matches .presentation-row-heading) */
+.notepad-row-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .notepad-row-heading { font-size: 3rem; }
+}
+
+/* Numbered list item title/desc inside an alternating row */
+.notepad-row-item-title {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+.notepad-row-item-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Bento/step card title+desc */
+.notepad-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.notepad-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Bento feature grid's large hero-cell title */
+.notepad-bento-hero-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Stats bento card titles (the "Instant / Searchable / 1 place" cards'
+   original 26px headline) plus a larger tier for the "0 min" numeral card,
+   which already matched the shared scale at its original 56px so it's
+   kept as-is. */
+.notepad-stat-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.notepad-stat-number-lg {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* FAQ / testimonials heading */
+.notepad-faq-heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .notepad-faq-heading { font-size: 3rem; }
+}
+.notepad-faq-question {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.notepad-faq-answer {
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* Final CTA heading */
+.notepad-final-cta-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 768px) {
+  .notepad-final-cta-heading { font-size: 3.75rem; }
+}
+
+@keyframes notepad-floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes notepad-caret-blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+@keyframes notepad-saved-pop { 0% { transform: scale(1); } 32% { transform: scale(1.55); } 100% { transform: scale(1); } }
+@keyframes notepad-live-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(20,184,166,.5); } 70%,100% { box-shadow: 0 0 0 6px rgba(20,184,166,0); } }
+@keyframes notepad-pen-nudge { 0%,100% { transform: translate(0,0) rotate(-8deg); } 50% { transform: translate(3px,-2px) rotate(-2deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .notepad-page *, .notepad-page *::before, .notepad-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =====================================================================
+   CRM PRODUCT PAGE (/products/crm)
+   Ported from the standalone design bundle the same way as
+   Sheets/PDF Reader/Document/Presentation/Notepad above: inline
+   styles/colors are kept as-is per component, section containers use the
+   site's shared max-w-7xl mx-auto px-6 lg:px-10 layout (not the bundle's
+   own max-width:1200px/1160px/1080px/820px values), and headings map onto
+   the equivalent shared classes' scale instead of the bundle's one-off px
+   values. The bundle's entrance timing (660ms, cubic-bezier(.22,.61,.36,1))
+   differs from the shared [data-reveal] system (650ms,
+   cubic-bezier(.16,1,.3,1)), so it uses its own data-crm-reveal
+   attribute/hook (components/crm/useCrmReveal.ts), same rationale as
+   Notepad's own reveal system. Keyframes are crm-prefixed for the same
+   reason. ===================================================================== */
+.crm-page [data-crm-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .66s cubic-bezier(.22,.61,.36,1), transform .66s cubic-bezier(.22,.61,.36,1);
+}
+.crm-page [data-crm-reveal].crm-is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.crm-hero-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .crm-hero-heading { font-size: 4.5rem; }
+}
+
+.crm-lede {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* Top-of-section centered H2 (matches .notepad-section-heading) */
+.crm-section-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+@media (min-width: 768px) {
+  .crm-section-heading { font-size: 3.75rem; }
+}
+
+/* Left-aligned alternating-row H2 (matches .notepad-row-heading) */
+.crm-row-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .crm-row-heading { font-size: 3rem; }
+}
+
+/* Numbered list item title/desc inside an alternating row */
+.crm-row-item-title {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+.crm-row-item-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Bento/step card title+desc */
+.crm-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.crm-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Bento feature grid's large hero-cell title */
+.crm-bento-hero-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Stats bento card titles (the "Auto-logged / 1 place" cards' original
+   26px headline) plus a larger tier for the "0 min" numeral card, which
+   already matched the shared scale at its original 56px so it's kept
+   as-is. The "1 pipeline" card's 38px mixed numeral+word treatment
+   doesn't match either tier, so it stays as its own inline style. */
+.crm-stat-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.crm-stat-number-lg {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* FAQ / testimonials heading */
+.crm-faq-heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .crm-faq-heading { font-size: 3rem; }
+}
+.crm-faq-question {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.crm-faq-answer {
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* Final CTA heading */
+.crm-final-cta-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 768px) {
+  .crm-final-cta-heading { font-size: 3.75rem; }
+}
+
+@keyframes crm-floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes crm-saved-pop { 0% { transform: scale(1); } 32% { transform: scale(1.55); } 100% { transform: scale(1); } }
+@keyframes crm-live-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(20,184,166,.5); } 70%,100% { box-shadow: 0 0 0 6px rgba(20,184,166,0); } }
+@keyframes crm-nudge { 0%,72%,100% { transform: translateX(0) rotate(0); } 80% { transform: translateX(-4px) rotate(-1.5deg); } 90% { transform: translateX(4px) rotate(1.5deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .crm-page *, .crm-page *::before, .crm-page *::after {
     animation: none !important;
     transition: none !important;
   }

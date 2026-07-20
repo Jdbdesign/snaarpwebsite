@@ -29,7 +29,7 @@ Reuse existing Snaarp header exactly as built (full-bleed fix already applied).
 - **Eyebrow pill:** COMMUNICATE · TEAMS
 - **Headline (two-line, second line violet):** "Team chat that stays" / **"organized, not overwhelming."**
 - **Subtext:** Channels for every project, threads that don't get lost, and files that stay attached to the conversation they came from.
-- **CTAs:** "Start for £1/month" (violet filled), "See how it works" (outline)
+- **CTAs:** "Start for £2/month" (violet filled), "See how it works" (outline)
 - **Trust line:** GDPR compliant · No credit card required
 - **Visual (right side, mirrors SuperCRM's "scattered contacts → enriched CRM" diagram):** left card "Your Scattered Messages" (loose chat bubbles, messy) → Snaarp Teams icon in the middle → right card "Organized in Channels" (clean channel list: # general, # design, # launch)
 
@@ -55,7 +55,7 @@ Reuse existing Snaarp header exactly as built (full-bleed fix already applied).
 - **Headline:** See Teams in action.
 - **Subtext:** A 90-second look at how channels keep every project's conversation in one searchable place.
 - **Visual:** video thumbnail, center play button, rounded card, light violet-tinted frame.
-- **CTA below:** "Start for £1/month →"
+- **CTA below:** "Start for £2/month →"
 
 ---
 
@@ -65,7 +65,7 @@ Reuse existing Snaarp header exactly as built (full-bleed fix already applied).
 2. **Start talking** — Post updates, share files, thread replies so side conversations don't clutter the feed.
 3. **Everyone stays in sync** — New teammates scroll back through history to get context instantly.
 
-CTA below: **"Start for £1/month →"**
+CTA below: **"Start for £2/month →"**
 
 ---
 
@@ -124,7 +124,7 @@ Warm, professional, real-feeling team photos (diverse, natural settings — peop
 2. **Is there a limit on channels or message history?** No — unlimited channels and unlimited searchable history on every plan.
 3. **Can I make a channel private?** Yes — public or invite-only.
 4. **Do files stay attached to the conversation?** Yes — anything shared in a channel stays linked to that thread.
-5. **Is Teams included in the £1 Starter plan?** Yes — included in every plan, no add-on required.
+5. **Is Teams included in the £2 Starter plan?** Yes — included in every plan, no add-on required.
 
 ---
 
@@ -132,7 +132,7 @@ Warm, professional, real-feeling team photos (diverse, natural settings — peop
 
 - **Background:** dark navy, rounded inset card
 - **Headline:** Team chat that actually / stays organized.
-- **Subtext:** £1 to start. Unlimited channels. Unlimited history.
+- **Subtext:** £2 to start. Unlimited channels. Unlimited history.
 - **Floating pills:** "Create a Channel," "Share Files," "Start a Call"
 
 ---

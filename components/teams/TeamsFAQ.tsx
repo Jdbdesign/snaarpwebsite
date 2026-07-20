@@ -22,7 +22,7 @@ const FAQS: { q: ReactNode; a: ReactNode; open?: boolean }[] = [
     a: 'Yes — anything shared in a channel stays linked to that thread, and is searchable later.',
   },
   {
-    q: <>Is Teams included in the <Price amount={1} /> Starter plan?</>,
+    q: <>Is Teams included in the <Price amount={2} /> Starter plan?</>,
     a: 'Yes — Teams is included in every plan, no add-on required.',
   },
 ];

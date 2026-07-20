@@ -7,8 +7,7 @@ import { MeetFeatureGrid } from '@/components/meet/MeetFeatureGrid';
 import { MeetHowItWorks } from '@/components/meet/MeetHowItWorks';
 import { MeetFAQ } from '@/components/meet/MeetFAQ';
 import { TrustLogoBar } from '@/components/sections/TrustLogoBar';
-import { FinalCTA } from '@/components/FinalCTA';
-import { Price } from '@/components/currency/Price';
+import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 
 export const metadata: Metadata = {
   title: 'Meet | Snaarp',
@@ -34,11 +33,7 @@ export default function MeetProductPage() {
         <MeetHowItWorks />
         <MeetFAQ />
 
-        <FinalCTA
-          heading="Meetings that start on time. Every app included."
-          copy="No downloads, no friction, no separate video tool to pay for. Just one Stack, running your whole business."
-          buttonLabel={<>Start the Stack for <Price amount={1} /></>}
-        />
+        <HomeFinalCTA />
       </main>
       <Footer />
     </>

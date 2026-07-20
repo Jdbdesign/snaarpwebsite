@@ -14,7 +14,7 @@ interface Para {
 
 const DOC_PARAS: Para[] = [
   { id: 'c1', text: '1. Services. Snaarp provides the Client access to the Snaarp app suite, including PDF Reader, for the subscription term.' },
-  { id: 'c2', text: '2. Fees. The Client agrees to the £1 / month introductory rate, billed monthly until cancelled.' },
+  { id: 'c2', text: '2. Fees. The Client agrees to the £2 / month introductory rate, billed monthly until cancelled.' },
   { id: 'c3', text: '3. Term. This Agreement begins on the effective date and renews automatically each calendar month.' },
   { id: 'c4', text: "4. Confidentiality. Each party will protect the other party's confidential information disclosed under this Agreement." },
 ];
@@ -102,7 +102,7 @@ export function PdfReaderHero() {
           <h1 className="pdf-reader-hero-heading" style={{ margin: '22px 0 0', color: '#1B1730' }}>One PDF Reader.<br /><span style={{ color: '#7C3AED' }}>Every signature, sorted.</span></h1>
           <p className="pdf-reader-lede" style={{ color: '#5B5670', margin: '22px 0 0', maxWidth: '498px' }}>View, mark up, and legally sign any PDF — without leaving the Stack. Open attachments straight from Mail, files from Work Drive, or drag one in. No install, no separate signing tool.</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '13px', marginTop: '32px' }}>
-            <a href="#" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '15px 28px', borderRadius: '999px', background: '#7C3AED', color: '#fff', fontWeight: '600', fontSize: '15.5px', cursor: 'pointer', boxShadow: '0 12px 26px -8px rgba(124,58,237,.6)' }}>Start for <Price amount={1} />/month</a>
+            <a href="#" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '15px 28px', borderRadius: '999px', background: '#7C3AED', color: '#fff', fontWeight: '600', fontSize: '15.5px', cursor: 'pointer', boxShadow: '0 12px 26px -8px rgba(124,58,237,.6)' }}>Start for <Price amount={2} />/month</a>
             <a href="#" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '15px 26px', borderRadius: '999px', background: '#fff', color: '#2A2440', fontWeight: '600', fontSize: '15.5px', cursor: 'pointer', border: '1.5px solid #E4DFF2' }}>See how it works
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>

@@ -3,7 +3,7 @@ import './globals.css';
 import { CurrencyProvider } from '@/components/currency/CurrencyContext';
 
 export const metadata: Metadata = {
-  title: 'Snaarp — Everything for £1',
+  title: 'Snaarp — Everything for £2',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -47,7 +47,7 @@ export function KalenderScheduling() {
             data-reveal
             data-reveal-group="kalender-scheduling-top"
           >
-            Start for <Price amount={1} />/month
+            Start for <Price amount={2} />/month
           </a>
         </div>
 

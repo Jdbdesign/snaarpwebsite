@@ -10,7 +10,7 @@ import { PresentationAltCollaborate } from '@/components/presentation/Presentati
 import { PresentationAltPresent } from '@/components/presentation/PresentationAltPresent';
 import { PresentationTestimonials } from '@/components/presentation/PresentationTestimonials';
 import { PresentationFAQ } from '@/components/presentation/PresentationFAQ';
-import { PresentationFinalCTA } from '@/components/presentation/PresentationFinalCTA';
+import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 
 export const metadata: Metadata = {
   title: 'Presentation — Build the deck. Together, live. | Snaarp',
@@ -32,7 +32,7 @@ export default function PresentationProductPage() {
         <PresentationAltPresent />
         <PresentationTestimonials />
         <PresentationFAQ />
-        <PresentationFinalCTA />
+        <HomeFinalCTA />
       </main>
       <Footer />
     </>

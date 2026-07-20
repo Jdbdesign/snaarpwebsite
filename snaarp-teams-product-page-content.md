@@ -17,7 +17,7 @@ Reuse existing Snaarp header exactly as built. "Products" mega menu shows Teams 
 - **Eyebrow pill:** COMMUNICATE · TEAMS
 - **Headline (two-line, second line violet):** "Team chat that stays" / **"organized, not overwhelming."**
 - **Subtext:** Channels for every project, threads that don't get lost, and files that actually stay attached to the conversation they came from.
-- **CTAs:** "Start for £1/month" (violet filled), "See how it works" (outline)
+- **CTAs:** "Start for £2/month" (violet filled), "See how it works" (outline)
 - **Trust line:** Included in every plan · Unlimited channels · Unlimited history
 - **Visual (right side):** mock chat interface — left sidebar with channel list (# general, # design, # launch), center panel with a threaded conversation, small file attachment chip, and a couple of avatar bubbles showing presence (online/away dots).
 
@@ -65,7 +65,7 @@ Reuse existing Snaarp header exactly as built. "Products" mega menu shows Teams 
 3. **Everyone stays in sync**
    New teammates can scroll back through channel history to get context instantly — nothing's siloed in someone's inbox.
 
-CTA below steps: **"Start for £1/month →"**
+CTA below steps: **"Start for £2/month →"**
 
 ---
 
@@ -103,7 +103,7 @@ CTA below steps: **"Start for £1/month →"**
 2. **Is there a limit on channels or message history?** No — unlimited channels and unlimited searchable history on every plan.
 3. **Can I make a channel private?** Yes — channels can be public (open to anyone on the team) or private (invite-only).
 4. **Do files stay attached to the conversation?** Yes — anything shared in a channel stays linked to that thread, and is searchable later.
-5. **Is Teams included in the £1 Starter plan?** Yes — Teams is included in every plan, no add-on required.
+5. **Is Teams included in the £2 Starter plan?** Yes — Teams is included in every plan, no add-on required.
 
 ---
 
@@ -111,8 +111,8 @@ CTA below steps: **"Start for £1/month →"**
 
 - **Background:** solid violet rounded card (inset, matches existing Final CTA pattern)
 - **Eyebrow:** READY WHEN YOU ARE
-- **Headline:** Team chat that actually stays organized. £1 to start.
-- **Button:** "Start the Stack for £1"
+- **Headline:** Team chat that actually stays organized. £2 to start.
+- **Button:** "Start the Stack for £2"
 
 ---
 

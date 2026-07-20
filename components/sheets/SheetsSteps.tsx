@@ -55,7 +55,7 @@ export function SheetsSteps() {
           </div>
         </div>
         <div data-sheets-reveal="" style={{ textAlign: "center", marginTop: "40px" }}>
-          <a href="#" style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "15px 28px", borderRadius: "999px", background: "#7C3AED", color: "#fff", fontWeight: "600", fontSize: "15.5px", cursor: "pointer", boxShadow: "0 12px 26px -8px rgba(124,58,237,.55)" }}>Start for <Price amount={1} />/month
+          <a href="#" style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "15px 28px", borderRadius: "999px", background: "#7C3AED", color: "#fff", fontWeight: "600", fontSize: "15.5px", cursor: "pointer", boxShadow: "0 12px 26px -8px rgba(124,58,237,.55)" }}>Start for <Price amount={2} />/month
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
         </div>

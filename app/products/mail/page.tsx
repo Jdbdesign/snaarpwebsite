@@ -9,8 +9,7 @@ import { StepsSection } from '@/components/sections/StepsSection';
 import { WhyMail } from '@/components/WhyMail';
 import { MailUseCases } from '@/components/mail/MailUseCases';
 import { BusinessMovesFast } from '@/components/BusinessMovesFast';
-import { FinalCTA } from '@/components/FinalCTA';
-import { Price } from '@/components/currency/Price';
+import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 
 const MAIL_STEPS = [
   {
@@ -47,11 +46,7 @@ export default function MailProductPage() {
         <MailUseCases />
         <BusinessMovesFast />
 
-        <FinalCTA
-          heading="Professional email, sorted. Every app included."
-          copy="No per-inbox fees, no separate email provider to manage. Just one Stack, running your whole business."
-          buttonLabel={<>Start the Stack for <Price amount={1} /></>}
-        />
+        <HomeFinalCTA />
       </main>
       <Footer />
     </>

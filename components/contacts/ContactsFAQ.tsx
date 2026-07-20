@@ -22,7 +22,7 @@ const FAQS: { q: ReactNode; a: ReactNode; open?: boolean }[] = [
     a: 'Yes — use tags and groups to filter your list however works for your team.',
   },
   {
-    q: <>Is Contacts included in the <Price amount={1} /> Starter plan?</>,
+    q: <>Is Contacts included in the <Price amount={2} /> Starter plan?</>,
     a: 'Yes — Contacts is included in every plan, no add-on required.',
   },
 ];

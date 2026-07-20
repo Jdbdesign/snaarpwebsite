@@ -11,7 +11,7 @@ import { DemoVideoSection } from '@/components/sections/DemoVideoSection';
 import { StepsSection } from '@/components/sections/StepsSection';
 import { AlternatingFeatureRow } from '@/components/sections/AlternatingFeatureRow';
 // import { IconGrid2x2 } from '@/components/sections/IconGrid2x2'; // replaced by static image, see below
-import { FinalCTA } from '@/components/FinalCTA';
+import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 import { Price } from '@/components/currency/Price';
 
 export const metadata: Metadata = {
@@ -63,14 +63,14 @@ export default function TeamsProductPage() {
         <DemoVideoSection
           headline="See Teams in action."
           subtext="A 90-second look at how channels keep every project's conversation in one searchable place."
-          ctaLabel={<>Start for <Price amount={1} />/month</>}
+          ctaLabel={<>Start for <Price amount={2} />/month</>}
           className="sec-alt-bg"
           videoSrc="/assets/videos/teams-chat-loop.mp4"
           videoAspectRatio="1368 / 848"
           videoScale={1.0526}
         />
 
-        <StepsSection heading="Get started in 3 easy steps" steps={STEPS} ctaLabel={<>Start for <Price amount={1} />/month</>} />
+        <StepsSection heading="Get started in 3 easy steps" steps={STEPS} ctaLabel={<>Start for <Price amount={2} />/month</>} />
 
         <AlternatingFeatureRow
           revealGroup="alt-row-chaos"
@@ -147,11 +147,7 @@ export default function TeamsProductPage() {
 
         <TeamsFAQ />
 
-        <FinalCTA
-          heading="Team chat that stays organized. Every app included."
-          copy="Unlimited channels, unlimited history, no separate file-sharing tool to juggle. Just one Stack, running your whole business."
-          buttonLabel={<>Start the Stack for <Price amount={1} /></>}
-        />
+        <HomeFinalCTA />
       </main>
       <Footer />
     </>

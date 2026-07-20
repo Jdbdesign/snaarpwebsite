@@ -7,7 +7,7 @@ const FAQS = [
   { q: 'Are e-signatures from PDF Reader legally binding?', a: 'Yes — every signature is timestamped and logged with an audit trail.' },
   { q: 'Can I request a signature from someone outside my team?', a: "Yes — send a signing link to anyone by email; they don't need a Snaarp account to sign." },
   { q: 'Can I fill out PDF forms, or only sign them?', a: 'Both — tab through form fields and fill them in before signing.' },
-  { q: 'Is PDF Reader included in the £1 Starter plan?', a: 'Yes — included in every plan, no add-on required.' },
+  { q: 'Is PDF Reader included in the £2 Starter plan?', a: 'Yes — included in every plan, no add-on required.' },
   { q: 'Can I open PDFs directly from Mail or Work Drive?', a: 'Yes — open any attachment or stored file in one click, no downloading first.' },
 ];
 

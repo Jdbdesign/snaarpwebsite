@@ -4,6 +4,7 @@ import { buttonVariants } from '@/components/work-drive/Button';
 import { LiveTeamVisual, SearchVisual, StorageVisual, SyncFlowVisual } from '@/components/work-drive/ProductVisuals';
 import { AnimatedDriveDemo } from '@/components/work-drive/AnimatedDriveDemo';
 import { Price } from '@/components/currency/Price';
+import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 import type { ReactNode } from 'react';
 
 // Same brand icon assets used for these apps elsewhere on the site (see
@@ -26,7 +27,7 @@ const faqs: { q: ReactNode; a: ReactNode }[] = [
   { q: 'Can I attach Work Drive files directly in Mail or Teams?', a: 'Yes. Pull a file in without downloading and re-uploading it.' },
   { q: 'Does Work Drive keep old versions of a file?', a: 'Yes. Version history lets you see or restore a previous version anytime.' },
   { q: 'Can I control who sees a file or folder?', a: 'Yes. Set sharing permissions per file or folder, from private to team-wide.' },
-  { q: <>Is Work Drive included in the <Price amount={1} /> Starter plan?</>, a: 'Yes. It is included in every plan, no add-on required.' },
+  { q: <>Is Work Drive included in the <Price amount={2} /> Starter plan?</>, a: 'Yes. It is included in every plan, no add-on required.' },
 ];
 
 function Eyebrow({ children }: { children: React.ReactNode }) { return <span className="eyebrow">{children}</span>; }
@@ -35,7 +36,7 @@ function Kicker({ children, className = '' }: { children: React.ReactNode; class
 export function WorkDrivePage() {
   return <div className="work-drive min-h-screen overflow-x-clip bg-background text-foreground"><main>
     <section className="section-pad pt-16 md:pt-24"><div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:px-10 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
-      <div className="reveal flex flex-col items-start gap-6"><Eyebrow>Create &amp; Store · Work Drive</Eyebrow><h1 className="text-balance text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl">One drive for every <span className="text-primary">file your team touches.</span></h1><p className="max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">Store, share, and find files without hunting across five different apps. Work Drive is already connected to Mail, Teams, and everything else in the Stack.</p><div className="flex flex-wrap gap-3"><Link href="#get-started" className={buttonVariants({ size: 'lg', className: 'rounded-full px-6' })}>Start for <Price amount={1} />/month <ArrowRight data-icon="inline-end" /></Link><Link href="#how-it-works" className={buttonVariants({ variant: 'outline', size: 'lg', className: 'rounded-full px-6' })}>See how it works</Link></div><p className="flex items-center gap-2 text-sm text-muted-foreground"><ShieldCheck className="size-4 text-primary" /> GDPR compliant · No credit card required</p></div>
+      <div className="reveal flex flex-col items-start gap-6"><Eyebrow>Create &amp; Store · Work Drive</Eyebrow><h1 className="text-balance text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl">One drive for every <span className="text-primary">file your team touches.</span></h1><p className="max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">Store, share, and find files without hunting across five different apps. Work Drive is already connected to Mail, Teams, and everything else in the Stack.</p><div className="flex flex-wrap gap-3"><Link href="#get-started" className={buttonVariants({ size: 'lg', className: 'rounded-full px-6' })}>Start for <Price amount={2} />/month <ArrowRight data-icon="inline-end" /></Link><Link href="#how-it-works" className={buttonVariants({ variant: 'outline', size: 'lg', className: 'rounded-full px-6' })}>See how it works</Link></div><p className="flex items-center gap-2 text-sm text-muted-foreground"><ShieldCheck className="size-4 text-primary" /> GDPR compliant · No credit card required</p></div>
       <div className="reveal reveal-delay"><AnimatedDriveDemo /></div>
     </div></section>
 
@@ -44,7 +45,7 @@ export function WorkDrivePage() {
     <section className="section-pad"><div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-3 lg:px-10">{[['1 drive', 'every file, in one place, not scattered across apps'], ['20 GB+', 'shared storage, pooled across your team'], ['0 min', 'spent hunting for "the file someone sent last week"']].map(([stat, copy], i) => <div key={stat} className="reveal flex flex-col gap-3 border-l-2 border-primary/20 pl-6" style={{ animationDelay: `${i * 100}ms` }}><p className="text-5xl font-bold tracking-tight text-primary">{stat}</p><p className="max-w-xs text-sm leading-relaxed text-muted-foreground">{copy}</p></div>)}</div></section>
 
     <section id="how-it-works" className="section-pad bg-muted/55"><div className="mx-auto grid max-w-7xl gap-12 px-6 lg:px-10 lg:grid-cols-[.72fr_1.28fr] lg:items-start lg:gap-20">
-      <div className="reveal flex flex-col items-start gap-5 lg:sticky lg:top-28"><Kicker>Up and running</Kicker><h2 className="text-balance text-3xl font-bold tracking-tight md:text-5xl">From upload to shared in three moves.</h2><p className="max-w-md text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">Work Drive fits the way your team already works. Add a file, give it context, then use it anywhere in the Stack.</p><Link href="#get-started" className={buttonVariants({ size: 'lg', className: 'mt-2 rounded-full px-6' })}>Start for <Price amount={1} />/month <ArrowRight data-icon="inline-end" /></Link></div>
+      <div className="reveal flex flex-col items-start gap-5 lg:sticky lg:top-28"><Kicker>Up and running</Kicker><h2 className="text-balance text-3xl font-bold tracking-tight md:text-5xl">From upload to shared in three moves.</h2><p className="max-w-md text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">Work Drive fits the way your team already works. Add a file, give it context, then use it anywhere in the Stack.</p><Link href="#get-started" className={buttonVariants({ size: 'lg', className: 'mt-2 rounded-full px-6' })}>Start for <Price amount={2} />/month <ArrowRight data-icon="inline-end" /></Link></div>
       <ol className="relative flex flex-col gap-4 before:absolute before:bottom-12 before:left-7 before:top-12 before:w-px before:bg-primary/20 md:before:left-9">{steps.map((step, i) => <li key={step.title} className="reveal relative grid grid-cols-[3.5rem_1fr] gap-4 rounded-3xl border bg-card p-5 shadow-sm transition-transform duration-300 hover:-translate-y-1 md:grid-cols-[4.5rem_1fr] md:items-center md:gap-6 md:p-7" style={{ animationDelay: `${i * 100}ms` }}><span className="relative grid size-14 place-items-center rounded-2xl bg-primary text-primary-foreground shadow-[0_12px_30px_-14px_rgba(124,58,237,.8)] md:size-18"><step.icon className="size-6 md:size-7" /></span><div className="flex flex-col gap-2"><h3 className="text-lg font-bold md:text-xl">{step.title}</h3><p className="max-w-xl text-sm leading-relaxed text-muted-foreground">{step.copy}</p></div></li>)}</ol>
     </div></section>
 
@@ -103,7 +104,7 @@ export function WorkDrivePage() {
       <div className="mx-auto mt-12 max-w-3xl rounded-3xl border bg-card px-6 shadow-sm">{faqs.map(({ q, a }, i) => <details key={i} open={i === 0} className="group border-b last:border-0"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-6 font-semibold">{q}<ChevronDown className="size-5 shrink-0 text-muted-foreground transition group-open:rotate-180" /></summary><p className="pb-6 pr-8 text-sm leading-relaxed text-muted-foreground">{a}</p></details>)}</div>
     </div></section>
 
-    <section id="get-started" className="mx-auto max-w-7xl px-6 py-10 lg:px-10 md:py-16"><div className="mx-auto flex max-w-7xl flex-col items-center gap-6 rounded-[2rem] bg-primary px-6 py-16 text-center text-primary-foreground shadow-2xl md:py-24"><Kicker className="!text-primary-foreground">Ready when you are</Kicker><h2 className="max-w-3xl text-balance text-4xl font-bold tracking-tight md:text-6xl">One drive for everything. <Price amount={1} /> to start.</h2><Link href="#" className={buttonVariants({ variant: 'secondary', size: 'lg', className: 'mt-2 rounded-full bg-primary-foreground px-7 text-primary hover:bg-primary-foreground/90' })}>Start the Stack for <Price amount={1} /> <ArrowRight data-icon="inline-end" /></Link></div></section>
+    <HomeFinalCTA />
   </main></div>;
 }
 

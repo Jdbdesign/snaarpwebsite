@@ -10,7 +10,7 @@ import { DocsAltCollaborate } from '@/components/docs/DocsAltCollaborate';
 import { DocsAltVersionHistory } from '@/components/docs/DocsAltVersionHistory';
 import { DocsTestimonials } from '@/components/docs/DocsTestimonials';
 import { DocsFAQ } from '@/components/docs/DocsFAQ';
-import { DocsFinalCTA } from '@/components/docs/DocsFinalCTA';
+import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 
 export const metadata: Metadata = {
   title: 'Document — Write together. See it happen live. | Snaarp',
@@ -32,7 +32,7 @@ export default function DocsProductPage() {
         <DocsAltVersionHistory />
         <DocsTestimonials />
         <DocsFAQ />
-        <DocsFinalCTA />
+        <HomeFinalCTA />
       </main>
       <Footer />
     </>

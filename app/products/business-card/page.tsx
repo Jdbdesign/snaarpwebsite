@@ -10,7 +10,7 @@ import { UpdateOnceVisual, AnalyticsVisual, TapShareCollageVisual } from '@/comp
 import { BusinessCardBentoGrid } from '@/components/business-card/BusinessCardBentoGrid';
 import { BusinessCardFortune500 } from '@/components/business-card/BusinessCardFortune500';
 import { AppLogoStrip } from '@/components/sections/AppLogoStrip';
-import { FinalCTA } from '@/components/FinalCTA';
+import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 import { Price } from '@/components/currency/Price';
 
 export const metadata: Metadata = {
@@ -43,7 +43,7 @@ export default function BusinessCardProductPage() {
           />
         </section>
 
-        <BusinessCardSteps ctaLabel={<>Start for <Price amount={1} />/month</>} />
+        <BusinessCardSteps ctaLabel={<>Start for <Price amount={2} />/month</>} />
 
         <BusinessCardFeatureRow
           eyebrow="Always Current"
@@ -89,11 +89,7 @@ export default function BusinessCardProductPage() {
 
         <BusinessCardFAQ />
 
-        <FinalCTA
-          heading="Your card, always up to date. Every app included."
-          copy="No reprinting, no handing out outdated info. Just one Stack, running your whole business."
-          buttonLabel={<>Start the Stack for <Price amount={1} /></>}
-        />
+        <HomeFinalCTA />
       </main>
       <Footer />
     </>

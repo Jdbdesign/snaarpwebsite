@@ -17,7 +17,7 @@ Reuse existing Snaarp header exactly as built. "Products" mega menu shows Contac
 - **Eyebrow pill:** COMMUNICATE · CONTACTS
 - **Headline (two-line, second line violet):** "One address book." / **"Everywhere you work."**
 - **Subtext:** Save a contact once in Snaarp Contacts and it's already there in Mail, Meet, and CRM — no exporting, no re-typing, no three different versions of the same person.
-- **CTAs:** "Start for £1/month" (violet filled), "See how it works" (outline)
+- **CTAs:** "Start for £2/month" (violet filled), "See how it works" (outline)
 - **Trust line:** Included in every plan · Syncs automatically · No setup required
 - **Visual (right side):** contact card mockup — name, photo, email, phone, tags — with small connector lines fanning out to mini icons for Mail, Meet, and CRM, showing the same card appearing in all three.
 
@@ -67,7 +67,7 @@ Each card: icon, title, one-line description.
 3. **Stay organized as you grow**
    Tag, group, and search as your list grows — no cleanup projects, ever.
 
-CTA below steps: **"Start for £1/month →"**
+CTA below steps: **"Start for £2/month →"**
 
 ---
 
@@ -105,7 +105,7 @@ CTA below steps: **"Start for £1/month →"**
 2. **Can I import my existing contacts?** Yes — import from Gmail, Outlook, or a CSV file in a couple of clicks.
 3. **What happens to duplicate contacts?** Contacts detects matching emails or phone numbers and merges them automatically, with a review step before anything's combined.
 4. **Can I organize contacts by team or client?** Yes — use tags and groups to filter your list however works for your team.
-5. **Is Contacts included in the £1 Starter plan?** Yes — Contacts is included in every plan, no add-on required.
+5. **Is Contacts included in the £2 Starter plan?** Yes — Contacts is included in every plan, no add-on required.
 
 ---
 
@@ -113,8 +113,8 @@ CTA below steps: **"Start for £1/month →"**
 
 - **Background:** solid violet rounded card (inset, matches existing Final CTA pattern)
 - **Eyebrow:** READY WHEN YOU ARE
-- **Headline:** One address book. Every app. £1 to start.
-- **Button:** "Start the Stack for £1"
+- **Headline:** One address book. Every app. £2 to start.
+- **Button:** "Start the Stack for £2"
 
 ---
 

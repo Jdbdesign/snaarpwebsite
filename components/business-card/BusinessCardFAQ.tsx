@@ -22,7 +22,7 @@ const FAQS: { q: ReactNode; a: ReactNode; open?: boolean }[] = [
     a: 'Yes — Business Card includes basic view, save, and share analytics.',
   },
   {
-    q: <>Is Business Card included in the <Price amount={1} /> Starter plan?</>,
+    q: <>Is Business Card included in the <Price amount={2} /> Starter plan?</>,
     a: 'Yes — included in every plan, no add-on required.',
   },
 ];

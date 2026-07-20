@@ -17,7 +17,7 @@ Reuse existing Snaarp header exactly as built.
 - **Eyebrow pill:** COMMUNICATE · BUSINESS CARD
 - **Headline (two-line, second line violet):** "Your card updates" / **"the instant you do."**
 - **Subtext:** Change your title, number, or company and every card you've ever shared updates automatically — no reprinting, no handing out outdated info.
-- **CTAs:** "Start for £1/month" (violet filled), "See how it works" (outline)
+- **CTAs:** "Start for £2/month" (violet filled), "See how it works" (outline)
 - **Trust line:** GDPR compliant · No credit card required
 - **Visual (chaos → order diagram, same pattern as Teams/Contacts):** left card "Old Paper Cards" (stack of cardstock, crossed-out outdated details) → Business Card icon in the middle → right card "One Live Card" (digital card with QR code, current title/number, "Last updated: just now")
 
@@ -43,7 +43,7 @@ Reuse existing Snaarp header exactly as built.
 - **Headline:** See Business Card in action.
 - **Subtext:** A 90-second look at sharing your card and watching it land straight in someone's Contacts.
 - **Visual:** video thumbnail, center play button, rounded card, light violet-tinted frame.
-- **CTA below:** "Start for £1/month →"
+- **CTA below:** "Start for £2/month →"
 
 ---
 
@@ -53,7 +53,7 @@ Reuse existing Snaarp header exactly as built.
 2. **Share with a link, QR, or NFC** — Send it however's easiest — email, text, tap a phone, or scan a code.
 3. **It updates everywhere instantly** — Change anything later and every card you've shared reflects it automatically.
 
-CTA below: **"Start for £1/month →"**
+CTA below: **"Start for £2/month →"**
 
 ---
 
@@ -112,7 +112,7 @@ Warm, professional, real-feeling networking/meeting photos (handshakes, conferen
 2. **What happens if I change my job title or number?** Update your card once — every card you've already shared reflects the change automatically, no resharing needed.
 3. **Do I need a special phone for NFC sharing?** Most modern smartphones support NFC tap-to-share; link and QR sharing work on any device.
 4. **Can I see who's viewed or saved my card?** Yes — Business Card includes basic view, save, and share analytics.
-5. **Is Business Card included in the £1 Starter plan?** Yes — included in every plan, no add-on required.
+5. **Is Business Card included in the £2 Starter plan?** Yes — included in every plan, no add-on required.
 
 ---
 
@@ -120,7 +120,7 @@ Warm, professional, real-feeling networking/meeting photos (handshakes, conferen
 
 - **Background:** dark navy, rounded inset card
 - **Headline:** Ditch the paper card.
-- **Subtext:** £1 to start. Always up to date, wherever you've shared it.
+- **Subtext:** £2 to start. Always up to date, wherever you've shared it.
 - **Floating pills:** "Share Your Card," "Scan a Card," "View Analytics"
 
 ---

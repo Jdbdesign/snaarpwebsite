@@ -149,7 +149,7 @@ export function AppsToExplore() {
   }, []);
 
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-10 pb-16 lg:pb-24">
+    <section className="apps-to-explore-section max-w-7xl mx-auto px-6 lg:px-10 pb-16 lg:pb-24">
       <div ref={containerRef} className="apps-spotlight-card grid grid-cols-1 lg:grid-cols-[2fr_3fr]">
         {/* Left column: NeoLeads spotlight */}
         <div className="neoleads-card" data-reveal data-reveal-group="apps-explore">

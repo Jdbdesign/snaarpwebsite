@@ -5,7 +5,7 @@ import { PricingPlans } from '@/components/pricing/PricingPlans';
 import { ComparePlans } from '@/components/pricing/ComparePlans';
 import { StepsSection } from '@/components/sections/StepsSection';
 import { FAQ } from '@/components/FAQ';
-import { FinalCTA } from '@/components/FinalCTA';
+import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 
 export const metadata: Metadata = {
   title: 'Pricing — Snaarp',
@@ -36,7 +36,7 @@ export default function PricingPage() {
         <ComparePlans />
         <StepsSection heading="Get started in 3 simple steps" steps={PRICING_STEPS} ctaLabel="Get Started" ctaHref="#" />
         <FAQ />
-        <FinalCTA />
+        <HomeFinalCTA />
       </main>
       <Footer />
     </>

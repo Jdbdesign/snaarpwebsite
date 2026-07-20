@@ -13,10 +13,10 @@ interface FaqItem {
 const FAQS: FaqItem[] = [
   {
     key: 'plan-included',
-    q: <>What does the <Price amount={1} /> plan include?</>,
+    q: <>What does the <Price amount={2} /> plan include?</>,
     a: (
       <>
-        <Price amount={1} /> is the starting price of our Starter plan, per user per month — not a limited-time trial. It includes access to the Stack; more plans with additional storage, seats and premium apps are on the way. You’ll always see the price before anything changes.
+        <Price amount={2} /> is the starting price of our Starter plan, per user per month — not a limited-time trial. It includes access to the Stack; more plans with additional storage, seats and premium apps are on the way. You’ll always see the price before anything changes.
       </>
     ),
     open: true,

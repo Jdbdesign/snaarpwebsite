@@ -235,21 +235,21 @@ export function Hero() {
           <h1 className="home-hero-heading font-bold leading-[1.1] tracking-tight mb-6" data-reveal-load>
             {/* Default arrangement — mobile through laptop (below 1440px), unchanged */}
             <span className="hero-heading-line hero-heading-line--default block text-[var(--text-primary)]">Your whole business, in one place.</span>
-            <span className="hero-heading-line hero-heading-line--default block text-[var(--color-brand)]">Get everything for <Price amount={1} /></span>
+            <span className="hero-heading-line hero-heading-line--default block text-[var(--color-brand)]">Get everything for <Price amount={2} /></span>
 
             {/* Wide-screen arrangement (1440px+) — different line breaks per design request */}
             <span className="hero-heading-line hero-heading-line--wide block text-[var(--text-primary)]">Your whole business,</span>
             <span className="hero-heading-line hero-heading-line--wide block text-[var(--text-primary)]">in one place. <span className="text-[var(--color-brand)]">Get everything</span></span>
-            <span className="hero-heading-line hero-heading-line--wide block text-[var(--color-brand)]">for <Price amount={1} /></span>
+            <span className="hero-heading-line hero-heading-line--wide block text-[var(--color-brand)]">for <Price amount={2} /></span>
           </h1>
 
           <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.125rem' }} data-reveal-load>
-            Mail, CRM, Docs, Meet, Books, a password manager and eleven more — every app your business runs on, under one login. Your first month is <Price amount={1} />. Full stop.
+            Mail, CRM, Docs, Meet, Books, a password manager and eleven more — every app your business runs on, under one login. Your first month is <Price amount={2} />. Full stop.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 mb-8" data-reveal-load>
             <a href="#" className="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3.5 min-h-[44px]">
-              Start for <Price amount={1} />/month
+              Start for <Price amount={2} />/month
             </a>
             <a href="#" className="btn-outline inline-flex items-center justify-center rounded-full px-6 py-3.5 min-h-[44px]">
               See how it works

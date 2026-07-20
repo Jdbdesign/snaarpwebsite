@@ -10,7 +10,7 @@ import { PdfReaderAltAnnotate } from '@/components/pdf-reader/PdfReaderAltAnnota
 import { PdfReaderAltSigning } from '@/components/pdf-reader/PdfReaderAltSigning';
 import { PdfReaderTestimonials } from '@/components/pdf-reader/PdfReaderTestimonials';
 import { PdfReaderFAQ } from '@/components/pdf-reader/PdfReaderFAQ';
-import { PdfReaderFinalCTA } from '@/components/pdf-reader/PdfReaderFinalCTA';
+import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 
 export const metadata: Metadata = {
   title: 'PDF Reader — One PDF Reader, every signature sorted | Snaarp',
@@ -32,7 +32,7 @@ export default function PdfReaderProductPage() {
         <PdfReaderAltSigning />
         <PdfReaderTestimonials />
         <PdfReaderFAQ />
-        <PdfReaderFinalCTA />
+        <HomeFinalCTA />
       </main>
       <Footer />
     </>

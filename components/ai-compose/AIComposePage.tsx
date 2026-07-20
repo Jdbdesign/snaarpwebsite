@@ -10,6 +10,7 @@ import { RealWorkSection } from "@/components/ai-compose/RealWorkSection"
 import { InteractiveComposeDemo } from "@/components/ai-compose/InteractiveComposeDemo"
 import { Price } from "@/components/currency/Price"
 import { HomeFinalCTA } from "@/components/HomeFinalCTA"
+import { StackTrustBar, PlainStackWrapper } from "@/components/sections/StackTrustBar"
 
 const faqs: { q: ReactNode; a: string }[] = [
   { q: "Which apps does AI Compose work in?", a: "Mail and Teams today, with more of the Stack coming." },
@@ -22,11 +23,11 @@ const faqs: { q: ReactNode; a: string }[] = [
 // Same brand icon assets used for these apps elsewhere on the site (see
 // ProductsMegaMenu.tsx and the other product pages' "Works Across the
 // Stack" strips), swapped in for the generic Lucide placeholders.
-const appLinks = [
-  { iconSrc: "/assets/icons/envelope.jpg", name: "Mail", text: "Focused email, beautifully simple" },
-  { iconSrc: "/assets/icons/chat-bubbles.jpg", name: "Teams", text: "Keep every conversation moving" },
-  { iconSrc: "/assets/icons/search.jpg", name: "Contacts", text: "Your relationships, organized" },
-  { iconSrc: "/assets/icons/apps-kalender.jpg", name: "Kalender", text: "A calmer way to plan" },
+const stackApps = [
+  { iconSrc: "/assets/icons/envelope.jpg", name: "Snaarp Mail" },
+  { iconSrc: "/assets/icons/chat-bubbles.jpg", name: "Snaarp Teams" },
+  { iconSrc: "/assets/icons/search.jpg", name: "Snaarp Contacts" },
+  { iconSrc: "/assets/icons/apps-kalender.jpg", name: "Snaarp Kalender" },
 ]
 
 function ComposeMockup({ compact = false }: { compact?: boolean }) {
@@ -43,7 +44,7 @@ export function AIComposePage() {
  const steps = [[PenLine,"01","Say what you need","Type a quick prompt, or start from a message you’re replying to."],[WandSparkles,"02","AI Compose drafts it","Get a full first pass in your tone, ready to edit."],[Send,"03","Send, don’t start from scratch","Tweak a line or two, or send it as-is."]] as const
  return <div className="ai-compose min-h-screen overflow-hidden bg-background">
   <section className="relative border-b bg-secondary/50"><div className="page-grid absolute inset-0 opacity-60"/><div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 py-20 md:py-28 lg:grid-cols-[.95fr_1.05fr] lg:px-10"><div className="flex flex-col items-start gap-7"><span className="rounded-full border bg-background px-4 py-2 text-xs font-bold tracking-[.14em] text-primary">COMMUNICATE · AI COMPOSE</span><h1 className="text-balance text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl">Never stare at a <span className="text-primary">blank message again.</span></h1><p className="max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">Draft an email, a Teams reply, or a follow-up in seconds — AI Compose writes the first pass, you make it yours.</p><div className="flex flex-wrap gap-3"><Button className="h-12 rounded-full px-6">Start for <Price amount={2} />/month <ArrowRight data-icon="inline-end" /></Button><Button variant="outline" className="h-12 rounded-full px-6" render={<Link href="#steps" />}>See how it works</Button></div><p className="flex items-center gap-2 text-sm text-muted-foreground"><Check className="size-4 text-primary"/>GDPR compliant · No credit card required</p></div><InteractiveComposeDemo/></div></section>
-  <section className="border-b"><div className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-6 py-12 lg:px-10"><p className="text-xs font-bold tracking-[.18em] text-muted-foreground">WORKS ACROSS THE STACK</p><div className="grid w-full grid-cols-2 justify-items-center gap-x-4 gap-y-8 md:grid-cols-4">{appLinks.map(({iconSrc,name})=><div key={name} className="sec-logo-strip-tile"><span className="sec-logo-strip-icon-tile"><img src={iconSrc} alt="" aria-hidden="true" /></span><span className="sec-logo-strip-tile-label">Snaarp {name}</span></div>)}</div></div></section>
+  <StackTrustBar Wrapper={PlainStackWrapper} apps={stackApps} />
   <section><div className="mx-auto grid max-w-7xl divide-y border-x md:grid-cols-3 md:divide-x md:divide-y-0">{[["Seconds","from a one-line prompt to a full draft"],["Every app","Mail, Teams, and more, one AI Compose everywhere"],["0","blank-page moments"]].map(([v,l])=><div className="flex flex-col gap-2 p-8 text-center md:p-12" key={v}><strong className="text-4xl text-primary">{v}</strong><span className="text-sm text-muted-foreground">{l}</span></div>)}</div></section>
   <section id="steps" className="workflow-section border-y py-24">
     <div className="mx-auto max-w-7xl px-6 lg:px-10">

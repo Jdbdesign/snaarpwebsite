@@ -5,17 +5,18 @@ import { LiveTeamVisual, SearchVisual, StorageVisual, SyncFlowVisual } from '@/c
 import { AnimatedDriveDemo } from '@/components/work-drive/AnimatedDriveDemo';
 import { Price } from '@/components/currency/Price';
 import { HomeFinalCTA } from '@/components/HomeFinalCTA';
+import { StackTrustBar, PlainStackWrapper } from '@/components/sections/StackTrustBar';
 import type { ReactNode } from 'react';
 
 // Same brand icon assets used for these apps elsewhere on the site (see
 // ProductsMegaMenu.tsx and components/ai-compose/AIComposePage.tsx's
 // "Works Across the Stack" strip), swapped in for the generic Lucide
 // placeholders.
-const STACK_APPS = [
-  { iconSrc: '/assets/icons/envelope.jpg', label: 'Snaarp Mail' },
-  { iconSrc: '/assets/icons/chat-bubbles.jpg', label: 'Teams' },
-  { iconSrc: '/assets/icons/search.jpg', label: 'Contacts' },
-  { iconSrc: '/assets/icons/apps-document.png', label: 'Docs' },
+const stackApps = [
+  { iconSrc: '/assets/icons/envelope.jpg', name: 'Snaarp Mail' },
+  { iconSrc: '/assets/icons/chat-bubbles.jpg', name: 'Snaarp Teams' },
+  { iconSrc: '/assets/icons/search.jpg', name: 'Snaarp Contacts' },
+  { iconSrc: '/assets/icons/apps-document.png', name: 'Snaarp Docs' },
 ];
 const steps = [
   { icon: CloudUpload, title: 'Upload or drag in a file', copy: 'Add files from your computer, or save straight from Mail.' },
@@ -40,7 +41,7 @@ export function WorkDrivePage() {
       <div className="reveal reveal-delay"><AnimatedDriveDemo /></div>
     </div></section>
 
-    <section className="border-y bg-muted/55"><div className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-6 py-12 lg:px-10"><p className="text-xs font-bold uppercase tracking-[.18em] text-muted-foreground">Works across the Stack</p><div className="grid w-full grid-cols-2 justify-items-center gap-x-4 gap-y-8 md:grid-cols-4">{STACK_APPS.map(({ iconSrc, label }) => <div key={label} className="sec-logo-strip-tile"><span className="sec-logo-strip-icon-tile"><img src={iconSrc} alt="" aria-hidden="true" /></span><span className="sec-logo-strip-tile-label">{label}</span></div>)}</div></div></section>
+    <StackTrustBar Wrapper={PlainStackWrapper} apps={[...stackApps]} />
 
     <section className="section-pad"><div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-3 lg:px-10">{[['1 drive', 'every file, in one place, not scattered across apps'], ['20 GB+', 'shared storage, pooled across your team'], ['0 min', 'spent hunting for "the file someone sent last week"']].map(([stat, copy], i) => <div key={stat} className="reveal flex flex-col gap-3 border-l-2 border-primary/20 pl-6" style={{ animationDelay: `${i * 100}ms` }}><p className="text-5xl font-bold tracking-tight text-primary">{stat}</p><p className="max-w-xs text-sm leading-relaxed text-muted-foreground">{copy}</p></div>)}</div></section>
 

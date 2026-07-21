@@ -82,9 +82,9 @@ const CATEGORIES: ProductCategory[] = [
     id: 'secure-sign',
     label: 'Secure & Sign',
     apps: [
-      { name: 'Lock', desc: 'Shared password manager', icon: { kind: 'img', src: '/assets/icons/apps-lock.jpg' } },
+      { name: 'Lock', desc: 'Shared password manager', icon: { kind: 'img', src: '/assets/icons/apps-lock.jpg' }, href: '/products/lock' },
       { name: 'VPN', desc: 'Secure remote access', icon: { kind: 'lucide', Icon: Shield } },
-      { name: 'eSignature', desc: 'External contract signing', icon: { kind: 'lucide', Icon: PenLine } },
+      { name: 'eSignature', desc: 'External contract signing', icon: { kind: 'lucide', Icon: PenLine }, href: '/products/esignature' },
       { name: 'Doc Sign', desc: 'Internal document approval', icon: { kind: 'lucide', Icon: FileCheck } },
       { name: 'ID Card', desc: 'Digital staff ID & access', icon: { kind: 'lucide', Icon: BadgeCheck } },
     ],

@@ -6,6 +6,7 @@ import { PdfReaderTrustBar } from '@/components/pdf-reader/PdfReaderTrustBar';
 import { PdfReaderStatsRow } from '@/components/pdf-reader/PdfReaderStatsRow';
 import { PdfReaderSteps } from '@/components/pdf-reader/PdfReaderSteps';
 import { PdfReaderBentoGrid } from '@/components/pdf-reader/PdfReaderBentoGrid';
+import { PdfReaderToolsTabs } from '@/components/pdf-reader/PdfReaderToolsTabs';
 import { PdfReaderAltAnnotate } from '@/components/pdf-reader/PdfReaderAltAnnotate';
 import { PdfReaderAltSigning } from '@/components/pdf-reader/PdfReaderAltSigning';
 import { PdfReaderTestimonials } from '@/components/pdf-reader/PdfReaderTestimonials';
@@ -27,7 +28,8 @@ export default function PdfReaderProductPage() {
         <PdfReaderTrustBar />
         <PdfReaderStatsRow />
         <PdfReaderSteps />
-        <PdfReaderBentoGrid />
+        {/* <PdfReaderBentoGrid /> */}
+        <PdfReaderToolsTabs />
         <PdfReaderAltAnnotate />
         <PdfReaderAltSigning />
         <PdfReaderTestimonials />

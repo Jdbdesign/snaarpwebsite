@@ -224,8 +224,8 @@ export function SolutionMegaMenu({ isOpen, onClose, triggerRef }: SolutionMegaMe
 
           {/* Column 3: static promo panel — same across all three tabs */}
           <div className="mega-menu-promo">
-            <div className="mega-menu-promo-media solution-menu-promo-media">
-              <Building2 size={40} strokeWidth={1.25} aria-hidden="true" className="solution-menu-promo-icon" />
+            <div className="mega-menu-promo-media solution-menu-promo-media" style={{ overflow: 'hidden' }}>
+              <img src="/assets/images/2150917190.jpg" alt="Growing teams collaborating" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} />
             </div>
             <div className="mega-menu-promo-text">
               <p className="mega-menu-promo-title">Built for Growing Teams</p>

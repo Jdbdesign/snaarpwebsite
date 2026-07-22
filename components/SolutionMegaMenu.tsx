@@ -230,7 +230,7 @@ export function SolutionMegaMenu({ isOpen, onClose, triggerRef }: SolutionMegaMe
             <div className="mega-menu-promo-text">
               <p className="mega-menu-promo-title">Built for Growing Teams</p>
               <p className="mega-menu-promo-desc">From solo founders to full teams, the Stack scales with you.</p>
-              <a href="#" className="mega-menu-promo-cta" onClick={onClose}>
+              <a href="/products/mail" className="mega-menu-promo-cta" onClick={onClose}>
                 Explore Tools
                 <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
                   <path d="M1 5h11.5M8 1l4.5 4L8 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

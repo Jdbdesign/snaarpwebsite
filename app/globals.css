@@ -392,6 +392,98 @@ body {
   .mega-menu-promo-text { grid-column: 2; }
 }
 
+/* ===================== SOLUTION MEGA MENU ===================== */
+/* Shares the dropdown chrome, positioning, and item-grid layout/animation
+   with the Products mega menu above (.mega-menu*, .mega-menu-card,
+   .mega-menu-apps, .mega-menu-promo*) — only the sidebar tab button and
+   item icon treatment differ visually, so only those get new classes. */
+.solution-tab-btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  border: none;
+  border-radius: var(--radius-lg);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+}
+.solution-tab-btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-brand);
+  transition: height var(--duration-fast) var(--ease-out);
+}
+.solution-tab-btn:hover {
+  background: hsl(220, 20%, 96%);
+  color: var(--text-primary);
+}
+.solution-tab-btn.is-active {
+  color: var(--color-brand);
+  font-weight: 600;
+}
+.solution-tab-btn.is-active::before {
+  height: 18px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .solution-tab-btn::before { transition: none; }
+}
+
+.solution-menu-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-1);
+  margin: calc(var(--space-1) * -1);
+  border-radius: var(--radius-md);
+  transition: background var(--duration-fast) var(--ease-out);
+  /* Items with an href render as <Link> (an <a>) — reset link defaults so
+     it looks identical to the non-interactive <div> items next to it. */
+  color: inherit;
+  text-decoration: none;
+}
+.solution-menu-item:hover {
+  background: hsl(220, 20%, 96%);
+}
+.solution-menu-item.is-active {
+  background: var(--color-brand-subtle);
+}
+.solution-menu-item.is-active .mega-menu-app-title {
+  color: var(--color-brand);
+}
+
+.solution-menu-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  border-radius: var(--radius-md);
+  background: var(--color-brand-subtle);
+  color: var(--color-brand);
+}
+
+.solution-menu-promo-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.solution-menu-promo-icon {
+  color: rgba(255, 255, 255, 0.55);
+}
+
 .btn-dark {
   background: #17171a;
   color: #fff;
@@ -9060,6 +9152,166 @@ html:has(.work-drive) {
 
 @media (prefers-reduced-motion: reduce) {
   .esignature-page *, .esignature-page *::before, .esignature-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =====================================================================
+   SOLUTION PAGE TEMPLATE (/solutions/*)
+   First Solution page: Sales Pipeline & Outreach. This is a NEW, reusable
+   template (not the product-page template) — ported from its own standalone
+   design bundle the same way as the product pages above: inline
+   styles/colors kept as-is per component, section containers use the site's
+   shared max-w-7xl mx-auto px-6 lg:px-10 layout (not the bundle's own
+   max-width:820/960/1060/1120/1160/1200/720 values — those were per-section
+   outer widths in the bundle; here only the OUTER container is corrected to
+   match every other page, inner content widths like the hero's 820px text
+   column are preserved since they're deliberate typographic choices, not
+   page-gutter issues). Headings map onto rem-based scale classes matched
+   1:1 to Mail (/products/mail) — the first entry in the product dropdown
+   and the canonical reference for the site's typography: hero-heading
+   3rem→4.5rem/700/1.15/-0.02em (.mail-hero-heading), section-heading
+   2.25rem→3.75rem/700/1.25/-0.02em (.mail-features-heading /
+   .mail-usecases-heading), card-title 1.25rem/700/1.35 with no
+   letter-spacing (.mail-usecases-card-title), card-desc 0.875rem/1.6
+   (.mail-usecases-card-desc / .mail-features-card-desc), lede/subhead/
+   row-desc 1.125rem/1.6-1.625 (Mail's hero paragraph + .mail-features-
+   subhead/.mail-team-subhead/.mail-usecases-subhead, all identical). This
+   scale is also shared by Contacts/Teams/Business Card/Kalender/Meet/
+   Sheets/PDF Reader/Docs/Presentation/Notepad/CRM — Mail is simply the
+   one to point to since it's first in the nav. Lock and eSignature run a
+   smaller, standalone scale (hero maxes out at 3.5rem/56px instead of
+   4.5rem/72px) — they're the outlier here, not the reference, since
+   they're only 2 of 15 product pages; Solution pages follow the scale
+   the rest of the site uses.
+   Reveal timing (660ms, cubic-bezier(.16,1,.3,1),
+   threshold 0.12 / rootMargin -8%) is ported from the bundle's own
+   setupReveal() and matches Lock/eSignature's bundles almost exactly, so
+   this page uses its own data-solution-reveal attribute/hook
+   (components/solutions/useSolutionReveal.ts) rather than the site's shared
+   [data-reveal] system, same rationale as Lock/CRM/eSignature. Unlike those
+   product pages, this hook/class prefix is deliberately `solution`, not
+   page-specific — the whole Solution template (section shells in
+   components/solutions/*, this reveal system, this typography scale) is
+   designed to be reused by future Solution pages (Customer Onboarding, Team
+   Onboarding & Training, etc.), which will just swap the copy/icons/visuals,
+   not rebuild the shell. The final CTA uses the shared <HomeFinalCTA>
+   component, same as every product page (commit c860768's "unify final CTA
+   across all pages" now applies here too) — the old purple centered-card
+   variant (SolutionFinalCTA) was removed.
+   ===================================================================== */
+.solution-page [data-solution-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .66s cubic-bezier(.16,1,.3,1), transform .66s cubic-bezier(.16,1,.3,1);
+}
+.solution-page [data-solution-reveal].solution-is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.solution-hero-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .solution-hero-heading { font-size: 4.5rem; }
+}
+
+.solution-lede {
+  font-size: 1.125rem;
+  line-height: 1.625;
+}
+
+/* Centered eyebrow + H2 at the top of a full section (How it Works) */
+.solution-section-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .solution-section-heading { font-size: 3.75rem; }
+}
+
+/* Left-aligned alternating feature-row H2 */
+.solution-row-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .solution-row-heading { font-size: 3rem; }
+}
+
+/* Feature-row descriptive paragraph — product pages reuse their `-lede`
+   class for this (e.g. .crm-lede on CrmAltLogging's row copy), so this
+   matches .solution-lede's size/line-height exactly rather than having
+   its own value. */
+.solution-row-desc {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* How-it-Works step card title + desc — matches .mail-usecases-card-title
+   (icon badge + title + desc is the same card shape as Mail's usecases
+   grid). Mail's card titles don't set letter-spacing at all, unlike its
+   big section headings, so this doesn't either. */
+.solution-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.solution-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Hero UI-snippet card title */
+.solution-snippet-title {
+  font-size: 1.09375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Testimonial pull-quote */
+.solution-quote {
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+@media (min-width: 768px) {
+  .solution-quote { font-size: 1.8125rem; }
+}
+
+/* "Built from apps you already know" chip. border/box-shadow/transform live
+   here (not inline) so the :hover state below can actually override them —
+   inline styles always beat stylesheet rules, including :hover. This is the
+   page's one interactive hover state beyond standard link color, ported
+   from the bundle's style-hover attribute. */
+.solution-app-chip {
+  border: 1px solid #EEEDF3;
+  box-shadow: 0 2px 5px -2px rgba(37,22,84,.1), 0 20px 40px -30px rgba(37,22,84,.34);
+  transition: border-color .25s, box-shadow .25s, transform .25s;
+}
+.solution-app-chip:hover {
+  border-color: #DCD4F0;
+  box-shadow: 0 6px 14px -6px rgba(37,22,84,.16), 0 26px 44px -26px rgba(37,22,84,.4);
+  transform: translateY(-3px);
+}
+
+@keyframes solution-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solution-page *, .solution-page *::before, .solution-page *::after {
     animation: none !important;
     transition: none !important;
   }

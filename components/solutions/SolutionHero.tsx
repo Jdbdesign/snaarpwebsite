@@ -24,8 +24,8 @@ interface SolutionHeroProps {
   heading: ReactNode;
   lede: string;
   ctas: SolutionCta[];
-  trustIcon: ReactNode;
-  trustText: string;
+  trustIcon?: ReactNode;
+  trustText?: string;
   snippetCards: SolutionSnippetCard[];
 }
 
@@ -85,10 +85,12 @@ export function SolutionHero({ badgeTag, badgeText, heading, lede, ctas, trustIc
             )}
           </SolutionRevealSection>
 
+          {(trustIcon || trustText) && (
           <SolutionRevealSection reveal revealDelay={320} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '9px', marginTop: '24px', fontSize: '13.5px', color: '#8B85A0', fontWeight: 500 }}>
             {trustIcon}
             {trustText}
           </SolutionRevealSection>
+          )}
         </div>
 
         {/* Three soft tilted UI-snippet cards — snippet mockups are bespoke

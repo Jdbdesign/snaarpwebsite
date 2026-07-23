@@ -9310,6 +9310,24 @@ html:has(.work-drive) {
   to { transform: translateX(-50%); }
 }
 
+@keyframes sc-typing {
+  0%, 60%, 100% { opacity: .3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+@keyframes sc-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.sc-typing-dot {
+  animation: sc-typing 1.2s ease-in-out infinite;
+}
+
+.sc-blink-cursor {
+  animation: sc-blink 1s step-end infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .solution-page *, .solution-page *::before, .solution-page *::after {
     animation: none !important;

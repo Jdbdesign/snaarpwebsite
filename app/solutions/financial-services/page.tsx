@@ -88,7 +88,7 @@ const snippetCards: SolutionSnippetCard[] = [
 // CRM → /products/crm (real), eSignature → /products/esignature (real),
 // Lock → /products/lock (real).
 const appChips: SolutionAppChip[] = [
-  { name: 'Lock', desc: 'A secure, encrypted vault for shared credentials and access.', href: '/products/lock', tint: 'violet', icon: { kind: 'lucide', Icon: Lock }, external: false },
+  { name: 'Lock', desc: 'A secure, encrypted vault for shared credentials and access.', href: '/products/lock', tint: 'violet', icon: { kind: 'img', src: '/assets/icons/apps-lock.jpg' }, external: false },
   { name: 'Digital ID Card', desc: 'Verified staff identity for every login and access point.', href: '/', tint: 'teal', icon: { kind: 'lucide', Icon: BadgeCheck }, external: true },
   { name: 'CRM', desc: 'Track every client relationship, from first meeting to renewal.', href: '/products/crm', tint: 'amber', icon: { kind: 'lucide', Icon: Users }, external: false },
   { name: 'eSignature', desc: 'Get agreements and disclosures signed, tracked, and on record.', href: '/products/esignature', tint: 'rose', icon: { kind: 'lucide', Icon: PenLine }, external: false },

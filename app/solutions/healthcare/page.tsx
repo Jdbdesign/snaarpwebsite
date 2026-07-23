@@ -86,9 +86,9 @@ const snippetCards: SolutionSnippetCard[] = [
 // dedicated route (/products/digital-id-card doesn't exist) — uses external:true.
 // Document uses /products/docs (real route, not /products/document from standalone).
 const appChips: SolutionAppChip[] = [
-  { name: 'Lock', desc: 'A secure, encrypted vault for shared credentials and access.', href: '/products/lock', tint: 'violet', icon: { kind: 'lucide', Icon: Lock }, external: false },
+  { name: 'Lock', desc: 'A secure, encrypted vault for shared credentials and access.', href: '/products/lock', tint: 'violet', icon: { kind: 'img', src: '/assets/icons/apps-lock.jpg' }, external: false },
   { name: 'Digital ID Card', desc: 'Verified staff identity for every login and access point.', href: '/', tint: 'teal', icon: { kind: 'lucide', Icon: BadgeCheck }, external: true },
-  { name: 'Document', desc: 'Controlled, permissioned access to shared records.', href: '/products/docs', tint: 'amber', icon: { kind: 'lucide', Icon: FileText }, external: false },
+  { name: 'Document', desc: 'Controlled, permissioned access to shared records.', href: '/products/docs', tint: 'amber', icon: { kind: 'img', src: '/assets/icons/apps-document.png' }, external: false },
   { name: 'Kalender', desc: 'Patient scheduling without the phone tag.', href: '/products/kalender', tint: 'rose', icon: { kind: 'lucide', Icon: Calendar }, external: false },
 ];
 

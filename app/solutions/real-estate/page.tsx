@@ -82,8 +82,8 @@ const snippetCards: SolutionSnippetCard[] = [
 // Document uses /products/docs (corrected from standalone's /products/document).
 const appChips: SolutionAppChip[] = [
   { name: 'CRM', desc: 'Track buyers, sellers, and property interests in one place.', href: '/products/crm', tint: 'violet', icon: { kind: 'lucide', Icon: Users }, external: false },
-  { name: 'Kalender', desc: 'Let clients book viewings without the back-and-forth.', href: '/products/kalender', tint: 'rose', icon: { kind: 'lucide', Icon: Calendar }, external: false },
-  { name: 'Document', desc: 'Store, share, and manage contracts and tenancy agreements.', href: '/products/docs', tint: 'amber', icon: { kind: 'lucide', Icon: FileText }, external: false },
+  { name: 'Kalender', desc: 'Let clients book viewings without the back-and-forth.', href: '/products/kalender', tint: 'rose', icon: { kind: 'img', src: '/assets/icons/apps-kalender.jpg' }, external: false },
+  { name: 'Document', desc: 'Store, share, and manage contracts and tenancy agreements.', href: '/products/docs', tint: 'amber', icon: { kind: 'img', src: '/assets/icons/apps-document.png' }, external: false },
   { name: 'eSignature', desc: 'Get offers and contracts signed without printing a thing.', href: '/products/esignature', tint: 'teal', icon: { kind: 'lucide', Icon: PenLine }, external: false },
 ];
 

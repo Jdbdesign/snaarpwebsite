@@ -79,9 +79,9 @@ const snippetCards: SolutionSnippetCard[] = [
 ];
 
 const appChips: SolutionAppChip[] = [
-  { name: 'Meet', desc: 'Video calls that start in one click from any conversation.', href: '/products/meet', tint: 'violet', icon: { kind: 'lucide', Icon: Video }, external: false },
+  { name: 'Meet', desc: 'Video calls that start in one click from any conversation.', href: '/products/meet', tint: 'violet', icon: { kind: 'img', src: '/assets/icons/apps-meet.jpg' }, external: false },
   { name: 'Teams', desc: 'Channels and DMs that keep context with the work.', href: '/products/teams', tint: 'amber', icon: { kind: 'lucide', Icon: Users }, external: false },
-  { name: 'Document', desc: 'Real-time co-editing with live cursors and comments.', href: '/products/docs', tint: 'teal', icon: { kind: 'lucide', Icon: FileText }, external: false },
+  { name: 'Document', desc: 'Real-time co-editing with live cursors and comments.', href: '/products/docs', tint: 'teal', icon: { kind: 'img', src: '/assets/icons/apps-document.png' }, external: false },
   { name: 'Work Drive', desc: 'One folder for every file your team touches.', href: '/products/work-drive', tint: 'rose', icon: { kind: 'lucide', Icon: HardDrive }, external: false },
 ];
 

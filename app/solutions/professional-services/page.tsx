@@ -84,8 +84,8 @@ const snippetCards: SolutionSnippetCard[] = [
 const appChips: SolutionAppChip[] = [
   { name: 'CRM', desc: 'Track every client relationship from first call to renewal.', href: '/products/crm', tint: 'violet', icon: { kind: 'lucide', Icon: Users }, external: false },
   { name: 'Books', desc: 'Invoice clients and keep the books current, automatically.', href: '/', tint: 'amber', icon: { kind: 'lucide', Icon: BookOpen }, external: true },
-  { name: 'Document', desc: 'Share proposals, briefs, and reports your client can comment on live.', href: '/products/docs', tint: 'teal', icon: { kind: 'lucide', Icon: FileText }, external: false },
-  { name: 'Kalender', desc: 'Let clients book time with you without the back-and-forth.', href: '/products/kalender', tint: 'rose', icon: { kind: 'lucide', Icon: Calendar }, external: false },
+  { name: 'Document', desc: 'Share proposals, briefs, and reports your client can comment on live.', href: '/products/docs', tint: 'teal', icon: { kind: 'img', src: '/assets/icons/apps-document.png' }, external: false },
+  { name: 'Kalender', desc: 'Let clients book time with you without the back-and-forth.', href: '/products/kalender', tint: 'rose', icon: { kind: 'img', src: '/assets/icons/apps-kalender.jpg' }, external: false },
 ];
 
 const steps: SolutionStep[] = [

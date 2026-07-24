@@ -24,14 +24,24 @@ import { Price } from '@/components/currency/Price';
 
 type AppIcon = { kind: 'img'; src: string } | { kind: 'lucide'; Icon: LucideIcon };
 
-interface ProductApp {
+/** Platforms a product ships a downloadable/loginable client on. Used by
+ * DownloadMegaMenu (and the future per-product Download pages) to decide
+ * which of the five platform slots to render — not every app has all five. */
+export type DownloadPlatform = 'ios' | 'android' | 'web' | 'windows' | 'macos';
+
+export interface ProductApp {
   name: string;
   desc: string;
   icon: AppIcon;
   href?: string;
+  /** Only set for apps that actually ship a client on these platforms.
+   * Omitted (rather than an empty array) for apps that don't have a
+   * Download-page story yet — DownloadMegaMenu treats "no platforms" the
+   * same way SolutionMegaMenu treats "no href": rendered, but inert. */
+  platforms?: DownloadPlatform[];
 }
 
-interface ProductCategory {
+export interface ProductCategory {
   id: string;
   label: string;
   apps: ProductApp[];
@@ -42,37 +52,37 @@ interface ProductCategory {
 // these for Lucide icons. Icons marked `lucide` are placeholders until a
 // matching custom mark exists in a SnaarpLogos asset folder (none present
 // in this repo yet).
-const CATEGORIES: ProductCategory[] = [
+export const CATEGORIES: ProductCategory[] = [
   {
     id: 'communicate',
     label: 'Communicate',
     apps: [
-      { name: 'Snaarp Mail', desc: 'Business email on your own domain', icon: { kind: 'img', src: '/assets/icons/envelope.jpg' }, href: '/products/mail' },
-      { name: 'Kalender', desc: 'Shared calendars & booking links', icon: { kind: 'img', src: '/assets/icons/apps-kalender.jpg' }, href: '/products/kalender' },
-      { name: 'Contacts', desc: 'One shared address book', icon: { kind: 'img', src: '/assets/icons/search.jpg' }, href: '/products/contacts' },
-      { name: 'Meet', desc: 'Video calls, screen share & recording', icon: { kind: 'img', src: '/assets/icons/apps-meet.jpg' }, href: '/products/meet' },
-      { name: 'Teams', desc: 'Group chat & channels', icon: { kind: 'img', src: '/assets/icons/chat-bubbles.jpg' }, href: '/products/teams' },
-      { name: 'AI Compose', desc: 'AI drafting across every app', icon: { kind: 'img', src: '/assets/icons/ai-sparkle.jpg' }, href: '/products/ai-compose' },
-      { name: 'Business Card', desc: 'Digital business card sharing', icon: { kind: 'lucide', Icon: Contact }, href: '/products/business-card' },
+      { name: 'Snaarp Mail', desc: 'Business email on your own domain', icon: { kind: 'img', src: '/assets/icons/envelope.jpg' }, href: '/products/mail', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
+      { name: 'Kalender', desc: 'Shared calendars & booking links', icon: { kind: 'img', src: '/assets/icons/apps-kalender.jpg' }, href: '/products/kalender', platforms: ['ios', 'android', 'web'] },
+      { name: 'Contacts', desc: 'One shared address book', icon: { kind: 'img', src: '/assets/icons/search.jpg' }, href: '/products/contacts', platforms: ['ios', 'android', 'web'] },
+      { name: 'Meet', desc: 'Video calls, screen share & recording', icon: { kind: 'img', src: '/assets/icons/apps-meet.jpg' }, href: '/products/meet', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
+      { name: 'Teams', desc: 'Group chat & channels', icon: { kind: 'img', src: '/assets/icons/chat-bubbles.jpg' }, href: '/products/teams', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
+      { name: 'AI Compose', desc: 'AI drafting across every app', icon: { kind: 'img', src: '/assets/icons/ai-sparkle.jpg' }, href: '/products/ai-compose', platforms: ['web'] },
+      { name: 'Business Card', desc: 'Digital business card sharing', icon: { kind: 'lucide', Icon: Contact }, href: '/products/business-card', platforms: ['ios', 'android'] },
     ],
   },
   {
     id: 'create-store',
     label: 'Create & Store',
     apps: [
-      { name: 'Work Drive', desc: 'Shared file storage', icon: { kind: 'img', src: '/assets/icons/cube.jpg' }, href: '/products/work-drive' },
-      { name: 'Document', desc: 'Real-time co-editing docs', icon: { kind: 'img', src: '/assets/icons/apps-document.png' }, href: '/products/docs' },
-      { name: 'Sheet', desc: 'Collaborative spreadsheets', icon: { kind: 'img', src: '/assets/icons/apps-sheet.jpg' }, href: '/products/sheets' },
-      { name: 'Presentation', desc: 'Build & present decks', icon: { kind: 'img', src: '/assets/icons/p-icon.jpg' }, href: '/products/presentation' },
-      { name: 'PDF Reader', desc: 'View, annotate & merge PDFs', icon: { kind: 'lucide', Icon: FileType }, href: '/products/pdf-reader' },
-      { name: 'NotePad', desc: 'Notes & reminders, synced', icon: { kind: 'lucide', Icon: NotebookPen }, href: '/products/notepad' },
+      { name: 'Work Drive', desc: 'Shared file storage', icon: { kind: 'img', src: '/assets/icons/cube.jpg' }, href: '/products/work-drive', platforms: ['web', 'windows', 'macos'] },
+      { name: 'Document', desc: 'Real-time co-editing docs', icon: { kind: 'img', src: '/assets/icons/apps-document.png' }, href: '/products/docs', platforms: ['web', 'windows', 'macos'] },
+      { name: 'Sheet', desc: 'Collaborative spreadsheets', icon: { kind: 'img', src: '/assets/icons/apps-sheet.jpg' }, href: '/products/sheets', platforms: ['web', 'windows', 'macos'] },
+      { name: 'Presentation', desc: 'Build & present decks', icon: { kind: 'img', src: '/assets/icons/p-icon.jpg' }, href: '/products/presentation', platforms: ['web', 'windows', 'macos'] },
+      { name: 'PDF Reader', desc: 'View, annotate & merge PDFs', icon: { kind: 'lucide', Icon: FileType }, href: '/products/pdf-reader', platforms: ['web', 'windows', 'macos'] },
+      { name: 'NotePad', desc: 'Notes & reminders, synced', icon: { kind: 'lucide', Icon: NotebookPen }, href: '/products/notepad', platforms: ['ios', 'android', 'web'] },
     ],
   },
   {
     id: 'grow-revenue',
     label: 'Grow Revenue',
     apps: [
-      { name: 'CRM', desc: 'Pipeline & deal tracking', icon: { kind: 'lucide', Icon: UsersRound }, href: '/products/crm' },
+      { name: 'CRM', desc: 'Pipeline & deal tracking', icon: { kind: 'lucide', Icon: UsersRound }, href: '/products/crm', platforms: ['ios', 'android', 'web'] },
       { name: 'Zeus Contacts', desc: 'Enriched lead data', icon: { kind: 'lucide', Icon: Zap } },
       { name: 'Sendrit', desc: 'Outbound email sequences', icon: { kind: 'img', src: '/assets/icons/apps-sendrit.jpg' } },
       { name: 'VerifyRit', desc: 'Email verification', icon: { kind: 'lucide', Icon: ShieldCheck } },
@@ -82,9 +92,9 @@ const CATEGORIES: ProductCategory[] = [
     id: 'secure-sign',
     label: 'Secure & Sign',
     apps: [
-      { name: 'Lock', desc: 'Shared password manager', icon: { kind: 'img', src: '/assets/icons/apps-lock.jpg' }, href: '/products/lock' },
+      { name: 'Lock', desc: 'Shared password manager', icon: { kind: 'img', src: '/assets/icons/apps-lock.jpg' }, href: '/products/lock', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
       { name: 'VPN', desc: 'Secure remote access', icon: { kind: 'lucide', Icon: Shield } },
-      { name: 'eSignature', desc: 'External contract signing', icon: { kind: 'lucide', Icon: PenLine }, href: '/products/esignature' },
+      { name: 'eSignature', desc: 'External contract signing', icon: { kind: 'lucide', Icon: PenLine }, href: '/products/esignature', platforms: ['ios', 'android', 'web'] },
       { name: 'Doc Sign', desc: 'Internal document approval', icon: { kind: 'lucide', Icon: FileCheck } },
       { name: 'ID Card', desc: 'Digital staff ID & access', icon: { kind: 'lucide', Icon: BadgeCheck } },
     ],
@@ -110,7 +120,7 @@ function findCategoryIdForPath(pathname: string | null): string | undefined {
   return CATEGORIES.find((cat) => cat.apps.some((app) => app.href === pathname))?.id;
 }
 
-function AppIconView({ icon }: { icon: AppIcon }) {
+export function AppIconView({ icon }: { icon: AppIcon }) {
   if (icon.kind === 'img') {
     return <img src={icon.src} alt="" aria-hidden="true" className="mega-app-icon-img" />;
   }

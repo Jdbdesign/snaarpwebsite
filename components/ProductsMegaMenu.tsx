@@ -83,9 +83,9 @@ export const CATEGORIES: ProductCategory[] = [
     label: 'Grow Revenue',
     apps: [
       { name: 'CRM', desc: 'Pipeline & deal tracking', icon: { kind: 'lucide', Icon: UsersRound }, href: '/products/crm', platforms: ['ios', 'android', 'web'] },
-      { name: 'Zeus Contacts', desc: 'Enriched lead data', icon: { kind: 'lucide', Icon: Zap } },
-      { name: 'Sendrit', desc: 'Outbound email sequences', icon: { kind: 'img', src: '/assets/icons/apps-sendrit.jpg' } },
-      { name: 'VerifyRit', desc: 'Email verification', icon: { kind: 'lucide', Icon: ShieldCheck } },
+      { name: 'Zeus Contacts', desc: 'Enriched lead data', icon: { kind: 'lucide', Icon: Zap }, platforms: ['web'] },
+      { name: 'Sendrit', desc: 'Outbound email sequences', icon: { kind: 'img', src: '/assets/icons/apps-sendrit.jpg' }, platforms: ['web'] },
+      { name: 'VerifyRit', desc: 'Email verification', icon: { kind: 'lucide', Icon: ShieldCheck }, platforms: ['web'] },
     ],
   },
   {
@@ -93,21 +93,21 @@ export const CATEGORIES: ProductCategory[] = [
     label: 'Secure & Sign',
     apps: [
       { name: 'Lock', desc: 'Shared password manager', icon: { kind: 'img', src: '/assets/icons/apps-lock.jpg' }, href: '/products/lock', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
-      { name: 'VPN', desc: 'Secure remote access', icon: { kind: 'lucide', Icon: Shield } },
+      // { name: 'VPN', desc: 'Secure remote access', icon: { kind: 'lucide', Icon: Shield } },
       { name: 'eSignature', desc: 'External contract signing', icon: { kind: 'lucide', Icon: PenLine }, href: '/products/esignature', platforms: ['ios', 'android', 'web'] },
-      { name: 'Doc Sign', desc: 'Internal document approval', icon: { kind: 'lucide', Icon: FileCheck } },
-      { name: 'ID Card', desc: 'Digital staff ID & access', icon: { kind: 'lucide', Icon: BadgeCheck } },
+      { name: 'Doc Sign', desc: 'Internal document approval', icon: { kind: 'lucide', Icon: FileCheck }, platforms: ['ios', 'android', 'web'] },
+      { name: 'ID Card', desc: 'Digital staff ID & access', icon: { kind: 'lucide', Icon: BadgeCheck }, platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
     ],
   },
   {
     id: 'run-business',
     label: 'Run the Business',
     apps: [
-      { name: 'Books', desc: 'Invoicing & bookkeeping', icon: { kind: 'lucide', Icon: BookOpen } },
-      { name: 'Accounting Software', desc: 'Full accounting & reporting', icon: { kind: 'lucide', Icon: Calculator } },
-      { name: 'Project Management', desc: 'Sprints, tasks & tracking', icon: { kind: 'lucide', Icon: Kanban } },
-      { name: 'Elearn', desc: 'Team training & onboarding', icon: { kind: 'lucide', Icon: GraduationCap } },
-      { name: 'Neo AI', desc: 'Cross-app AI assistant', icon: { kind: 'lucide', Icon: BrainCircuit } },
+      { name: 'Books', desc: 'Invoicing & bookkeeping', icon: { kind: 'lucide', Icon: BookOpen }, platforms: ['web'] },
+      { name: 'Accounting Software', desc: 'Full accounting & reporting', icon: { kind: 'lucide', Icon: Calculator }, platforms: ['web'] },
+      { name: 'Project Management', desc: 'Sprints, tasks & tracking', icon: { kind: 'lucide', Icon: Kanban }, platforms: ['web'] },
+      { name: 'Elearn', desc: 'Team training & onboarding', icon: { kind: 'lucide', Icon: GraduationCap }, platforms: ['ios', 'android', 'web'] },
+      { name: 'Neo AI', desc: 'Cross-app AI assistant', icon: { kind: 'lucide', Icon: BrainCircuit }, platforms: ['web'] },
     ],
   },
 ];

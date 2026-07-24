@@ -543,7 +543,7 @@ body {
   height: 22px;
   flex-shrink: 0;
 }
-.download-menu-product-icon .mega-app-icon-lucide { color: inherit; }
+.download-menu-product-icon .mega-app-icon-lucide { color: var(--color-brand); }
 
 .download-menu-platforms {
   display: grid;

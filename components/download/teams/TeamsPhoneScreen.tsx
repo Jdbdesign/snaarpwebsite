@@ -1,4 +1,5 @@
 import { Hash, Plus } from 'lucide-react';
+import { AVATARS } from '../avatarPaths';
 
 type Tone = 'brand' | 'mint' | 'slate' | 'teal';
 
@@ -9,9 +10,9 @@ const CHANNELS: { name: string; preview: string; unread?: number; active?: boole
   { name: 'engineering', preview: 'Elena: build passed ✅', unread: 5 },
 ];
 
-const DMS: { name: string; initials: string; tone: Tone; online?: boolean }[] = [
-  { name: 'Priya Nair', initials: 'PN', tone: 'mint', online: true },
-  { name: 'Marcus Cole', initials: 'MC', tone: 'slate' },
+const DMS: { name: string; initials: string; tone: Tone; online?: boolean; avatar: string }[] = [
+  { name: 'Priya Nair', initials: 'PN', tone: 'mint', online: true, avatar: AVATARS.priyaNair },
+  { name: 'Marcus Cole', initials: 'MC', tone: 'slate', avatar: AVATARS.marcusCole },
 ];
 
 /** Teams-specific phone screen content, dropped into <DownloadPhoneFrame>.
@@ -26,7 +27,9 @@ export function TeamsPhoneScreen() {
     <div className="teams-phone-screen">
       <div className="teams-phone-topbar">
         <span className="teams-phone-title">Teams</span>
-        <span className="teams-phone-avatar">JS</span>
+        <span className="teams-phone-avatar">
+          <img src={AVATARS.jacob} alt="" />
+        </span>
       </div>
 
       <p className="teams-phone-section-label">Channels</p>
@@ -50,7 +53,7 @@ export function TeamsPhoneScreen() {
         {DMS.map((dm) => (
           <div className="teams-phone-dm-row" key={dm.name}>
             <span className={`teams-phone-dm-avatar is-${dm.tone}`}>
-              {dm.initials}
+              <img src={dm.avatar} alt="" />
               <span className={`teams-phone-dm-presence${dm.online ? ' is-online' : ' is-offline'}`} />
             </span>
             <span className="teams-phone-channel-name">{dm.name}</span>

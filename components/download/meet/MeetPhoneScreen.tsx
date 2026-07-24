@@ -1,4 +1,5 @@
 import { Mic, MicOff, Video, PhoneOff } from 'lucide-react';
+import { AVATARS } from '../avatarPaths';
 
 type Tone = 'brand' | 'mint' | 'amber' | 'slate';
 
@@ -8,12 +9,13 @@ interface Tile {
   tone: Tone;
   cameraOn: boolean;
   micOn: boolean;
+  avatar: string;
 }
 
-const MAIN_TILE: Tile = { name: 'Priya Nair', initials: 'PN', tone: 'mint', cameraOn: true, micOn: true };
+const MAIN_TILE: Tile = { name: 'Priya Nair', initials: 'PN', tone: 'mint', cameraOn: true, micOn: true, avatar: AVATARS.priyaNair };
 const THUMB_TILES: Tile[] = [
-  { name: 'Marcus Cole', initials: 'MC', tone: 'slate', cameraOn: false, micOn: false },
-  { name: 'You', initials: 'JS', tone: 'brand', cameraOn: true, micOn: true },
+  { name: 'Marcus Cole', initials: 'MC', tone: 'slate', cameraOn: false, micOn: false, avatar: AVATARS.marcusCole },
+  { name: 'You', initials: 'JS', tone: 'brand', cameraOn: true, micOn: true, avatar: AVATARS.jacob },
 ];
 
 /** Meet-specific phone-screen content, dropped into <DownloadPhoneFrame>.
@@ -34,8 +36,7 @@ export function MeetPhoneScreen() {
       <div className="meet-phone-stage">
         <div className="meet-phone-tile meet-phone-tile--main is-speaking">
           <span className={`meet-phone-face is-${MAIN_TILE.tone}`}>
-            <span className="meet-phone-face-head" />
-            <span className="meet-phone-face-body" />
+            <img src={MAIN_TILE.avatar} alt="" />
           </span>
           <span className="meet-phone-tile-label">
             <Mic size={9} aria-hidden="true" />
@@ -53,11 +54,12 @@ export function MeetPhoneScreen() {
             <div className="meet-phone-tile meet-phone-tile--thumb" key={tile.name}>
               {tile.cameraOn ? (
                 <span className={`meet-phone-face is-${tile.tone}`}>
-                  <span className="meet-phone-face-head" />
-                  <span className="meet-phone-face-body" />
+                  <img src={tile.avatar} alt="" />
                 </span>
               ) : (
-                <span className={`meet-phone-avatar is-${tile.tone}`}>{tile.initials}</span>
+                <span className={`meet-phone-avatar is-${tile.tone}`}>
+                  <img src={tile.avatar} alt="" />
+                </span>
               )}
               <span className="meet-phone-tile-label">
                 {tile.micOn ? <Mic size={8} aria-hidden="true" /> : <MicOff size={8} className="is-muted" aria-hidden="true" />}

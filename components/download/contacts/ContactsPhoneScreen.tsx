@@ -1,32 +1,34 @@
 import { Search, Plus } from 'lucide-react';
+import { AVATARS } from '../avatarPaths';
 
 interface PhoneContact {
   initials: string;
   name: string;
   role: string;
   tone: 'brand' | 'mint' | 'amber' | 'slate';
+  avatar: string;
 }
 
 const SECTIONS: { letter: string; contacts: PhoneContact[] }[] = [
   {
     letter: 'A',
-    contacts: [{ initials: 'AC', name: 'Amara Chen', role: 'Lumina Design Studio', tone: 'brand' }],
+    contacts: [{ initials: 'AC', name: 'Amara Chen', role: 'Lumina Design Studio', tone: 'brand', avatar: AVATARS.amaraChen }],
   },
   {
     letter: 'D',
-    contacts: [{ initials: 'DO', name: 'Daniel Osei', role: 'Bank of Tomorrow', tone: 'amber' }],
+    contacts: [{ initials: 'DO', name: 'Daniel Osei', role: 'Bank of Tomorrow', tone: 'amber', avatar: AVATARS.danielOsei }],
   },
   {
     letter: 'M',
-    contacts: [{ initials: 'MW', name: 'Marcus Webb', role: 'ClearPath Logistics', tone: 'slate' }],
+    contacts: [{ initials: 'MW', name: 'Marcus Webb', role: 'ClearPath Logistics', tone: 'slate', avatar: AVATARS.marcusWebb }],
   },
   {
     letter: 'P',
-    contacts: [{ initials: 'PN', name: 'Priya Nair', role: 'Northwind Vendors', tone: 'mint' }],
+    contacts: [{ initials: 'PN', name: 'Priya Nair', role: 'Northwind Vendors', tone: 'mint', avatar: AVATARS.priyaNair }],
   },
   {
     letter: 'S',
-    contacts: [{ initials: 'SR', name: 'Sofia Reyes', role: 'Glassdoor', tone: 'brand' }],
+    contacts: [{ initials: 'SR', name: 'Sofia Reyes', role: 'Glassdoor', tone: 'brand', avatar: AVATARS.sofiaReyes }],
   },
 ];
 
@@ -39,7 +41,9 @@ export function ContactsPhoneScreen() {
     <div className="contacts-phone-screen">
       <div className="contacts-phone-topbar">
         <span className="contacts-phone-title">Contacts</span>
-        <span className="contacts-phone-avatar">JS</span>
+        <span className="contacts-phone-avatar">
+          <img src={AVATARS.jacob} alt="" />
+        </span>
       </div>
 
       <label className="contacts-phone-search">
@@ -53,7 +57,9 @@ export function ContactsPhoneScreen() {
             <span className="contacts-phone-section-letter">{section.letter}</span>
             {section.contacts.map((contact) => (
               <div className="contacts-phone-row" key={contact.name}>
-                <span className={`contacts-phone-avatar-circle is-${contact.tone}`}>{contact.initials}</span>
+                <span className={`contacts-phone-avatar-circle is-${contact.tone}`}>
+                  <img src={contact.avatar} alt="" />
+                </span>
                 <span className="contacts-phone-row-text">
                   <span className="contacts-phone-row-name">{contact.name}</span>
                   <span className="contacts-phone-row-role">{contact.role}</span>

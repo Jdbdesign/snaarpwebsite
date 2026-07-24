@@ -1,4 +1,5 @@
 import { Search, SlidersHorizontal, Pencil } from 'lucide-react';
+import { AVATARS } from '../avatarPaths';
 
 interface PhoneEmailRow {
   initials: string;
@@ -8,14 +9,15 @@ interface PhoneEmailRow {
   time: string;
   unread?: boolean;
   avatarTone: 'brand' | 'mint' | 'amber' | 'slate';
+  avatar: string;
 }
 
 const ROWS: PhoneEmailRow[] = [
-  { initials: 'LD', sender: 'Lumina Design Studio', subject: 'Project Kick-off Meeting', preview: "Hi Jacob, we're excited to start the...", time: '09:14', unread: true, avatarTone: 'brand' },
-  { initials: 'AC', sender: 'Arlo from Creative', subject: 'Feedback on New Draft', preview: "I've reviewed the latest designs and...", time: '08:41', unread: true, avatarTone: 'mint' },
-  { initials: 'GL', sender: 'Glassdoor', subject: 'New Senior Designer roles near you', preview: '12 new roles match your saved search', time: 'Yesterday', avatarTone: 'slate' },
-  { initials: 'SP', sender: 'Spotify for Work', subject: 'Get 1 month of Q3 Premium', preview: 'Team plan renews in 3 days', time: 'Yesterday', avatarTone: 'mint' },
-  { initials: 'BT', sender: 'Bank of Tomorrow', subject: 'Your Monthly Statement is Ready', preview: 'View your digital statement for the...', time: 'Mon', avatarTone: 'amber' },
+  { initials: 'LD', sender: 'Lumina Design Studio', subject: 'Project Kick-off Meeting', preview: "Hi Jacob, we're excited to start the...", time: '09:14', unread: true, avatarTone: 'brand', avatar: AVATARS.amaraChen },
+  { initials: 'AC', sender: 'Arlo from Creative', subject: 'Feedback on New Draft', preview: "I've reviewed the latest designs and...", time: '08:41', unread: true, avatarTone: 'mint', avatar: AVATARS.arlo },
+  { initials: 'GL', sender: 'Glassdoor', subject: 'New Senior Designer roles near you', preview: '12 new roles match your saved search', time: 'Yesterday', avatarTone: 'slate', avatar: AVATARS.sofiaReyes },
+  { initials: 'SP', sender: 'Spotify for Work', subject: 'Get 1 month of Q3 Premium', preview: 'Team plan renews in 3 days', time: 'Yesterday', avatarTone: 'mint', avatar: AVATARS.spotifyContact },
+  { initials: 'BT', sender: 'Bank of Tomorrow', subject: 'Your Monthly Statement is Ready', preview: 'View your digital statement for the...', time: 'Mon', avatarTone: 'amber', avatar: AVATARS.danielOsei },
 ];
 
 /** Mail-specific phone screen content, dropped into <DownloadPhoneFrame>.
@@ -27,7 +29,9 @@ export function MailPhoneScreen() {
     <div className="mail-phone-screen">
       <div className="mail-phone-topbar">
         <span className="mail-phone-title">Inbox</span>
-        <span className="mail-phone-avatar">AM</span>
+        <span className="mail-phone-avatar">
+          <img src={AVATARS.jacob} alt="" />
+        </span>
       </div>
       <label className="mail-phone-search">
         <Search size={13} aria-hidden="true" />
@@ -37,7 +41,9 @@ export function MailPhoneScreen() {
       <div className="mail-phone-list">
         {ROWS.map((row) => (
           <div className="mail-phone-row" key={row.sender}>
-            <span className={`mail-phone-avatar-circle is-${row.avatarTone}`}>{row.initials}</span>
+            <span className={`mail-phone-avatar-circle is-${row.avatarTone}`}>
+              <img src={row.avatar} alt="" />
+            </span>
             <span className="mail-phone-row-text">
               <span className="mail-phone-row-top">
                 <span className={`mail-phone-sender${row.unread ? ' is-unread' : ''}`}>{row.sender}</span>

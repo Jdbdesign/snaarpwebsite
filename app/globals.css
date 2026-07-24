@@ -10822,27 +10822,6 @@ html:has(.work-drive) {
 .meet-phone-face.is-mint { background: linear-gradient(160deg, var(--color-mint), #0B655C); }
 .meet-phone-face.is-amber { background: linear-gradient(160deg, var(--color-amber), #B25E04); }
 .meet-phone-face.is-slate { background: linear-gradient(160deg, hsl(220, 12%, 52%), hsl(220, 14%, 32%)); }
-.meet-phone-face-head {
-  position: absolute;
-  top: 22%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 26%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: hsla(0, 0%, 100%, 0.85);
-}
-.meet-phone-face-body {
-  position: absolute;
-  bottom: -10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 52%;
-  height: 34%;
-  border-radius: 999px 999px 0 0;
-  background: hsla(0, 0%, 100%, 0.85);
-}
-
 .meet-phone-avatar {
   width: 32px;
   height: 32px;
@@ -11003,27 +10982,6 @@ html:has(.work-drive) {
 .meet-web-mockup-face.is-slate { background: linear-gradient(160deg, hsl(220, 12%, 52%), hsl(220, 14%, 32%)); }
 .meet-web-mockup-face.is-rose { background: linear-gradient(160deg, var(--color-rose), #A2124F); }
 .meet-web-mockup-face.is-teal { background: linear-gradient(160deg, var(--color-teal), #066177); }
-.meet-web-mockup-face-head {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 24%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: hsla(0, 0%, 100%, 0.85);
-}
-.meet-web-mockup-face-body {
-  position: absolute;
-  bottom: -12%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
-  height: 36%;
-  border-radius: 999px 999px 0 0;
-  background: hsla(0, 0%, 100%, 0.85);
-}
-
 .meet-web-mockup-avatar {
   position: absolute;
   inset: 0;
@@ -11734,6 +11692,47 @@ html:has(.work-drive) {
 @media (prefers-reduced-motion: no-preference) {
   .download-final-cta-btn-outline:hover { background: hsla(0, 0%, 100%, 0.08); border-color: hsla(0, 0%, 100%, 0.5); }
   .download-final-cta-btn-outline:active { transform: scale(0.97); }
+}
+
+/* ----- Download mockups: real avatar photos (replaces initials circles) ----- */
+.mail-web-mockup-avatar img,
+.mail-phone-avatar img,
+.mail-phone-avatar-circle img,
+.contacts-web-mockup-avatar img,
+.contacts-web-mockup-detail-avatar img,
+.contacts-phone-avatar img,
+.contacts-phone-avatar-circle img,
+.teams-web-mockup-message-avatar img,
+.teams-phone-avatar img,
+.teams-phone-dm-avatar img,
+.meet-phone-avatar img,
+.kalender-phone-avatar img,
+.kalender-phone-row-avatar img,
+.kalender-web-mockup-event-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+/* Camera-on Meet tiles: the photo fills the whole tile like a live feed,
+ * instead of the old abstract head/body silhouette. */
+.meet-web-mockup-face img,
+.meet-phone-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Camera-off Meet web tile: unlike the phone version, this avatar fills the
+ * whole (rectangular) tile, so it needs a fixed-size circle rather than a
+ * 100%-fill image that would stretch into an ellipse. */
+.meet-web-mockup-avatar img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
 

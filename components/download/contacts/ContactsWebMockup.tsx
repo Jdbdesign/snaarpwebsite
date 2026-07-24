@@ -1,4 +1,5 @@
 import { Search, Plus, Star, Users, Mail, Video, Phone, Clock } from 'lucide-react';
+import { AVATARS } from '../avatarPaths';
 
 const NAV_ITEMS: { label: string; count?: number; active?: boolean }[] = [
   { label: 'All Contacts', count: 128, active: true },
@@ -21,15 +22,16 @@ interface Contact {
   tone: 'brand' | 'mint' | 'amber' | 'slate';
   synced?: SyncSource[];
   active?: boolean;
+  avatar: string;
 }
 
 const CONTACTS: Contact[] = [
-  { initials: 'AC', name: 'Amara Chen', role: 'Design Lead', company: 'Lumina Design Studio', tone: 'brand', synced: ['mail'], active: true },
-  { initials: 'DO', name: 'Daniel Osei', role: 'Account Manager', company: 'Bank of Tomorrow', tone: 'amber', synced: ['meet'] },
-  { initials: 'PN', name: 'Priya Nair', role: 'Founder', company: 'Northwind Vendors', tone: 'mint' },
-  { initials: 'MW', name: 'Marcus Webb', role: 'VP Sales', company: 'ClearPath Logistics', tone: 'slate', synced: ['mail', 'meet'] },
-  { initials: 'SR', name: 'Sofia Reyes', role: 'Support Lead', company: 'Glassdoor', tone: 'brand' },
-  { initials: 'TB', name: 'Tunde Bakare', role: 'Operations', company: 'Snaarp', tone: 'mint' },
+  { initials: 'AC', name: 'Amara Chen', role: 'Design Lead', company: 'Lumina Design Studio', tone: 'brand', synced: ['mail'], active: true, avatar: AVATARS.amaraChen },
+  { initials: 'DO', name: 'Daniel Osei', role: 'Account Manager', company: 'Bank of Tomorrow', tone: 'amber', synced: ['meet'], avatar: AVATARS.danielOsei },
+  { initials: 'PN', name: 'Priya Nair', role: 'Founder', company: 'Northwind Vendors', tone: 'mint', avatar: AVATARS.priyaNair },
+  { initials: 'MW', name: 'Marcus Webb', role: 'VP Sales', company: 'ClearPath Logistics', tone: 'slate', synced: ['mail', 'meet'], avatar: AVATARS.marcusWebb },
+  { initials: 'SR', name: 'Sofia Reyes', role: 'Support Lead', company: 'Glassdoor', tone: 'brand', avatar: AVATARS.sofiaReyes },
+  { initials: 'TB', name: 'Tunde Bakare', role: 'Operations', company: 'Snaarp', tone: 'mint', avatar: AVATARS.tundeBakare },
 ];
 
 const SYNC_ICON: Record<SyncSource, typeof Mail> = {
@@ -93,7 +95,7 @@ export function ContactsWebMockup() {
           {CONTACTS.map((contact) => (
             <div className={`contacts-web-mockup-row${contact.active ? ' is-active' : ''}`} key={contact.name}>
               <span className={`contacts-web-mockup-avatar is-${contact.tone}`}>
-                {contact.initials}
+                <img src={contact.avatar} alt="" />
                 {contact.synced && (
                   <span className="contacts-web-mockup-avatar-badges">
                     {contact.synced.map((source) => {
@@ -117,7 +119,9 @@ export function ContactsWebMockup() {
       </div>
 
       <div className="contacts-web-mockup-detail">
-        <span className={`contacts-web-mockup-detail-avatar is-${selected.tone}`}>{selected.initials}</span>
+        <span className={`contacts-web-mockup-detail-avatar is-${selected.tone}`}>
+          <img src={selected.avatar} alt="" />
+        </span>
         <p className="contacts-web-mockup-detail-name">{selected.name}</p>
         <p className="contacts-web-mockup-detail-role">{selected.role} at {selected.company}</p>
 

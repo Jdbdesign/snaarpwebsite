@@ -1,4 +1,15 @@
 import { Plus, CalendarDays, ListTodo } from 'lucide-react';
+import { AVATARS } from '../avatarPaths';
+
+const ATTENDEE_AVATAR: Record<string, string> = {
+  JS: AVATARS.jacob,
+  AM: AVATARS.amKalender,
+  LD: AVATARS.amaraChen,
+  AC: AVATARS.arlo,
+  SJ: AVATARS.sarahContact,
+  GL: AVATARS.sofiaReyes,
+  BT: AVATARS.danielOsei,
+};
 
 // April 2026 laid out Mon-start; today (Tue 14) is the same date the main
 // week grid below is centered on, so the mini month picker and the week
@@ -160,7 +171,9 @@ export function KalenderWebMockup() {
                 {event.attendees && (
                   <span className="kalender-web-mockup-event-avatars">
                     {event.attendees.map((initials) => (
-                      <span key={initials} className="kalender-web-mockup-event-avatar">{initials}</span>
+                      <span key={initials} className="kalender-web-mockup-event-avatar">
+                        <img src={ATTENDEE_AVATAR[initials]} alt="" />
+                      </span>
                     ))}
                   </span>
                 )}

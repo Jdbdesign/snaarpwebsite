@@ -1,4 +1,5 @@
 import { Hash, Users, Paperclip, Send } from 'lucide-react';
+import { AVATARS } from '../avatarPaths';
 
 type Tone = 'brand' | 'mint' | 'slate' | 'teal';
 
@@ -22,6 +23,7 @@ interface Message {
   text?: string;
   reaction?: string;
   typing?: boolean;
+  avatar: string;
 }
 
 const MESSAGES: Message[] = [
@@ -32,6 +34,7 @@ const MESSAGES: Message[] = [
     time: '10:02 AM',
     text: 'Pushed the updated mockups to Work Drive — check the Sync channel folder!',
     reaction: '🎉 3',
+    avatar: AVATARS.priyaNair,
   },
   {
     name: 'Marcus Cole',
@@ -39,6 +42,7 @@ const MESSAGES: Message[] = [
     tone: 'slate',
     time: '10:04 AM',
     text: "Nice, I'll review this after lunch.",
+    avatar: AVATARS.marcusCole,
   },
   {
     name: 'Elena Ruiz',
@@ -46,6 +50,7 @@ const MESSAGES: Message[] = [
     tone: 'teal',
     time: '10:06 AM',
     typing: true,
+    avatar: AVATARS.elenaRuiz,
   },
 ];
 
@@ -106,7 +111,9 @@ export function TeamsWebMockup() {
         <div className="teams-web-mockup-thread">
           {MESSAGES.map((msg) => (
             <div className="teams-web-mockup-message" key={msg.name + msg.time}>
-              <span className={`teams-web-mockup-message-avatar is-${msg.tone}`}>{msg.initials}</span>
+              <span className={`teams-web-mockup-message-avatar is-${msg.tone}`}>
+                <img src={msg.avatar} alt="" />
+              </span>
               <div className="teams-web-mockup-message-body">
                 <div className="teams-web-mockup-message-head">
                   <span className="teams-web-mockup-message-name">{msg.name}</span>

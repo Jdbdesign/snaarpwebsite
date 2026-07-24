@@ -1,4 +1,15 @@
 import { Plus } from 'lucide-react';
+import { AVATARS } from '../avatarPaths';
+
+const ATTENDEE_AVATAR: Record<string, string> = {
+  JS: AVATARS.jacob,
+  AM: AVATARS.amKalender,
+  LD: AVATARS.amaraChen,
+  AC: AVATARS.arlo,
+  SJ: AVATARS.sarahContact,
+  GL: AVATARS.sofiaReyes,
+  BT: AVATARS.danielOsei,
+};
 
 interface PhoneEvent {
   time: string;
@@ -24,7 +35,9 @@ export function KalenderPhoneScreen() {
     <div className="kalender-phone-screen">
       <div className="kalender-phone-topbar">
         <span className="kalender-phone-title">Tue, Apr 14</span>
-        <span className="kalender-phone-avatar">JS</span>
+        <span className="kalender-phone-avatar">
+          <img src={AVATARS.jacob} alt="" />
+        </span>
       </div>
 
       <div className="kalender-phone-list">
@@ -37,7 +50,9 @@ export function KalenderPhoneScreen() {
               {event.attendees && (
                 <span className="kalender-phone-row-avatars">
                   {event.attendees.map((initials) => (
-                    <span key={initials} className="kalender-phone-row-avatar">{initials}</span>
+                    <span key={initials} className="kalender-phone-row-avatar">
+                      <img src={ATTENDEE_AVATAR[initials]} alt="" />
+                    </span>
                   ))}
                 </span>
               )}

@@ -1,4 +1,5 @@
 import { Mic, MicOff, Video, ScreenShare, MessageSquare, Users, PhoneOff } from 'lucide-react';
+import { AVATARS } from '../avatarPaths';
 
 type Tone = 'brand' | 'mint' | 'amber' | 'slate' | 'rose' | 'teal';
 
@@ -9,15 +10,16 @@ interface Tile {
   cameraOn: boolean;
   micOn: boolean;
   speaking?: boolean;
+  avatar: string;
 }
 
 const TILES: Tile[] = [
-  { name: 'You', initials: 'JS', tone: 'brand', cameraOn: true, micOn: true, speaking: true },
-  { name: 'Priya Nair', initials: 'PN', tone: 'mint', cameraOn: true, micOn: true },
-  { name: 'Marcus Cole', initials: 'MC', tone: 'slate', cameraOn: false, micOn: false },
-  { name: 'Elena Ruiz', initials: 'ER', tone: 'teal', cameraOn: true, micOn: true },
-  { name: 'Devon Blake', initials: 'DB', tone: 'amber', cameraOn: false, micOn: true },
-  { name: 'Aiko Tanaka', initials: 'AT', tone: 'rose', cameraOn: true, micOn: false },
+  { name: 'You', initials: 'JS', tone: 'brand', cameraOn: true, micOn: true, speaking: true, avatar: AVATARS.jacob },
+  { name: 'Priya Nair', initials: 'PN', tone: 'mint', cameraOn: true, micOn: true, avatar: AVATARS.priyaNair },
+  { name: 'Marcus Cole', initials: 'MC', tone: 'slate', cameraOn: false, micOn: false, avatar: AVATARS.marcusCole },
+  { name: 'Elena Ruiz', initials: 'ER', tone: 'teal', cameraOn: true, micOn: true, avatar: AVATARS.elenaRuiz },
+  { name: 'Devon Blake', initials: 'DB', tone: 'amber', cameraOn: false, micOn: true, avatar: AVATARS.devonBlake },
+  { name: 'Aiko Tanaka', initials: 'AT', tone: 'rose', cameraOn: true, micOn: false, avatar: AVATARS.aikoTanaka },
 ];
 
 /** High-fidelity web-app mockup for the Meet Download hero's layered visual —
@@ -44,11 +46,12 @@ export function MeetWebMockup() {
             <div className={`meet-web-mockup-tile${tile.speaking ? ' is-speaking' : ''}`} key={tile.name}>
               {tile.cameraOn ? (
                 <span className={`meet-web-mockup-face is-${tile.tone}`}>
-                  <span className="meet-web-mockup-face-head" />
-                  <span className="meet-web-mockup-face-body" />
+                  <img src={tile.avatar} alt="" />
                 </span>
               ) : (
-                <span className={`meet-web-mockup-avatar is-${tile.tone}`}>{tile.initials}</span>
+                <span className={`meet-web-mockup-avatar is-${tile.tone}`}>
+                  <img src={tile.avatar} alt="" />
+                </span>
               )}
               <span className="meet-web-mockup-tile-label">
                 {tile.micOn ? <Mic size={9} aria-hidden="true" /> : <MicOff size={9} className="is-muted" aria-hidden="true" />}

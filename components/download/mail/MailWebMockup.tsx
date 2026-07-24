@@ -18,6 +18,7 @@ import {
   CheckCheck,
   type LucideIcon,
 } from 'lucide-react';
+import { AVATARS } from '../avatarPaths';
 
 const SIDEBAR_NAV: { Icon: LucideIcon; label: string; count?: number; active?: boolean }[] = [
   { Icon: Inbox, label: 'Inbox', count: 6, active: true },
@@ -78,7 +79,9 @@ export function MailWebMockup() {
             Active
             <ChevronDown size={11} aria-hidden="true" />
           </span>
-          <span className="mail-web-mockup-avatar">JS</span>
+          <span className="mail-web-mockup-avatar">
+            <img src={AVATARS.jacob} alt="" />
+          </span>
         </div>
 
         <div className="mail-web-mockup-list">

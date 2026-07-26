@@ -24,6 +24,27 @@ const DOWNLOAD_PAGE_HREFS: Record<string, string> = {
   'Contacts': '/download/contacts',
   'Meet': '/download/meet',
   'Teams': '/download/teams',
+  'AI Compose': '/download/ai-compose',
+  'Business Card': '/download/business-card',
+  'Work Drive': '/download/work-drive',
+  'Document': '/download/document',
+  'Sheet': '/download/sheets',
+  'Presentation': '/download/presentation',
+  'PDF Reader': '/download/pdf-reader',
+  'NotePad': '/download/notepad',
+  'CRM': '/download/crm',
+  'Zeus Contacts': '/download/zeus-contacts',
+  'Sendrit': '/download/sendrit',
+  'VerifyRit': '/download/verifyrit',
+  'Lock': '/download/lock',
+  'eSignature': '/download/esignature',
+  'Doc Sign': '/download/doc-sign',
+  'ID Card': '/download/id-card',
+  'Books': '/download/books',
+  'Accounting Software': '/download/accounting-software',
+  'Project Management': '/download/project-management',
+  'Elearn': '/download/elearn',
+  'Neo AI': '/download/neo-ai',
 };
 
 const PLATFORM_GROUPS: { id: 'mobile' | 'web' | 'desktop'; label: string; platforms: { key: DownloadPlatform; label: string; iconSrc: string }[] }[] = [
@@ -67,12 +88,24 @@ export function DownloadMegaMenu({ isOpen, onClose, triggerRef }: DownloadMegaMe
   const [activeAppName, setActiveAppName] = useState(currentAppName);
   const activeApp = ALL_APPS.find((app) => app.name === activeAppName) ?? ALL_APPS[0];
   const activeDownloadHref = DOWNLOAD_PAGE_HREFS[activeApp.name];
+  const listRef = useRef<HTMLUListElement>(null);
 
-  // Re-sync to the current page's product every time the menu (re)opens —
-  // same rationale as ProductsMegaMenu/SolutionMegaMenu's category re-sync.
+  // Re-sync to the current page's product every time the menu (re)opens,
+  // AND scroll the product list so the active item is visible without the
+  // user needing to scroll manually.
   useEffect(() => {
     if (!isOpen) return;
     setActiveAppName(currentAppName);
+
+    // Scroll active item into view after a frame (DOM needs to be visible)
+    requestAnimationFrame(() => {
+      const list = listRef.current;
+      if (!list) return;
+      const activeEl = list.querySelector('[aria-current="page"]') || list.querySelector('.is-active');
+      if (activeEl) {
+        activeEl.scrollIntoView({ block: 'nearest', behavior: 'instant' });
+      }
+    });
   }, [isOpen, currentAppName]);
 
   const panelRef = useRef<HTMLDivElement>(null);
@@ -129,14 +162,14 @@ export function DownloadMegaMenu({ isOpen, onClose, triggerRef }: DownloadMegaMe
           {/* Column 1: scrollable product list */}
           <div className="mega-menu-categories download-menu-products">
             <p className="mega-menu-categories-label">Featured Products</p>
-            <ul className="download-menu-products-list">
+            <ul className="download-menu-products-list" ref={listRef}>
               {ALL_APPS.map((app) => (
                 <li key={app.name}>
                   {DOWNLOAD_PAGE_HREFS[app.name] ? (
                     <Link
                       href={DOWNLOAD_PAGE_HREFS[app.name]}
-                      className={`download-menu-product-btn${app.name === activeAppName ? ' is-active' : ''}`}
-                      aria-current={app.name === activeAppName}
+                      className={`download-menu-product-btn${app.name === activeAppName ? ' is-active' : ''}${DOWNLOAD_PAGE_HREFS[app.name] === pathname ? ' is-current-page' : ''}`}
+                      aria-current={DOWNLOAD_PAGE_HREFS[app.name] === pathname ? 'page' : (app.name === activeAppName ? true : undefined)}
                       onMouseEnter={() => setActiveAppName(app.name)}
                       onFocus={() => setActiveAppName(app.name)}
                       onClick={onClose}

@@ -29,13 +29,6 @@ const STEPS: WorkflowStep[] = [
   { label: 'Bills', caption: 'Books sends the invoice', Icon: Receipt, accent: 'brand' },
 ];
 
-// Time it takes the traveling gradient to cross one segment of the line
-// between two circles. 5 segments across 6 steps -> ~3.6s full pass,
-// inside the 3-4s "energetic, not sluggish" target. Every animated
-// element shares one 5000ms (3600ms travel + 1400ms pause) infinite
-// CSS animation — see the WORKFLOW CONNECTED SECTION comment in
-// globals.css for how the per-step delay keeps them all in phase
-// across loops without any JS-driven timer.
 const STEP_DELAY_MS = 720;
 
 export function WorkflowConnected() {

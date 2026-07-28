@@ -1,0 +1,253 @@
+// Bespoke UI-snippet mockups for the Retail & Ecommerce solution page,
+// ported 1:1 from the standalone design bundle.
+
+'use client';
+
+// -- Snippet card 1 -- CRM customer record (Olivia Chen, Repeat buyer) --
+export function SnippetCustomerCrmVisual() {
+  return (
+    <div style={{ height: '158px', borderRadius: '16px', background: '#FBFAFE', border: '1px solid #F0EDF7', padding: '14px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ width: '20px', height: '20px', borderRadius: '6px', background: '#F3EFFF', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" /></svg>
+          </span>
+          <span style={{ fontSize: '9px', fontWeight: 800, letterSpacing: '.08em', color: '#A79FBE', textTransform: 'uppercase' }}>Customer - CRM</span>
+        </span>
+      </div>
+      <div style={{ borderRadius: '12px', background: '#fff', border: '1px solid #EFEDF6', padding: '13px', boxShadow: '0 12px 24px -16px rgba(37,22,84,.3)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
+          <span style={{ width: '30px', height: '30px', borderRadius: '50%', background: 'linear-gradient(135deg,#C4B5FD,#8B5CF6)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <span style={{ fontSize: '10px', fontWeight: 800, color: '#fff' }}>OC</span>
+          </span>
+          <div>
+            <div style={{ fontSize: '11px', fontWeight: 700, color: '#1B1730', lineHeight: '1.1' }}>Olivia Chen</div>
+            <div style={{ fontSize: '8px', color: '#8B85A0', marginTop: '2px' }}>Repeat buyer - 14 orders</div>
+          </div>
+        </div>
+        <div style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '4px 9px', borderRadius: '999px', background: '#ECFDF9', border: '1px solid #CDF5EE' }}>
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#0E9384" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
+          <span style={{ fontSize: '8px', fontWeight: 700, color: '#0E9384' }}>$1,240 lifetime</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// -- Snippet card 2 -- Mail shipping notification --
+export function SnippetShippingMailVisual() {
+  return (
+    <div style={{ height: '158px', borderRadius: '16px', background: 'linear-gradient(165deg,#FBFAFE,#FFFBF0)', border: '1px solid #F5EFE3', padding: '14px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+        <span style={{ fontSize: '9px', fontWeight: 800, letterSpacing: '.08em', color: '#A79FBE', textTransform: 'uppercase' }}>Order Update - Mail</span>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '3px 8px', borderRadius: '999px', background: '#ECFDF9', border: '1px solid #CDF5EE', fontSize: '8px', fontWeight: 700, color: '#0E9384' }}>
+          <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#0E9384" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+          Sent
+        </span>
+      </div>
+      <div style={{ borderRadius: '12px', background: '#fff', border: '1px solid #EFEDF6', padding: '13px', boxShadow: '0 12px 24px -16px rgba(37,22,84,.3)' }}>
+        <div style={{ fontSize: '10px', fontWeight: 700, color: '#1B1730', marginBottom: '8px' }}>Your order has shipped</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
+          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#0E9384' }} />
+          <span style={{ width: '20px', height: '2px', borderRadius: '1px', background: '#CDF5EE' }} />
+          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#0E9384' }} />
+          <span style={{ width: '20px', height: '2px', borderRadius: '1px', background: '#CDF5EE' }} />
+          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#E5E2EC' }} />
+        </div>
+        <div style={{ fontSize: '7px', color: '#8B85A0' }}>Tracking: arriving Thursday</div>
+      </div>
+    </div>
+  );
+}
+
+// -- Snippet card 3 -- Books invoice paid --
+export function SnippetInvoicePaidVisual() {
+  return (
+    <div style={{ height: '158px', borderRadius: '16px', background: '#FBFAFE', border: '1px solid #F0EDF7', padding: '14px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+        <span style={{ fontSize: '9px', fontWeight: 800, letterSpacing: '.08em', color: '#A79FBE', textTransform: 'uppercase' }}>Invoice - Books</span>
+      </div>
+      <div style={{ borderRadius: '12px', background: '#fff', border: '1px solid #EFEDF6', padding: '13px', boxShadow: '0 12px 24px -16px rgba(37,22,84,.3)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+          <div style={{ fontSize: '10px', fontWeight: 700, color: '#1B1730' }}>INV-0847</div>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '3px 8px', borderRadius: '999px', background: '#ECFDF9', border: '1px solid #CDF5EE', fontSize: '8px', fontWeight: 700, color: '#0E9384' }}>
+            <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#0E9384" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+            Paid
+          </span>
+        </div>
+        <div style={{ fontSize: '16px', fontWeight: 800, color: '#1B1730' }}>$89.00</div>
+        <div style={{ fontSize: '7px', color: '#8B85A0', marginTop: '4px' }}>Olivia Chen - Jun 12, 2026</div>
+      </div>
+    </div>
+  );
+}
+
+// -- Step 01 -- Track the customer (CRM record with history) --
+export function StepTrackCustomerVisual() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', height: '100%' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" /></svg>
+          <span style={{ fontSize: '9px', fontWeight: 700, color: '#1B1730' }}>Customer record</span>
+        </span>
+        <span style={{ fontSize: '8px', fontWeight: 700, color: '#7C3AED', letterSpacing: '.03em' }}>CRM</span>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '9px', padding: '9px 10px', borderRadius: '10px', background: '#FBFAFE', border: '1px solid #F0EDF7' }}>
+        <span style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'linear-gradient(135deg,#C4B5FD,#8B5CF6)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <span style={{ fontSize: '9px', fontWeight: 800, color: '#fff' }}>OC</span>
+        </span>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: '9px', fontWeight: 700, color: '#1B1730' }}>Olivia Chen</div>
+          <div style={{ fontSize: '7px', color: '#8B85A0' }}>14 orders</div>
+        </div>
+        <span style={{ fontSize: '8px', fontWeight: 700, color: '#0E9384' }}>$1,240</span>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', padding: '6px 10px', borderRadius: '10px', background: '#FBFAFE', border: '1px solid #F0EDF7' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span style={{ fontSize: '7px', color: '#8B85A0' }}>Order #1014</span>
+          <span style={{ fontSize: '7px', fontWeight: 600, color: '#1B1730' }}>$89.00</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span style={{ fontSize: '7px', color: '#8B85A0' }}>Order #1009</span>
+          <span style={{ fontSize: '7px', fontWeight: 600, color: '#1B1730' }}>$124.00</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span style={{ fontSize: '7px', color: '#8B85A0' }}>Order #0987</span>
+          <span style={{ fontSize: '7px', fontWeight: 600, color: '#1B1730' }}>$56.00</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// -- Step 02 -- Keep them updated (Mail sequence timeline) --
+export function StepKeepUpdatedVisual() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+        <span style={{ fontSize: '8px', fontWeight: 800, letterSpacing: '.05em', color: '#D97706', textTransform: 'uppercase' }}>Mail</span>
+        <span style={{ fontSize: '7.5px', fontWeight: 600, color: '#8B85A0' }}>Order updates</span>
+      </div>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+        {[
+          { label: 'Order confirmed', time: '10:02 AM', done: true },
+          { label: 'Shipped', time: '2:15 PM', done: true },
+          { label: 'Delivered', time: 'Thursday', done: false },
+        ].map((step, i) => (
+          <div key={step.label} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '7px 9px', borderRadius: '8px', background: step.done ? '#ECFDF9' : '#FBFAFE', border: `1px solid ${step.done ? '#CDF5EE' : '#F0EDF7'}` }}>
+            <span style={{ width: '14px', height: '14px', borderRadius: '50%', background: step.done ? '#0E9384' : '#E5E2EC', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              {step.done && <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>}
+            </span>
+            <span style={{ fontSize: '8px', fontWeight: 600, color: '#1B1730', flex: 1 }}>{step.label}</span>
+            <span style={{ fontSize: '7px', color: '#8B85A0' }}>{step.time}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// -- Step 03 -- Get paid, stay reconciled (Books dashboard) --
+export function StepGetPaidVisual() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+        <span style={{ fontSize: '8px', fontWeight: 800, letterSpacing: '.05em', color: '#0E9384', textTransform: 'uppercase' }}>Books</span>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '2px 7px', borderRadius: '999px', background: '#ECFDF9', border: '1px solid #CDF5EE', fontSize: '7px', fontWeight: 700, color: '#0E9384' }}>Reconciled</span>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px 9px', borderRadius: '8px', background: '#FBFAFE', border: '1px solid #F0EDF7' }}>
+          <span style={{ fontSize: '8px', fontWeight: 600, color: '#8B85A0' }}>Revenue</span>
+          <span style={{ fontSize: '8px', fontWeight: 700, color: '#0E9384' }}>$12,400</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px 9px', borderRadius: '8px', background: '#FBFAFE', border: '1px solid #F0EDF7' }}>
+          <span style={{ fontSize: '8px', fontWeight: 600, color: '#8B85A0' }}>Outstanding</span>
+          <span style={{ fontSize: '8px', fontWeight: 700, color: '#D97706' }}>$890</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px 9px', borderRadius: '8px', background: '#F3EFFF', border: '1px solid #E6DEFA' }}>
+          <span style={{ fontSize: '8px', fontWeight: 700, color: '#7C3AED' }}>Collected</span>
+          <span style={{ fontSize: '9px', fontWeight: 800, color: '#7C3AED' }}>$11,510</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// -- Feature row 1 -- CRM customer profile with order history --
+export function CustomerProfileVisual() {
+  return (
+    <div style={{ position: 'relative' }}>
+      <div style={{ position: 'absolute', inset: '20px -10px -18px 16px', background: 'linear-gradient(135deg,rgba(124,58,237,.12),rgba(20,184,166,.10))', borderRadius: '26px', filter: 'blur(3px)' }} />
+      <div style={{ position: 'relative', background: '#fff', borderRadius: '22px', border: '1px solid #ECE9F5', boxShadow: '0 3px 8px -3px rgba(37,22,84,.12),0 40px 72px -36px rgba(37,22,84,.4)', padding: '22px', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
+          <span style={{ fontSize: '12px', fontWeight: 700, color: '#1B1730' }}>Customer Profile</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, color: '#7C3AED' }}>CRM</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px', paddingBottom: '12px', borderBottom: '1px solid #F0EEF6' }}>
+          <span style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg,#C4B5FD,#8B5CF6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ fontSize: '12px', fontWeight: 800, color: '#fff' }}>OC</span>
+          </span>
+          <div>
+            <div style={{ fontSize: '12px', fontWeight: 700, color: '#1B1730' }}>Olivia Chen</div>
+            <div style={{ fontSize: '9px', color: '#8B85A0' }}>14 orders - $1,240 lifetime</div>
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: '6px', marginBottom: '14px' }}>
+          <span style={{ padding: '3px 8px', borderRadius: '999px', background: '#F3EFFF', border: '1px solid #E6DEFA', fontSize: '7px', fontWeight: 700, color: '#7C3AED' }}>VIP</span>
+          <span style={{ padding: '3px 8px', borderRadius: '999px', background: '#ECFDF9', border: '1px solid #CDF5EE', fontSize: '7px', fontWeight: 700, color: '#0E9384' }}>Repeat</span>
+          <span style={{ padding: '3px 8px', borderRadius: '999px', background: '#FEF6E7', border: '1px solid #FBEBC6', fontSize: '7px', fontWeight: 700, color: '#D97706' }}>Last contact: 2 days ago</span>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+          {[
+            { id: '#1014', date: 'Jun 12', amount: '$89.00' },
+            { id: '#1009', date: 'May 28', amount: '$124.00' },
+            { id: '#0987', date: 'May 14', amount: '$56.00' },
+          ].map((order) => (
+            <div key={order.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px 9px', borderRadius: '8px', background: '#FBFAFE', border: '1px solid #F0EDF7' }}>
+              <span style={{ fontSize: '8px', fontWeight: 600, color: '#1B1730' }}>Order {order.id}</span>
+              <span style={{ fontSize: '7px', color: '#8B85A0' }}>{order.date}</span>
+              <span style={{ fontSize: '8px', fontWeight: 700, color: '#0E9384' }}>{order.amount}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// -- Feature row 2 -- Email automation timeline --
+export function OrderAutomationVisual() {
+  return (
+    <div style={{ position: 'relative' }}>
+      <div style={{ position: 'absolute', inset: '20px 16px -18px -10px', background: 'linear-gradient(135deg,rgba(124,58,237,.12),rgba(217,119,6,.10))', borderRadius: '26px', filter: 'blur(3px)' }} />
+      <div style={{ position: 'relative', background: '#fff', borderRadius: '22px', border: '1px solid #ECE9F5', boxShadow: '0 3px 8px -3px rgba(37,22,84,.12),0 40px 72px -36px rgba(37,22,84,.4)', padding: '22px', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
+          <span style={{ fontSize: '12px', fontWeight: 700, color: '#1B1730' }}>Order Automation</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, color: '#D97706' }}>Mail</span>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {[
+            { label: 'Order confirmed', time: '10:02 AM', status: 'Sent' },
+            { label: 'Shipping update', time: '2:15 PM', status: 'Sent' },
+            { label: 'Delivered + review request', time: '4:30 PM Thu', status: 'Sent' },
+          ].map((step, i) => (
+            <div key={step.label} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <span style={{ width: '18px', height: '18px', borderRadius: '50%', background: '#0E9384', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                </span>
+                {i < 2 && <span style={{ width: '2px', height: '12px', background: '#CDF5EE', marginTop: '2px' }} />}
+              </div>
+              <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 10px', borderRadius: '8px', background: '#FBFAFE', border: '1px solid #F0EDF7' }}>
+                <span style={{ fontSize: '9px', fontWeight: 600, color: '#1B1730' }}>{step.label}</span>
+                <span style={{ fontSize: '7px', color: '#8B85A0' }}>{step.time}</span>
+                <span style={{ fontSize: '7px', fontWeight: 700, color: '#0E9384' }}>{step.status}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

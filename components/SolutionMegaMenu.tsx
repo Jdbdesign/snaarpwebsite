@@ -60,9 +60,9 @@ const TABS: SolutionTab[] = [
       { title: 'Professional Services', desc: 'Client work, invoicing, and communication in one place.', Icon: Briefcase, href: '/solutions/professional-services' },
       { title: 'Financial Services', desc: 'Built for teams that handle sensitive financial data daily.', Icon: Landmark, href: '/solutions/financial-services' },
       { title: 'Healthcare', desc: 'Secure records and communication for patient-facing teams.', Icon: HeartPulse, href: '/solutions/healthcare' },
-      { title: 'Nonprofits', desc: 'Enterprise-grade tools at a price that fits a nonprofit budget.', Icon: HandHeart },
+      { title: 'Nonprofits', desc: 'Enterprise-grade tools at a price that fits a nonprofit budget.', Icon: HandHeart, href: '/solutions/nonprofits' },
       { title: 'Real Estate', desc: 'Manage clients, contracts, and communication from one login.', Icon: Building2, href: '/solutions/real-estate' },
-      { title: 'Retail & Ecommerce', desc: 'Run the business side while you focus on customers.', Icon: ShoppingBag },
+      { title: 'Retail & Ecommerce', desc: 'Run the business side while you focus on customers.', Icon: ShoppingBag, href: '/solutions/retail-ecommerce' },
     ],
   },
   {
@@ -75,7 +75,7 @@ const TABS: SolutionTab[] = [
     // if any of these are in progress rather than complete, reword to
     // "working toward X" instead of implying it's already achieved.
     items: [
-      { title: 'GDPR & Data Privacy', desc: 'EU data residency and privacy controls built in, not bolted on.', Icon: ShieldCheck },
+      { title: 'GDPR & Data Privacy', desc: 'EU data residency and privacy controls built in, not bolted on.', Icon: ShieldCheck, href: '/solutions/gdpr-data-privacy' },
       { title: 'SOC 2-Aligned Security', desc: 'Access logs, encryption, and identity controls ready for audit.', Icon: FileLock2 },
       { title: 'Zero Trust Access Control', desc: 'Every login, device, and file access verified, every time.', Icon: Fingerprint },
       { title: 'Industry Regulations', desc: 'Built with the controls regulated industries need to say yes.', Icon: Scale },

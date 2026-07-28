@@ -2184,6 +2184,231 @@ body {
   }
 }
 
+/* ===== Explore by category (5 category cards: mockup panel + app list) =====
+   Plain static stack: cards render one after another in normal document
+   flow, no sticky pinning, no scroll-linked scale/animation. */
+.ebc-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.ebc-card {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  /* Fixed so all 5 cards read as one consistent row height regardless of
+     how many apps or how much description text each category has — tuned
+     to the tallest card's natural content height (Grow Revenue, ~375px at
+     desktop widths) plus a little breathing room. */
+  min-height: 380px;
+  width: 100%;
+}
+@media (max-width: 899px) {
+  .ebc-card { min-height: 0; grid-template-columns: 1fr; }
+}
+
+/* --- Left: dark abstract mockup panel --- */
+.ebc-panel {
+  position: relative;
+  background: hsl(240, 25%, 8%);
+  padding: var(--space-8) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-5);
+  overflow: hidden;
+  min-height: 280px;
+}
+
+.ebc-panel-glow {
+  position: absolute;
+  inset: -25% 8% auto auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.2;
+  background: var(--color-brand);
+}
+.ebc-panel[data-accent="teal"] .ebc-panel-glow { background: var(--color-teal); }
+.ebc-panel[data-accent="mint"] .ebc-panel-glow { background: var(--color-mint); }
+.ebc-panel[data-accent="rose"] .ebc-panel-glow { background: var(--color-rose); }
+.ebc-panel[data-accent="amber"] .ebc-panel-glow { background: var(--color-amber); }
+
+.ebc-panel-eyebrow {
+  position: relative;
+  color: hsl(220, 10%, 65%);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ebc-panel-tagline {
+  position: relative;
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  max-width: 30ch;
+}
+
+.ebc-panel-nodes {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.ebc-panel-node {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: hsla(0, 0%, 100%, 0.08);
+  border: 1px solid hsla(0, 0%, 100%, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: ebc-node-float 3.6s ease-in-out infinite;
+}
+.ebc-panel-node .ebc-app-icon-img { width: 30px; height: 30px; border-radius: 50%; }
+.ebc-panel-node .ebc-app-icon-chip {
+  width: 32px;
+  height: 32px;
+  background: hsla(0, 0%, 100%, 0.12);
+  color: #ffffff;
+}
+.ebc-panel-node .ebc-app-icon-chip svg { width: 20px; height: 20px; }
+@keyframes ebc-node-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ebc-panel-node { animation: none; }
+}
+
+/* --- Right: "Apps to Explore" list --- */
+.ebc-apps {
+  padding: var(--space-8) var(--space-6);
+}
+
+.ebc-apps-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+}
+
+.ebc-apps-label {
+  color: var(--color-brand);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ebc-apps-viewall {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--color-brand);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.ebc-apps-viewall:hover { color: var(--color-brand-dark); }
+
+.ebc-app-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+@media (max-width: 640px) {
+  .ebc-app-grid { grid-template-columns: 1fr; }
+}
+
+.ebc-app-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  width: 100%;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: var(--space-4) var(--space-4) var(--space-5) 0;
+  border-right: 1px dashed var(--border-default);
+  border-bottom: 1px dashed var(--border-default);
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+.ebc-app-grid .ebc-app-row:nth-child(3n) { border-right: none; padding-right: 0; }
+.ebc-app-grid .ebc-app-row:nth-last-child(-n+3) { border-bottom: none; padding-bottom: 0; }
+@media (max-width: 640px) {
+  .ebc-app-row { border-right: none; padding-right: 0; }
+  .ebc-app-grid .ebc-app-row:last-child { border-bottom: none; padding-bottom: 0; }
+}
+@media (min-width: 641px) {
+  .ebc-app-row:not(:nth-child(3n+1)) { padding-left: var(--space-5); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ebc-app-row:hover, .ebc-app-row:focus-visible { transform: translateY(-2px); }
+  .ebc-app-row:hover .ebc-app-name, .ebc-app-row:focus-visible .ebc-app-name { color: var(--color-brand); }
+}
+
+.ebc-app-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.ebc-app-icon-img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.ebc-app-icon-chip {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-subtle);
+  color: var(--color-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ebc-app-text { min-width: 0; }
+
+.ebc-app-name {
+  display: block;
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  margin: 0 0 var(--space-1);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.ebc-app-desc {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  max-width: 26ch;
+}
+
 /* ===== Pricing banner ("All apps. One price.") ===== */
 .pricing-banner-card {
   background: #0B0E2E;

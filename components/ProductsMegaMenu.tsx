@@ -132,9 +132,14 @@ interface ProductsMegaMenuProps {
   isOpen: boolean;
   onClose: () => void;
   triggerRef: RefObject<HTMLButtonElement | null>;
+  /** Set by Header in response to a 'snaarp:open-products-menu' event (dispatched
+   * by app rows elsewhere on the site that don't have a dedicated product page
+   * yet, e.g. the homepage's ExploreByCategory section) to force the sidebar to
+   * a specific category instead of the pathname-derived one. */
+  forceCategoryId?: string | null;
 }
 
-export function ProductsMegaMenu({ isOpen, onClose, triggerRef }: ProductsMegaMenuProps) {
+export function ProductsMegaMenu({ isOpen, onClose, triggerRef, forceCategoryId }: ProductsMegaMenuProps) {
   const pathname = usePathname();
   // Falls back to the first category on non-product pages (home, pricing,
   // etc.) where there's no "current product" to reflect.
@@ -177,8 +182,8 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef }: ProductsMegaMe
   // whichever category was last clicked.
   useEffect(() => {
     if (!isOpen) return;
-    setActiveCategoryId(currentCategoryId);
-  }, [isOpen, currentCategoryId]);
+    setActiveCategoryId(forceCategoryId ?? currentCategoryId);
+  }, [isOpen, currentCategoryId, forceCategoryId]);
 
   const panelRef = useRef<HTMLDivElement>(null);
   // Left offset (px, from the viewport edge) that anchors the panel's left

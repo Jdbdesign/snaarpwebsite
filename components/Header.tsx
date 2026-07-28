@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ProductsMegaMenu } from '@/components/ProductsMegaMenu';
 import { SolutionMegaMenu } from '@/components/SolutionMegaMenu';
@@ -14,6 +14,23 @@ export function Header() {
   const solutionTriggerRef = useRef<HTMLButtonElement>(null);
   const [isDownloadOpen, setIsDownloadOpen] = useState(false);
   const downloadTriggerRef = useRef<HTMLButtonElement>(null);
+  // Set only by the 'snaarp:open-products-menu' event below — apps elsewhere
+  // on the site (e.g. the homepage's ExploreByCategory rows) that don't have
+  // a dedicated product page yet dispatch this to pop the Products menu open
+  // pre-scrolled to their category, instead of routing to a dead link.
+  const [forceCategoryId, setForceCategoryId] = useState<string | null>(null);
+
+  useEffect(() => {
+    function onOpenProductsMenu(e: Event) {
+      const detail = (e as CustomEvent<{ categoryId?: string }>).detail;
+      setForceCategoryId(detail?.categoryId ?? null);
+      setIsProductsOpen(true);
+      setIsSolutionOpen(false);
+      setIsDownloadOpen(false);
+    }
+    window.addEventListener('snaarp:open-products-menu', onOpenProductsMenu);
+    return () => window.removeEventListener('snaarp:open-products-menu', onOpenProductsMenu);
+  }, []);
 
   return (
     <header className="bg-white border-b border-[var(--border-subtle)] sticky top-0 z-50">
@@ -34,6 +51,7 @@ export function Header() {
                   aria-expanded={isProductsOpen}
                   onClick={() => {
                     setIsProductsOpen((open) => !open);
+                    setForceCategoryId(null);
                     setIsSolutionOpen(false);
                     setIsDownloadOpen(false);
                   }}
@@ -122,6 +140,7 @@ export function Header() {
         isOpen={isProductsOpen}
         onClose={() => setIsProductsOpen(false)}
         triggerRef={triggerRef}
+        forceCategoryId={forceCategoryId}
       />
       <SolutionMegaMenu
         isOpen={isSolutionOpen}

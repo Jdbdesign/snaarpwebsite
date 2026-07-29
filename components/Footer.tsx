@@ -1,4 +1,34 @@
 import { RevealSection } from '@/components/reveal/RevealSection';
+import { UsersRound, ShieldCheck, BookOpen, Calculator, Kanban, GraduationCap, BrainCircuit } from 'lucide-react';
+
+const FOOTER_PRODUCTS = [
+  { icon: '/assets/icons/envelope.jpg', name: 'Mail', href: '/products/mail' },
+  { icon: '/assets/icons/apps-kalender.jpg', name: 'Kalender', href: '/products/kalender' },
+  { icon: '/assets/icons/search.jpg', name: 'Contacts', href: '/products/contacts' },
+  { icon: '/assets/icons/apps-meet.jpg', name: 'Meet', href: '/products/meet' },
+  { icon: '/assets/icons/chat-bubbles.jpg', name: 'Teams', href: '/products/teams' },
+  { icon: '/assets/icons/ai-sparkle.jpg', name: 'AI Compose', href: '/products/ai-compose' },
+  { icon: '/assets/icons/logos/business-card.svg', name: 'Business Card', href: '/products/business-card' },
+  { icon: '/assets/icons/cube.jpg', name: 'Work Drive', href: '/products/work-drive' },
+  { icon: '/assets/icons/apps-document.png', name: 'Document', href: '/products/docs' },
+  { icon: '/assets/icons/apps-sheet.jpg', name: 'Sheet', href: '/products/sheets' },
+  { icon: '/assets/icons/p-icon.jpg', name: 'Presentation', href: '/products/presentation' },
+  { icon: '/assets/icons/logos/pdf-reader.svg', name: 'PDF Reader', href: '/products/pdf-reader' },
+  { icon: '/assets/icons/logos/notepad.svg', name: 'Notepad', href: '/products/notepad' },
+  { lucide: UsersRound, name: 'CRM', href: '/products/crm' },
+  { icon: '/assets/icons/logos/zeus.svg', name: 'Zeus Contacts', href: '#' },
+  { icon: '/assets/icons/apps-sendrit.jpg', name: 'Sendrit', href: '#' },
+  { lucide: ShieldCheck, name: 'VerifyRit', href: '#' },
+  { icon: '/assets/icons/apps-lock.jpg', name: 'Lock', href: '/products/lock' },
+  { icon: '/assets/icons/logos/esignature.svg', name: 'eSignature', href: '/products/esignature' },
+  { icon: '/assets/icons/logos/doc-sign.svg', name: 'Doc Sign', href: '#' },
+  { icon: '/assets/icons/logos/id-card.svg', name: 'ID Card', href: '#' },
+  { lucide: BookOpen, name: 'Books', href: '#' },
+  { lucide: Calculator, name: 'Accounting', href: '#' },
+  { lucide: Kanban, name: 'Project Management', href: '#' },
+  { lucide: GraduationCap, name: 'Elearn', href: '#' },
+  { lucide: BrainCircuit, name: 'Neo AI', href: '#' },
+];
 
 export function Footer() {
   return (
@@ -27,21 +57,44 @@ export function Footer() {
           <div className="footer-col" data-reveal data-reveal-group="footer" data-reveal-batch="footer-columns">
             <p className="footer-col-title">Products</p>
             <ul className="footer-links">
-              <li><a href="#" className="footer-link">Snaarp Mail</a></li>
-              <li><a href="#" className="footer-link">CRM</a></li>
+              <li><a href="/products/mail" className="footer-link">Mail</a></li>
+              <li><a href="/products/kalender" className="footer-link">Kalender</a></li>
+              <li><a href="/products/contacts" className="footer-link">Contacts</a></li>
+              <li><a href="/products/meet" className="footer-link">Meet</a></li>
+              <li><a href="/products/teams" className="footer-link">Teams</a></li>
+              <li><a href="/products/ai-compose" className="footer-link">AI Compose</a></li>
+              <li><a href="/products/business-card" className="footer-link">Business Card</a></li>
               <li><a href="/products/work-drive" className="footer-link">Work Drive</a></li>
-              <li><a href="#" className="footer-link">Neo AI</a></li>
-              <li><a href="#" className="footer-link">All 20+ apps</a></li>
+              <li><a href="/products/docs" className="footer-link">Document</a></li>
+              <li><a href="/products/sheets" className="footer-link">Sheet</a></li>
+              <li><a href="/products/presentation" className="footer-link">Presentation</a></li>
+              <li><a href="/products/pdf-reader" className="footer-link">PDF Reader</a></li>
+              <li><a href="/products/notepad" className="footer-link">Notepad</a></li>
+              <li><a href="/products/crm" className="footer-link">CRM</a></li>
+              <li><a href="/products/lock" className="footer-link">Lock</a></li>
+              <li><a href="/products/esignature" className="footer-link">eSignature</a></li>
             </ul>
           </div>
 
           <div className="footer-col" data-reveal data-reveal-group="footer" data-reveal-batch="footer-columns">
             <p className="footer-col-title">Solutions</p>
             <ul className="footer-links">
-              <li><a href="#" className="footer-link">For startups</a></li>
-              <li><a href="#" className="footer-link">For agencies</a></li>
-              <li><a href="#" className="footer-link">For sales teams</a></li>
-              <li><a href="#" className="footer-link">Security</a></li>
+              <li><a href="/solutions/customer-onboarding" className="footer-link">Customer Onboarding</a></li>
+              <li><a href="/solutions/document-contract-approval" className="footer-link">Document &amp; Contract Approval</a></li>
+              <li><a href="/solutions/financial-operations" className="footer-link">Financial Operations</a></li>
+              <li><a href="/solutions/remote-hybrid-collaboration" className="footer-link">Remote &amp; Hybrid Collaboration</a></li>
+              <li><a href="/solutions/sales-pipeline-outreach" className="footer-link">Sales Pipeline &amp; Outreach</a></li>
+              <li><a href="/solutions/team-onboarding-training" className="footer-link">Team Onboarding &amp; Training</a></li>
+              <li><a href="/solutions/professional-services" className="footer-link">Professional Services</a></li>
+              <li><a href="/solutions/financial-services" className="footer-link">Financial Services</a></li>
+              <li><a href="/solutions/healthcare" className="footer-link">Healthcare</a></li>
+              <li><a href="/solutions/real-estate" className="footer-link">Real Estate</a></li>
+              <li><a href="/solutions/nonprofits" className="footer-link">Nonprofits</a></li>
+              <li><a href="/solutions/retail-ecommerce" className="footer-link">Retail &amp; Ecommerce</a></li>
+              <li><a href="/solutions/gdpr-data-privacy" className="footer-link">GDPR &amp; Data Privacy</a></li>
+              <li><a href="/solutions/soc2-aligned-security" className="footer-link">SOC 2-Aligned Security</a></li>
+              <li><a href="/solutions/zero-trust-access-control" className="footer-link">Zero Trust Access Control</a></li>
+              <li><a href="/solutions/industry-regulations" className="footer-link">Industry Regulations</a></li>
             </ul>
           </div>
 
@@ -49,8 +102,6 @@ export function Footer() {
             <p className="footer-col-title">Company</p>
             <ul className="footer-links">
               <li><a href="#" className="footer-link">About us</a></li>
-              <li><a href="#" className="footer-link">Blog</a></li>
-              <li><a href="#" className="footer-link">Careers</a></li>
               <li><a href="#" className="footer-link">Contact sales</a></li>
             </ul>
           </div>
@@ -68,6 +119,17 @@ export function Footer() {
 
         <hr className="footer-divider" />
         <p className="footer-bottom" data-reveal data-reveal-group="footer" data-reveal-delay="450">&copy; 2026 Snaarp. All rights reserved.</p>
+        <div className="footer-product-icons" data-reveal data-reveal-group="footer" data-reveal-delay="500">
+          {FOOTER_PRODUCTS.map((product) => (
+            <a key={product.name} href={product.href} className="footer-product-icon" title={product.name}>
+              {product.icon ? (
+                <img src={product.icon} alt={product.name} />
+              ) : (
+                product.lucide && <product.lucide size={28} />
+              )}
+            </a>
+          ))}
+        </div>
       </RevealSection>
     </footer>
   );

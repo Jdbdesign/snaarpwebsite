@@ -1,8 +1,13 @@
 {
 	"folders": [
 		{
-			"name": "Snaarpwebsite",
 			"path": "."
+		},
+		{
+			"path": "../Download page SVG"
+		},
+		{
+			"path": "../../Documents/Avatars"
 		}
 	],
 	"settings": {}

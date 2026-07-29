@@ -15,7 +15,7 @@ import { BuiltToReplace } from '@/components/BuiltToReplace';
 import { TrustedByForward } from '@/components/TrustedByForward';
 import { SimplePlanCTA } from '@/components/SimplePlanCTA';
 import { SnaarpStack } from '@/components/SnaarpStack';
-import { FAQ } from '@/components/FAQ';
+
 import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 import { Footer } from '@/components/Footer';
 
@@ -36,7 +36,7 @@ export default function Home() {
         <TrustedByForward />
         <SimplePlanCTA />
         <SnaarpStack />
-        <FAQ />
+
         <HomeFinalCTA />
       </main>
       <Footer />

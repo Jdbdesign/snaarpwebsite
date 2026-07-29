@@ -76,9 +76,9 @@ const TABS: SolutionTab[] = [
     // "working toward X" instead of implying it's already achieved.
     items: [
       { title: 'GDPR & Data Privacy', desc: 'EU data residency and privacy controls built in, not bolted on.', Icon: ShieldCheck, href: '/solutions/gdpr-data-privacy' },
-      { title: 'SOC 2-Aligned Security', desc: 'Access logs, encryption, and identity controls ready for audit.', Icon: FileLock2 },
-      { title: 'Zero Trust Access Control', desc: 'Every login, device, and file access verified, every time.', Icon: Fingerprint },
-      { title: 'Industry Regulations', desc: 'Built with the controls regulated industries need to say yes.', Icon: Scale },
+      { title: 'SOC 2-Aligned Security', desc: 'Access logs, encryption, and identity controls ready for audit.', Icon: FileLock2, href: '/solutions/soc2-aligned-security' },
+      { title: 'Zero Trust Access Control', desc: 'Every login, device, and file access verified, every time.', Icon: Fingerprint, href: '/solutions/zero-trust-access-control' },
+      { title: 'Industry Regulations', desc: 'Built with the controls regulated industries need to say yes.', Icon: Scale, href: '/solutions/industry-regulations' },
     ],
   },
 ];

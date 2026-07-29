@@ -2242,9 +2242,9 @@ body {
 
 .ebc-panel-eyebrow {
   position: relative;
-  color: hsl(220, 10%, 65%);
+  color: #ffffff;
   font-weight: 700;
-  font-size: 0.75rem;
+  font-size: 1rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -3488,6 +3488,49 @@ body {
   color: hsl(230, 10%, 50%);
   font-size: 0.8125rem;
   margin: 0;
+}
+
+.footer-product-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-product-icon {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
+  max-width: 60px;
+  max-height: 60px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  color: #7C3AED;
+  overflow: hidden;
+}
+
+.footer-product-icon:hover {
+  background: #ffffff;
+  border-color: transparent;
+  color: #6D28D9;
+  transform: scale(1.15);
+}
+
+.footer-product-icon img {
+  width: 34px;
+  height: 34px;
+  max-width: 34px;
+  max-height: 34px;
+  border-radius: 6px;
+  object-fit: cover;
+  display: block;
 }
 
 /* =====================================================================
@@ -12007,3 +12050,446 @@ html:has(.work-drive) {
 }
 
 
+
+/* =====================================================================
+   PRODUCT SHOWCASE CARD (Homepage Hero Right Column)
+   ===================================================================== */
+
+.psc-hero-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.psc-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.psc-icon-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 6px;
+  background: var(--surface-secondary, #f5f5f5);
+  border-radius: 28px;
+  border: 1px solid var(--border-light, #e8e8e8);
+}
+
+.psc-icon-slot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #a0a0a0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.psc-icon-slot--active {
+  background: #7C3AED;
+  color: #fff;
+  box-shadow: 0 4px 12px -4px rgba(124, 58, 237, 0.5);
+}
+
+.psc-card {
+  border-radius: 18px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px -4px rgba(0,0,0,0.08), 0 24px 48px -12px rgba(0,0,0,0.12);
+  overflow: hidden;
+  background: #fff;
+  max-width: 580px;
+  width: 100%;
+}
+
+/* =====================================================================
+   MAIL PREVIEW MOCKUP
+   ===================================================================== */
+
+.mail-mock {
+  display: flex;
+  height: 480px;
+  font-family: var(--font-body, 'Poppins', sans-serif);
+  font-size: 11px;
+  color: #1a1a1a;
+  overflow: hidden;
+}
+
+.mail-mock-app-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 6px;
+  background: #fafafa;
+  border-right: 1px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.mail-mock-app-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+.mail-mock-sidebar {
+  width: 150px;
+  flex-shrink: 0;
+  border-right: 1px solid #f0f0f0;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.mail-mock-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  color: #333;
+}
+
+.mail-mock-logo {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.mail-mock-compose {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: #7C3AED;
+  color: #fff;
+  border-radius: 20px;
+  border: none;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  cursor: default;
+  width: fit-content;
+}
+
+.mail-mock-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.mail-mock-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  color: #555;
+  font-size: 10.5px;
+}
+
+.mail-mock-nav-item--active {
+  background: #f3efff;
+  color: #7C3AED;
+  font-weight: 600;
+}
+
+.mail-mock-nav-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mail-mock-nav-count {
+  font-size: 9px;
+  font-weight: 700;
+  background: #7C3AED;
+  color: #fff;
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+
+.mail-mock-nav-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  color: #999;
+  font-size: 10px;
+}
+
+.mail-mock-labels {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.mail-mock-labels-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 600;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.mail-mock-labels-add {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.mail-mock-label-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: #555;
+}
+
+.mail-mock-label-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: #7C3AED;
+}
+
+.mail-mock-label-count {
+  margin-left: auto;
+  font-size: 9px;
+  color: #999;
+}
+
+/* Main area */
+.mail-mock-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.mail-mock-topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.mail-mock-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #f5f5f5;
+  border-radius: 20px;
+  color: #999;
+  font-size: 11px;
+  flex: 1;
+  max-width: 200px;
+}
+
+.mail-mock-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  color: #777;
+}
+
+.mail-mock-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid #e8e8e8;
+  font-size: 10px;
+  font-weight: 500;
+  color: #333;
+}
+
+.mail-mock-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+}
+
+.mail-mock-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #7C3AED;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.mail-mock-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.mail-mock-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #888;
+}
+
+.mail-mock-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #888;
+  font-size: 10px;
+}
+
+.mail-mock-view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: #aaa;
+}
+
+.mail-mock-view--active {
+  font-weight: 700;
+  color: #333;
+}
+
+.mail-mock-pagination {
+  font-size: 10px;
+  color: #999;
+}
+
+.mail-mock-checkbox {
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  border: 1.5px solid #d0d0d0;
+  flex-shrink: 0;
+}
+
+/* Email list */
+.mail-mock-list {
+  flex: 1;
+  overflow: hidden;
+}
+
+.mail-mock-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #f8f8f8;
+  transition: background 0.15s;
+}
+
+.mail-mock-row:hover {
+  background: #fafafa;
+}
+
+.mail-mock-star {
+  color: #d0d0d0;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.mail-mock-row-avatar {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.mail-mock-row-content {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.mail-mock-row-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1px;
+}
+
+.mail-mock-row-sender {
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 11px;
+}
+
+.mail-mock-badge-new {
+  font-size: 8px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: #3b82f6;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mail-mock-row-subject {
+  font-weight: 600;
+  font-size: 11px;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mail-mock-row-preview {
+  font-size: 10px;
+  color: #888;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+.mail-mock-row-time {
+  font-size: 9.5px;
+  color: #999;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Responsive: hide showcase on small screens, show simplified */
+@media (max-width: 1023px) {
+  .psc-wrapper {
+    display: none;
+  }
+  .psc-hero-col {
+    display: none;
+  }
+}

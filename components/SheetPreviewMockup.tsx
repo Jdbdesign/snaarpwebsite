@@ -36,28 +36,6 @@ const SHEET_TABS = [
 export function SheetPreviewMockup() {
   return (
     <div style={{ display: 'flex', height: '620px', width: '100%', fontFamily: 'Poppins, sans-serif', fontSize: '11px', color: '#1a1a1a', overflow: 'hidden' }}>
-      {/* App switcher strip */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', padding: '12px 5px', background: '#fafafa', borderRight: '1px solid #f0f0f0', flexShrink: 0 }}>
-        {[
-          { src: '/assets/icons/envelope.jpg', alt: 'Mail' },
-          { src: '/assets/icons/apps-meet-logo.png', alt: 'Meet', size: '18px' },
-          { src: '/assets/icons/search.jpg', alt: 'Contacts' },
-          { src: '', alt: 'Kalender', lucide: true },
-          { src: '/assets/icons/apps-lock.jpg', alt: 'Lock' },
-          { src: '/assets/icons/cube.jpg', alt: 'Drive' },
-          { src: '/assets/icons/apps-sheet.jpg', alt: 'Sheet' },
-          { src: '/assets/icons/ai-sparkle.jpg', alt: 'More' },
-        ].map((item, i) => (
-          <div key={i} style={{ width: '26px', height: '26px', borderRadius: '7px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-            {(item as any).lucide ? (
-              <Calendar size={16} style={{ color: '#7C3AED' }} />
-            ) : (
-              <img src={item.src} alt={item.alt} style={{ width: (item as any).size || '22px', height: (item as any).size || '22px', borderRadius: '5px', objectFit: 'cover' }} />
-            )}
-          </div>
-        ))}
-      </div>
-
       {/* Main spreadsheet area */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         {/* Row 1 — Title bar */}

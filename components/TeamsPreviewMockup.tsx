@@ -361,7 +361,7 @@ export function TeamsPreviewMockup() {
                 <div style={{ position: 'relative' }}>
                   <Paperclip size={12} style={{ color: '#999' }} />
                   {groupCoachStep === 4 && (
-                    <div style={{ position: 'absolute', bottom: '24px', left: '-60px', zIndex: 60 }}>
+                    <div style={{ position: 'absolute', bottom: '150px', left: '-140px', zIndex: 60 }}>
                       <Coachmark
                         visible
                         title="Attach a File"
@@ -370,7 +370,7 @@ export function TeamsPreviewMockup() {
                         top="0px"
                         left="0px"
                         arrowSide="bottom"
-                        arrowOffset="70px"
+                        arrowOffset="150px"
                         buttonLabel="End"
                       />
                     </div>

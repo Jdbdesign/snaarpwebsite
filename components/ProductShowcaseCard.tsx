@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Calendar } from 'lucide-react';
+import { Calendar, Users, MonitorPlay, Video } from 'lucide-react';
 import { MailPreviewMockup } from '@/components/MailPreviewMockup';
 import { MePreviewMockup } from '@/components/MePreviewMockup';
 import { ContactsPreviewMockup } from '@/components/ContactsPreviewMockup';
@@ -9,16 +9,30 @@ import { KalenderPreviewMockup } from '@/components/KalenderPreviewMockup';
 import { LockPreviewMockup } from '@/components/LockPreviewMockup';
 import { DrivePreviewMockup } from '@/components/DrivePreviewMockup';
 import { SheetPreviewMockup } from '@/components/SheetPreviewMockup';
+import { DocumentPreviewMockup } from '@/components/DocumentPreviewMockup';
 
 const PRODUCT_ICONS = [
-  { src: '/assets/icons/envelope.jpg', label: 'Mail', size: '22px', lucide: false },
-  { src: '/assets/icons/apps-meet-logo.png', label: 'Me', size: '18px', lucide: false },
-  { src: '/assets/icons/search.jpg', label: 'Contacts', size: '22px', lucide: false },
-  { src: '', label: 'Calendar', size: '22px', lucide: true },
-  { src: '/assets/icons/apps-lock.jpg', label: 'Lock', size: '22px', lucide: false },
-  { src: '/assets/icons/cube.jpg', label: 'Drive', size: '22px', lucide: false },
-  { src: '/assets/icons/apps-sheet.jpg', label: 'Sheet', size: '22px', lucide: false },
+  { src: '/assets/icons/envelope.jpg', label: 'Mail', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/apps-meet-logo.png', label: 'Me', size: '18px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/search.jpg', label: 'Contacts', size: '22px', lucide: false, lucideIcon: null },
+  { src: '', label: 'Calendar', size: '22px', lucide: true, lucideIcon: 'Calendar' },
+  { src: '/assets/icons/apps-lock.jpg', label: 'Lock', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/cube.jpg', label: 'Drive', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/apps-sheet.jpg', label: 'Sheet', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/apps-document.png', label: 'Document', size: '22px', lucide: false, lucideIcon: null },
+  { src: '', label: 'Teams', size: '22px', lucide: true, lucideIcon: 'Users' },
+  { src: '/assets/icons/p-icon.jpg', label: 'Presentation', size: '22px', lucide: false, lucideIcon: null },
+  { src: '', label: 'Meet', size: '22px', lucide: true, lucideIcon: 'Video' },
 ];
+
+function LucideIconRender({ name, size, color }: { name: string; size: number; color: string }) {
+  switch (name) {
+    case 'Calendar': return <Calendar size={size} style={{ color }} />;
+    case 'Users': return <Users size={size} style={{ color }} />;
+    case 'Video': return <Video size={size} style={{ color }} />;
+    default: return <Calendar size={size} style={{ color }} />;
+  }
+}
 
 export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaused }: { cardWidth?: string; cardBorder?: string; startPaused?: boolean }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -27,6 +41,10 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaus
     <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
       {/* Vertical icon rail */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '8px 6px', background: '#f5f5f5', borderRadius: '28px', border: '1px solid #e8e8e8' }}>
+        {/* Snaarp brand mark */}
+        <div style={{ width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, #7C3AED, #9F67F5)', marginBottom: '4px' }}>
+          <span style={{ color: '#fff', fontSize: '13px', fontWeight: 800, letterSpacing: '-0.02em' }}>S</span>
+        </div>
         {PRODUCT_ICONS.map((item, i) => (
           <div
             key={item.label}
@@ -48,7 +66,7 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaus
             }}
           >
             {item.lucide ? (
-              <Calendar size={18} style={{ color: '#7C3AED' }} />
+              <LucideIconRender name={item.lucideIcon || 'Calendar'} size={18} color="#7C3AED" />
             ) : (
               <img src={item.src} alt={item.label} style={{ width: item.size, height: item.size, borderRadius: '5px', objectFit: 'cover' }} />
             )}
@@ -65,6 +83,7 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaus
         {activeIndex === 4 && <LockPreviewMockup onEnd={() => setActiveIndex(5)} />}
         {activeIndex === 5 && <DrivePreviewMockup onEnd={() => setActiveIndex(6)} />}
         {activeIndex === 6 && <SheetPreviewMockup />}
+        {activeIndex === 7 && <DocumentPreviewMockup />}
       </div>
     </div>
   );

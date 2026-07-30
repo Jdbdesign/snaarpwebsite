@@ -16,6 +16,7 @@ import { TrustedByForward } from '@/components/TrustedByForward';
 import { SimplePlanCTA } from '@/components/SimplePlanCTA';
 import { SnaarpStack } from '@/components/SnaarpStack';
 
+import { SeeItInAction } from '@/components/SeeItInAction';
 import { HomeFinalCTA } from '@/components/HomeFinalCTA';
 import { Footer } from '@/components/Footer';
 
@@ -26,6 +27,7 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <TrustedToolsBar />
+        <SeeItInAction />
         {/* <AppsToExplore /> */}
         {/* <WhyMail /> */}
         {/* <BuiltForModernBusinesses /> */}

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ProductsMegaMenu } from '@/components/ProductsMegaMenu';
 import { SolutionMegaMenu } from '@/components/SolutionMegaMenu';
 import { DownloadMegaMenu } from '@/components/DownloadMegaMenu';
+import { LoginMegaMenu } from '@/components/LoginMegaMenu';
 import { CurrencySwitcher } from '@/components/currency/CurrencySwitcher';
 
 export function Header() {
@@ -14,6 +15,8 @@ export function Header() {
   const solutionTriggerRef = useRef<HTMLButtonElement>(null);
   const [isDownloadOpen, setIsDownloadOpen] = useState(false);
   const downloadTriggerRef = useRef<HTMLButtonElement>(null);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const loginTriggerRef = useRef<HTMLButtonElement>(null);
   // Set only by the 'snaarp:open-products-menu' event below — apps elsewhere
   // on the site (e.g. the homepage's ExploreByCategory rows) that don't have
   // a dedicated product page yet dispatch this to pop the Products menu open
@@ -27,6 +30,7 @@ export function Header() {
       setIsProductsOpen(true);
       setIsSolutionOpen(false);
       setIsDownloadOpen(false);
+      setIsLoginOpen(false);
     }
     window.addEventListener('snaarp:open-products-menu', onOpenProductsMenu);
     return () => window.removeEventListener('snaarp:open-products-menu', onOpenProductsMenu);
@@ -54,6 +58,7 @@ export function Header() {
                     setForceCategoryId(null);
                     setIsSolutionOpen(false);
                     setIsDownloadOpen(false);
+                    setIsLoginOpen(false);
                   }}
                 >
                   Products
@@ -80,6 +85,7 @@ export function Header() {
                     setIsSolutionOpen((open) => !open);
                     setIsProductsOpen(false);
                     setIsDownloadOpen(false);
+                    setIsLoginOpen(false);
                   }}
                 >
                   Solution
@@ -107,6 +113,7 @@ export function Header() {
                     setIsDownloadOpen((open) => !open);
                     setIsProductsOpen(false);
                     setIsSolutionOpen(false);
+                    setIsLoginOpen(false);
                   }}
                 >
                   Download
@@ -122,13 +129,37 @@ export function Header() {
                   </svg>
                 </button>
               </li>
-              <li><a href="#" className="nav-link">Contact Sales</a></li>
+              <li><a href="/contact" className="nav-link">Contact Sales</a></li>
             </ul>
           </nav>
         </div>
 
         <div className="flex items-center gap-6">
-          <a href="#" className="nav-link hidden sm:inline">Login</a>
+          <button
+            ref={loginTriggerRef}
+            type="button"
+            className="nav-link hidden sm:inline-flex items-center gap-1 min-h-[44px]"
+            aria-haspopup="true"
+            aria-expanded={isLoginOpen}
+            onClick={() => {
+              setIsLoginOpen((open) => !open);
+              setIsProductsOpen(false);
+              setIsSolutionOpen(false);
+              setIsDownloadOpen(false);
+            }}
+          >
+            Login
+            <svg
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              aria-hidden="true"
+              className={`nav-chevron${isLoginOpen ? ' nav-chevron-open' : ''}`}
+            >
+              <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
           <a href="#" className="btn-dark inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm min-h-[44px]">
             Get Started
           </a>
@@ -151,6 +182,11 @@ export function Header() {
         isOpen={isDownloadOpen}
         onClose={() => setIsDownloadOpen(false)}
         triggerRef={downloadTriggerRef}
+      />
+      <LoginMegaMenu
+        isOpen={isLoginOpen}
+        onClose={() => setIsLoginOpen(false)}
+        triggerRef={loginTriggerRef}
       />
     </header>
   );

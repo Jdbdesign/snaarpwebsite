@@ -25,7 +25,7 @@ const GUIDE_STEPS = [
   { title: 'Compose Email', subtitle: 'Write and send professional emails with AI-powered drafting assistance.', highlightTop: '44px', highlightLeft: '42px', highlightWidth: '130px', highlightHeight: '36px', tooltipTop: '44px', tooltipLeft: '178px' },
 ];
 
-export function MailPreviewMockup() {
+export function MailPreviewMockup({ onEnd, startPaused }: { onEnd?: () => void; startPaused?: boolean }) {
   const [view, setView] = useState<MailView>('inbox');
   const [guideStep, setGuideStep] = useState(0);
   const [showGuide, setShowGuide] = useState(false);
@@ -36,12 +36,14 @@ export function MailPreviewMockup() {
   const [aiGenerating, setAiGenerating] = useState(false);
   const [showAttachment, setShowAttachment] = useState(false);
   const [typedText, setTypedText] = useState('');
-
-  // Show guide after a short delay on mount
+  const [showGenerateCoachmark, setShowGenerateCoachmark] = useState(false);
+  const [showSendCoachmark, setShowSendCoachmark] = useState(false);
+  // Show guide after a short delay on mount (only if not paused)
   useEffect(() => {
+    if (startPaused) return;
     const t = setTimeout(() => setShowGuide(true), 600);
     return () => clearTimeout(t);
-  }, []);
+  }, [startPaused]);
 
   function handleNextStep() {
     // Clicking Next on compose coachmark opens compose modal
@@ -91,6 +93,7 @@ export function MailPreviewMockup() {
         clearInterval(interval);
         setAiGenerating(false);
         setAiGenerated(true);
+        setTimeout(() => setShowSendCoachmark(true), 500);
       }
     }, 20);
   }
@@ -257,7 +260,17 @@ export function MailPreviewMockup() {
 
         {/* Compose Modal - compact bottom-right like Gmail */}
         {view === 'compose' && (
-          <div style={{ position: 'absolute', bottom: '0', right: '0', width: '340px', height: '380px', zIndex: 50, display: 'flex', flexDirection: 'column', background: '#fff', borderRadius: '12px 12px 0 0', border: '1px solid #e0e0e0', boxShadow: '0 -4px 24px -8px rgba(0,0,0,0.15)' }}>
+          <div style={{ position: 'absolute', bottom: '0', right: '0', width: '340px', height: '380px', zIndex: 50, display: 'flex', flexDirection: 'column', background: '#fff', borderRadius: '12px 12px 0 0', border: '1px solid #e0e0e0', boxShadow: '0 -4px 24px -8px rgba(0,0,0,0.15)', overflow: 'visible' }}>
+            {/* Generate coachmark — positioned above the modal */}
+            <Coachmark
+              visible={showGenerateCoachmark && showAiPrompt && !aiGenerating && !aiGenerated}
+              title="Generate with AI"
+              subtitle="Click Generate to let AI write your email draft instantly"
+              onNext={() => { setShowGenerateCoachmark(false); handleGenerateAI(); }}
+              top="100px"
+              left="-30px"
+              arrowSide="right"
+            />
             {/* Modal header */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#1a1a1a', borderRadius: '12px 12px 0 0' }}>
               <span style={{ fontSize: '12px', fontWeight: 600, color: '#fff' }}>New Message</span>
@@ -286,11 +299,11 @@ export function MailPreviewMockup() {
             <div style={{ flex: 1, padding: '10px 14px', overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative' }}>
               {/* AI prompt row */}
               {showAiPrompt && !aiGenerated && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 10px', background: '#FAFAFE', borderRadius: '8px', border: '1px solid #f0f0f0', marginBottom: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 10px', background: '#FAFAFE', borderRadius: '8px', border: '1px solid #f0f0f0', marginBottom: '8px', position: 'relative' }}>
                   <div style={{ flex: 1, fontSize: '9px', color: '#555' }}>
                     Write a professional follow-up about Q3 proposal
                   </div>
-                  <button onClick={handleGenerateAI} disabled={aiGenerating} style={{ padding: '4px 10px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '10px', fontSize: '8px', fontWeight: 600, cursor: aiGenerating ? 'wait' : 'pointer', opacity: aiGenerating ? 0.7 : 1 }}>
+                  <button onClick={() => { setShowGenerateCoachmark(false); handleGenerateAI(); }} disabled={aiGenerating} style={{ padding: '4px 10px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '10px', fontSize: '8px', fontWeight: 600, cursor: aiGenerating ? 'wait' : 'pointer', opacity: aiGenerating ? 0.7 : 1 }}>
                     {aiGenerating ? '...' : 'Generate'}
                   </button>
                 </div>
@@ -323,7 +336,7 @@ export function MailPreviewMockup() {
                 visible={showAiCoachmark && !showAiPrompt && !aiGenerated}
                 title="Write with AI"
                 subtitle="Let AI draft your email in seconds. Just describe what you want to say."
-                onNext={() => { setShowAiCoachmark(false); setShowAiPrompt(true); }}
+                onNext={() => { setShowAiCoachmark(false); setShowAiPrompt(true); setTimeout(() => setShowGenerateCoachmark(true), 300); }}
                 top="-140px"
                 left="60px"
                 highlightTop="5px"
@@ -333,12 +346,13 @@ export function MailPreviewMockup() {
                 arrowSide="bottom"
               />
 
-              <button onClick={handleSend} style={{ padding: '5px 16px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '14px', fontSize: '10px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <button onClick={() => { setShowSendCoachmark(false); handleSend(); if (onEnd) setTimeout(() => onEnd(), 2200); }} style={{ padding: '5px 16px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '14px', fontSize: '10px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', position: 'relative' }}>
                 Send
                 <ChevronDown size={10} />
+                <Coachmark visible={showSendCoachmark && aiGenerated} title="Send Email" subtitle="Your AI-drafted email is ready. Send it now!" onNext={() => { setShowSendCoachmark(false); handleSend(); if (onEnd) setTimeout(() => onEnd(), 2200); }} top="-150px" left="-140px" arrowSide="bottom" arrowOffset="160px" buttonLabel="End" />
               </button>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: '4px', color: '#888' }}>
-                <Sparkles size={13} style={{ color: '#7C3AED', cursor: 'pointer' }} onClick={() => { if (!showAiPrompt && !aiGenerated) { setShowAiCoachmark(false); setShowAiPrompt(true); } }} />
+                <Sparkles size={13} style={{ color: '#7C3AED', cursor: 'pointer' }} onClick={() => { if (!showAiPrompt && !aiGenerated) { setShowAiCoachmark(false); setShowAiPrompt(true); setTimeout(() => setShowGenerateCoachmark(true), 300); } }} />
                 <Paperclip size={13} style={{ cursor: 'pointer' }} onClick={() => setShowAttachment(!showAttachment)} />
               </div>
               <div style={{ marginLeft: 'auto', cursor: 'pointer', color: '#ccc' }}>

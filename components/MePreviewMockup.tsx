@@ -33,7 +33,7 @@ const COLORS = ['#7C3AED', '#0E9384', '#F59E0B', '#EC4899'];
 
 type MeView = 'base' | 'newEvent' | 'meetingDetail';
 
-export function MePreviewMockup() {
+export function MePreviewMockup({ onEnd }: { onEnd?: () => void }) {
   const [view, setView] = useState<MeView>('base');
   const [showStep1, setShowStep1] = useState(false);
   const [showStep2, setShowStep2] = useState(false);
@@ -44,6 +44,7 @@ export function MePreviewMockup() {
   const [selectedColor, setSelectedColor] = useState('#7C3AED');
   const [copied, setCopied] = useState(false);
   const [showCopyCoachmark, setShowCopyCoachmark] = useState(false);
+  const [showCreateEventCoachmark, setShowCreateEventCoachmark] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setShowStep1(true), 600);
@@ -52,7 +53,7 @@ export function MePreviewMockup() {
 
   function handleOpenNewEvent() {
     setShowStep1(false);
-    setTimeout(() => setView('newEvent'), 180);
+    setTimeout(() => { setView('newEvent'); setTimeout(() => setShowCreateEventCoachmark(true), 400); }, 180);
   }
 
   function handleCreateEvent() {
@@ -276,9 +277,10 @@ export function MePreviewMockup() {
             </div>
 
             {/* Footer */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '8px', padding: '10px 14px', borderTop: '1px solid #f0f0f0' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '8px', padding: '10px 14px', borderTop: '1px solid #f0f0f0', position: 'relative' }}>
+              <Coachmark visible={showCreateEventCoachmark} title="Create Event Type" subtitle="Click to save this event type for others to book" onNext={() => { setShowCreateEventCoachmark(false); handleCreateEvent(); }} top="-120px" left="10px" arrowSide="bottom" arrowOffset="170px" />
               <button onClick={() => setView('base')} style={{ padding: '5px 14px', background: '#fff', color: '#555', border: '1px solid #e0e0e0', borderRadius: '14px', fontSize: '10px', fontWeight: 500, cursor: 'pointer' }}>Cancel</button>
-              <button onClick={handleCreateEvent} style={{ padding: '5px 14px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '14px', fontSize: '10px', fontWeight: 600, cursor: 'pointer' }}>Create Event Type</button>
+              <button onClick={() => { setShowCreateEventCoachmark(false); handleCreateEvent(); }} style={{ padding: '5px 14px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '14px', fontSize: '10px', fontWeight: 600, cursor: 'pointer' }}>Create Event Type</button>
             </div>
           </div>
           </div>
@@ -333,10 +335,11 @@ export function MePreviewMockup() {
                   visible={showCopyCoachmark && !copied}
                   title="Copy Meeting Link"
                   subtitle="Share this link with attendees to join the meeting"
-                  onNext={handleCopyLink}
+                  onNext={() => { handleCopyLink(); if (onEnd) setTimeout(() => onEnd(), 1800); }}
                   top="-110px"
                   left="60px"
                   arrowSide="bottom"
+                  buttonLabel="End"
                 />
               </div>
 

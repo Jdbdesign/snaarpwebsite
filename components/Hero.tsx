@@ -3,7 +3,6 @@
 import { useRef } from 'react';
 import { useLoadReveal } from '@/hooks/useScrollReveal';
 import { Price } from '@/components/currency/Price';
-import { ProductShowcaseCard } from '@/components/ProductShowcaseCard';
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -68,9 +67,21 @@ export function Hero() {
           </ul>
         </div>
 
-        {/* Right column: Product Showcase Card */}
+        {/* Right column: Product Walkthrough Video */}
         <div className="hidden lg:flex justify-center items-center" data-reveal-load>
-          <ProductShowcaseCard />
+          <div style={{ borderRadius: '20px', border: '5px solid #1a1a1a', boxShadow: '0 8px 30px -8px rgba(0,0,0,0.15), 0 4px 12px -4px rgba(0,0,0,0.08)', overflow: 'hidden', width: '800px', height: '620px', position: 'relative', background: '#000' }}>
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/videos/product-walkthrough-poster.jpg"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            >
+              <source src="/videos/product-walkthrough.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
       </div>
     </section>

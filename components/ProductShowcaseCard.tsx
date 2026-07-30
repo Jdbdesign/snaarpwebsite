@@ -14,13 +14,13 @@ const PRODUCT_ICONS = [
   { src: '/assets/icons/envelope.jpg', label: 'Mail', size: '22px', lucide: false },
   { src: '/assets/icons/apps-meet-logo.png', label: 'Me', size: '18px', lucide: false },
   { src: '/assets/icons/search.jpg', label: 'Contacts', size: '22px', lucide: false },
-  { src: '', label: 'Kalender', size: '22px', lucide: true },
+  { src: '', label: 'Calendar', size: '22px', lucide: true },
   { src: '/assets/icons/apps-lock.jpg', label: 'Lock', size: '22px', lucide: false },
   { src: '/assets/icons/cube.jpg', label: 'Drive', size: '22px', lucide: false },
   { src: '/assets/icons/apps-sheet.jpg', label: 'Sheet', size: '22px', lucide: false },
 ];
 
-export function ProductShowcaseCard() {
+export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaused }: { cardWidth?: string; cardBorder?: string; startPaused?: boolean }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -57,13 +57,13 @@ export function ProductShowcaseCard() {
       </div>
 
       {/* Browser-style card - fixed dimensions matching Mail mockup */}
-      <div style={{ borderRadius: '18px', border: '1px solid #e5e5e5', boxShadow: '0 4px 12px -4px rgba(0,0,0,0.08), 0 24px 48px -12px rgba(0,0,0,0.12)', overflow: 'visible', background: '#fff', width: '800px', height: '620px', position: 'relative' }}>
-        {activeIndex === 0 && <MailPreviewMockup />}
-        {activeIndex === 1 && <MePreviewMockup />}
-        {activeIndex === 2 && <ContactsPreviewMockup />}
-        {activeIndex === 3 && <KalenderPreviewMockup />}
-        {activeIndex === 4 && <LockPreviewMockup />}
-        {activeIndex === 5 && <DrivePreviewMockup />}
+      <div style={{ borderRadius: '18px', border: cardBorder || '1px solid #e5e5e5', boxShadow: '0 4px 12px -4px rgba(0,0,0,0.08), 0 24px 48px -12px rgba(0,0,0,0.12)', overflow: 'hidden', background: '#fff', width: cardWidth, height: '620px', position: 'relative' }}>
+        {activeIndex === 0 && <MailPreviewMockup onEnd={() => setActiveIndex(1)} startPaused={startPaused} />}
+        {activeIndex === 1 && <MePreviewMockup onEnd={() => setActiveIndex(2)} />}
+        {activeIndex === 2 && <ContactsPreviewMockup onEnd={() => setActiveIndex(3)} />}
+        {activeIndex === 3 && <KalenderPreviewMockup onEnd={() => setActiveIndex(4)} />}
+        {activeIndex === 4 && <LockPreviewMockup onEnd={() => setActiveIndex(5)} />}
+        {activeIndex === 5 && <DrivePreviewMockup onEnd={() => setActiveIndex(6)} />}
         {activeIndex === 6 && <SheetPreviewMockup />}
       </div>
     </div>

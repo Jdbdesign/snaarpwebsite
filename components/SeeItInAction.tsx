@@ -8,7 +8,7 @@ export function SeeItInAction() {
   const [showIntroModal, setShowIntroModal] = useState(true);
 
   return (
-    <section style={{ padding: '80px 0 100px', background: '#fafafa' }}>
+    <section style={{ padding: '80px 0 100px', background: '#fafafa', position: 'relative', zIndex: 0, isolation: 'isolate' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
         {/* Section header */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>

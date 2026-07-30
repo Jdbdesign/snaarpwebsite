@@ -10,7 +10,7 @@ export function ChannelsTable() {
             <p className="contact-eyebrow">What to expect</p>
             <h2 className="contact-section-heading">Channels and response targets</h2>
             <p className="contact-section-sub" style={{ maxWidth: 520 }}>
-              Support is included on every plan — including the &pound;1 one. Higher plans get faster targets and more channels, not permission to talk to us.
+              Support is included on every plan. Higher plans get faster targets and more channels, not permission to talk to us.
             </p>
 
             <div className="contact-table-wrap">
@@ -18,22 +18,42 @@ export function ChannelsTable() {
                 <span>Plan</span><span>Channels</span><span>First response</span>
               </div>
               <div className="contact-table-row">
-                <span className="contact-table-plan">Starter &middot; &pound;1/mo</span>
+                <span className="contact-table-plan">Starter &middot; &pound;5/mo</span>
                 <span>Email &middot; Help centre</span>
                 <span>1 working day</span>
               </div>
               <div className="contact-table-row">
-                <span className="contact-table-plan">Growth</span>
+                <span className="contact-table-plan">Growth &middot; &pound;25/mo</span>
+                <span>Email &middot; Help centre</span>
+                <span>1 working day</span>
+              </div>
+              <div className="contact-table-row">
+                <span className="contact-table-plan">Business &middot; &pound;50/mo</span>
                 <span>Email &middot; Live chat &middot; Onboarding call</span>
                 <span>4 working hours</span>
               </div>
-              <div className="contact-table-row contact-table-row--last">
-                <span className="contact-table-plan">Business</span>
-                <span>Everything, plus a named contact and phone</span>
+              <div className="contact-table-row">
+                <span className="contact-table-plan">Scale &middot; &pound;100/mo</span>
+                <span>Email &middot; Live chat &middot; Onboarding call</span>
+                <span>4 working hours</span>
+              </div>
+              <div className="contact-table-row">
+                <span className="contact-table-plan">Enterprise &middot; &pound;200/mo</span>
+                <span>All channels, named contact &middot; Phone</span>
                 <span>2 working hours</span>
               </div>
+              <div className="contact-table-row">
+                <span className="contact-table-plan">Corporate &middot; &pound;500/mo</span>
+                <span>All channels, dedicated account manager &middot; Phone</span>
+                <span>1 working hour</span>
+              </div>
+              <div className="contact-table-row contact-table-row--last">
+                <span className="contact-table-plan">Ultra &middot; &pound;2,500/mo</span>
+                <span>All channels, dedicated account manager &middot; Phone &middot; Priority queue</span>
+                <span>30 minutes</span>
+              </div>
             </div>
-            <p className="contact-table-footnote">Targets apply Mon–Fri, 09:00–18:00 GMT. Plan names and targets pending sign-off.</p>
+            <p className="contact-table-footnote">Targets apply Mon–Fri, 09:00–18:00 GMT. Response targets are goals, not SLAs.</p>
           </div>
 
           {/* Right: self-serve dark card */}

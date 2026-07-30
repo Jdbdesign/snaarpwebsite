@@ -117,7 +117,7 @@ export function PresentationPreviewMockup({ onEnd }: { onEnd?: () => void }) {
   const [slides, setSlides] = useState(INITIAL_SLIDES);
   const [activeSlide, setActiveSlide] = useState(2);
   const [presenting, setPresenting] = useState(false);
-  const [showAddCoachmark, setShowAddCoachmark] = useState(true);
+  const [coachStep, setCoachStep] = useState(1); // 1=add slide, 2=share btn, 3=copy link, 4=present btn, 5=end in present, 0=done
   const [notesOpen, setNotesOpen] = useState(false);
   const [layoutOpen, setLayoutOpen] = useState(false);
   const [currentLayout, setCurrentLayout] = useState('Title + Content');
@@ -125,10 +125,10 @@ export function PresentationPreviewMockup({ onEnd }: { onEnd?: () => void }) {
   const [linkCopied, setLinkCopied] = useState(false);
 
   const addSlide = useCallback(() => {
-    setShowAddCoachmark(false);
     const newSlide = { Canvas: SlideBlankCanvas, Thumb: ThumbBlank, note: '' };
     setSlides((s) => [...s, newSlide]);
     setActiveSlide(slides.length);
+    setCoachStep(2);
   }, [slides.length]);
 
   const handleCopyLink = async () => {
@@ -165,12 +165,18 @@ export function PresentationPreviewMockup({ onEnd }: { onEnd?: () => void }) {
           <X size={10} /> Exit
         </div>
         <div style={{ position: 'absolute', bottom: '10px', right: '14px', fontSize: '9px', color: '#888' }}>{activeSlide + 1} / {slides.length}</div>
+        {/* End coachmark in present mode */}
+        {coachStep === 5 && (
+          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 40 }}>
+            <Coachmark visible title="You're Presenting!" subtitle="Navigate slides or exit when done" onNext={() => { setCoachStep(0); setPresenting(false); if (onEnd) onEnd(); }} top="0px" left="0px" arrowSide="bottom" arrowOffset="80px" buttonLabel="End" />
+          </div>
+        )}
       </div>
     );
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', position: 'relative' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', position: 'relative', overflow: 'visible' }}>
       {/* Title bar */}
       <div style={{ display: 'flex', alignItems: 'center', padding: '8px 14px', borderBottom: '1px solid #f0f0f0', gap: '10px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flex: 1 }}>
@@ -186,8 +192,22 @@ export function PresentationPreviewMockup({ onEnd }: { onEnd?: () => void }) {
             <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: '#7C3AED', color: '#fff', fontSize: '8px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #fff', marginRight: '-6px', zIndex: 3 }}>SJ</div>
             <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: '#0D9488', color: '#fff', fontSize: '8px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #fff', zIndex: 2 }}>AR</div>
           </div>
-          <button onClick={() => setPresenting(true)} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '5px 12px', borderRadius: '14px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, border: 'none', cursor: 'pointer' }}><Play size={10} fill="#fff" /> Present</button>
-          <button onClick={() => setShareOpen(true)} style={{ padding: '5px 12px', borderRadius: '14px', background: '#fff', color: '#555', fontSize: '10.5px', fontWeight: 600, border: '1px solid #e8e8e8', cursor: 'pointer' }}>Share</button>
+          <div style={{ position: 'relative' }}>
+            <button onClick={() => { setPresenting(true); if (coachStep === 4) setCoachStep(5); }} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '5px 12px', borderRadius: '14px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, border: 'none', cursor: 'pointer' }}><Play size={10} fill="#fff" /> Present</button>
+            {coachStep === 4 && !presenting && (
+              <div style={{ position: 'absolute', top: '32px', right: '0px', zIndex: 40 }}>
+                <Coachmark visible title="Present Your Deck" subtitle="Enter full-screen presentation mode" onNext={() => { setPresenting(true); setCoachStep(5); }} top="0px" left="0px" arrowSide="top" arrowOffset="30px" buttonLabel="Next" />
+              </div>
+            )}
+          </div>
+          <button onClick={() => { setShareOpen(true); if (coachStep === 2) setCoachStep(3); }} style={{ padding: '5px 12px', borderRadius: '14px', background: '#fff', color: '#555', fontSize: '10.5px', fontWeight: 600, border: '1px solid #e8e8e8', cursor: 'pointer', position: 'relative' }}>
+            Share
+            {coachStep === 2 && !shareOpen && (
+              <div style={{ position: 'absolute', top: '32px', right: '0px', zIndex: 40 }}>
+                <Coachmark visible title="Share Presentation" subtitle="Invite collaborators to view or edit" onNext={() => { setShareOpen(true); setCoachStep(3); }} top="0px" left="0px" arrowSide="top" arrowOffset="30px" buttonLabel="Next" />
+              </div>
+            )}
+          </button>
           <HelpCircle size={14} style={{ color: '#999' }} />
           <Settings size={14} style={{ color: '#999' }} />
           <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#7C3AED', color: '#fff', fontSize: '9px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>AM</div>
@@ -224,9 +244,9 @@ export function PresentationPreviewMockup({ onEnd }: { onEnd?: () => void }) {
       </div>
 
       {/* Body */}
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+      <div style={{ flex: 1, display: 'flex', overflow: 'visible' }}>
         {/* Slide thumbnails */}
-        <div style={{ width: '80px', borderRight: '1px solid #f0f0f0', padding: '10px 8px', display: 'flex', flexDirection: 'column', gap: '6px', background: '#fafafa', overflowY: 'auto' }}>
+        <div style={{ width: '80px', borderRight: '1px solid #f0f0f0', padding: '10px 8px', display: 'flex', flexDirection: 'column', gap: '6px', background: '#fafafa', overflow: 'visible' }}>
           {slides.map((slide, i) => (
             <div key={i} onClick={() => { setActiveSlide(i); setNotesOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}>
               <span style={{ fontSize: '8px', color: activeSlide === i ? '#7C3AED' : '#aaa', width: '10px', textAlign: 'right', fontWeight: activeSlide === i ? 700 : 400 }}>{i + 1}</span>
@@ -241,7 +261,7 @@ export function PresentationPreviewMockup({ onEnd }: { onEnd?: () => void }) {
             <div onClick={addSlide} style={{ width: '54px', height: '24px', borderRadius: '4px', border: '1px dashed #ccc', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
               <Plus size={10} style={{ color: '#aaa' }} />
             </div>
-            {showAddCoachmark && (
+            {coachStep === 1 && (
               <div style={{ position: 'absolute', top: '30px', left: '-4px', zIndex: 40 }}>
                 <Coachmark visible title="Add a Slide" subtitle="Build out your deck one slide at a time" onNext={addSlide} top="0px" left="0px" arrowSide="top" arrowOffset="20px" buttonLabel="Next" />
               </div>
@@ -290,11 +310,16 @@ export function PresentationPreviewMockup({ onEnd }: { onEnd?: () => void }) {
               <span style={{ flex: 1, fontSize: '10px', color: '#333' }}>Anyone with the link</span>
               <span style={{ fontSize: '9px', color: '#999', padding: '2px 6px', borderRadius: '4px', border: '1px solid #eee' }}>Viewer</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '14px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '14px', position: 'relative' }}>
               <div style={{ flex: 1, padding: '6px 10px', borderRadius: '6px', background: '#F8F9FA', border: '1px solid #e8e8e8', fontSize: '9px', color: '#666', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>slides.snaarp.com/d/q3-investor-pitch-m4k1</div>
               <button onClick={handleCopyLink} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '5px 10px', borderRadius: '6px', background: linkCopied ? '#ECFDF5' : '#F8F9FA', border: '1px solid ' + (linkCopied ? '#A7F3D0' : '#e8e8e8'), fontSize: '9px', fontWeight: 600, color: linkCopied ? '#166534' : '#555', cursor: 'pointer' }}>
                 {linkCopied ? <><Check size={10} /> Copied</> : <><Copy size={10} /> Copy</>}
               </button>
+              {coachStep === 3 && (
+                <div style={{ position: 'absolute', top: '36px', left: '0px', zIndex: 60 }}>
+                  <Coachmark visible title="Copy Share Link" subtitle="Share this link with anyone" onNext={() => { setCoachStep(4); setShareOpen(false); }} top="0px" left="0px" arrowSide="top" arrowOffset="30px" buttonLabel="Next" />
+                </div>
+              )}
             </div>
             <button onClick={() => setShareOpen(false)} style={{ width: '100%', padding: '8px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer' }}>Done</button>
           </div>

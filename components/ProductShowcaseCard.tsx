@@ -86,7 +86,7 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaus
         {activeIndex === 6 && <SheetPreviewMockup />}
         {activeIndex === 7 && <DocumentPreviewMockup onEnd={() => setActiveIndex(8)} />}
         {activeIndex === 8 && <TeamsPreviewMockup onEnd={() => setActiveIndex(9)} />}
-        {activeIndex === 9 && <PresentationPreviewMockup />}
+        {activeIndex === 9 && <PresentationPreviewMockup onEnd={() => setActiveIndex(10)} />}
         {activeIndex === 10 && <MeetPreviewMockup />}
       </div>
     </div>

@@ -487,14 +487,14 @@ export function TeamsPreviewMockup() {
                 <span style={{ fontSize: '9px', color: '#999', display: 'flex', alignItems: 'center' }}>+3 suggested</span>
               </div>
               <div style={{ position: 'relative' }}>
-                <button onClick={() => { setGroupCoachStep(3); createGroup(); }} style={{ width: '100%', padding: '9px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', opacity: newGroupName.trim() ? 1 : 0.5 }}>Create Group</button>
+                <button onClick={() => { setGroupCoachStep(3); setShowNewGroup(false); createGroup(); }} style={{ width: '100%', padding: '9px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', opacity: newGroupName.trim() ? 1 : 0.5 }}>Create Group</button>
                 {groupCoachStep === 2 && (
                   <div style={{ position: 'absolute', top: '44px', left: '0px', zIndex: 60 }}>
                     <Coachmark
                       visible
                       title="Create Group"
                       subtitle="Click to save and start chatting"
-                      onNext={() => { setGroupCoachStep(3); createGroup(); }}
+                      onNext={() => { setGroupCoachStep(3); setShowNewGroup(false); setActiveChannel('general'); setView('chat'); setNavActive('Chat'); }}
                       top="0px"
                       left="0px"
                       arrowSide="top"

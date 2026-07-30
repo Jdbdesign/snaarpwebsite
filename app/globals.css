@@ -68,6 +68,9 @@
   --font-size-section-body: 0.875rem;
 }
 @media (min-width: 768px) {
+  :root { --font-size-h2: 2.75rem; }
+}
+@media (min-width: 1440px) {
   :root { --font-size-h2: 3.75rem; }
 }
 
@@ -974,12 +977,15 @@ body {
 .spc-price {
   color: var(--text-primary);
   font-weight: 800;
-  font-size: 6rem;
+  font-size: 4rem;
   line-height: 1;
   letter-spacing: -0.03em;
   margin: 0;
 }
 @media (min-width: 768px) {
+  .spc-price { font-size: 5rem; }
+}
+@media (min-width: 1440px) {
   .spc-price { font-size: 7.5rem; }
 }
 
@@ -1653,6 +1659,9 @@ body {
   line-height: 1.2;
 }
 @media (min-width: 768px) {
+  .bmb-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
   .bmb-heading { font-size: 3.75rem; }
 }
 
@@ -1861,6 +1870,9 @@ body {
   margin: 0 0 var(--space-4);
 }
 @media (min-width: 768px) {
+  .eyn-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
   .eyn-heading { font-size: 3.75rem; }
 }
 
@@ -2868,6 +2880,9 @@ body {
   max-width: 900px;
 }
 @media (min-width: 768px) {
+  .closer-look-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
   .closer-look-heading { font-size: 3.75rem; }
 }
 .closer-look-heading-accent { color: var(--color-brand); }
@@ -3323,6 +3338,9 @@ body {
   margin: 0 auto var(--space-5);
 }
 @media (min-width: 768px) {
+  .final-cta-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
   .final-cta-heading { font-size: 3.75rem; }
 }
 
@@ -4460,6 +4478,9 @@ body {
   margin: 0 0 var(--space-4);
 }
 @media (min-width: 768px) {
+  .sec-demo-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
   .sec-demo-heading { font-size: 3.75rem; }
 }
 .sec-demo-subtext {

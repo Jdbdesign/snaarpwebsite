@@ -236,16 +236,11 @@ export function PresentationPreviewMockup({ onEnd }: { onEnd?: () => void }) {
             </div>
           ))}
           {/* Add slide */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop: '2px', position: 'relative' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop: '2px' }}>
             <span style={{ width: '10px' }} />
             <div onClick={addSlide} style={{ width: '54px', height: '24px', borderRadius: '4px', border: '1px dashed #ccc', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
               <Plus size={10} style={{ color: '#aaa' }} />
             </div>
-            {showAddCoachmark && (
-              <div style={{ position: 'absolute', top: '30px', left: '-4px', zIndex: 40 }}>
-                <Coachmark visible title="Add a Slide" subtitle="Build out your deck one slide at a time" onNext={addSlide} top="0px" left="0px" arrowSide="top" arrowOffset="20px" buttonLabel="Next" />
-              </div>
-            )}
           </div>
         </div>
 
@@ -265,6 +260,13 @@ export function PresentationPreviewMockup({ onEnd }: { onEnd?: () => void }) {
           </div>
         </div>
       </div>
+
+      {/* Add Slide coachmark - positioned at component level */}
+      {showAddCoachmark && !presenting && (
+        <div style={{ position: 'absolute', bottom: '60px', left: '14px', zIndex: 40 }}>
+          <Coachmark visible title="Add a Slide" subtitle="Build out your deck one slide at a time" onNext={addSlide} top="0px" left="0px" arrowSide="left" arrowOffset="20px" buttonLabel="Next" />
+        </div>
+      )}
 
       {/* Share modal */}
       {shareOpen && (

@@ -10,6 +10,7 @@ import { LockPreviewMockup } from '@/components/LockPreviewMockup';
 import { DrivePreviewMockup } from '@/components/DrivePreviewMockup';
 import { SheetPreviewMockup } from '@/components/SheetPreviewMockup';
 import { DocumentPreviewMockup } from '@/components/DocumentPreviewMockup';
+import { TeamsPreviewMockup } from '@/components/TeamsPreviewMockup';
 
 const PRODUCT_ICONS = [
   { src: '/assets/icons/envelope.jpg', label: 'Mail', size: '22px', lucide: false, lucideIcon: null },
@@ -82,6 +83,7 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaus
         {activeIndex === 5 && <DrivePreviewMockup onEnd={() => setActiveIndex(6)} />}
         {activeIndex === 6 && <SheetPreviewMockup />}
         {activeIndex === 7 && <DocumentPreviewMockup />}
+        {activeIndex === 8 && <TeamsPreviewMockup />}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Calendar, Users, MonitorPlay, Video } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { MailPreviewMockup } from '@/components/MailPreviewMockup';
 import { MePreviewMockup } from '@/components/MePreviewMockup';
 import { ContactsPreviewMockup } from '@/components/ContactsPreviewMockup';
@@ -20,16 +20,14 @@ const PRODUCT_ICONS = [
   { src: '/assets/icons/cube.jpg', label: 'Drive', size: '22px', lucide: false, lucideIcon: null },
   { src: '/assets/icons/apps-sheet.jpg', label: 'Sheet', size: '22px', lucide: false, lucideIcon: null },
   { src: '/assets/icons/apps-document.png', label: 'Document', size: '22px', lucide: false, lucideIcon: null },
-  { src: '', label: 'Teams', size: '22px', lucide: true, lucideIcon: 'Users' },
+  { src: '/assets/icons/chat-bubbles.jpg', label: 'Teams', size: '22px', lucide: false, lucideIcon: null },
   { src: '/assets/icons/p-icon.jpg', label: 'Presentation', size: '22px', lucide: false, lucideIcon: null },
-  { src: '', label: 'Meet', size: '22px', lucide: true, lucideIcon: 'Video' },
+  { src: '/assets/icons/apps-meet.jpg', label: 'Meet', size: '22px', lucide: false, lucideIcon: null },
 ];
 
 function LucideIconRender({ name, size, color }: { name: string; size: number; color: string }) {
   switch (name) {
     case 'Calendar': return <Calendar size={size} style={{ color }} />;
-    case 'Users': return <Users size={size} style={{ color }} />;
-    case 'Video': return <Video size={size} style={{ color }} />;
     default: return <Calendar size={size} style={{ color }} />;
   }
 }

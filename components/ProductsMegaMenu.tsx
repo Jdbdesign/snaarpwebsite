@@ -3,16 +3,8 @@
 import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import { usePathname } from 'next/navigation';
 import {
-  Contact,
-  FileType,
-  NotebookPen,
   UsersRound,
-  Zap,
   ShieldCheck,
-  Shield,
-  PenLine,
-  FileCheck,
-  BadgeCheck,
   BookOpen,
   Calculator,
   Kanban,
@@ -58,12 +50,12 @@ export const CATEGORIES: ProductCategory[] = [
     label: 'Communicate',
     apps: [
       { name: 'Snaarp Mail', desc: 'Business email on your own domain', icon: { kind: 'img', src: '/assets/icons/envelope.jpg' }, href: '/products/mail', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
-      { name: 'Kalender', desc: 'Shared calendars & booking links', icon: { kind: 'img', src: '/assets/icons/apps-kalender.jpg' }, href: '/products/kalender', platforms: ['ios', 'android', 'web'] },
+      { name: 'SnaarpMe', desc: 'Shared calendars & booking links', icon: { kind: 'img', src: '/assets/icons/logos/snaarpme.svg' }, href: '/products/kalender', platforms: ['ios', 'android', 'web'] },
       { name: 'Contacts', desc: 'One shared address book', icon: { kind: 'img', src: '/assets/icons/search.jpg' }, href: '/products/contacts', platforms: ['ios', 'android', 'web'] },
       { name: 'Meet', desc: 'Video calls, screen share & recording', icon: { kind: 'img', src: '/assets/icons/apps-meet.jpg' }, href: '/products/meet', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
       { name: 'Teams', desc: 'Group chat & channels', icon: { kind: 'img', src: '/assets/icons/chat-bubbles.jpg' }, href: '/products/teams', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
       { name: 'AI Compose', desc: 'AI drafting across every app', icon: { kind: 'img', src: '/assets/icons/ai-sparkle.jpg' }, href: '/products/ai-compose', platforms: ['web'] },
-      { name: 'Business Card', desc: 'Digital business card sharing', icon: { kind: 'lucide', Icon: Contact }, href: '/products/business-card', platforms: ['ios', 'android'] },
+      { name: 'Business Card', desc: 'Digital business card sharing', icon: { kind: 'img', src: '/assets/icons/logos/business-card.svg' }, href: '/products/business-card', platforms: ['ios', 'android'] },
     ],
   },
   {
@@ -74,8 +66,8 @@ export const CATEGORIES: ProductCategory[] = [
       { name: 'Document', desc: 'Real-time co-editing docs', icon: { kind: 'img', src: '/assets/icons/apps-document.png' }, href: '/products/docs', platforms: ['web', 'windows', 'macos'] },
       { name: 'Sheet', desc: 'Collaborative spreadsheets', icon: { kind: 'img', src: '/assets/icons/apps-sheet.jpg' }, href: '/products/sheets', platforms: ['web', 'windows', 'macos'] },
       { name: 'Presentation', desc: 'Build & present decks', icon: { kind: 'img', src: '/assets/icons/p-icon.jpg' }, href: '/products/presentation', platforms: ['web', 'windows', 'macos'] },
-      { name: 'PDF Reader', desc: 'View, annotate & merge PDFs', icon: { kind: 'lucide', Icon: FileType }, href: '/products/pdf-reader', platforms: ['web', 'windows', 'macos'] },
-      { name: 'NotePad', desc: 'Notes & reminders, synced', icon: { kind: 'lucide', Icon: NotebookPen }, href: '/products/notepad', platforms: ['ios', 'android', 'web'] },
+      { name: 'PDF Reader', desc: 'View, annotate & merge PDFs', icon: { kind: 'img', src: '/assets/icons/logos/pdf-reader.svg' }, href: '/products/pdf-reader', platforms: ['web', 'windows', 'macos'] },
+      { name: 'NotePad', desc: 'Notes & reminders, synced', icon: { kind: 'img', src: '/assets/icons/logos/notepad.svg' }, href: '/products/notepad', platforms: ['ios', 'android', 'web'] },
     ],
   },
   {
@@ -83,7 +75,7 @@ export const CATEGORIES: ProductCategory[] = [
     label: 'Grow Revenue',
     apps: [
       { name: 'CRM', desc: 'Pipeline & deal tracking', icon: { kind: 'lucide', Icon: UsersRound }, href: '/products/crm', platforms: ['ios', 'android', 'web'] },
-      { name: 'Zeus Contacts', desc: 'Enriched lead data', icon: { kind: 'lucide', Icon: Zap }, platforms: ['web'] },
+      { name: 'Zeus Contacts', desc: 'Enriched lead data', icon: { kind: 'img', src: '/assets/icons/logos/zeus.svg' }, platforms: ['web'] },
       { name: 'Sendrit', desc: 'Outbound email sequences', icon: { kind: 'img', src: '/assets/icons/apps-sendrit.jpg' }, platforms: ['web'] },
       { name: 'VerifyRit', desc: 'Email verification', icon: { kind: 'lucide', Icon: ShieldCheck }, platforms: ['web'] },
     ],
@@ -94,9 +86,9 @@ export const CATEGORIES: ProductCategory[] = [
     apps: [
       { name: 'Lock', desc: 'Shared password manager', icon: { kind: 'img', src: '/assets/icons/apps-lock.jpg' }, href: '/products/lock', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
       // { name: 'VPN', desc: 'Secure remote access', icon: { kind: 'lucide', Icon: Shield } },
-      { name: 'eSignature', desc: 'External contract signing', icon: { kind: 'lucide', Icon: PenLine }, href: '/products/esignature', platforms: ['ios', 'android', 'web'] },
-      { name: 'Doc Sign', desc: 'Internal document approval', icon: { kind: 'lucide', Icon: FileCheck }, platforms: ['ios', 'android', 'web'] },
-      { name: 'ID Card', desc: 'Digital staff ID & access', icon: { kind: 'lucide', Icon: BadgeCheck }, platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
+      { name: 'eSignature', desc: 'External contract signing', icon: { kind: 'img', src: '/assets/icons/logos/esignature.svg' }, href: '/products/esignature', platforms: ['ios', 'android', 'web'] },
+      { name: 'Doc Sign', desc: 'Internal document approval', icon: { kind: 'img', src: '/assets/icons/logos/doc-sign.svg' }, platforms: ['ios', 'android', 'web'] },
+      { name: 'ID Card', desc: 'Digital staff ID & access', icon: { kind: 'img', src: '/assets/icons/logos/id-card.svg' }, platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
     ],
   },
   {

@@ -17,9 +17,13 @@ interface CoachmarkProps {
   highlightHeight?: string;
   // Arrow direction
   arrowSide?: 'left' | 'right' | 'top' | 'bottom';
+  // Arrow offset position (for bottom/top: left value; for left/right: top value)
+  arrowOffset?: string;
+  // Custom button label (default: "Next")
+  buttonLabel?: string;
 }
 
-export function Coachmark({ title, subtitle, onNext, visible, top, left, highlightTop, highlightLeft, highlightWidth, highlightHeight, arrowSide = 'left' }: CoachmarkProps) {
+export function Coachmark({ title, subtitle, onNext, visible, top, left, highlightTop, highlightLeft, highlightWidth, highlightHeight, arrowSide = 'left', arrowOffset, buttonLabel = 'Next' }: CoachmarkProps) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -68,16 +72,16 @@ export function Coachmark({ title, subtitle, onNext, visible, top, left, highlig
       }}>
         {/* Arrow */}
         {arrowSide === 'left' && (
-          <div style={{ position: 'absolute', left: '-7px', top: '20px', width: '14px', height: '14px', background: '#fff', transform: 'rotate(45deg)', boxShadow: '-2px 2px 4px rgba(0,0,0,0.05)', zIndex: -1 }} />
+          <div style={{ position: 'absolute', left: '-7px', top: arrowOffset || '20px', width: '14px', height: '14px', background: '#fff', transform: 'rotate(45deg)', boxShadow: '-2px 2px 4px rgba(0,0,0,0.05)', zIndex: -1 }} />
         )}
         {arrowSide === 'right' && (
           <div style={{ position: 'absolute', right: '-7px', top: '20px', width: '14px', height: '14px', background: '#fff', transform: 'rotate(45deg)', boxShadow: '2px -2px 4px rgba(0,0,0,0.05)', zIndex: -1 }} />
         )}
         {arrowSide === 'top' && (
-          <div style={{ position: 'absolute', top: '-7px', left: '30px', width: '14px', height: '14px', background: '#fff', transform: 'rotate(45deg)', boxShadow: '-2px -2px 4px rgba(0,0,0,0.05)', zIndex: -1 }} />
+          <div style={{ position: 'absolute', top: '-7px', left: arrowOffset || '30px', width: '14px', height: '14px', background: '#fff', transform: 'rotate(45deg)', boxShadow: '-2px -2px 4px rgba(0,0,0,0.05)', zIndex: -1 }} />
         )}
         {arrowSide === 'bottom' && (
-          <div style={{ position: 'absolute', bottom: '-7px', left: '30px', width: '14px', height: '14px', background: '#fff', transform: 'rotate(45deg)', boxShadow: '2px 2px 4px rgba(0,0,0,0.05)', zIndex: -1 }} />
+          <div style={{ position: 'absolute', bottom: '-7px', left: arrowOffset || '30px', width: '14px', height: '14px', background: '#fff', transform: 'rotate(45deg)', boxShadow: '2px 2px 4px rgba(0,0,0,0.05)', zIndex: -1 }} />
         )}
 
         {/* Card */}
@@ -97,7 +101,7 @@ export function Coachmark({ title, subtitle, onNext, visible, top, left, highlig
               onClick={onNext}
               style={{
                 padding: '7px 20px',
-                background: '#7C3AED',
+                background: '#E11D48',
                 color: '#fff',
                 border: 'none',
                 borderRadius: '8px',
@@ -106,7 +110,7 @@ export function Coachmark({ title, subtitle, onNext, visible, top, left, highlig
                 cursor: 'pointer',
               }}
             >
-              Next
+              {buttonLabel}
             </button>
           </div>
         </div>

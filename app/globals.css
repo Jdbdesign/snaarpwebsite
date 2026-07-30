@@ -977,12 +977,15 @@ body {
 .spc-price {
   color: var(--text-primary);
   font-weight: 800;
-  font-size: 6rem;
+  font-size: 4rem;
   line-height: 1;
   letter-spacing: -0.03em;
   margin: 0;
 }
 @media (min-width: 768px) {
+  .spc-price { font-size: 5rem; }
+}
+@media (min-width: 1440px) {
   .spc-price { font-size: 7.5rem; }
 }
 

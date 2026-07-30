@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Hash, Plus, Activity, MessageSquare, Users, Calendar, Phone, FolderOpen, Paperclip, Smile, AtSign, Send, HelpCircle, Settings, ChevronDown, X, Video, Mic, MicOff, MonitorUp, Hand, MoreHorizontal, PhoneOff, ArrowLeft, PhoneIncoming, PhoneOutgoing, PhoneMissed } from 'lucide-react';
+import { Coachmark } from '@/components/Coachmark';
 
 /* ─── Data ─── */
 type Msg = { initials: string; name: string; bg: string; text: string; time: string; file?: { name: string; size: string }; reactions?: { emoji: string; count: number }[]; replies?: number };
@@ -67,6 +68,7 @@ export function TeamsPreviewMockup() {
   const [navActive, setNavActive] = useState('Chat');
   const [showNewGroup, setShowNewGroup] = useState(false);
   const [newGroupName, setNewGroupName] = useState('');
+  const [showNewGroupCoachmark, setShowNewGroupCoachmark] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const switchChannel = (ch: ChannelId) => {
@@ -137,9 +139,24 @@ export function TeamsPreviewMockup() {
       <div style={{ width: '180px', borderRight: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column', background: '#fafafa' }}>
         <div style={{ padding: '14px 14px 10px', borderBottom: '1px solid #f0f0f0' }}>
           <div style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px' }}>Snaarp</div>
-          <button onClick={() => setShowNewGroup(true)} style={{ display: 'flex', alignItems: 'center', gap: '5px', width: '100%', padding: '7px 12px', borderRadius: '8px', border: 'none', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, cursor: 'pointer' }}>
-            <Plus size={12} /> New Group
-          </button>
+          <div style={{ position: 'relative' }}>
+            <button onClick={() => { setShowNewGroup(true); setShowNewGroupCoachmark(false); }} style={{ display: 'flex', alignItems: 'center', gap: '5px', width: '100%', padding: '7px 12px', borderRadius: '8px', border: 'none', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, cursor: 'pointer' }}>
+              <Plus size={12} /> New Group
+            </button>
+            {showNewGroupCoachmark && (
+              <Coachmark
+                visible
+                title="Create a Group"
+                subtitle="Start a new group chat with your team"
+                onNext={() => { setShowNewGroup(true); setShowNewGroupCoachmark(false); }}
+                top="40px"
+                left="0px"
+                arrowSide="top"
+                arrowOffset="30px"
+                buttonLabel="Next"
+              />
+            )}
+          </div>
         </div>
         {/* Nav */}
         <div style={{ padding: '8px 8px 4px' }}>

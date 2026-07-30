@@ -3025,7 +3025,10 @@ body {
   margin: 0 0 var(--space-5);
 }
 @media (min-width: 768px) {
-  .stack-heading { font-size: 3rem; }
+  .stack-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .stack-heading { font-size: 3rem; }
 }
 .stack-heading-line1,
 .stack-heading-line2 {
@@ -3154,7 +3157,10 @@ body {
   margin: 0 0 var(--space-5);
 }
 @media (min-width: 768px) {
-  .moves-fast-heading { font-size: 3rem; }
+  .moves-fast-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .moves-fast-heading { font-size: 3rem; }
 }
 
 .moves-fast-copy {
@@ -3229,7 +3235,10 @@ body {
   margin: 0;
 }
 @media (min-width: 768px) {
-  .faq-heading { font-size: 3rem; }
+  .faq-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .faq-heading { font-size: 3rem; }
 }
 
 .faq-container {
@@ -3398,6 +3407,9 @@ body {
   margin: 0 auto var(--space-5);
 }
 @media (min-width: 768px) {
+  .home-final-cta-heading { font-size: 2.5rem; }
+}
+@media (min-width: 1440px) {
   .home-final-cta-heading { font-size: 3.5rem; }
 }
 
@@ -3567,6 +3579,9 @@ body {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .contacts-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .contacts-hero-heading { font-size: 4.5rem; }
 }
 
@@ -4112,6 +4127,9 @@ body {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .teams-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .teams-hero-heading { font-size: 4.5rem; }
 }
 
@@ -4661,7 +4679,10 @@ body {
   margin: 0;
 }
 @media (min-width: 768px) {
-  .bento-heading { font-size: 3.75rem; }
+  .bento-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .bento-heading { font-size: 3.75rem; }
 }
 .sec-step-card { position: relative; z-index: 1; text-align: center; padding: 0 var(--space-4); }
 .sec-step-number {
@@ -4716,7 +4737,10 @@ body {
   margin: 0 0 var(--space-4);
 }
 @media (min-width: 768px) {
-  .sec-alt-row-heading { font-size: 3rem; }
+  .sec-alt-row-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .sec-alt-row-heading { font-size: 3rem; }
 }
 .sec-alt-row-subtext {
   color: var(--text-secondary);
@@ -4858,7 +4882,10 @@ body {
   margin: 0;
 }
 @media (min-width: 768px) {
-  .sec-icons-heading { font-size: 3.75rem; }
+  .sec-icons-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .sec-icons-heading { font-size: 3.75rem; }
 }
 .sec-icon-grid-2x2 {
   display: grid;
@@ -5471,6 +5498,9 @@ body {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .bcard-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .bcard-hero-heading { font-size: 4.5rem; }
 }
 
@@ -5879,6 +5909,9 @@ body {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .kalender-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .kalender-hero-heading { font-size: 4.5rem; }
 }
 
@@ -5970,7 +6003,10 @@ body {
   flex-shrink: 0;
 }
 @media (min-width: 768px) {
-  .kalender-master-heading { font-size: 3.75rem; }
+  .kalender-master-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .kalender-master-heading { font-size: 3.75rem; }
 }
 
 .kalender-master-subtext {
@@ -6196,6 +6232,9 @@ body {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .meet-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .meet-hero-heading { font-size: 4.5rem; }
 }
 .meet-hero-heading-accent {
@@ -6279,7 +6318,10 @@ body {
   margin: 0 auto;
 }
 @media (min-width: 768px) {
-  .meet-why-heading { font-size: 3.75rem; }
+  .meet-why-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .meet-why-heading { font-size: 3.75rem; }
 }
 .meet-why-heading-accent { color: var(--color-brand); }
 
@@ -6381,7 +6423,10 @@ body {
   margin: 0;
 }
 @media (min-width: 768px) {
-  .meet-features-heading { font-size: 3.75rem; }
+  .meet-features-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .meet-features-heading { font-size: 3.75rem; }
 }
 .meet-features-heading-accent { color: var(--color-brand); }
 
@@ -6446,7 +6491,10 @@ body {
   margin: 0;
 }
 @media (min-width: 768px) {
-  .meet-how-heading { font-size: 3.75rem; }
+  .meet-how-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .meet-how-heading { font-size: 3.75rem; }
 }
 .meet-how-heading-accent { color: var(--color-brand); font-style: italic; }
 
@@ -6531,7 +6579,10 @@ body {
   margin: 0;
 }
 @media (min-width: 768px) {
-  .meet-faq-heading { font-size: 3rem; }
+  .meet-faq-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .meet-faq-heading { font-size: 3rem; }
 }
 .meet-faq-heading-accent { color: var(--color-brand); }
 
@@ -6660,6 +6711,9 @@ body {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .mail-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .mail-hero-heading { font-size: 4.5rem; }
 }
 
@@ -7182,7 +7236,10 @@ body {
   margin: 0 0 var(--space-5);
 }
 @media (min-width: 768px) {
-  .mail-features-heading { font-size: 3.75rem; }
+  .mail-features-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .mail-features-heading { font-size: 3.75rem; }
 }
 
 .mail-features-heading-accent {
@@ -7249,7 +7306,10 @@ body {
   margin: 0 0 var(--space-4);
 }
 @media (min-width: 768px) {
-  .mail-team-heading { font-size: 3.75rem; }
+  .mail-team-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .mail-team-heading { font-size: 3.75rem; }
 }
 
 .mail-team-heading-accent {
@@ -7316,7 +7376,10 @@ body {
   margin: 0 0 var(--space-5);
 }
 @media (min-width: 768px) {
-  .mail-usecases-heading { font-size: 3.75rem; }
+  .mail-usecases-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .mail-usecases-heading { font-size: 3.75rem; }
 }
 
 .mail-usecases-subhead {
@@ -8346,6 +8409,9 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .sheets-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .sheets-hero-heading { font-size: 4.5rem; }
 }
 
@@ -8362,7 +8428,10 @@ html:has(.work-drive) {
   line-height: 1.2;
 }
 @media (min-width: 768px) {
-  .sheets-section-heading { font-size: 3.75rem; }
+  .sheets-section-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .sheets-section-heading { font-size: 3.75rem; }
 }
 
 /* Left-aligned alternating-row H2 (matches .sec-alt-row-heading) */
@@ -8373,7 +8442,10 @@ html:has(.work-drive) {
   line-height: 1.25;
 }
 @media (min-width: 768px) {
-  .sheets-row-heading { font-size: 3rem; }
+  .sheets-row-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .sheets-row-heading { font-size: 3rem; }
 }
 
 /* Numbered list item title/desc inside an alternating row (matches
@@ -8413,7 +8485,10 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
-  .sheets-faq-heading { font-size: 3rem; }
+  .sheets-faq-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .sheets-faq-heading { font-size: 3rem; }
 }
 .sheets-faq-question {
   font-weight: 700;
@@ -8432,7 +8507,10 @@ html:has(.work-drive) {
   letter-spacing: -0.01em;
 }
 @media (min-width: 768px) {
-  .sheets-final-cta-heading { font-size: 3.75rem; }
+  .sheets-final-cta-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .sheets-final-cta-heading { font-size: 3.75rem; }
 }
 
 @keyframes sheets-crm-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(20,184,166,.45); } 50% { box-shadow: 0 0 0 7px rgba(20,184,166,0); } }
@@ -8502,6 +8580,9 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .pdf-reader-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .pdf-reader-hero-heading { font-size: 4.5rem; }
 }
 
@@ -8518,7 +8599,10 @@ html:has(.work-drive) {
   line-height: 1.2;
 }
 @media (min-width: 768px) {
-  .pdf-reader-section-heading { font-size: 3.75rem; }
+  .pdf-reader-section-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .pdf-reader-section-heading { font-size: 3.75rem; }
 }
 
 /* Left-aligned alternating-row H2 (matches .sec-alt-row-heading) */
@@ -8529,7 +8613,10 @@ html:has(.work-drive) {
   line-height: 1.25;
 }
 @media (min-width: 768px) {
-  .pdf-reader-row-heading { font-size: 3rem; }
+  .pdf-reader-row-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .pdf-reader-row-heading { font-size: 3rem; }
 }
 
 /* Numbered list item title/desc inside an alternating row (matches
@@ -8584,7 +8671,10 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
-  .pdf-reader-faq-heading { font-size: 3rem; }
+  .pdf-reader-faq-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .pdf-reader-faq-heading { font-size: 3rem; }
 }
 .pdf-reader-faq-question {
   font-weight: 700;
@@ -8603,7 +8693,10 @@ html:has(.work-drive) {
   letter-spacing: -0.01em;
 }
 @media (min-width: 768px) {
-  .pdf-reader-final-cta-heading { font-size: 3.75rem; }
+  .pdf-reader-final-cta-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .pdf-reader-final-cta-heading { font-size: 3.75rem; }
 }
 
 /* Hero document paragraph — hover/highlight state can't be expressed with
@@ -8765,6 +8858,9 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .docs-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .docs-hero-heading { font-size: 4.5rem; }
 }
 
@@ -8781,7 +8877,10 @@ html:has(.work-drive) {
   line-height: 1.2;
 }
 @media (min-width: 768px) {
-  .docs-section-heading { font-size: 3.75rem; }
+  .docs-section-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .docs-section-heading { font-size: 3.75rem; }
 }
 
 /* Left-aligned alternating-row H2 (matches .sec-alt-row-heading) */
@@ -8792,7 +8891,10 @@ html:has(.work-drive) {
   line-height: 1.25;
 }
 @media (min-width: 768px) {
-  .docs-row-heading { font-size: 3rem; }
+  .docs-row-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .docs-row-heading { font-size: 3rem; }
 }
 
 /* Numbered list item title/desc inside an alternating row (matches
@@ -8849,7 +8951,10 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
-  .docs-faq-heading { font-size: 3rem; }
+  .docs-faq-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .docs-faq-heading { font-size: 3rem; }
 }
 .docs-faq-question {
   font-weight: 700;
@@ -8868,7 +8973,10 @@ html:has(.work-drive) {
   letter-spacing: -0.01em;
 }
 @media (min-width: 768px) {
-  .docs-final-cta-heading { font-size: 3.75rem; }
+  .docs-final-cta-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .docs-final-cta-heading { font-size: 3.75rem; }
 }
 
 /* Hero document paragraph — hover/highlight state can't be expressed with
@@ -8930,6 +9038,9 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .presentation-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .presentation-hero-heading { font-size: 4.5rem; }
 }
 
@@ -8946,7 +9057,10 @@ html:has(.work-drive) {
   line-height: 1.2;
 }
 @media (min-width: 768px) {
-  .presentation-section-heading { font-size: 3.75rem; }
+  .presentation-section-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .presentation-section-heading { font-size: 3.75rem; }
 }
 
 /* Left-aligned alternating-row H2 (matches .docs-row-heading) */
@@ -8957,7 +9071,10 @@ html:has(.work-drive) {
   line-height: 1.25;
 }
 @media (min-width: 768px) {
-  .presentation-row-heading { font-size: 3rem; }
+  .presentation-row-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .presentation-row-heading { font-size: 3rem; }
 }
 
 /* Numbered list item title/desc inside an alternating row */
@@ -9011,7 +9128,10 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
-  .presentation-faq-heading { font-size: 3rem; }
+  .presentation-faq-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .presentation-faq-heading { font-size: 3rem; }
 }
 .presentation-faq-question {
   font-weight: 700;
@@ -9030,7 +9150,10 @@ html:has(.work-drive) {
   letter-spacing: -0.01em;
 }
 @media (min-width: 768px) {
-  .presentation-final-cta-heading { font-size: 3.75rem; }
+  .presentation-final-cta-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .presentation-final-cta-heading { font-size: 3.75rem; }
 }
 
 @keyframes presentation-floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
@@ -9081,6 +9204,9 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .notepad-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .notepad-hero-heading { font-size: 4.5rem; }
 }
 
@@ -9097,7 +9223,10 @@ html:has(.work-drive) {
   line-height: 1.2;
 }
 @media (min-width: 768px) {
-  .notepad-section-heading { font-size: 3.75rem; }
+  .notepad-section-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .notepad-section-heading { font-size: 3.75rem; }
 }
 
 /* Left-aligned alternating-row H2 (matches .presentation-row-heading) */
@@ -9108,7 +9237,10 @@ html:has(.work-drive) {
   line-height: 1.25;
 }
 @media (min-width: 768px) {
-  .notepad-row-heading { font-size: 3rem; }
+  .notepad-row-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .notepad-row-heading { font-size: 3rem; }
 }
 
 /* Numbered list item title/desc inside an alternating row */
@@ -9162,7 +9294,10 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
-  .notepad-faq-heading { font-size: 3rem; }
+  .notepad-faq-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .notepad-faq-heading { font-size: 3rem; }
 }
 .notepad-faq-question {
   font-weight: 700;
@@ -9181,7 +9316,10 @@ html:has(.work-drive) {
   letter-spacing: -0.01em;
 }
 @media (min-width: 768px) {
-  .notepad-final-cta-heading { font-size: 3.75rem; }
+  .notepad-final-cta-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .notepad-final-cta-heading { font-size: 3.75rem; }
 }
 
 @keyframes notepad-floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
@@ -9228,6 +9366,9 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .crm-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .crm-hero-heading { font-size: 4.5rem; }
 }
 
@@ -9244,7 +9385,10 @@ html:has(.work-drive) {
   line-height: 1.2;
 }
 @media (min-width: 768px) {
-  .crm-section-heading { font-size: 3.75rem; }
+  .crm-section-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .crm-section-heading { font-size: 3.75rem; }
 }
 
 /* Left-aligned alternating-row H2 (matches .notepad-row-heading) */
@@ -9255,7 +9399,10 @@ html:has(.work-drive) {
   line-height: 1.25;
 }
 @media (min-width: 768px) {
-  .crm-row-heading { font-size: 3rem; }
+  .crm-row-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .crm-row-heading { font-size: 3rem; }
 }
 
 /* Numbered list item title/desc inside an alternating row */
@@ -9310,7 +9457,10 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
-  .crm-faq-heading { font-size: 3rem; }
+  .crm-faq-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
+ .crm-faq-heading { font-size: 3rem; }
 }
 .crm-faq-question {
   font-weight: 700;
@@ -9329,7 +9479,10 @@ html:has(.work-drive) {
   letter-spacing: -0.01em;
 }
 @media (min-width: 768px) {
-  .crm-final-cta-heading { font-size: 3.75rem; }
+  .crm-final-cta-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .crm-final-cta-heading { font-size: 3.75rem; }
 }
 
 @keyframes crm-floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
@@ -9638,6 +9791,9 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .solution-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .solution-hero-heading { font-size: 4.5rem; }
 }
 
@@ -9654,6 +9810,9 @@ html:has(.work-drive) {
   line-height: 1.25;
 }
 @media (min-width: 768px) {
+  .solution-section-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
   .solution-section-heading { font-size: 3.75rem; }
 }
 
@@ -9665,6 +9824,9 @@ html:has(.work-drive) {
   line-height: 1.25;
 }
 @media (min-width: 768px) {
+  .solution-row-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
   .solution-row-heading { font-size: 3rem; }
 }
 
@@ -9766,6 +9928,9 @@ html:has(.work-drive) {
   letter-spacing: -0.02em;
 }
 @media (min-width: 768px) {
+  .download-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .download-hero-heading { font-size: 4.5rem; }
 }
 
@@ -9787,7 +9952,10 @@ html:has(.work-drive) {
   margin: 0;
 }
 @media (min-width: 768px) {
-  .download-section-heading { font-size: 3.75rem; }
+  .download-section-heading { font-size: 2.75rem; }
+}
+@media (min-width: 1440px) {
+ .download-section-heading { font-size: 3.75rem; }
 }
 
 .download-section-subtext {
@@ -12570,6 +12738,9 @@ html:has(.work-drive) {
   text-wrap: balance;
 }
 @media (min-width: 768px) {
+  .contact-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .contact-hero-heading { font-size: 4.5rem; }
 }
 .contact-hero-accent {
@@ -12904,6 +13075,9 @@ html:has(.work-drive) {
   text-wrap: balance;
 }
 @media (min-width: 768px) {
+  .contact-section-heading { font-size: 2.25rem; }
+}
+@media (min-width: 1440px) {
   .contact-section-heading { font-size: 3rem; }
 }
 .contact-section-sub {

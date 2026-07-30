@@ -21,13 +21,11 @@ export function Hero() {
           </div>
 
           <h1 className="home-hero-heading font-bold leading-[1.1] tracking-tight mb-6" data-reveal-load>
-            <span className="hero-heading-line hero-heading-line--default block text-[var(--text-primary)]">Stop paying ten bills</span>
-            <span className="hero-heading-line hero-heading-line--default block text-[var(--text-primary)]">for one team.</span>
+            <span className="hero-heading-line hero-heading-line--default block text-[var(--text-primary)]">Stop paying ten bills for one team.</span>
             <span className="hero-heading-line hero-heading-line--default block text-[var(--color-brand)]">Get everything for <Price amount={2} /></span>
 
-            <span className="hero-heading-line hero-heading-line--wide block text-[var(--text-primary)]">Stop paying ten bills</span>
-            <span className="hero-heading-line hero-heading-line--wide block text-[var(--text-primary)]">for one team. <span className="text-[var(--color-brand)]">Get everything</span></span>
-            <span className="hero-heading-line hero-heading-line--wide block text-[var(--color-brand)]">for <Price amount={2} /></span>
+            <span className="hero-heading-line hero-heading-line--wide block text-[var(--text-primary)]">Stop paying ten bills for one team.</span>
+            <span className="hero-heading-line hero-heading-line--wide block text-[var(--color-brand)]">Get everything for <Price amount={2} /></span>
           </h1>
 
           <p className="hero-body-text text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" data-reveal-load>

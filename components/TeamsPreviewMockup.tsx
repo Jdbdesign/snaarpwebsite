@@ -69,6 +69,7 @@ export function TeamsPreviewMockup() {
   const [showNewGroup, setShowNewGroup] = useState(false);
   const [newGroupName, setNewGroupName] = useState('');
   const [showNewGroupCoachmark, setShowNewGroupCoachmark] = useState(true);
+  const [groupCoachStep, setGroupCoachStep] = useState(0); // 0=none, 1=name field, 2=create button
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const switchChannel = (ch: ChannelId) => {
@@ -140,7 +141,7 @@ export function TeamsPreviewMockup() {
         <div style={{ padding: '14px 14px 10px', borderBottom: '1px solid #f0f0f0' }}>
           <div style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px' }}>Snaarp</div>
           <div style={{ position: 'relative' }}>
-            <button onClick={() => { setShowNewGroup(true); setShowNewGroupCoachmark(false); }} style={{ display: 'flex', alignItems: 'center', gap: '5px', width: '100%', padding: '7px 12px', borderRadius: '8px', border: 'none', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, cursor: 'pointer' }}>
+            <button onClick={() => { setShowNewGroup(true); setShowNewGroupCoachmark(false); setGroupCoachStep(1); }} style={{ display: 'flex', alignItems: 'center', gap: '5px', width: '100%', padding: '7px 12px', borderRadius: '8px', border: 'none', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, cursor: 'pointer' }}>
               <Plus size={12} /> New Group
             </button>
             {showNewGroupCoachmark && (
@@ -148,7 +149,7 @@ export function TeamsPreviewMockup() {
                 visible
                 title="Create a Group"
                 subtitle="Start a new group chat with your team"
-                onNext={() => { setShowNewGroup(true); setShowNewGroupCoachmark(false); }}
+                onNext={() => { setShowNewGroup(true); setShowNewGroupCoachmark(false); setGroupCoachStep(1); }}
                 top="40px"
                 left="0px"
                 arrowSide="top"
@@ -416,14 +417,29 @@ export function TeamsPreviewMockup() {
         {/* New Group modal */}
         {showNewGroup && (
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50 }}>
-            <div style={{ width: '280px', background: '#fff', borderRadius: '14px', boxShadow: '0 8px 30px -8px rgba(0,0,0,0.2)', padding: '20px' }}>
+            <div style={{ width: '280px', background: '#fff', borderRadius: '14px', boxShadow: '0 8px 30px -8px rgba(0,0,0,0.2)', padding: '20px', overflow: 'visible', position: 'relative' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
                 <span style={{ fontSize: '13px', fontWeight: 700, color: '#1a1a1a' }}>Create New Group</span>
                 <X size={14} onClick={() => setShowNewGroup(false)} style={{ color: '#999', cursor: 'pointer' }} />
               </div>
-              <div style={{ marginBottom: '12px' }}>
+              <div style={{ marginBottom: '12px', position: 'relative' }}>
                 <label style={{ display: 'block', fontSize: '10px', fontWeight: 600, color: '#555', marginBottom: '5px' }}>Group name</label>
-                <input value={newGroupName} onChange={(e) => setNewGroupName(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && createGroup()} placeholder="e.g. project-alpha" style={{ width: '100%', padding: '8px 12px', borderRadius: '8px', border: '1px solid #e8e8e8', fontSize: '11px', outline: 'none', color: '#333' }} />
+                <input value={newGroupName} onChange={(e) => setNewGroupName(e.target.value)} onFocus={() => { if (groupCoachStep === 1) setGroupCoachStep(2); }} onKeyDown={(e) => e.key === 'Enter' && createGroup()} placeholder="e.g. project-alpha" style={{ width: '100%', padding: '8px 12px', borderRadius: '8px', border: '1px solid #e8e8e8', fontSize: '11px', outline: 'none', color: '#333' }} />
+                {groupCoachStep === 1 && (
+                  <div style={{ position: 'absolute', top: '58px', left: '0px', zIndex: 60 }}>
+                    <Coachmark
+                      visible
+                      title="Name Your Group"
+                      subtitle="Type a name for your new group chat"
+                      onNext={() => setGroupCoachStep(2)}
+                      top="0px"
+                      left="0px"
+                      arrowSide="top"
+                      arrowOffset="30px"
+                      buttonLabel="Next"
+                    />
+                  </div>
+                )}
               </div>
               <div style={{ marginBottom: '14px' }}>
                 <label style={{ display: 'block', fontSize: '10px', fontWeight: 600, color: '#555', marginBottom: '5px' }}>Add members</label>
@@ -435,7 +451,24 @@ export function TeamsPreviewMockup() {
                 ))}
                 <span style={{ fontSize: '9px', color: '#999', display: 'flex', alignItems: 'center' }}>+3 suggested</span>
               </div>
-              <button onClick={createGroup} style={{ width: '100%', padding: '9px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', opacity: newGroupName.trim() ? 1 : 0.5 }}>Create Group</button>
+              <div style={{ position: 'relative' }}>
+                <button onClick={() => { setGroupCoachStep(0); createGroup(); }} style={{ width: '100%', padding: '9px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', opacity: newGroupName.trim() ? 1 : 0.5 }}>Create Group</button>
+                {groupCoachStep === 2 && (
+                  <div style={{ position: 'absolute', top: '44px', left: '0px', zIndex: 60 }}>
+                    <Coachmark
+                      visible
+                      title="Create Group"
+                      subtitle="Click to save and start chatting"
+                      onNext={() => { setGroupCoachStep(0); createGroup(); }}
+                      top="0px"
+                      left="0px"
+                      arrowSide="top"
+                      arrowOffset="30px"
+                      buttonLabel="End"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}

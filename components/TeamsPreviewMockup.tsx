@@ -50,7 +50,7 @@ const CHANNEL_META: Record<string, { members: number; subtitle: string }> = {
   'design-review': { members: 6, subtitle: 'Design Team' },
 };
 
-export function TeamsPreviewMockup() {
+export function TeamsPreviewMockup({ onEnd }: { onEnd?: () => void }) {
   const [activeChannel, setActiveChannel] = useState<ChannelId>('general');
   const [badges, setBadges] = useState<Record<string, number>>({ general: 3, marketing: 1 });
   const [messages, setMessages] = useState<Record<ChannelId, Msg[]>>({ general: [...GENERAL_MSGS], marketing: [...MARKETING_MSGS], 'product-launch': [...LAUNCH_MSGS], 'design-review': [] });
@@ -361,12 +361,12 @@ export function TeamsPreviewMockup() {
                 <div style={{ position: 'relative' }}>
                   <Paperclip size={12} style={{ color: '#999' }} />
                   {groupCoachStep === 4 && (
-                    <div style={{ position: 'absolute', bottom: '150px', left: '-140px', zIndex: 60 }}>
+                    <div style={{ position: 'absolute', bottom: '180px', left: '-140px', zIndex: 60 }}>
                       <Coachmark
                         visible
                         title="Attach a File"
                         subtitle="Share files directly in the conversation"
-                        onNext={() => setGroupCoachStep(0)}
+                        onNext={() => { setGroupCoachStep(0); if (onEnd) onEnd(); }}
                         top="0px"
                         left="0px"
                         arrowSide="bottom"

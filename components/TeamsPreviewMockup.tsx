@@ -69,7 +69,7 @@ export function TeamsPreviewMockup() {
   const [showNewGroup, setShowNewGroup] = useState(false);
   const [newGroupName, setNewGroupName] = useState('');
   const [showNewGroupCoachmark, setShowNewGroupCoachmark] = useState(true);
-  const [groupCoachStep, setGroupCoachStep] = useState(0); // 0=none, 1=name field, 2=create button
+  const [groupCoachStep, setGroupCoachStep] = useState(0); // 0=none, 1=name field, 2=create button, 3=view file, 4=attachment icon
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const switchChannel = (ch: ChannelId) => {
@@ -122,8 +122,9 @@ export function TeamsPreviewMockup() {
     const id = newGroupName.trim().toLowerCase().replace(/\s+/g, '-') as ChannelId;
     setMessages((m) => ({ ...m, [id]: [] }));
     setShowNewGroup(false);
-    setActiveChannel(id);
     setNewGroupName('');
+    // Switch to general so file attachment is visible for next coachmark
+    setActiveChannel('general');
     setView('chat');
     setNavActive('Chat');
   };
@@ -290,10 +291,27 @@ export function TeamsPreviewMockup() {
                     <p style={{ margin: '3px 0 0', fontSize: '10.5px', color: '#333', lineHeight: 1.5 }}>{msg.text}</p>
                     {/* File attachment */}
                     {msg.file && (
-                      <div onClick={() => setFilePreview(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginTop: '6px', padding: '5px 10px', borderRadius: '6px', background: '#F8F7FA', border: '1px solid #EDEBF5', fontSize: '9px', color: '#555', cursor: 'pointer' }}>
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
-                        <span style={{ fontWeight: 500 }}>{msg.file.name}</span>
-                        <span style={{ color: '#aaa' }}>{msg.file.size}</span>
+                      <div style={{ position: 'relative', display: 'inline-block' }}>
+                        <div onClick={() => setFilePreview(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginTop: '6px', padding: '5px 10px', borderRadius: '6px', background: '#F8F7FA', border: '1px solid #EDEBF5', fontSize: '9px', color: '#555', cursor: 'pointer' }}>
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
+                          <span style={{ fontWeight: 500 }}>{msg.file.name}</span>
+                          <span style={{ color: '#aaa' }}>{msg.file.size}</span>
+                        </div>
+                        {groupCoachStep === 3 && activeChannel === 'general' && (
+                          <div style={{ position: 'absolute', top: '34px', left: '0px', zIndex: 60 }}>
+                            <Coachmark
+                              visible
+                              title="View Shared File"
+                              subtitle="Click to preview files shared in the chat"
+                              onNext={() => setGroupCoachStep(4)}
+                              top="0px"
+                              left="0px"
+                              arrowSide="top"
+                              arrowOffset="30px"
+                              buttonLabel="Next"
+                            />
+                          </div>
+                        )}
                       </div>
                     )}
                     {/* Reactions */}
@@ -340,7 +358,24 @@ export function TeamsPreviewMockup() {
             <div style={{ padding: '10px 16px', borderTop: '1px solid #f0f0f0', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '8px 12px', borderRadius: '20px', border: '1px solid #e8e8e8', background: '#fafafa', gap: '8px' }}>
                 <input value={inputVal} onChange={(e) => setInputVal(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && sendMessage()} placeholder="Type a message..." style={{ flex: 1, border: 'none', background: 'transparent', fontSize: '10.5px', outline: 'none', color: '#333' }} />
-                <Paperclip size={12} style={{ color: '#999' }} />
+                <div style={{ position: 'relative' }}>
+                  <Paperclip size={12} style={{ color: '#999' }} />
+                  {groupCoachStep === 4 && (
+                    <div style={{ position: 'absolute', bottom: '24px', left: '-60px', zIndex: 60 }}>
+                      <Coachmark
+                        visible
+                        title="Attach a File"
+                        subtitle="Share files directly in the conversation"
+                        onNext={() => setGroupCoachStep(0)}
+                        top="0px"
+                        left="0px"
+                        arrowSide="bottom"
+                        arrowOffset="70px"
+                        buttonLabel="End"
+                      />
+                    </div>
+                  )}
+                </div>
                 <Smile size={12} style={{ color: '#999' }} />
                 <AtSign size={12} style={{ color: '#999' }} />
               </div>
@@ -452,19 +487,19 @@ export function TeamsPreviewMockup() {
                 <span style={{ fontSize: '9px', color: '#999', display: 'flex', alignItems: 'center' }}>+3 suggested</span>
               </div>
               <div style={{ position: 'relative' }}>
-                <button onClick={() => { setGroupCoachStep(0); createGroup(); }} style={{ width: '100%', padding: '9px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', opacity: newGroupName.trim() ? 1 : 0.5 }}>Create Group</button>
+                <button onClick={() => { setGroupCoachStep(3); createGroup(); }} style={{ width: '100%', padding: '9px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', opacity: newGroupName.trim() ? 1 : 0.5 }}>Create Group</button>
                 {groupCoachStep === 2 && (
                   <div style={{ position: 'absolute', top: '44px', left: '0px', zIndex: 60 }}>
                     <Coachmark
                       visible
                       title="Create Group"
                       subtitle="Click to save and start chatting"
-                      onNext={() => { setGroupCoachStep(0); createGroup(); }}
+                      onNext={() => { setGroupCoachStep(3); createGroup(); }}
                       top="0px"
                       left="0px"
                       arrowSide="top"
                       arrowOffset="30px"
-                      buttonLabel="End"
+                      buttonLabel="Next"
                     />
                   </div>
                 )}

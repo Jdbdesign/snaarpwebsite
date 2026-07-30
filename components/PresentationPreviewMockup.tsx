@@ -195,16 +195,16 @@ export function PresentationPreviewMockup({ onEnd }: { onEnd?: () => void }) {
           <div style={{ position: 'relative' }}>
             <button onClick={() => { setPresenting(true); if (coachStep === 4) setCoachStep(5); }} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '5px 12px', borderRadius: '14px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, border: 'none', cursor: 'pointer' }}><Play size={10} fill="#fff" /> Present</button>
             {coachStep === 4 && !presenting && (
-              <div style={{ position: 'absolute', top: '32px', right: '0px', zIndex: 40 }}>
-                <Coachmark visible title="Present Your Deck" subtitle="Enter full-screen presentation mode" onNext={() => { setPresenting(true); setCoachStep(5); }} top="0px" left="0px" arrowSide="top" arrowOffset="30px" buttonLabel="Next" />
+              <div style={{ position: 'absolute', top: '32px', right: '200px', zIndex: 40 }}>
+                <Coachmark visible title="Present Your Deck" subtitle="Enter full-screen presentation mode" onNext={() => { setPresenting(true); setCoachStep(5); }} top="0px" left="0px" arrowSide="top" arrowOffset="180px" buttonLabel="Next" />
               </div>
             )}
           </div>
           <button onClick={() => { setShareOpen(true); if (coachStep === 2) setCoachStep(3); }} style={{ padding: '5px 12px', borderRadius: '14px', background: '#fff', color: '#555', fontSize: '10.5px', fontWeight: 600, border: '1px solid #e8e8e8', cursor: 'pointer', position: 'relative' }}>
             Share
             {coachStep === 2 && !shareOpen && (
-              <div style={{ position: 'absolute', top: '32px', right: '0px', zIndex: 40 }}>
-                <Coachmark visible title="Share Presentation" subtitle="Invite collaborators to view or edit" onNext={() => { setShareOpen(true); setCoachStep(3); }} top="0px" left="0px" arrowSide="top" arrowOffset="30px" buttonLabel="Next" />
+              <div style={{ position: 'absolute', top: '32px', right: '200px', zIndex: 40 }}>
+                <Coachmark visible title="Share Presentation" subtitle="Invite collaborators to view or edit" onNext={() => { setShareOpen(true); setCoachStep(3); }} top="0px" left="0px" arrowSide="top" arrowOffset="180px" buttonLabel="Next" />
               </div>
             )}
           </button>

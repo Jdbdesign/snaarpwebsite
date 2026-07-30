@@ -30,7 +30,7 @@ export function Hero() {
             <span className="hero-heading-line hero-heading-line--wide block text-[var(--color-brand)]">for <Price amount={2} /></span>
           </h1>
 
-          <p className="text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" style={{ fontSize: '1.125rem' }} data-reveal-load>
+          <p className="hero-body-text text-[var(--text-secondary)] font-normal leading-relaxed mb-8 max-w-[46ch]" data-reveal-load>
             Mail, CRM, Docs, Meet, Books, a password manager and eleven more — every app your business runs on, under one login. Your first month is <Price amount={2} />. Full stop.
           </p>
 
@@ -69,7 +69,7 @@ export function Hero() {
 
         {/* Right column: Product Walkthrough Video */}
         <div className="hidden lg:flex justify-center items-center" data-reveal-load>
-          <div style={{ borderRadius: '20px', border: '5px solid #1a1a1a', boxShadow: '0 8px 30px -8px rgba(0,0,0,0.15), 0 4px 12px -4px rgba(0,0,0,0.08)', overflow: 'hidden', width: '800px', height: '620px', position: 'relative', background: '#000' }}>
+          <div className="hero-video-frame">
             <video
               autoPlay
               muted

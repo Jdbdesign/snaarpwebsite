@@ -6625,6 +6625,9 @@ body {
   font-size: 3rem;
 }
 @media (min-width: 768px) {
+  .home-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
   .home-hero-heading { font-size: 4.5rem; }
 }
 
@@ -13450,4 +13453,24 @@ html:has(.work-drive) {
 }
 .login-menu-mail-option:hover .login-menu-mail-option-icon {
   border-color: var(--color-brand);
+}
+
+/* ─── Hero video frame (responsive) ─── */
+.hero-video-frame {
+  border-radius: 20px;
+  border: 5px solid #1a1a1a;
+  box-shadow: 0 8px 30px -8px rgba(0, 0, 0, 0.15), 0 4px 12px -4px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 800 / 620;
+  position: relative;
+  background: #000;
+}
+
+.hero-body-text {
+  font-size: 1rem;
+}
+@media (min-width: 1440px) {
+  .hero-body-text { font-size: 1.125rem; }
 }

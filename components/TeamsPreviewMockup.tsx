@@ -40,9 +40,9 @@ const CALL_HISTORY = [
   { name: 'Design Sync', type: 'outgoing', duration: '8 min', time: 'Mon, 4:15 PM' },
 ];
 
-type ChannelId = 'general' | 'marketing' | 'product-launch' | 'design-review';
+type ChannelId = string;
 
-const CHANNEL_META: Record<ChannelId, { members: number; subtitle: string }> = {
+const CHANNEL_META: Record<string, { members: number; subtitle: string }> = {
   general: { members: 12, subtitle: 'Marketing Team' },
   marketing: { members: 8, subtitle: 'Content & Social' },
   'product-launch': { members: 15, subtitle: 'Cross-functional' },
@@ -65,6 +65,8 @@ export function TeamsPreviewMockup() {
   const [showReactionPicker, setShowReactionPicker] = useState(false);
   const [view, setView] = useState<'chat' | 'calls' | 'calling' | 'incall'>('chat');
   const [navActive, setNavActive] = useState('Chat');
+  const [showNewGroup, setShowNewGroup] = useState(false);
+  const [newGroupName, setNewGroupName] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const switchChannel = (ch: ChannelId) => {
@@ -112,11 +114,22 @@ export function TeamsPreviewMockup() {
 
   const endCall = () => setView('chat');
 
+  const createGroup = () => {
+    if (!newGroupName.trim()) return;
+    const id = newGroupName.trim().toLowerCase().replace(/\s+/g, '-') as ChannelId;
+    setMessages((m) => ({ ...m, [id]: [] }));
+    setShowNewGroup(false);
+    setActiveChannel(id);
+    setNewGroupName('');
+    setView('chat');
+    setNavActive('Chat');
+  };
+
   const goToCalls = () => { setNavActive('Calls'); setView('calls'); setThreadOpen(false); };
   const goToChat = () => { setNavActive('Chat'); setView('chat'); };
 
-  const currentMsgs = messages[activeChannel];
-  const meta = CHANNEL_META[activeChannel];
+  const currentMsgs = messages[activeChannel] || [];
+  const meta = CHANNEL_META[activeChannel] || { members: 3, subtitle: 'New Group' };
 
   return (
     <div style={{ display: 'flex', height: '100%', background: '#fff' }}>
@@ -124,8 +137,8 @@ export function TeamsPreviewMockup() {
       <div style={{ width: '180px', borderRight: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column', background: '#fafafa' }}>
         <div style={{ padding: '14px 14px 10px', borderBottom: '1px solid #f0f0f0' }}>
           <div style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px' }}>Snaarp</div>
-          <button style={{ display: 'flex', alignItems: 'center', gap: '5px', width: '100%', padding: '7px 12px', borderRadius: '8px', border: 'none', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, cursor: 'default' }}>
-            <Plus size={12} /> New Channel
+          <button onClick={() => setShowNewGroup(true)} style={{ display: 'flex', alignItems: 'center', gap: '5px', width: '100%', padding: '7px 12px', borderRadius: '8px', border: 'none', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, cursor: 'pointer' }}>
+            <Plus size={12} /> New Group
           </button>
         </div>
         {/* Nav */}
@@ -139,9 +152,9 @@ export function TeamsPreviewMockup() {
         </div>
         {/* Channels */}
         <div style={{ padding: '10px 8px', borderTop: '1px solid #f0f0f0', marginTop: '4px' }}>
-          <div style={{ fontSize: '9px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#999', padding: '0 10px 6px' }}>Channels</div>
-          {(['general', 'marketing', 'product-launch', 'design-review'] as ChannelId[]).map((ch) => (
-            <div key={ch} onClick={() => switchChannel(ch)}
+          <div style={{ fontSize: '9px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#999', padding: '0 10px 6px' }}>Groups</div>
+          {Object.keys(messages).map((ch) => (
+            <div key={ch} onClick={() => switchChannel(ch as ChannelId)}
               style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 10px', borderRadius: '6px', fontSize: '10.5px', fontWeight: activeChannel === ch ? 600 : 400, color: activeChannel === ch ? '#1a1a1a' : '#555', background: activeChannel === ch ? '#EDE9FE' : 'transparent', marginBottom: '1px', cursor: 'pointer' }}>
               <Hash size={11} style={{ color: activeChannel === ch ? '#7C3AED' : '#999' }} />
               <span style={{ flex: 1 }}>{ch}</span>
@@ -379,6 +392,33 @@ export function TeamsPreviewMockup() {
             <div style={{ display: 'flex', gap: '6px' }}>
               <button style={{ flex: 1, padding: '6px', borderRadius: '6px', border: '1px solid #e8e8e8', background: '#fff', fontSize: '9px', fontWeight: 600, color: '#555', cursor: 'default' }}>Download</button>
               <button style={{ flex: 1, padding: '6px', borderRadius: '6px', border: 'none', background: '#7C3AED', color: '#fff', fontSize: '9px', fontWeight: 600, cursor: 'default' }}>Open in Presentation</button>
+            </div>
+          </div>
+        )}
+
+        {/* New Group modal */}
+        {showNewGroup && (
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50 }}>
+            <div style={{ width: '280px', background: '#fff', borderRadius: '14px', boxShadow: '0 8px 30px -8px rgba(0,0,0,0.2)', padding: '20px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                <span style={{ fontSize: '13px', fontWeight: 700, color: '#1a1a1a' }}>Create New Group</span>
+                <X size={14} onClick={() => setShowNewGroup(false)} style={{ color: '#999', cursor: 'pointer' }} />
+              </div>
+              <div style={{ marginBottom: '12px' }}>
+                <label style={{ display: 'block', fontSize: '10px', fontWeight: 600, color: '#555', marginBottom: '5px' }}>Group name</label>
+                <input value={newGroupName} onChange={(e) => setNewGroupName(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && createGroup()} placeholder="e.g. project-alpha" style={{ width: '100%', padding: '8px 12px', borderRadius: '8px', border: '1px solid #e8e8e8', fontSize: '11px', outline: 'none', color: '#333' }} />
+              </div>
+              <div style={{ marginBottom: '14px' }}>
+                <label style={{ display: 'block', fontSize: '10px', fontWeight: 600, color: '#555', marginBottom: '5px' }}>Add members</label>
+                <div style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid #e8e8e8', fontSize: '10px', color: '#aaa' }}>Search people...</div>
+              </div>
+              <div style={{ display: 'flex', gap: '6px', marginBottom: '10px', flexWrap: 'wrap' }}>
+                {['SJ', 'AR', 'MC'].map((initials, i) => (
+                  <div key={initials} style={{ width: '24px', height: '24px', borderRadius: '50%', background: ['#7C3AED', '#0D9488', '#D97706'][i], color: '#fff', fontSize: '7px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{initials}</div>
+                ))}
+                <span style={{ fontSize: '9px', color: '#999', display: 'flex', alignItems: 'center' }}>+3 suggested</span>
+              </div>
+              <button onClick={createGroup} style={{ width: '100%', padding: '9px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer', opacity: newGroupName.trim() ? 1 : 0.5 }}>Create Group</button>
             </div>
           </div>
         )}

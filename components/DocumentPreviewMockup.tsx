@@ -6,7 +6,7 @@ import { Coachmark } from '@/components/Coachmark';
 
 const TYPING_PHRASES = ['updated numbers pending', 'moved to Q4', 'great point!', 'needs review', 'approved'];
 
-export function DocumentPreviewMockup() {
+export function DocumentPreviewMockup({ onEnd }: { onEnd?: () => void }) {
   // Part 1: Ambient cursor
   const [cursorPos, setCursorPos] = useState({ left: '180px', top: '106px' });
   const [typedText, setTypedText] = useState('');
@@ -15,8 +15,10 @@ export function DocumentPreviewMockup() {
   const [modalOpen, setModalOpen] = useState(false);
   const reducedMotion = useRef(false);
 
+  // Coachmark step flow: 1 = Comment, 2 = Share, 3 = Copy Link, 0 = done
+  const [coachStep, setCoachStep] = useState(1);
+
   // Part 2-3: Comment
-  const [showCommentCoachmark, setShowCommentCoachmark] = useState(true);
   const [commentPanelOpen, setCommentPanelOpen] = useState(false);
   const [newComment, setNewComment] = useState('');
   const [commentPosted, setCommentPosted] = useState(false);
@@ -72,7 +74,7 @@ export function DocumentPreviewMockup() {
   }, [shareOpen, commentPanelOpen, modalOpen, cursorPhraseIdx]);
 
   const openCommentPanel = useCallback(() => {
-    setShowCommentCoachmark(false);
+    setCoachStep(2);
     setCommentPanelOpen(true);
   }, []);
 
@@ -126,7 +128,25 @@ export function DocumentPreviewMockup() {
             <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: '#0D9488', color: '#fff', fontSize: '8px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #fff', marginRight: '-6px', zIndex: 2 }}>AR</div>
             <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: '#E11D74', color: '#fff', fontSize: '8px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #fff', zIndex: 1 }}>DT</div>
           </div>
-          <button onClick={() => setShareOpen(true)} style={{ padding: '5px 12px', borderRadius: '14px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, border: 'none', cursor: 'pointer' }}>Share</button>
+          <button onClick={() => { setShareOpen(true); setCoachStep(3); }} style={{ padding: '5px 12px', borderRadius: '14px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, border: 'none', cursor: 'pointer', position: 'relative' }}>
+            Share
+            {/* Share coachmark - step 2 */}
+            {coachStep === 2 && !shareOpen && (
+              <div style={{ position: 'absolute', top: '32px', right: '180px', zIndex: 40 }}>
+                <Coachmark
+                  visible
+                  title="Share Document"
+                  subtitle="Invite your team and control who can view or edit"
+                  onNext={() => { setShareOpen(true); setCoachStep(3); }}
+                  top="0px"
+                  left="0px"
+                  arrowSide="top"
+                  arrowOffset="140px"
+                  buttonLabel="Next"
+                />
+              </div>
+            )}
+          </button>
           <HelpCircle size={14} style={{ color: '#999' }} />
           <Settings size={14} style={{ color: '#999' }} />
           <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#7C3AED', color: '#fff', fontSize: '9px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>AM</div>
@@ -164,6 +184,23 @@ export function DocumentPreviewMockup() {
         <ToolBtn onClick={handleInsertImage}><Image size={12} /></ToolBtn>
         <ToolBtn onClick={openCommentPanel}><MessageSquare size={12} /></ToolBtn>
       </div>
+
+      {/* Comment coachmark - below toolbar comment icon */}
+      {coachStep === 1 && !commentPanelOpen && (
+        <div style={{ position: 'absolute', top: '72px', right: '330px', zIndex: 40 }}>
+          <Coachmark
+            visible
+            title="Leave a Comment"
+            subtitle="Give feedback right where it matters in the document"
+            onNext={openCommentPanel}
+            top="0px"
+            left="0px"
+            arrowSide="top"
+            arrowOffset="80px"
+            buttonLabel="Next"
+          />
+        </div>
+      )}
 
       {/* Document canvas */}
       <div style={{ flex: 1, background: '#F8F9FA', display: 'flex', justifyContent: 'center', padding: '20px 16px', overflow: 'hidden' }}>
@@ -226,25 +263,10 @@ export function DocumentPreviewMockup() {
           {/* Margin comment / comment panel */}
           {!commentResolved && (
             <div style={{ position: 'absolute', right: '-8px', top: '290px', width: '150px', transition: 'opacity 0.3s', opacity: commentResolved ? 0 : 1 }}>
-              {/* Comment bubble icon (coachmark target) */}
+              {/* Comment bubble icon */}
               <div onClick={openCommentPanel} style={{ position: 'absolute', left: '-20px', top: '6px', width: '16px', height: '16px', borderRadius: '50%', background: '#FEF9C3', border: '1px solid #FDE68A', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
                 <MessageSquare size={8} style={{ color: '#D97706' }} />
               </div>
-
-              {/* Coachmark */}
-              {showCommentCoachmark && !commentPanelOpen && (
-                <Coachmark
-                  visible
-                  title="Leave a Comment"
-                  subtitle="Give feedback right where it matters in the document"
-                  onNext={openCommentPanel}
-                  top="30px"
-                  left="-60px"
-                  arrowSide="top"
-                  arrowOffset="40px"
-                  buttonLabel="Next"
-                />
-              )}
 
               {/* Comment panel */}
               {commentPanelOpen ? (
@@ -307,10 +329,10 @@ export function DocumentPreviewMockup() {
       {/* Share modal */}
       {shareOpen && (
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50 }}>
-          <div style={{ width: '340px', background: '#fff', borderRadius: '14px', boxShadow: '0 8px 30px -8px rgba(0,0,0,0.2)', padding: '18px 20px' }}>
+          <div style={{ width: '340px', background: '#fff', borderRadius: '14px', boxShadow: '0 8px 30px -8px rgba(0,0,0,0.2)', padding: '18px 20px', overflow: 'visible', position: 'relative' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
               <span style={{ fontSize: '12px', fontWeight: 700, color: '#1a1a1a' }}>Share &lsquo;Q3 Marketing Plan&rsquo;</span>
-              <X size={14} onClick={() => setShareOpen(false)} style={{ color: '#999', cursor: 'pointer' }} />
+              <X size={14} onClick={() => { setShareOpen(false); setCoachStep(0); }} style={{ color: '#999', cursor: 'pointer' }} />
             </div>
             {/* People input */}
             <div style={{ padding: '7px 10px', borderRadius: '8px', border: '1px solid #e8e8e8', marginBottom: '10px', fontSize: '10px', color: '#aaa' }}>Add people or groups</div>
@@ -332,13 +354,29 @@ export function DocumentPreviewMockup() {
               <span style={{ fontSize: '9px', color: '#999', padding: '2px 6px', borderRadius: '4px', border: '1px solid #eee' }}>Viewer</span>
             </div>
             {/* Copy link */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '14px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '14px', position: 'relative' }}>
               <div style={{ flex: 1, padding: '6px 10px', borderRadius: '6px', background: '#F8F9FA', border: '1px solid #e8e8e8', fontSize: '9px', color: '#666', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>docs.snaarp.com/d/q3-marketing-plan-x92k</div>
               <button onClick={handleCopyLink} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '5px 10px', borderRadius: '6px', background: linkCopied ? '#ECFDF5' : '#F8F9FA', border: '1px solid ' + (linkCopied ? '#A7F3D0' : '#e8e8e8'), fontSize: '9px', fontWeight: 600, color: linkCopied ? '#166534' : '#555', cursor: 'pointer' }}>
                 {linkCopied ? <><Check size={10} /> Copied</> : <><Copy size={10} /> Copy</>}
               </button>
+              {/* Copy link coachmark - step 3 */}
+              {coachStep === 3 && (
+                <div style={{ position: 'absolute', top: '36px', left: '0px', zIndex: 60 }}>
+                  <Coachmark
+                    visible
+                    title="Copy Share Link"
+                    subtitle="Copy the link and share it with anyone"
+                    onNext={() => { setCoachStep(0); setShareOpen(false); if (onEnd) onEnd(); }}
+                    top="0px"
+                    left="0px"
+                    arrowSide="top"
+                    arrowOffset="30px"
+                    buttonLabel="End"
+                  />
+                </div>
+              )}
             </div>
-            <button onClick={() => setShareOpen(false)} style={{ width: '100%', padding: '8px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer' }}>Done</button>
+            <button onClick={() => { setShareOpen(false); setCoachStep(0); }} style={{ width: '100%', padding: '8px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '11px', fontWeight: 600, border: 'none', cursor: 'pointer' }}>Done</button>
           </div>
         </div>
       )}

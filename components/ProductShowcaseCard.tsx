@@ -84,7 +84,7 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaus
         {activeIndex === 4 && <LockPreviewMockup onEnd={() => setActiveIndex(5)} />}
         {activeIndex === 5 && <DrivePreviewMockup onEnd={() => setActiveIndex(6)} />}
         {activeIndex === 6 && <SheetPreviewMockup />}
-        {activeIndex === 7 && <DocumentPreviewMockup />}
+        {activeIndex === 7 && <DocumentPreviewMockup onEnd={() => setActiveIndex(8)} />}
         {activeIndex === 8 && <TeamsPreviewMockup />}
         {activeIndex === 9 && <PresentationPreviewMockup />}
         {activeIndex === 10 && <MeetPreviewMockup />}

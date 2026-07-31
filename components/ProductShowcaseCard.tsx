@@ -9,16 +9,31 @@ import { KalenderPreviewMockup } from '@/components/KalenderPreviewMockup';
 import { LockPreviewMockup } from '@/components/LockPreviewMockup';
 import { DrivePreviewMockup } from '@/components/DrivePreviewMockup';
 import { SheetPreviewMockup } from '@/components/SheetPreviewMockup';
+import { DocumentPreviewMockup } from '@/components/DocumentPreviewMockup';
+import { TeamsPreviewMockup } from '@/components/TeamsPreviewMockup';
+import { PresentationPreviewMockup } from '@/components/PresentationPreviewMockup';
+import { MeetPreviewMockup } from '@/components/MeetPreviewMockup';
 
 const PRODUCT_ICONS = [
-  { src: '/assets/icons/envelope.jpg', label: 'Mail', size: '22px', lucide: false },
-  { src: '/assets/icons/apps-meet-logo.png', label: 'Me', size: '18px', lucide: false },
-  { src: '/assets/icons/search.jpg', label: 'Contacts', size: '22px', lucide: false },
-  { src: '', label: 'Calendar', size: '22px', lucide: true },
-  { src: '/assets/icons/apps-lock.jpg', label: 'Lock', size: '22px', lucide: false },
-  { src: '/assets/icons/cube.jpg', label: 'Drive', size: '22px', lucide: false },
-  { src: '/assets/icons/apps-sheet.jpg', label: 'Sheet', size: '22px', lucide: false },
+  { src: '/assets/icons/envelope.jpg', label: 'Mail', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/apps-meet-logo.png', label: 'Me', size: '18px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/search.jpg', label: 'Contacts', size: '22px', lucide: false, lucideIcon: null },
+  { src: '', label: 'Calendar', size: '22px', lucide: true, lucideIcon: 'Calendar' },
+  { src: '/assets/icons/apps-lock.jpg', label: 'Lock', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/cube.jpg', label: 'Drive', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/apps-sheet.jpg', label: 'Sheet', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/apps-document.png', label: 'Document', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/chat-bubbles.jpg', label: 'Teams', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/p-icon.jpg', label: 'Presentation', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/apps-meet.jpg', label: 'Meet', size: '22px', lucide: false, lucideIcon: null },
 ];
+
+function LucideIconRender({ name, size, color }: { name: string; size: number; color: string }) {
+  switch (name) {
+    case 'Calendar': return <Calendar size={size} style={{ color }} />;
+    default: return <Calendar size={size} style={{ color }} />;
+  }
+}
 
 export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaused }: { cardWidth?: string; cardBorder?: string; startPaused?: boolean }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -48,7 +63,7 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaus
             }}
           >
             {item.lucide ? (
-              <Calendar size={18} style={{ color: '#7C3AED' }} />
+              <LucideIconRender name={item.lucideIcon || 'Calendar'} size={18} color="#7C3AED" />
             ) : (
               <img src={item.src} alt={item.label} style={{ width: item.size, height: item.size, borderRadius: '5px', objectFit: 'cover' }} />
             )}
@@ -65,6 +80,10 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaus
         {activeIndex === 4 && <LockPreviewMockup onEnd={() => setActiveIndex(5)} />}
         {activeIndex === 5 && <DrivePreviewMockup onEnd={() => setActiveIndex(6)} />}
         {activeIndex === 6 && <SheetPreviewMockup />}
+        {activeIndex === 7 && <DocumentPreviewMockup onEnd={() => setActiveIndex(8)} />}
+        {activeIndex === 8 && <TeamsPreviewMockup onEnd={() => setActiveIndex(9)} />}
+        {activeIndex === 9 && <PresentationPreviewMockup onEnd={() => setActiveIndex(10)} />}
+        {activeIndex === 10 && <MeetPreviewMockup />}
       </div>
     </div>
   );

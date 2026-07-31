@@ -42,10 +42,6 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaus
     <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
       {/* Vertical icon rail */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '8px 6px', background: '#f5f5f5', borderRadius: '28px', border: '1px solid #e8e8e8' }}>
-        {/* Snaarp brand mark */}
-        <div style={{ width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, #7C3AED, #9F67F5)', marginBottom: '4px' }}>
-          <span style={{ color: '#fff', fontSize: '13px', fontWeight: 800, letterSpacing: '-0.02em' }}>S</span>
-        </div>
         {PRODUCT_ICONS.map((item, i) => (
           <div
             key={item.label}

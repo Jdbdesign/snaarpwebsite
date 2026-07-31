@@ -62,8 +62,8 @@ export function MeetPreviewMockup({ onEnd }: { onEnd?: () => void }) {
           <div onClick={() => { togglePanel('participants'); if (coachStep === 3) setCoachStep(4); }} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '3px 8px', borderRadius: '10px', background: panel === 'participants' ? 'rgba(124,58,237,0.3)' : 'rgba(255,255,255,0.1)', fontSize: '10px', color: panel === 'participants' ? '#C4B5FD' : '#ccc', cursor: 'pointer', position: 'relative' }}>
             <Users size={10} /> 6
             {coachStep === 3 && (
-              <div style={{ position: 'absolute', top: '30px', right: '-20px', zIndex: 40 }}>
-                <Coachmark visible title="View Participants" subtitle="See who's in the call" onNext={() => { togglePanel('participants'); setCoachStep(4); }} top="0px" left="0px" arrowSide="top" arrowOffset="40px" buttonLabel="Next" />
+              <div style={{ position: 'absolute', top: '30px', right: '140px', zIndex: 40 }}>
+                <Coachmark visible title="View Participants" subtitle="See who's in the call" onNext={() => { togglePanel('participants'); setCoachStep(4); }} top="0px" left="0px" arrowSide="top" arrowOffset="120px" buttonLabel="Next" />
               </div>
             )}
           </div>
@@ -167,7 +167,7 @@ export function MeetPreviewMockup({ onEnd }: { onEnd?: () => void }) {
                   <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg>
                 </div>
                 {coachStep === 2 && (
-                  <div style={{ position: 'absolute', bottom: '30px', left: '-40px', zIndex: 40 }}>
+                  <div style={{ position: 'absolute', bottom: '190px', left: '-40px', zIndex: 40 }}>
                     <Coachmark visible title="Share an Image" subtitle="Send photos and screenshots to the chat" onNext={() => { setPanel('none'); setCoachStep(3); }} top="0px" left="0px" arrowSide="bottom" arrowOffset="50px" buttonLabel="Next" />
                   </div>
                 )}
@@ -218,7 +218,7 @@ export function MeetPreviewMockup({ onEnd }: { onEnd?: () => void }) {
               <MonitorUp size={14} />
             </ControlBtn>
             {coachStep === 4 && (
-              <div style={{ position: 'absolute', bottom: '42px', left: '-60px', zIndex: 40 }}>
+              <div style={{ position: 'absolute', bottom: '202px', left: '-60px', zIndex: 40 }}>
                 <Coachmark visible title="Share Your Screen" subtitle="Present your screen to everyone" onNext={() => { setScreenSharing(true); setPanel('none'); setCoachStep(5); }} top="0px" left="0px" arrowSide="bottom" arrowOffset="70px" buttonLabel="Next" />
               </div>
             )}
@@ -242,7 +242,7 @@ export function MeetPreviewMockup({ onEnd }: { onEnd?: () => void }) {
               <span style={{ position: 'absolute', top: '-2px', right: '-2px', minWidth: '14px', height: '14px', borderRadius: '7px', background: '#7C3AED', color: '#fff', fontSize: '7px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 3px', transition: 'opacity 0.15s' }}>{chatBadge}</span>
             )}
             {coachStep === 1 && (
-              <div style={{ position: 'absolute', bottom: '42px', right: '-20px', zIndex: 40 }}>
+              <div style={{ position: 'absolute', bottom: '180px', right: '60px', zIndex: 40 }}>
                 <Coachmark visible title="Open Chat" subtitle="Message everyone in the call" onNext={() => { togglePanel('chat'); setCoachStep(2); }} top="0px" left="0px" arrowSide="bottom" arrowOffset="40px" buttonLabel="Next" />
               </div>
             )}

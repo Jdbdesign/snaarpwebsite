@@ -101,18 +101,18 @@ export function Footer() {
           <div className="footer-col" data-reveal data-reveal-group="footer" data-reveal-batch="footer-columns">
             <p className="footer-col-title">Company</p>
             <ul className="footer-links">
-              <li><a href="#" className="footer-link">About us</a></li>
-              <li><a href="#" className="footer-link">Contact sales</a></li>
+              <li><a href="/about" className="footer-link">About us</a></li>
+              <li><a href="/contact" className="footer-link">Contact sales</a></li>
             </ul>
           </div>
 
           <div className="footer-col" data-reveal data-reveal-group="footer" data-reveal-batch="footer-columns">
             <p className="footer-col-title">Legal</p>
             <ul className="footer-links">
-              <li><a href="#" className="footer-link">Privacy policy</a></li>
-              <li><a href="#" className="footer-link">Terms &amp; conditions</a></li>
-              <li><a href="#" className="footer-link">Cookie policy</a></li>
-              <li><a href="#" className="footer-link">Acceptable use</a></li>
+              <li><a href="/privacy-policy" className="footer-link">Privacy policy</a></li>
+              <li><a href="/terms-and-conditions" className="footer-link">Terms &amp; conditions</a></li>
+              <li><a href="/cookie-policy" className="footer-link">Cookie policy</a></li>
+              <li><a href="/acceptable-use" className="footer-link">Acceptable use</a></li>
             </ul>
           </div>
         </div>

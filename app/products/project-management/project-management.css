@@ -1,0 +1,84 @@
+/* =======================================================================
+   PROJECT MANAGEMENT PRODUCT PAGE (/products/project-management)
+   Page-specific CSS: keyframe animations, scroll-reveal, responsive type.
+   Keyframes prefixed pm- to avoid collision with other product pages.
+   ======================================================================= */
+
+/* Scroll reveal */
+.pm-page [data-pm-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .66s cubic-bezier(.16,1,.3,1), transform .66s cubic-bezier(.16,1,.3,1);
+}
+.pm-page [data-pm-reveal].pm-is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keyframes */
+@keyframes pm-floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes pm-savedPop { 0% { transform: scale(1); } 32% { transform: scale(1.55); } 100% { transform: scale(1); } }
+@keyframes pm-livePulse { 0%,100% { box-shadow: 0 0 0 0 rgba(20,184,166,.5); } 70%,100% { box-shadow: 0 0 0 6px rgba(20,184,166,0); } }
+@keyframes pm-nudge { 0%,70%,100% { transform: translateY(0) rotate(0); } 79% { transform: translateY(-5px) rotate(-1.4deg); } 88% { transform: translateY(-1px) rotate(1deg); } }
+
+/* Responsive hero heading */
+.pm-hero-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+}
+@media (min-width: 768px) {
+  .pm-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
+  .pm-hero-heading { font-size: 4.5rem; }
+}
+
+/* Section headings (Steps, Bento grid — centered) */
+.pm-section-heading {
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #1B1730;
+}
+
+/* Row headings (Alt rows — left-aligned) */
+.pm-row-heading {
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  color: #1B1730;
+}
+
+/* Band headings (Testimonials, FAQ) */
+.pm-band-heading {
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #1B1730;
+}
+
+/* ─── Responsive breakpoints for all heading tiers ─── */
+.pm-section-heading { font-size: 2.25rem; }
+.pm-row-heading { font-size: 1.625rem; }
+.pm-band-heading { font-size: 1.75rem; }
+
+@media (min-width: 768px) {
+  .pm-section-heading { font-size: 2.75rem; }
+  .pm-row-heading { font-size: 2.25rem; }
+  .pm-band-heading { font-size: 2.375rem; }
+}
+@media (min-width: 1440px) {
+  .pm-section-heading { font-size: 3.75rem; }
+  .pm-row-heading { font-size: 2.75rem; }
+  .pm-band-heading { font-size: 3rem; }
+}
+
+/* prefers-reduced-motion override */
+@media (prefers-reduced-motion: reduce) {
+  .pm-page *, .pm-page *::before, .pm-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,86 @@
+/* =======================================================================
+   BOOKS PRODUCT PAGE (/products/books)
+   Page-specific CSS: keyframe animations, scroll-reveal, responsive type.
+   Keyframes prefixed books- to avoid collision with other product pages.
+   ======================================================================= */
+
+/* Scroll reveal */
+.books-page [data-books-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .66s cubic-bezier(.16,1,.3,1), transform .66s cubic-bezier(.16,1,.3,1);
+}
+.books-page [data-books-reveal].books-is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keyframes */
+@keyframes books-floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes books-checkPop { 0% { transform: scale(0); } 55% { transform: scale(1.25); } 100% { transform: scale(1); } }
+@keyframes books-chipRise { 0% { transform: translateY(8px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+@keyframes books-syncPulse { 0% { box-shadow: 0 0 0 0 rgba(14,147,132,.45); } 70% { box-shadow: 0 0 0 10px rgba(14,147,132,0); } 100% { box-shadow: 0 0 0 0 rgba(14,147,132,0); } }
+@keyframes books-spinSlow { to { transform: rotate(360deg); } }
+@keyframes books-stampIn { 0% { transform: rotate(-14deg) scale(.6); opacity: 0; } 60% { transform: rotate(-8deg) scale(1.08); opacity: 1; } 100% { transform: rotate(-8deg) scale(1); opacity: 1; } }
+
+/* Responsive hero heading */
+.books-hero-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+@media (min-width: 768px) {
+  .books-hero-heading { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
+  .books-hero-heading { font-size: 4.5rem; }
+}
+
+/* Section headings (Steps, Bento grid — centered) */
+.books-section-heading {
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #1B1730;
+}
+
+/* Row headings (Alt rows — left-aligned) */
+.books-row-heading {
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  color: #1B1730;
+}
+
+/* Band headings (Testimonials, FAQ) */
+.books-band-heading {
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #1B1730;
+}
+
+/* ─── Responsive breakpoints for all heading tiers ─── */
+.books-section-heading { font-size: 2.25rem; }
+.books-row-heading { font-size: 1.625rem; }
+.books-band-heading { font-size: 1.75rem; }
+
+@media (min-width: 768px) {
+  .books-section-heading { font-size: 2.75rem; }
+  .books-row-heading { font-size: 2.25rem; }
+  .books-band-heading { font-size: 2.375rem; }
+}
+@media (min-width: 1440px) {
+  .books-section-heading { font-size: 3.75rem; }
+  .books-row-heading { font-size: 2.75rem; }
+  .books-band-heading { font-size: 3rem; }
+}
+
+/* prefers-reduced-motion override */
+@media (prefers-reduced-motion: reduce) {
+  .books-page *, .books-page *::before, .books-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

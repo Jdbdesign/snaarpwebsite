@@ -86,7 +86,7 @@ const snippetCards: SolutionSnippetCard[] = [
 // PenLine (eSignature).
 const appChips: SolutionAppChip[] = [
   { name: 'PDF Reader', desc: 'Mark up, highlight, and comment before it moves on.', href: '/products/pdf-reader', tint: 'violet', icon: { kind: 'lucide', Icon: FileType }, external: false },
-  { name: 'Doc Sign', desc: 'Route documents through your internal approval chain.', href: '/', tint: 'teal', icon: { kind: 'lucide', Icon: FileCheck }, external: true },
+  { name: 'Doc Sign', desc: 'Route documents through your internal approval chain.', href: '/products/doc-sign', tint: 'teal', icon: { kind: 'lucide', Icon: FileCheck }, external: false },
   { name: 'eSignature', desc: 'Send out for external signature — no re-upload needed.', href: '/products/esignature', tint: 'rose', icon: { kind: 'lucide', Icon: PenLine }, external: false },
 ];
 

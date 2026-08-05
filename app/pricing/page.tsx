@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { PricingPlans } from '@/components/pricing/PricingPlans';
-import { ComparePlans } from '@/components/pricing/ComparePlans';
+import { PricingPageContent } from '@/components/pricing/PricingPageContent';
 import { StepsSection } from '@/components/sections/StepsSection';
 import { FAQ } from '@/components/FAQ';
 import { HomeFinalCTA } from '@/components/HomeFinalCTA';
@@ -23,7 +22,7 @@ const PRICING_STEPS = [
   },
   {
     title: 'Invite your team',
-    desc: 'Add colleagues and start using Mail, Kalender, and Contacts right away, all in one Stack.',
+    desc: 'Add colleagues and start using Mail, SnaarpMe, and Contacts right away, all in one Stack.',
   },
 ];
 
@@ -32,8 +31,7 @@ export default function PricingPage() {
     <>
       <Header />
       <main id="main-content">
-        <PricingPlans />
-        <ComparePlans />
+        <PricingPageContent />
         <StepsSection heading="Get started in 3 simple steps" steps={PRICING_STEPS} ctaLabel="Get Started" ctaHref="#" />
         <FAQ />
         <HomeFinalCTA />

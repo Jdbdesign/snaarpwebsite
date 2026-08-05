@@ -96,9 +96,9 @@ export const CATEGORIES: ProductCategory[] = [
     label: 'Run the Business',
     apps: [
       { name: 'Books', desc: 'Invoicing & bookkeeping', icon: { kind: 'lucide', Icon: BookOpen }, href: '/products/books', platforms: ['web'] },
-      { name: 'Accounting Software', desc: 'Full accounting & reporting', icon: { kind: 'lucide', Icon: Calculator }, platforms: ['web'] },
+      { name: 'Accounting Software', desc: 'Full accounting & reporting', icon: { kind: 'lucide', Icon: Calculator }, href: '/products/accounting-software', platforms: ['web'] },
       { name: 'Project Management', desc: 'Sprints, tasks & tracking', icon: { kind: 'lucide', Icon: Kanban }, href: '/products/project-management', platforms: ['web'] },
-      { name: 'Elearn', desc: 'Team training & onboarding', icon: { kind: 'lucide', Icon: GraduationCap }, platforms: ['ios', 'android', 'web'] },
+      { name: 'Elearn', desc: 'Team training & onboarding', icon: { kind: 'lucide', Icon: GraduationCap }, href: '/products/elearn', platforms: ['ios', 'android', 'web'] },
       { name: 'Neo AI', desc: 'Cross-app AI assistant', icon: { kind: 'lucide', Icon: BrainCircuit }, platforms: ['web'] },
     ],
   },

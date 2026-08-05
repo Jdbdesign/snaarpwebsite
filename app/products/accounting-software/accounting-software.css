@@ -1,0 +1,85 @@
+/* Accounting Software Product Page */
+
+.acct-page [data-acct-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .66s cubic-bezier(.16,1,.3,1), transform .66s cubic-bezier(.16,1,.3,1);
+}
+.acct-page [data-acct-reveal].acct-is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes acct-floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes acct-checkPop { 0% { transform: scale(0); } 55% { transform: scale(1.25); } 100% { transform: scale(1); } }
+@keyframes acct-chipRise { 0% { transform: translateY(8px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+@keyframes acct-syncPulse { 0% { box-shadow: 0 0 0 0 rgba(14,147,132,.45); } 70% { box-shadow: 0 0 0 10px rgba(14,147,132,0); } 100% { box-shadow: 0 0 0 0 rgba(14,147,132,0); } }
+@keyframes acct-spinSlow { to { transform: rotate(360deg); } }
+@keyframes acct-bannerIn { 0% { transform: translateY(6px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+@keyframes acct-rowSettle { 0% { transform: translateX(-4px); opacity: .6; } 100% { transform: translateX(0); opacity: 1; } }
+
+.acct-hero-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.07;
+  letter-spacing: -0.03em;
+}
+@media (min-width: 768px) { .acct-hero-heading { font-size: 3.5rem; } }
+@media (min-width: 1440px) { .acct-hero-heading { font-size: 4.5rem; } }
+
+.acct-section-heading { font-size: 2.25rem; font-weight: 700; line-height: 1.12; letter-spacing: -0.03em; color: #1B1730; }
+.acct-row-heading { font-size: 1.625rem; font-weight: 700; line-height: 1.14; letter-spacing: -0.03em; color: #1B1730; }
+.acct-band-heading { font-size: 1.75rem; font-weight: 700; line-height: 1.12; letter-spacing: -0.03em; color: #1B1730; }
+
+@media (min-width: 768px) {
+  .acct-section-heading { font-size: 2.75rem; }
+  .acct-row-heading { font-size: 2.25rem; }
+  .acct-band-heading { font-size: 2.375rem; }
+}
+@media (min-width: 1440px) {
+  .acct-section-heading { font-size: 3.75rem; }
+  .acct-row-heading { font-size: 2.75rem; }
+  .acct-band-heading { font-size: 3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acct-page *, .acct-page *::before, .acct-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Responsive grid stacking (matches Mail page breakpoints) */
+@media (max-width: 1023px) {
+  .acct-page .max-w-7xl[style*="grid-template-columns: minmax(0,.82fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  .acct-page .max-w-7xl[style*="grid-template-columns: 1.05fr 1fr"],
+  .acct-page .max-w-7xl[style*="grid-template-columns: 1fr 1.05fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  .acct-page div[style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .acct-page div[style*="grid-template-columns: repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  .acct-page div[style*="grid-template-columns: repeat(6,1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .acct-page div[style*="grid-template-columns: repeat(6,1fr)"] > div[style*="grid-column: span 4"] {
+    grid-column: 1 / -1 !important;
+  }
+  .acct-page div[style*="grid-template-columns: repeat(6,1fr)"] > div[style*="grid-column: span 2"] {
+    grid-column: span 1 !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .acct-page div[style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  .acct-page div[style*="grid-template-columns: repeat(6,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+}

@@ -85,7 +85,7 @@ export function PricingTabBar({ activeTab, onTabChange }: PricingTabBarProps) {
                     alt=""
                     width={20}
                     height={20}
-                    style={{ height: 20, width: 'auto', objectFit: 'contain', flexShrink: 0, filter: isActive ? 'brightness(0) invert(1)' : 'none', transition: 'filter .2s' }}
+                    style={{ height: 20, width: 'auto', objectFit: 'contain', flexShrink: 0, filter: isActive && tab.name !== 'SnaarpMe' && tab.name !== 'Drive' ? 'brightness(0) invert(1)' : 'none', transition: 'filter .2s' }}
                   />
                 )}
                 {tab.name}

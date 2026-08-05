@@ -18,6 +18,8 @@ export function PricingCard({ plan, billingCycle }: { plan: PricingPlan; billing
     <div className={`pricing-card${plan.popular ? ' pricing-card-popular' : ''}`}>
       {plan.popular && <span className="pricing-card-badge">Most Popular</span>}
 
+      <span className="pricing-card-trial-badge">14-day free trial</span>
+
       <p className="pricing-card-eyebrow">{plan.name}</p>
 
       <div className="pricing-card-price-row">
@@ -82,7 +84,7 @@ export function PricingCard({ plan, billingCycle }: { plan: PricingPlan; billing
         href="#"
         className={`pricing-card-cta${plan.popular ? ' btn-primary' : ' btn-outline'}`}
       >
-        Get Started
+        Start 14-day free trial
       </a>
     </div>
   );

@@ -1,23 +1,22 @@
 'use client';
 
 import { useRef } from 'react';
-import { ShieldCheck, BrainCircuit, BarChart3, Calculator } from 'lucide-react';
 
 /**
  * 10 main products shown as horizontal pill tabs.
  * Other apps are add-ons included in the Workspace plan.
  */
 const PRODUCT_TABS: { name: string; icon: string | null; lucide?: string }[] = [
-  { name: 'Mail', icon: '/assets/icons/envelope.jpg' },
-  { name: 'Drive', icon: '/assets/icons/cube.jpg' },
+  { name: 'Mail', icon: '/assets/icons/pricing/mail.svg' },
+  { name: 'Drive', icon: '/assets/icons/pricing/drive.svg' },
   { name: 'SnaarpMe', icon: '/assets/icons/logos/snaarpme.svg' },
-  { name: 'Contacts', icon: '/assets/icons/search.jpg' },
-  { name: 'Sendrit', icon: '/assets/icons/apps-sendrit.jpg' },
-  { name: 'VerifyRit', icon: null, lucide: 'verify' },
-  { name: 'NeoLeads', icon: null, lucide: 'brain' },
+  { name: 'Contacts', icon: '/assets/icons/pricing/contacts.svg' },
+  { name: 'Sendrit', icon: '/assets/icons/pricing/sendrit.svg' },
+  { name: 'VerifyRit', icon: '/assets/icons/pricing/verifyrit.svg' },
+  { name: 'NeoLeads', icon: '/assets/icons/pricing/neoleads.svg' },
   { name: 'Zeus', icon: '/assets/icons/logos/zeus.svg' },
-  { name: 'CRM', icon: null, lucide: 'crm' },
-  { name: 'Accounting', icon: null, lucide: 'calculator' },
+  { name: 'CRM', icon: '/assets/icons/pricing/crm.svg' },
+  { name: 'Accounting', icon: '/assets/icons/pricing/accounting.svg' },
 ];
 
 interface PricingTabBarProps {
@@ -84,15 +83,11 @@ export function PricingTabBar({ activeTab, onTabChange }: PricingTabBarProps) {
                   <img
                     src={tab.icon}
                     alt=""
-                    width={18}
-                    height={18}
-                    style={{ borderRadius: 4, objectFit: 'cover', flexShrink: 0 }}
+                    width={20}
+                    height={20}
+                    style={{ height: 20, width: 'auto', objectFit: 'contain', flexShrink: 0, filter: isActive ? 'brightness(0) invert(1)' : 'none', transition: 'filter .2s' }}
                   />
                 )}
-                {!tab.icon && tab.lucide === 'verify' && <ShieldCheck size={16} style={{ flexShrink: 0 }} />}
-                {!tab.icon && tab.lucide === 'brain' && <BrainCircuit size={16} style={{ flexShrink: 0 }} />}
-                {!tab.icon && tab.lucide === 'crm' && <BarChart3 size={16} style={{ flexShrink: 0 }} />}
-                {!tab.icon && tab.lucide === 'calculator' && <Calculator size={16} style={{ flexShrink: 0 }} />}
                 {tab.name}
               </button>
             );

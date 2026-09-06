@@ -70,12 +70,12 @@ export function Coachmark({ title, subtitle, onNext, visible, top, left, highlig
         transition,
         pointerEvents: show ? 'auto' : 'none',
       }}>
-        {/* Arrow */}
+        {/* Arrow — arrowOffset controls its position along the relevant edge */}
         {arrowSide === 'left' && (
           <div style={{ position: 'absolute', left: '-7px', top: arrowOffset || '20px', width: '14px', height: '14px', background: '#fff', transform: 'rotate(45deg)', boxShadow: '-2px 2px 4px rgba(0,0,0,0.05)', zIndex: -1 }} />
         )}
         {arrowSide === 'right' && (
-          <div style={{ position: 'absolute', right: '-7px', top: '20px', width: '14px', height: '14px', background: '#fff', transform: 'rotate(45deg)', boxShadow: '2px -2px 4px rgba(0,0,0,0.05)', zIndex: -1 }} />
+          <div style={{ position: 'absolute', right: '-7px', top: arrowOffset || '20px', width: '14px', height: '14px', background: '#fff', transform: 'rotate(45deg)', boxShadow: '2px -2px 4px rgba(0,0,0,0.05)', zIndex: -1 }} />
         )}
         {arrowSide === 'top' && (
           <div style={{ position: 'absolute', top: '-7px', left: arrowOffset || '30px', width: '14px', height: '14px', background: '#fff', transform: 'rotate(45deg)', boxShadow: '-2px -2px 4px rgba(0,0,0,0.05)', zIndex: -1 }} />

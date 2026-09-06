@@ -1,15 +1,13 @@
 import { RevealSection } from '@/components/reveal/RevealSection';
 
 const TRUST_LOGOS = [
-  { name: 'Allstate', src: '/assets/logos/allstate.png' },
-  { name: 'Amcor', src: '/assets/logos/amcor.png' },
-  { name: 'Amgen', src: '/assets/logos/amgen.png' },
-  { name: 'Arthur J. Gallagher & Co.', src: '/assets/logos/arthur-j-gallagher.png' },
-  { name: 'Axon', src: '/assets/logos/axon.png' },
-  { name: 'Bio-Rad Laboratories', src: '/assets/logos/bio-rad.png' },
-  { name: 'Biogen', src: '/assets/logos/biogen.png' },
-  { name: 'Campbell Soup Company', src: '/assets/logos/campbell-soup.png' },
-  { name: 'Centene', src: '/assets/logos/centene.png' },
+  { name: 'Abbott Laboratories', src: '/assets/trusted-by-forward/abbott-laboratories.svg' },
+  { name: 'Allegion', src: '/assets/trusted-by-forward/allegion.svg' },
+  { name: 'Amgen', src: '/assets/trusted-by-forward/amgen-inc.svg' },
+  { name: 'AutoZone', src: '/assets/trusted-by-forward/autozone.svg' },
+  { name: 'Avery Dennison', src: '/assets/trusted-by-forward/avery-dennison.svg' },
+  { name: 'Baxter International', src: '/assets/trusted-by-forward/baxter-international.svg' },
+  { name: 'Bio-Rad Laboratories', src: '/assets/trusted-by-forward/bio-rad-laboratories.svg' },
 ];
 
 // One lap of the marquee. Rendered twice back-to-back (the second copy
@@ -34,7 +32,7 @@ export function KalenderTrustBar() {
     <section className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
       <RevealSection>
         <p className="kalender-trust-line" data-reveal data-reveal-group="kalender-trust">
-          Trusted by more than <strong>100,000</strong>{' '}of the world&rsquo;s leading organizations
+          Trusted by ambitious teams around the world
         </p>
         <div className="sec-logo-strip-track-wrap" data-reveal data-reveal-group="kalender-trust">
           <div className="sec-logo-strip-track kalender-trust-track">

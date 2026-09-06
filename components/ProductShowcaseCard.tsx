@@ -95,7 +95,7 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardHeight = '620px',
         {activeIndex === 10 && <MeetPreviewMockup onEnd={() => setActiveIndex(11)} />}
         {activeIndex === 11 && <IdCardPreviewMockup onEnd={() => setActiveIndex(12)} />}
         {activeIndex === 12 && <PdfPreviewMockup onEnd={() => setActiveIndex(13)} />}
-        {activeIndex === 13 && <SendritPreviewMockup />}
+        {activeIndex === 13 && <SendritPreviewMockup onEnd={() => setActiveIndex(14)} />}
         {activeIndex === 14 && <ZeusPreviewMockup />}
       </div>
     </div>

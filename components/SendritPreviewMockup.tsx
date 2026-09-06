@@ -83,7 +83,7 @@ function LineTrend() {
   );
 }
 
-export function SendritPreviewMockup() {
+export function SendritPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
   const [activeNav, setActiveNav] = useState('Dashboard');
   const [showInvite, setShowInvite] = useState(false);
   const [showBulk, setShowBulk] = useState(false);
@@ -262,6 +262,74 @@ export function SendritPreviewMockup() {
             subtitle="Click Invite User to add teammates to your SendRit workspace."
             onNext={() => { setShowInvite(true); setTour(3); }}
             top="0" left="0" arrowSide="top" arrowOffset="20px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Campaign wizard walkthrough — step 1 (positioned lower and further left) */}
+      {activeNav === 'Campaigns' && showCampaign && campStep === 1 && tour === 13 && (
+        <div style={{ position: 'absolute', top: '190px', left: '50%', transform: 'translateX(-110px)', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Step 1: Basic Info"
+            subtitle="Set your campaign name, subject, and sender. Click Next to choose recipients."
+            onNext={() => { setCampStep(2); setTour(14); }}
+            top="0" left="0" arrowSide="top" arrowOffset="24px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Campaign wizard walkthrough — steps 2-3 (rendered at root so not clipped by wizard scroll area) */}
+      {activeNav === 'Campaigns' && showCampaign && campStep >= 2 && campStep <= 3 && tour === 12 + campStep && (
+        <div style={{ position: 'absolute', top: '230px', left: '50%', transform: 'translateX(-40px)', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title={['Step 2: Recipients', 'Step 3: Content'][campStep - 2]}
+            subtitle={[
+              'Pick who receives this campaign. Click Next to add your content.',
+              'Add your email content and preview it live. Click Next to review.',
+            ][campStep - 2]}
+            onNext={() => { const cur = campStep; setCampStep((s) => Math.min(4, s + 1)); setTour(13 + cur); }}
+            top="0" left="0" arrowSide="top" arrowOffset="24px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Campaign wizard walkthrough — step 4 review, continue to Templates */}
+      {activeNav === 'Campaigns' && showCampaign && campStep === 4 && tour === 16 && (
+        <div style={{ position: 'absolute', top: '230px', left: '50%', transform: 'translateX(-40px)', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Step 4: Review"
+            subtitle="Review your campaign summary before sending. Click Next to explore Templates."
+            onNext={() => { setShowCampaign(false); setActiveNav('Templates'); setShowTemplateBuilder(false); setTour(17); }}
+            top="0" left="0" arrowSide="top" arrowOffset="24px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Template customization page walkthrough (rendered at root so not clipped by builder scroll area) */}
+      {activeNav === 'Templates' && showTemplateBuilder && tour === 18 && (
+        <div style={{ position: 'absolute', top: '150px', left: '50%', transform: 'translateX(-190px)', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Customize your template"
+            subtitle="Drag content blocks onto the canvas to design your email. Click Next to see your Analytics."
+            onNext={() => { setShowTemplateBuilder(false); setActiveNav('Analytics'); setTour(19); }}
+            top="0" left="0" arrowSide="top" arrowOffset="24px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Analytics page walkthrough — final step, advance to next product (Zeus) */}
+      {activeNav === 'Analytics' && tour === 19 && (
+        <div style={{ position: 'absolute', top: '150px', left: '50%', transform: 'translateX(-120px)', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Track your results"
+            subtitle="Monitor opens, clicks, and campaign performance here. That wraps up SendRit — click Done to explore Zeus."
+            onNext={() => { setTour(0); onEnd?.(); }}
+            top="0" left="0" arrowSide="top" arrowOffset="24px" buttonLabel="Done"
           />
         </div>
       )}
@@ -620,7 +688,14 @@ export function SendritPreviewMockup() {
               <Mail size={30} style={{ color: '#d5d5d5', marginBottom: '12px' }} />
               <div style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a', marginBottom: '5px' }}>No campaigns yet</div>
               <div style={{ fontSize: '11.5px', color: '#999', marginBottom: '18px' }}>Create your first email campaign to get started</div>
-              <button onClick={openCampaign} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '9px 18px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}><Plus size={13} /> Create Your First Campaign</button>
+              <div style={{ position: 'relative', display: 'inline-block' }}>
+                <button onClick={() => { openCampaign(); if (tour === 12) setTour(13); }} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '9px 18px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}><Plus size={13} /> Create Your First Campaign</button>
+                {tour === 12 && (
+                  <div style={{ position: 'absolute', top: '48px', left: '50%', transform: 'translateX(-30px)', zIndex: 9999 }}>
+                    <Coachmark visible title="Create your first campaign" subtitle="Click Create Your First Campaign to start building a new email campaign." onNext={() => { openCampaign(); setTour(13); }} top="0" left="0" arrowSide="top" arrowOffset="24px" buttonLabel="Next" />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -883,9 +958,10 @@ export function SendritPreviewMockup() {
             {/* Footer nav */}
             <div style={{ display: 'flex', alignItems: 'center', padding: '14px 20px', borderTop: '1px solid #f0f0f0' }}>
               <button onClick={() => setCampStep((s) => Math.max(1, s - 1))} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 16px', background: '#fff', color: '#555', border: '1px solid #e5e5e5', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>‹ Previous</button>
-              <div style={{ marginLeft: 'auto', display: 'flex', gap: '8px' }}>
+              <div style={{ marginLeft: 'auto', display: 'flex', gap: '8px', position: 'relative' }}>
                 <button style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 14px', background: '#fff', color: '#555', border: '1px solid #e5e5e5', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}><FileText size={12} /> Save Draft</button>
-                {campStep < 4 && <button onClick={() => setCampStep((s) => Math.min(4, s + 1))} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 20px', background: '#1a1a1a', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Next ›</button>}
+                {campStep < 4 && <button onClick={() => { setCampStep((s) => Math.min(4, s + 1)); setTour((t) => (t === 12 + campStep ? 13 + campStep : t)); }} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 20px', background: '#1a1a1a', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Next ›</button>}
+                {campStep === 4 && <button onClick={() => { setShowCampaign(false); setActiveNav('Templates'); setShowTemplateBuilder(false); if (tour === 16) setTour(17); }} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 20px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Continue to Templates ›</button>}
               </div>
             </div>
           </div>
@@ -900,7 +976,7 @@ export function SendritPreviewMockup() {
               <div style={{ fontSize: '20px', fontWeight: 700, color: '#1a1a1a', marginBottom: '3px' }}>Templates</div>
               <div style={{ fontSize: '11px', color: '#888' }}>0 templates in your library</div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: 'auto' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: 'auto', position: 'relative' }}>
               <button style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 14px', background: '#fff', color: '#555', border: '1px solid #e5e5e5', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}><Sparkles size={12} style={{ color: '#7C3AED' }} /> Generate with AI</button>
               <button onClick={() => setShowTemplateBuilder(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 16px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}><Plus size={13} /> New Template</button>
             </div>
@@ -933,7 +1009,14 @@ export function SendritPreviewMockup() {
             <div style={{ width: '58px', height: '58px', borderRadius: '14px', background: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}><Mail size={26} style={{ color: '#2563eb' }} /></div>
             <div style={{ fontSize: '15px', fontWeight: 700, color: '#1a1a1a', marginBottom: '5px' }}>Start building your library</div>
             <div style={{ fontSize: '11.5px', color: '#999', marginBottom: '18px' }}>Create your first email template to get started</div>
-            <button onClick={() => setShowTemplateBuilder(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '9px 18px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}><Plus size={13} /> Create Template</button>
+            <div style={{ position: 'relative', display: 'inline-block' }}>
+              <button onClick={() => { setShowTemplateBuilder(true); if (tour === 17) setTour(18); }} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '9px 18px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}><Plus size={13} /> Create Template</button>
+              {tour === 17 && (
+                <div style={{ position: 'absolute', top: '48px', left: '50%', transform: 'translateX(-30px)', zIndex: 9999 }}>
+                  <Coachmark visible title="You're on Templates" subtitle="Nicely done! Build reusable email templates here. Click Create Template to design your first one." onNext={() => { setShowTemplateBuilder(true); setTour(18); }} top="0" left="0" arrowSide="top" arrowOffset="24px" buttonLabel="Next" />
+                </div>
+              )}
+            </div>
           </div>
         </div>
         )}
@@ -1341,10 +1424,10 @@ export function SendritPreviewMockup() {
               )}
               {importStep === 4 && validateDone && (
                 <div style={{ position: 'relative' }}>
-                  <button onClick={() => { setShowImport(false); setTour(0); }} style={{ padding: '8px 20px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Done · View Group</button>
+                  <button onClick={() => { setShowImport(false); if (tour === 11) { setActiveNav('Campaigns'); setShowCampaign(false); setTour(12); } else { setTour(0); } }} style={{ padding: '8px 20px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Done · View Group</button>
                   {tour === 11 && (
                     <div style={{ position: 'absolute', bottom: '44px', right: '0', zIndex: 9999 }}>
-                      <Coachmark visible title="All set!" subtitle="Your valid contacts are imported. Click Done · View Group to finish." onNext={() => { setShowImport(false); setTour(0); }} top="0" left="0" arrowSide="bottom" arrowOffset="180px" buttonLabel="Next" />
+                      <Coachmark visible title="All set!" subtitle="Your contacts are imported. Next, let's create your first campaign. Click Done to continue." onNext={() => { setShowImport(false); setActiveNav('Campaigns'); setShowCampaign(false); setTour(12); }} top="0" left="0" arrowSide="bottom" arrowOffset="180px" buttonLabel="Next" />
                     </div>
                   )}
                 </div>

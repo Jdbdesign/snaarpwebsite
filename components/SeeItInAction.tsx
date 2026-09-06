@@ -9,7 +9,7 @@ export function SeeItInAction() {
 
   return (
     <section style={{ padding: '80px 0 100px', background: '#fafafa', position: 'relative', zIndex: 0, isolation: 'isolate' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
+      <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 24px' }}>
         {/* Section header */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <span style={{ display: 'inline-block', fontSize: '12px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7C3AED', marginBottom: '16px' }}>
@@ -24,10 +24,10 @@ export function SeeItInAction() {
         </div>
 
         {/* Interactive showcase - centered */}
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', position: 'relative' }}>
+        <div className="siia-scale-wrap" style={{ display: 'flex', justifyContent: 'center' }}>
+          <div className="siia-scale-inner" style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', position: 'relative' }}>
             {/* Vertical rail stays outside the black border */}
-            <ProductShowcaseCard cardWidth="1000px" cardBorder="5px solid #1a1a1a" startPaused={showIntroModal} />
+            <ProductShowcaseCard cardWidth="1200px" cardHeight="720px" cardBorder="5px solid #1a1a1a" startPaused={showIntroModal} />
 
             {/* Intro modal overlay */}
             {showIntroModal && (
@@ -61,6 +61,28 @@ export function SeeItInAction() {
           </div>
         </div>
       </div>
+
+      {/* Scale the showcase down on laptop-sized screens so it stays in view.
+          Large screens (>= 1440px) keep the full 1:1 size. */}
+      <style>{`
+        @media (max-width: 1439px) {
+          .siia-scale-inner {
+            transform: scale(0.86);
+            transform-origin: top center;
+          }
+          .siia-scale-wrap {
+            margin-bottom: -100px;
+          }
+        }
+        @media (max-width: 1280px) {
+          .siia-scale-inner {
+            transform: scale(0.74);
+          }
+          .siia-scale-wrap {
+            margin-bottom: -186px;
+          }
+        }
+      `}</style>
     </section>
   );
 }

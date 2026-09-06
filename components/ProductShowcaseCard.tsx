@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Calendar } from 'lucide-react';
+import { Calendar, Zap } from 'lucide-react';
 import { MailPreviewMockup } from '@/components/MailPreviewMockup';
 import { MePreviewMockup } from '@/components/MePreviewMockup';
 import { ContactsPreviewMockup } from '@/components/ContactsPreviewMockup';
@@ -13,6 +13,10 @@ import { DocumentPreviewMockup } from '@/components/DocumentPreviewMockup';
 import { TeamsPreviewMockup } from '@/components/TeamsPreviewMockup';
 import { PresentationPreviewMockup } from '@/components/PresentationPreviewMockup';
 import { MeetPreviewMockup } from '@/components/MeetPreviewMockup';
+import { IdCardPreviewMockup } from '@/components/IdCardPreviewMockup';
+import { PdfPreviewMockup } from '@/components/PdfPreviewMockup';
+import { SendritPreviewMockup } from '@/components/SendritPreviewMockup';
+import { ZeusPreviewMockup } from '@/components/ZeusPreviewMockup';
 
 const PRODUCT_ICONS = [
   { src: '/assets/icons/envelope.jpg', label: 'Mail', size: '22px', lucide: false, lucideIcon: null },
@@ -26,16 +30,21 @@ const PRODUCT_ICONS = [
   { src: '/assets/icons/chat-bubbles.jpg', label: 'Teams', size: '22px', lucide: false, lucideIcon: null },
   { src: '/assets/icons/p-icon.jpg', label: 'Presentation', size: '22px', lucide: false, lucideIcon: null },
   { src: '/assets/icons/apps-meet.jpg', label: 'Meet', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/id-card.svg', label: 'ID Card', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/pdf.svg', label: 'PDF', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/sendrit.svg', label: 'SendRit', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/zeus.svg', label: 'Zeus', size: '22px', lucide: false, lucideIcon: null },
 ];
 
 function LucideIconRender({ name, size, color }: { name: string; size: number; color: string }) {
   switch (name) {
     case 'Calendar': return <Calendar size={size} style={{ color }} />;
+    case 'Zap': return <Zap size={size} style={{ color }} />;
     default: return <Calendar size={size} style={{ color }} />;
   }
 }
 
-export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaused }: { cardWidth?: string; cardBorder?: string; startPaused?: boolean }) {
+export function ProductShowcaseCard({ cardWidth = '800px', cardHeight = '620px', cardBorder, startPaused }: { cardWidth?: string; cardHeight?: string; cardBorder?: string; startPaused?: boolean }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -72,7 +81,7 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaus
       </div>
 
       {/* Browser-style card - fixed dimensions matching Mail mockup */}
-      <div style={{ borderRadius: '18px', border: cardBorder || '1px solid #e5e5e5', boxShadow: '0 4px 12px -4px rgba(0,0,0,0.08), 0 24px 48px -12px rgba(0,0,0,0.12)', overflow: 'hidden', background: '#fff', width: cardWidth, height: '620px', position: 'relative' }}>
+      <div style={{ borderRadius: '18px', border: cardBorder || '1px solid #e5e5e5', boxShadow: '0 4px 12px -4px rgba(0,0,0,0.08), 0 24px 48px -12px rgba(0,0,0,0.12)', overflow: 'hidden', background: '#fff', width: cardWidth, height: cardHeight, position: 'relative' }}>
         {activeIndex === 0 && <MailPreviewMockup onEnd={() => setActiveIndex(1)} startPaused={startPaused} />}
         {activeIndex === 1 && <MePreviewMockup onEnd={() => setActiveIndex(2)} />}
         {activeIndex === 2 && <ContactsPreviewMockup onEnd={() => setActiveIndex(3)} />}
@@ -83,7 +92,11 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardBorder, startPaus
         {activeIndex === 7 && <DocumentPreviewMockup onEnd={() => setActiveIndex(8)} />}
         {activeIndex === 8 && <TeamsPreviewMockup onEnd={() => setActiveIndex(9)} />}
         {activeIndex === 9 && <PresentationPreviewMockup onEnd={() => setActiveIndex(10)} />}
-        {activeIndex === 10 && <MeetPreviewMockup />}
+        {activeIndex === 10 && <MeetPreviewMockup onEnd={() => setActiveIndex(11)} />}
+        {activeIndex === 11 && <IdCardPreviewMockup onEnd={() => setActiveIndex(12)} />}
+        {activeIndex === 12 && <PdfPreviewMockup onEnd={() => setActiveIndex(13)} />}
+        {activeIndex === 13 && <SendritPreviewMockup />}
+        {activeIndex === 14 && <ZeusPreviewMockup />}
       </div>
     </div>
   );

@@ -1,16 +1,13 @@
 import { RevealSection } from '@/components/reveal/RevealSection';
 
 const LOGOS = [
-  { src: '/assets/trusted-by-forward/abbvie.svg', alt: 'AbbVie', height: 20 },
-  { src: '/assets/trusted-by-forward/ao-smith.svg', alt: 'A.O. Smith', height: 22 },
-  { src: '/assets/trusted-by-forward/alliant-energy.svg', alt: 'Alliant Energy', height: 22 },
-  { src: '/assets/trusted-by-forward/amgen.svg', alt: 'Amgen', height: 20 },
-  { src: '/assets/trusted-by-forward/align.svg', alt: 'Align', height: 20 },
-  { src: '/assets/trusted-by-forward/aflac.svg', alt: 'Aflac', height: 22 },
-  { src: '/assets/trusted-by-forward/campbell.svg', alt: 'Campbell', height: 22 },
-  { src: '/assets/trusted-by-forward/coterra.svg', alt: 'Coterra', height: 22 },
-  { src: '/assets/trusted-by-forward/devon.svg', alt: 'Devon Energy', height: 20 },
-  { src: '/assets/trusted-by-forward/elevance.svg', alt: 'Elevance Health', height: 22 },
+  { src: '/assets/trusted-by-forward/abbott-laboratories.svg', alt: 'Abbott Laboratories', height: 22 },
+  { src: '/assets/trusted-by-forward/allegion.svg', alt: 'Allegion', height: 22 },
+  { src: '/assets/trusted-by-forward/amgen-inc.svg', alt: 'Amgen', height: 20 },
+  { src: '/assets/trusted-by-forward/autozone.svg', alt: 'AutoZone', height: 22 },
+  { src: '/assets/trusted-by-forward/avery-dennison.svg', alt: 'Avery Dennison', height: 22 },
+  { src: '/assets/trusted-by-forward/baxter-international.svg', alt: 'Baxter International', height: 22 },
+  { src: '/assets/trusted-by-forward/bio-rad-laboratories.svg', alt: 'Bio-Rad Laboratories', height: 22 },
 ];
 
 const STAR_PATH = 'M12 2l2.9 6.26 6.9 1.01-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14l-5-4.87 6.9-1.01L12 2z';

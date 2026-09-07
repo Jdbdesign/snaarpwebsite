@@ -17,6 +17,8 @@ import { IdCardPreviewMockup } from '@/components/IdCardPreviewMockup';
 import { PdfPreviewMockup } from '@/components/PdfPreviewMockup';
 import { SendritPreviewMockup } from '@/components/SendritPreviewMockup';
 import { ZeusPreviewMockup } from '@/components/ZeusPreviewMockup';
+import { VerifyritPreviewMockup } from '@/components/VerifyritPreviewMockup';
+import { WorkforcePreviewMockup } from '@/components/WorkforcePreviewMockup';
 
 const PRODUCT_ICONS = [
   { src: '/assets/icons/rail-mail.svg', label: 'Mail', size: '22px', lucide: false, lucideIcon: null },
@@ -34,6 +36,8 @@ const PRODUCT_ICONS = [
   { src: '/assets/icons/pdf.svg', label: 'PDF', size: '22px', lucide: false, lucideIcon: null },
   { src: '/assets/icons/sendrit.svg', label: 'SendRit', size: '22px', lucide: false, lucideIcon: null },
   { src: '/assets/icons/zeus.svg', label: 'Zeus', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-verifyrit.svg', label: 'VerifyRit', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-workforce.svg', label: 'Workforce', size: '22px', lucide: false, lucideIcon: null },
 ];
 
 function LucideIconRender({ name, size, color }: { name: string; size: number; color: string }) {
@@ -49,8 +53,11 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardHeight = '620px',
 
   return (
     <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-      {/* Vertical icon rail */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '8px 6px', background: '#f5f5f5', borderRadius: '28px', border: '1px solid #e8e8e8' }}>
+      {/* Vertical icon rail — fixed height, scrollable */}
+      <div
+        className="product-rail-scroll"
+        style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '8px 6px', background: '#f5f5f5', borderRadius: '28px', border: '1px solid #e8e8e8', height: '712px', overflowY: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
         {PRODUCT_ICONS.map((item, i) => (
           <div
             key={item.label}
@@ -59,6 +66,7 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardHeight = '620px',
             style={{
               width: '36px',
               height: '36px',
+              flexShrink: 0,
               borderRadius: '50%',
               display: 'flex',
               alignItems: 'center',
@@ -96,7 +104,9 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardHeight = '620px',
         {activeIndex === 11 && <IdCardPreviewMockup onEnd={() => setActiveIndex(12)} />}
         {activeIndex === 12 && <PdfPreviewMockup onEnd={() => setActiveIndex(13)} />}
         {activeIndex === 13 && <SendritPreviewMockup onEnd={() => setActiveIndex(14)} />}
-        {activeIndex === 14 && <ZeusPreviewMockup />}
+        {activeIndex === 14 && <ZeusPreviewMockup onEnd={() => setActiveIndex(15)} />}
+        {activeIndex === 15 && <VerifyritPreviewMockup onEnd={() => setActiveIndex(16)} />}
+        {activeIndex === 16 && <WorkforcePreviewMockup />}
       </div>
     </div>
   );

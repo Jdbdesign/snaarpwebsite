@@ -14166,3 +14166,10 @@ html:has(.doc-sign) {
     animation: none !important;
   }
 }
+
+/* Product showcase vertical icon rail — fixed height, hidden scrollbar */
+.product-rail-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}

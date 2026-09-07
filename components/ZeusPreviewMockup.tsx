@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Menu, LayoutGrid, Search, Users, Building2, List, Download, Plug, CreditCard, ShieldCheck, ChevronDown, ChevronUp, Zap, User, Mail, Briefcase, BarChart3, Landmark, MapPin, UsersRound, LineChart, DollarSign, Settings, Filter, Database, Code2, TrendingUp, Layers, Loader2, Lock, ChevronLeft, ChevronRight, Bookmark, X, Link as LinkedinIcon, Plus, Phone, Eye, Check, Calendar as CalendarIcon, HeartPulse, Globe } from 'lucide-react';
+import { Coachmark } from '@/components/Coachmark';
 
 const ZEUS_NAV = [
   { label: 'People', Icon: Users },
@@ -92,8 +93,9 @@ const RESULTS = [
   { initials: 'TG', color: '#0d9488', name: 'Tomer Galil', title: 'Chief Operating Officer', company: 'Canoe Group', location: 'Haifa, Israel' },
 ];
 
-export function ZeusPreviewMockup() {
+export function ZeusPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
   const [activeNav, setActiveNav] = useState('People');
+  const [tour, setTour] = useState(1); // 1=C-Suite btn, 2=results, 3=detail reveal, 4=Companies SaaS&Tech, 0=done
   const [tab, setTab] = useState('Database');
   const [view, setView] = useState<'discover' | 'loading' | 'results'>('discover');
   const [searchLabel, setSearchLabel] = useState('Search people...');
@@ -164,6 +166,123 @@ export function ZeusPreviewMockup() {
 
   return (
     <div style={{ display: 'flex', height: '100%', width: '100%', fontFamily: 'Poppins, sans-serif', fontSize: '11px', color: '#1a1a1a', overflow: 'hidden', background: '#fff', position: 'relative' }}>
+      {/* Walkthrough — Step 1: C-Suite Executives quick start (People discover) */}
+      {activeNav !== 'Companies' && activeNav !== 'Lists' && view === 'discover' && tour === 1 && (
+        <div style={{ position: 'absolute', top: '250px', left: '50%', transform: 'translateX(-190px)', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Quick start a search"
+            subtitle="Click C-Suite Executives to instantly search for CEOs, CTOs, and CFOs."
+            onNext={() => { runSearch('C-Suite Executives'); setTour(2); }}
+            top="0" left="0" arrowSide="bottom" arrowOffset="30px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Walkthrough — Step 2: Search results table */}
+      {activeNav !== 'Companies' && activeNav !== 'Lists' && view === 'results' && !selected && tour === 2 && (
+        <div style={{ position: 'absolute', top: '150px', left: '50%', transform: 'translateX(-120px)', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Your search results"
+            subtitle="Here are matching contacts. Click Next, or click any name to view their details."
+            onNext={() => { setSelected(RESULTS[0]); setTour(3); }}
+            top="0" left="0" arrowSide="top" arrowOffset="24px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Walkthrough — Step 3: Person detail panel — left of Reveal Contact */}
+      {selected && !revealed[selected.name] && tour === 3 && (
+        <div style={{ position: 'absolute', top: '150px', right: '328px', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Reveal their contact"
+            subtitle="Click Reveal Contact to unlock this person's email and phone for 1 credit."
+            onNext={() => { revealContact(selected.name); setActiveNav('Companies'); setSelected(null); setTour(4); }}
+            top="0" left="0" arrowSide="right" arrowOffset="24px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Walkthrough — Step 4: Companies discover — SaaS & Tech */}
+      {activeNav === 'Companies' && companyView === 'discover' && tour === 4 && (
+        <div style={{ position: 'absolute', top: '250px', left: '50%', transform: 'translateX(-190px)', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Discover companies"
+            subtitle="Switch to Companies anytime. Click SaaS & Tech to find software companies."
+            onNext={() => { runCompanySearch('SaaS & Tech'); setTour(5); }}
+            top="0" left="0" arrowSide="bottom" arrowOffset="30px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Walkthrough — Step 5: Companies results table */}
+      {activeNav === 'Companies' && companyView === 'results' && !selectedCompany && tour === 5 && (
+        <div style={{ position: 'absolute', top: '150px', left: '50%', transform: 'translateX(-120px)', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Company results"
+            subtitle="Here are matching companies. Click Next, or click any company to view its details."
+            onNext={() => { openCompany(COMPANY_RESULTS[0]); setTour(6); }}
+            top="0" left="0" arrowSide="top" arrowOffset="24px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Walkthrough — Step 6: Company side panel */}
+      {selectedCompany && tour === 6 && (
+        <div style={{ position: 'absolute', top: '150px', right: '338px', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Company details"
+            subtitle="See the company profile and its key people here. Click Next to organize leads into Lists."
+            onNext={() => { setActiveNav('Lists'); setSelectedCompany(null); setActiveListIdx(null); setSelected(null); setTour(7); }}
+            top="0" left="0" arrowSide="right" arrowOffset="24px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Walkthrough — Step 7: Lists — under the + New List button */}
+      {activeNav === 'Lists' && !showListModal && tour === 7 && (
+        <div style={{ position: 'absolute', top: '54px', left: '270px', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Build your lists"
+            subtitle="Click + New List to group your leads into a saved list."
+            onNext={() => { setShowListModal(true); setTour(8); }}
+            top="0" left="0" arrowSide="top" arrowOffset="24px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Walkthrough — Step 8: Create New List modal */}
+      {activeNav === 'Lists' && showListModal && tour === 8 && (
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(180px, -60px)', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Create your list"
+            subtitle="Name your list and pick a type. Click Next, or fill it in and hit Create List."
+            onNext={() => { createList(); setTour(9); }}
+            top="0" left="0" arrowSide="left" arrowOffset="24px" buttonLabel="Next"
+          />
+        </div>
+      )}
+
+      {/* Walkthrough — Step 9: Created list in My Lists (final) */}
+      {activeNav === 'Lists' && !showListModal && lists.length > 0 && tour === 9 && (
+        <div style={{ position: 'absolute', top: '62px', left: '340px', zIndex: 9999 }}>
+          <Coachmark
+            visible
+            title="Your list is ready"
+            subtitle="Here's your new list. Select it to view and manage members. That's the full Zeus tour!"
+            onNext={() => { setTour(0); onEnd?.(); }}
+            top="0" left="0" arrowSide="left" arrowOffset="24px" buttonLabel="Done"
+          />
+        </div>
+      )}
+
       {/* Left nav */}
       <div style={{ width: '150px', flexShrink: 0, borderRight: '1px solid #f0f0f0', padding: '14px 10px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '22px', paddingLeft: '2px' }}>
@@ -325,7 +444,7 @@ export function ZeusPreviewMockup() {
       <div style={{ width: '180px', flexShrink: 0, borderRight: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px' }}>
           <span style={{ fontSize: '13px', fontWeight: 700, color: '#1a1a1a' }}>My Lists</span>
-          <button onClick={() => setShowListModal(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '5px 11px', background: 'linear-gradient(135deg, #7C3AED 0%, #a855f7 100%)', color: '#fff', border: 'none', borderRadius: '14px', fontSize: '9.5px', fontWeight: 600, cursor: 'pointer' }}>
+          <button onClick={() => { setShowListModal(true); if (tour === 7) setTour(8); }} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '5px 11px', background: 'linear-gradient(135deg, #7C3AED 0%, #a855f7 100%)', color: '#fff', border: 'none', borderRadius: '14px', fontSize: '9.5px', fontWeight: 600, cursor: 'pointer' }}>
             <Plus size={11} /> New List
           </button>
         </div>
@@ -422,7 +541,7 @@ export function ZeusPreviewMockup() {
               <div style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.08em', color: '#bbb', marginBottom: '12px' }}>QUICK START</div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', width: '100%', maxWidth: '420px' }}>
                 {QUICK_START.map((q) => (
-                  <div key={q.title} onClick={() => runSearch(q.title)} style={{ display: 'flex', alignItems: 'center', gap: '11px', padding: '13px 15px', borderRadius: '12px', border: '1px solid #f0f0f0', background: '#fff', cursor: 'pointer', textAlign: 'left' }}>
+                  <div key={q.title} onClick={() => { runSearch(q.title); if (tour === 1 && q.title === 'C-Suite Executives') setTour(2); }} style={{ display: 'flex', alignItems: 'center', gap: '11px', padding: '13px 15px', borderRadius: '12px', border: '1px solid #f0f0f0', background: '#fff', cursor: 'pointer', textAlign: 'left' }}>
                     <div style={{ width: '28px', height: '28px', borderRadius: '9px', background: `${q.color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       <q.Icon size={14} style={{ color: q.color }} />
                     </div>
@@ -457,7 +576,7 @@ export function ZeusPreviewMockup() {
                 <span>Name</span><span>Title</span><span>Company</span><span>Email</span><span>Phone</span><span>Location</span>
               </div>
               {RESULTS.map((r) => (
-                <div key={r.name} onClick={() => setSelected(r)} style={{ display: 'grid', gridTemplateColumns: '26px 1.4fr 1.4fr 1.4fr 1.1fr 0.8fr 1.4fr', gap: '8px', padding: '9px 20px', borderBottom: '1px solid #f8f8f8', alignItems: 'center', fontSize: '10px', cursor: 'pointer', background: selected?.name === r.name ? '#faf8ff' : 'transparent' }}>
+                <div key={r.name} onClick={() => { setSelected(r); if (tour === 2) setTour(3); }} style={{ display: 'grid', gridTemplateColumns: '26px 1.4fr 1.4fr 1.4fr 1.1fr 0.8fr 1.4fr', gap: '8px', padding: '9px 20px', borderBottom: '1px solid #f8f8f8', alignItems: 'center', fontSize: '10px', cursor: 'pointer', background: selected?.name === r.name ? '#faf8ff' : 'transparent' }}>
                   <span><span style={{ display: 'inline-block', width: '12px', height: '12px', border: '1.5px solid #ddd', borderRadius: '3px' }} /></span>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '7px', minWidth: 0 }}>
                     <span style={{ width: '22px', height: '22px', borderRadius: '50%', background: r.color, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '8px', fontWeight: 700, flexShrink: 0 }}>{r.initials}</span>
@@ -513,7 +632,7 @@ export function ZeusPreviewMockup() {
                 <div style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.08em', color: '#bbb', marginBottom: '12px' }}>QUICK START</div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', width: '100%', maxWidth: '420px' }}>
                   {COMPANY_QUICK_START.map((q) => (
-                    <div key={q.title} onClick={() => runCompanySearch(q.title)} style={{ display: 'flex', alignItems: 'center', gap: '11px', padding: '13px 15px', borderRadius: '12px', border: '1px solid #f0f0f0', background: '#fff', cursor: 'pointer', textAlign: 'left' }}>
+                    <div key={q.title} onClick={() => { runCompanySearch(q.title); if (tour === 4 && q.title === 'SaaS & Tech') setTour(5); }} style={{ display: 'flex', alignItems: 'center', gap: '11px', padding: '13px 15px', borderRadius: '12px', border: '1px solid #f0f0f0', background: '#fff', cursor: 'pointer', textAlign: 'left' }}>
                       <div style={{ width: '28px', height: '28px', borderRadius: '9px', background: `${q.color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                         <q.Icon size={14} style={{ color: q.color }} />
                       </div>
@@ -545,7 +664,7 @@ export function ZeusPreviewMockup() {
                 <span>Company</span><span>Industry</span><span>Location</span><span>Employees</span><span>Revenue</span>
               </div>
               {COMPANY_RESULTS.map((c) => (
-                <div key={c.name} onClick={() => openCompany(c)} style={{ display: 'grid', gridTemplateColumns: '26px 2fr 1.8fr 1.4fr 0.8fr 0.8fr', gap: '8px', padding: '10px 20px', borderBottom: '1px solid #f8f8f8', alignItems: 'center', fontSize: '10px', cursor: 'pointer', background: selectedCompany?.name === c.name ? '#faf8ff' : 'transparent' }}>
+                <div key={c.name} onClick={() => { openCompany(c); if (tour === 5) setTour(6); }} style={{ display: 'grid', gridTemplateColumns: '26px 2fr 1.8fr 1.4fr 0.8fr 0.8fr', gap: '8px', padding: '10px 20px', borderBottom: '1px solid #f8f8f8', alignItems: 'center', fontSize: '10px', cursor: 'pointer', background: selectedCompany?.name === c.name ? '#faf8ff' : 'transparent' }}>
                   <span><span style={{ display: 'inline-block', width: '12px', height: '12px', border: '1.5px solid #ddd', borderRadius: '3px' }} /></span>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
                     <span style={{ width: '20px', height: '20px', borderRadius: '5px', background: '#f3efff', color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><Building2 size={11} /></span>
@@ -674,7 +793,7 @@ export function ZeusPreviewMockup() {
                   <Check size={13} /> Contact revealed
                 </div>
               ) : (
-                <button onClick={() => revealContact(selected.name)} style={{ width: '100%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '7px', padding: '10px', background: 'linear-gradient(135deg, #7C3AED 0%, #a855f7 100%)', color: '#fff', border: 'none', borderRadius: '10px', fontSize: '11.5px', fontWeight: 600, cursor: 'pointer', marginBottom: '10px' }}>
+                <button onClick={() => { revealContact(selected.name); if (tour === 3) { setActiveNav('Companies'); setSelected(null); setTour(4); } }} style={{ width: '100%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '7px', padding: '10px', background: 'linear-gradient(135deg, #7C3AED 0%, #a855f7 100%)', color: '#fff', border: 'none', borderRadius: '10px', fontSize: '11.5px', fontWeight: 600, cursor: 'pointer', marginBottom: '10px' }}>
                   <Eye size={13} /> Reveal Contact (1 credit)
                 </button>
               )}
@@ -800,7 +919,7 @@ export function ZeusPreviewMockup() {
 
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '10px' }}>
               <button onClick={() => setShowListModal(false)} style={{ padding: '8px 16px', background: '#fff', color: '#555', border: '1px solid #e5e5e5', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-              <button onClick={createList} style={{ padding: '8px 18px', background: 'linear-gradient(135deg, #7C3AED 0%, #a855f7 100%)', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Create List</button>
+              <button onClick={() => { createList(); if (tour === 8) setTour(9); }} style={{ padding: '8px 18px', background: 'linear-gradient(135deg, #7C3AED 0%, #a855f7 100%)', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Create List</button>
             </div>
           </div>
         </div>

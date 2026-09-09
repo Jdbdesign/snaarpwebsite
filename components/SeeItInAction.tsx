@@ -31,9 +31,9 @@ export function SeeItInAction() {
 
             {/* Intro modal overlay */}
             {showIntroModal && (
-              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999, borderRadius: '18px' }}>
-                {/* Semi-transparent backdrop on the card only */}
-                <div style={{ position: 'absolute', top: 0, left: '60px', right: 0, bottom: 0, background: 'rgba(0,0,0,0.4)', borderRadius: '18px' }} />
+              <div style={{ position: 'absolute', top: 0, left: '194px', right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999, borderRadius: '18px' }}>
+                {/* Semi-transparent backdrop on the card only (rail is 182px + 12px gap = 194px) */}
+                <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', borderRadius: '18px' }} />
 
                 {/* Modal card */}
                 <div style={{ position: 'relative', background: '#fff', borderRadius: '16px', padding: '32px 36px', maxWidth: '380px', width: '100%', textAlign: 'center', boxShadow: '0 16px 48px -12px rgba(0,0,0,0.25)', zIndex: 10 }}>

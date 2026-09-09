@@ -148,7 +148,7 @@ export function LockPreviewMockup({ onEnd }: { onEnd?: () => void }) {
       <div style={{ width: '140px', flexShrink: 0, borderRight: '1px solid #f0f0f0', padding: '10px 8px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '14px' }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" strokeLinecap="round"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
-          <span style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a' }}>Snaarp</span>
+          <span style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a' }}>Snaarp Lock</span>
         </div>
 
         <div onClick={handleOpenAdd} style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '6px 10px', background: '#7C3AED', color: '#fff', borderRadius: '18px', fontSize: '9px', fontWeight: 600, marginBottom: '14px', width: 'fit-content', cursor: 'pointer' }}>

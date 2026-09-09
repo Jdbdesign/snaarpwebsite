@@ -140,7 +140,7 @@ export function TeamsPreviewMockup({ onEnd }: { onEnd?: () => void }) {
       {/* Sidebar */}
       <div style={{ width: '180px', borderRight: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column', background: '#fafafa' }}>
         <div style={{ padding: '14px 14px 10px', borderBottom: '1px solid #f0f0f0' }}>
-          <div style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px' }}>Snaarp</div>
+          <div style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px' }}>Snaarp Teams</div>
           <div style={{ position: 'relative' }}>
             <button onClick={() => { setShowNewGroup(true); setShowNewGroupCoachmark(false); setGroupCoachStep(1); }} style={{ display: 'flex', alignItems: 'center', gap: '5px', width: '100%', padding: '7px 12px', borderRadius: '8px', border: 'none', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, cursor: 'pointer' }}>
               <Plus size={12} /> New Group

@@ -21,23 +21,23 @@ import { VerifyritPreviewMockup } from '@/components/VerifyritPreviewMockup';
 import { WorkforcePreviewMockup } from '@/components/WorkforcePreviewMockup';
 
 const PRODUCT_ICONS = [
-  { src: '/assets/icons/rail-mail.svg', label: 'Mail', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/rail-me.svg', label: 'Me', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/rail-contacts.svg', label: 'Contacts', size: '22px', lucide: false, lucideIcon: null },
-  { src: '', label: 'Calendar', size: '22px', lucide: true, lucideIcon: 'Calendar' },
-  { src: '/assets/icons/rail-lock.svg', label: 'Lock', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/rail-drive.svg', label: 'Drive', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/rail-sheet.svg', label: 'Sheet', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/rail-document.svg', label: 'Document', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/rail-teams.svg', label: 'Teams', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/rail-presentation.svg', label: 'Presentation', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/rail-meet.svg', label: 'Meet', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/id-card.svg', label: 'ID Card', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/pdf.svg', label: 'PDF', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/sendrit.svg', label: 'SendRit', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/zeus.svg', label: 'Zeus', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/rail-verifyrit.svg', label: 'VerifyRit', size: '22px', lucide: false, lucideIcon: null },
-  { src: '/assets/icons/rail-workforce.svg', label: 'Workforce', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-mail.svg', label: 'Mail', name: 'Snaarp Mail', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-me.svg', label: 'Me', name: 'SnaarpMe', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-contacts.svg', label: 'Contacts', name: 'Snaarp Contacts', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '', label: 'Calendar', name: 'Calendar', color: '#7C3AED', size: '22px', lucide: true, lucideIcon: 'Calendar' },
+  { src: '/assets/icons/rail-lock.svg', label: 'Lock', name: 'Snaarp Lock', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-drive.svg', label: 'Drive', name: 'Snaarp Drive', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-sheet.svg', label: 'Sheet', name: 'Snaarp Sheet', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-document.svg', label: 'Document', name: 'Snaarp Doc', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-teams.svg', label: 'Teams', name: 'Snaarp Teams', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-presentation.svg', label: 'Presentation', name: 'Snaarp Slides', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-meet.svg', label: 'Meet', name: 'Snaarp Meet', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/id-card.svg', label: 'ID Card', name: 'OneCardX', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/pdf.svg', label: 'PDF', name: 'Snaarp PDF', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/sendrit.svg', label: 'SendRit', name: 'SendRit', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/zeus.svg', label: 'Zeus', name: 'Zeus', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-verifyrit.svg', label: 'VerifyRit', name: 'VerifyRit', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-workforce.svg', label: 'Workforce', name: 'Workforce', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
 ];
 
 function LucideIconRender({ name, size, color }: { name: string; size: number; color: string }) {
@@ -53,37 +53,38 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardHeight = '620px',
 
   return (
     <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-      {/* Vertical icon rail — fixed height, scrollable */}
+      {/* Vertical product rail — fixed height, scrollable, with product names */}
       <div
         className="product-rail-scroll"
-        style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '8px 6px', background: '#f5f5f5', borderRadius: '28px', border: '1px solid #e8e8e8', height: '712px', overflowY: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        style={{ display: 'flex', flexDirection: 'column', gap: '4px', padding: '10px 8px', background: '#f5f5f5', borderRadius: '20px', border: '1px solid #e8e8e8', width: '182px', height: '712px', overflowY: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {PRODUCT_ICONS.map((item, i) => (
           <div
             key={item.label}
-            title={item.label}
+            title={item.name}
             onClick={() => setActiveIndex(i)}
             style={{
-              width: '36px',
-              height: '36px',
-              flexShrink: 0,
-              borderRadius: '50%',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              gap: '10px',
+              flexShrink: 0,
+              padding: '7px 10px',
+              borderRadius: '12px',
               background: activeIndex === i ? '#EDE9FE' : 'transparent',
-              boxShadow: activeIndex === i ? '0 4px 12px -4px rgba(124,58,237,0.3)' : 'none',
-              overflow: 'hidden',
-              opacity: activeIndex === i ? 1 : 0.5,
+              boxShadow: activeIndex === i ? '0 4px 12px -4px rgba(124,58,237,0.25)' : 'none',
+              opacity: activeIndex === i ? 1 : 0.62,
               cursor: 'pointer',
               transition: 'all 0.2s ease',
             }}
           >
-            {item.lucide ? (
-              <LucideIconRender name={item.lucideIcon || 'Calendar'} size={18} color="#7C3AED" />
-            ) : (
-              <img src={item.src} alt={item.label} style={{ width: item.size, height: item.size, borderRadius: '5px', objectFit: 'cover' }} />
-            )}
+            <div style={{ width: '30px', height: '30px', flexShrink: 0, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: activeIndex === i ? '#fff' : 'transparent', overflow: 'hidden' }}>
+              {item.lucide ? (
+                <LucideIconRender name={item.lucideIcon || 'Calendar'} size={18} color={item.color} />
+              ) : (
+                <img src={item.src} alt={item.label} style={{ width: item.size, height: item.size, borderRadius: '5px', objectFit: 'cover' }} />
+              )}
+            </div>
+            <span style={{ fontSize: '11px', fontWeight: activeIndex === i ? 700 : 600, color: item.color, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.name}</span>
           </div>
         ))}
       </div>

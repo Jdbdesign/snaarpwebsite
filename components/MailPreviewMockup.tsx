@@ -127,7 +127,7 @@ export function MailPreviewMockup({ onEnd, startPaused }: { onEnd?: () => void; 
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '12px' }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" strokeLinecap="round"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
-          <span style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a' }}>Snaarp</span>
+          <span style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a' }}>Snaarp Mail</span>
         </div>
 
         {/* Compose button */}

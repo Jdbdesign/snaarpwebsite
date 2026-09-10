@@ -128,8 +128,10 @@ export function DocumentPreviewMockup({ onEnd }: { onEnd?: () => void }) {
             <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: '#0D9488', color: '#fff', fontSize: '8px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #fff', marginRight: '-6px', zIndex: 2 }}>AR</div>
             <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: '#E11D74', color: '#fff', fontSize: '8px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #fff', zIndex: 1 }}>DT</div>
           </div>
-          <button onClick={() => { setShareOpen(true); setCoachStep(3); }} style={{ padding: '5px 12px', borderRadius: '14px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, border: 'none', cursor: 'pointer', position: 'relative' }}>
-            Share
+          <div style={{ position: 'relative' }}>
+            <button onClick={() => { setShareOpen(true); setCoachStep(3); }} style={{ padding: '5px 12px', borderRadius: '14px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, border: 'none', cursor: 'pointer' }}>
+              Share
+            </button>
             {/* Share coachmark - step 2 */}
             {coachStep === 2 && !shareOpen && (
               <div style={{ position: 'absolute', top: '32px', right: '180px', zIndex: 40 }}>
@@ -146,7 +148,7 @@ export function DocumentPreviewMockup({ onEnd }: { onEnd?: () => void }) {
                 />
               </div>
             )}
-          </button>
+          </div>
           <HelpCircle size={14} style={{ color: '#999' }} />
           <Settings size={14} style={{ color: '#999' }} />
           <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#7C3AED', color: '#fff', fontSize: '9px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>AM</div>

@@ -346,11 +346,13 @@ export function MailPreviewMockup({ onEnd, startPaused }: { onEnd?: () => void; 
                 arrowSide="bottom"
               />
 
-              <button onClick={() => { setShowSendCoachmark(false); handleSend(); if (onEnd) setTimeout(() => onEnd(), 2200); }} style={{ padding: '5px 16px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '14px', fontSize: '10px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', position: 'relative' }}>
-                Send
-                <ChevronDown size={10} />
+              <div style={{ position: 'relative', display: 'inline-block' }}>
+                <button onClick={() => { setShowSendCoachmark(false); handleSend(); if (onEnd) setTimeout(() => onEnd(), 2200); }} style={{ padding: '5px 16px', background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '14px', fontSize: '10px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  Send
+                  <ChevronDown size={10} />
+                </button>
                 <Coachmark visible={showSendCoachmark && aiGenerated} title="Send Email" subtitle="Your AI-drafted email is ready. Send it now!" onNext={() => { setShowSendCoachmark(false); handleSend(); if (onEnd) setTimeout(() => onEnd(), 2200); }} top="-150px" left="-140px" arrowSide="bottom" arrowOffset="160px" buttonLabel="End" />
-              </button>
+              </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: '4px', color: '#888' }}>
                 <Sparkles size={13} style={{ color: '#7C3AED', cursor: 'pointer' }} onClick={() => { if (!showAiPrompt && !aiGenerated) { setShowAiCoachmark(false); setShowAiPrompt(true); setTimeout(() => setShowGenerateCoachmark(true), 300); } }} />
                 <Paperclip size={13} style={{ cursor: 'pointer' }} onClick={() => setShowAttachment(!showAttachment)} />

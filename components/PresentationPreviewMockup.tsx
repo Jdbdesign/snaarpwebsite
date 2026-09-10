@@ -200,14 +200,16 @@ export function PresentationPreviewMockup({ onEnd }: { onEnd?: () => void }) {
               </div>
             )}
           </div>
-          <button onClick={() => { setShareOpen(true); if (coachStep === 2) setCoachStep(3); }} style={{ padding: '5px 12px', borderRadius: '14px', background: '#fff', color: '#555', fontSize: '10.5px', fontWeight: 600, border: '1px solid #e8e8e8', cursor: 'pointer', position: 'relative' }}>
-            Share
+          <div style={{ position: 'relative' }}>
+            <button onClick={() => { setShareOpen(true); if (coachStep === 2) setCoachStep(3); }} style={{ padding: '5px 12px', borderRadius: '14px', background: '#fff', color: '#555', fontSize: '10.5px', fontWeight: 600, border: '1px solid #e8e8e8', cursor: 'pointer' }}>
+              Share
+            </button>
             {coachStep === 2 && !shareOpen && (
               <div style={{ position: 'absolute', top: '32px', right: '200px', zIndex: 40 }}>
                 <Coachmark visible title="Share Presentation" subtitle="Invite collaborators to view or edit" onNext={() => { setShareOpen(true); setCoachStep(3); }} top="0px" left="0px" arrowSide="top" arrowOffset="180px" buttonLabel="Next" />
               </div>
             )}
-          </button>
+          </div>
           <HelpCircle size={14} style={{ color: '#999' }} />
           <Settings size={14} style={{ color: '#999' }} />
           <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#7C3AED', color: '#fff', fontSize: '9px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>AM</div>

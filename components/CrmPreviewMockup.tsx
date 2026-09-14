@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { LayoutGrid, Menu, Search, BarChart3, TrendingUp, CheckSquare, Users, Mail, Package, Plug, Sparkles, LineChart, FileText, ClipboardList, Bell, Settings, ChevronRight, ChevronDown, ChevronsLeft, ArrowRight, UsersRound, GitBranch, Upload, Share2, UserPlus, X, MoreHorizontal, Plus, ChartPie, Circle, Filter, Gauge, Trophy, Flame, List, Grid3x3, Trash2, Target, AlertTriangle, DollarSign, Phone, MessageCircle, Calendar } from 'lucide-react';
+import { LayoutGrid, Menu, Search, BarChart3, TrendingUp, CheckSquare, Users, Mail, Package, Plug, Sparkles, LineChart, FileText, ClipboardList, Bell, Settings, ChevronRight, ChevronDown, ChevronsLeft, ArrowRight, UsersRound, GitBranch, Upload, Share2, UserPlus, X, MoreHorizontal, Plus, ChartPie, Circle, Filter, Gauge, Trophy, Flame, List, Grid3x3, Trash2, Target, AlertTriangle, DollarSign, Phone, MessageCircle, Calendar, Building2, AlertCircle } from 'lucide-react';
 import { Coachmark } from '@/components/Coachmark';
 
 const NAV_TOP = [
@@ -75,6 +75,35 @@ const PIPELINE_STAGES = [
   { name: 'Closed Won', color: '#059669', pct: 100 },
 ];
 
+const PROSPECTS_SEED: Record<string, { initials: string; name: string; company: string; color: string }[]> = {
+  Qualified: [
+    { initials: 'GA', name: 'Grace Adeyemi', company: 'Northwind Retail', color: '#7C3AED' },
+    { initials: 'MC', name: 'Marcus Cole', company: 'Bluepeak Logistics', color: '#2563eb' },
+    { initials: 'PS', name: 'Priya Sharma', company: 'Sharma & Co.', color: '#0d9488' },
+    { initials: 'DO', name: 'Daniel Osei', company: 'Osei Furnishings', color: '#ec4899' },
+  ],
+  Meeting: [
+    { initials: 'LK', name: 'Lauren Kim', company: 'Kim Digital', color: '#f59e0b' },
+    { initials: 'TB', name: 'Tomiwa Bakare', company: 'Bakare Textiles', color: '#6366f1' },
+    { initials: 'EP', name: 'Elena Petrova', company: 'Petrova Consulting', color: '#64748b' },
+  ],
+  Proposal: [
+    { initials: 'VA', name: 'Victor Ade', company: 'Ade Logistics', color: '#dc2626' },
+    { initials: 'HB', name: 'Hannah Brooks', company: 'Brooks Media', color: '#059669' },
+    { initials: 'SO', name: 'Samuel Otieno', company: 'Otieno Foods', color: '#c026d3' },
+    { initials: 'NU', name: 'Ngozi Umeh', company: 'Umeh Realty', color: '#0891b2' },
+  ],
+  Negotiation: [
+    { initials: 'RM', name: 'Ryan Mitchell', company: 'Mitchell Freight', color: '#7C3AED' },
+    { initials: 'AB', name: 'Aisha Bello', company: 'Bello Fashions', color: '#2563eb' },
+    { initials: 'JR', name: 'Jordan Reyes', company: 'Reyes Analytics', color: '#0d9488' },
+  ],
+  'Closed Won': [
+    { initials: 'CE', name: 'Chinedu Eze', company: 'Eze Motors', color: '#ec4899' },
+    { initials: 'SA', name: 'Sofia Alvarez', company: 'Alvarez Design', color: '#f59e0b' },
+  ],
+};
+
 const FORECAST_TABS = [
   { name: 'Weighted Pipeline', Icon: TrendingUp },
   { name: 'By Rep', Icon: Users },
@@ -105,6 +134,81 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
   const [contactsExpanded, setContactsExpanded] = useState(false);
   const [showContacts, setShowContacts] = useState(false);
   const [showAddContactModal, setShowAddContactModal] = useState(false);
+  const [showAddProspectModal, setShowAddProspectModal] = useState(false);
+  const [prospectsList, setProspectsList] = useState<{ initials: string; name: string; company: string; color: string; stage: string }[]>([]);
+  const [draggedProspect, setDraggedProspect] = useState<string | null>(null);
+  const [dragOverStage, setDragOverStage] = useState<string | null>(null);
+
+  const openAddProspectModal = () => {
+    setShowAddProspectModal(true);
+    if (tour === 10) setTour(11);
+  };
+  const closeAddProspectModal = () => setShowAddProspectModal(false);
+  const handleCreateProspects = () => {
+    setProspectsList(Object.entries(PROSPECTS_SEED).flatMap(([stage, list]) => list.map((p) => ({ ...p, stage }))));
+    setShowAddProspectModal(false);
+    if (tour === 11) setTour(12);
+  };
+
+  // Drag-and-drop a prospect card between pipeline columns
+  const handleProspectDragStart = (name: string) => (e: React.DragEvent) => {
+    setDraggedProspect(name);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', name);
+  };
+  const handleProspectDragEnd = () => {
+    setDraggedProspect(null);
+    setDragOverStage(null);
+  };
+  const handleColumnDragOver = (stageName: string) => (e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    if (dragOverStage !== stageName) setDragOverStage(stageName);
+  };
+  const handleColumnDragLeave = (stageName: string) => () => {
+    setDragOverStage((prev) => (prev === stageName ? null : prev));
+  };
+  const handleColumnDrop = (stageName: string) => (e: React.DragEvent) => {
+    e.preventDefault();
+    const name = draggedProspect || e.dataTransfer.getData('text/plain');
+    if (name) {
+      setProspectsList((prev) => prev.map((p) => (p.name === name ? { ...p, stage: stageName } : p)));
+    }
+    setDraggedProspect(null);
+    setDragOverStage(null);
+  };
+
+  // Calls page — Make a Call / SMS-WhatsApp / Connect Provider each open their own modal
+  const [showPhoneModal, setShowPhoneModal] = useState(false);
+  const [showCommModal, setShowCommModal] = useState(false);
+  const [showProvidersModal, setShowProvidersModal] = useState(false);
+
+  const openPhoneModal = () => {
+    setShowPhoneModal(true);
+    if (tour === 16) setTour(17);
+  };
+  const closePhoneModal = () => {
+    setShowPhoneModal(false);
+    if (tour === 17) setTour(18);
+  };
+  const openCommModal = () => {
+    setShowCommModal(true);
+    if (tour === 18) setTour(19);
+  };
+  const closeCommModal = () => {
+    setShowCommModal(false);
+    if (tour === 19) setTour(20);
+  };
+  const openProvidersModal = () => {
+    setShowProvidersModal(true);
+    if (tour === 20) setTour(21);
+  };
+  const closeProvidersModalToContacts = () => {
+    setShowProvidersModal(false);
+    gotoContacts();
+    setActiveNav('Contacts');
+    if (tour === 21) setTour(22);
+  };
 
   // Every top-level page is mutually exclusive — these helpers reset all of them
   // so the many independent sidebar entry points (Sales/Activities/Contacts are
@@ -152,7 +256,7 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
                 {salesOpen && (
                   <div style={{ marginBottom: '2px' }}>
                     <div onClick={() => { gotoProspects(); setActiveNav('Sales'); if (tour === 9) setTour(10); }} style={{ padding: '7px 10px 7px 32px', borderRadius: '8px', fontSize: '10.5px', fontWeight: showSalesProspects ? 600 : 500, color: showSalesProspects ? '#7C3AED' : '#777', cursor: 'pointer' }}>Prospects</div>
-                    <div onClick={() => { gotoForecasting(); setActiveNav('Sales'); if (tour === 10) setTour(11); }} style={{ padding: '7px 10px 7px 32px', borderRadius: '8px', fontSize: '10.5px', fontWeight: showSalesForecasting ? 600 : 500, color: showSalesForecasting ? '#7C3AED' : '#777', cursor: 'pointer' }}>Forecasts</div>
+                    <div onClick={() => { gotoForecasting(); setActiveNav('Sales'); if (tour === 10 || tour === 11 || tour === 12) setTour(13); }} style={{ padding: '7px 10px 7px 32px', borderRadius: '8px', fontSize: '10.5px', fontWeight: showSalesForecasting ? 600 : 500, color: showSalesForecasting ? '#7C3AED' : '#777', cursor: 'pointer' }}>Forecasts</div>
                   </div>
                 )}
               </div>
@@ -168,9 +272,9 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
                 </div>
                 {activitiesOpen && (
                   <div style={{ marginBottom: '2px' }}>
-                    <div onClick={() => { gotoTasks(); setActiveNav('Activities'); if (tour === 11) setTour(12); }} style={{ padding: '7px 10px 7px 32px', borderRadius: '8px', fontSize: '10.5px', fontWeight: showTasks ? 600 : 500, color: showTasks ? '#7C3AED' : '#777', cursor: 'pointer' }}>Tasks</div>
+                    <div onClick={() => { gotoTasks(); setActiveNav('Activities'); if (tour === 13) setTour(14); }} style={{ padding: '7px 10px 7px 32px', borderRadius: '8px', fontSize: '10.5px', fontWeight: showTasks ? 600 : 500, color: showTasks ? '#7C3AED' : '#777', cursor: 'pointer' }}>Tasks</div>
                     <div style={{ padding: '7px 10px 7px 32px', borderRadius: '8px', fontSize: '10.5px', fontWeight: 500, color: '#aaa' }}>Calendar</div>
-                    <div onClick={() => { gotoCalls(); setActiveNav('Activities'); if (tour === 13) setTour(14); }} style={{ padding: '7px 10px 7px 32px', borderRadius: '8px', fontSize: '10.5px', fontWeight: showCalls ? 600 : 500, color: showCalls ? '#7C3AED' : '#777', cursor: 'pointer' }}>Calls</div>
+                    <div onClick={() => { gotoCalls(); setActiveNav('Activities'); if (tour === 15) setTour(16); }} style={{ padding: '7px 10px 7px 32px', borderRadius: '8px', fontSize: '10.5px', fontWeight: showCalls ? 600 : 500, color: showCalls ? '#7C3AED' : '#777', cursor: 'pointer' }}>Calls</div>
                   </div>
                 )}
               </div>
@@ -186,7 +290,7 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
                 </div>
                 {contactsOpen && (
                   <div style={{ marginBottom: '2px' }}>
-                    <div onClick={() => { gotoContacts(); setActiveNav('Contacts'); if (tour === 14) setTour(15); }} style={{ padding: '7px 10px 7px 32px', borderRadius: '8px', fontSize: '10.5px', fontWeight: showContacts ? 600 : 500, color: showContacts ? '#7C3AED' : '#777', cursor: 'pointer' }}>All Contacts</div>
+                    <div onClick={() => { gotoContacts(); setActiveNav('Contacts'); if (tour >= 16 && tour <= 21) setTour(22); }} style={{ padding: '7px 10px 7px 32px', borderRadius: '8px', fontSize: '10.5px', fontWeight: showContacts ? 600 : 500, color: showContacts ? '#7C3AED' : '#777', cursor: 'pointer' }}>All Contacts</div>
                     <div style={{ padding: '7px 10px 7px 32px', borderRadius: '8px', fontSize: '10.5px', fontWeight: 500, color: '#aaa' }}>Companies</div>
                   </div>
                 )}
@@ -552,7 +656,7 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
                 <span style={{ fontSize: '17px', fontWeight: 800, color: '#1a1a1a' }}>Prospects</span>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '4px 10px', borderRadius: '14px', background: '#f4f5f7', fontSize: '9.5px', fontWeight: 600, color: '#555' }}>Sales Pipeline <ChevronDown size={11} /></span>
               </div>
-              <div style={{ fontSize: '10px', color: '#999', marginTop: '3px' }}>0 open prospects</div>
+              <div style={{ fontSize: '10px', color: '#999', marginTop: '3px' }}>{prospectsList.length} open prospects</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: 'auto' }}>
               <div style={{ display: 'inline-flex', gap: '2px', padding: '3px', background: '#eef0f3', borderRadius: '10px' }}>
@@ -561,39 +665,100 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '6px 10px', borderRadius: '8px', fontSize: '10px', fontWeight: 600, color: '#888' }}><Grid3x3 size={12} /> Grid</span>
               </div>
               <button style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 14px', borderRadius: '18px', background: '#fff', color: '#555', border: '1px solid #e5e7eb', fontSize: '10px', fontWeight: 600, cursor: 'pointer' }}><Settings size={12} /> Pipelines</button>
-              <button onClick={() => { if (tour === 10) { gotoForecasting(); setActiveNav('Sales'); setTour(11); } }} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 16px', borderRadius: '18px', background: 'linear-gradient(135deg, #7C3AED, #a855f7)', color: '#fff', border: 'none', fontSize: '10px', fontWeight: 600, cursor: 'pointer' }}><Plus size={12} /> Add Prospect</button>
+              <button onClick={openAddProspectModal} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 16px', borderRadius: '18px', background: 'linear-gradient(135deg, #7C3AED, #a855f7)', color: '#fff', border: 'none', fontSize: '10px', fontWeight: 600, cursor: 'pointer' }}><Plus size={12} /> Add Prospect</button>
             </div>
           </div>
 
-          {/* Kanban columns */}
+          {/* Kanban columns — prospect cards are draggable between stages (HTML5 drag-and-drop) */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '12px', marginTop: '16px' }}>
-            {PIPELINE_STAGES.map((stage) => (
+            {PIPELINE_STAGES.map((stage) => {
+              const prospects = prospectsList.filter((p) => p.stage === stage.name);
+              const isDropTarget = dragOverStage === stage.name;
+              return (
               <div key={stage.name} style={{ display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
                   <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: stage.color }} />
                   <span style={{ fontSize: '10.5px', fontWeight: 700, color: '#1a1a1a', flex: 1 }}>{stage.name}</span>
-                  <span style={{ fontSize: '9px', fontWeight: 700, color: '#aaa', background: '#f4f5f7', padding: '1px 7px', borderRadius: '10px' }}>0</span>
+                  <span style={{ fontSize: '9px', fontWeight: 700, color: '#aaa', background: '#f4f5f7', padding: '1px 7px', borderRadius: '10px' }}>{prospects.length}</span>
                 </div>
-                <div style={{ fontSize: '8.5px', color: '#aaa', marginBottom: '8px' }}>0 contacts · {stage.pct}%</div>
-                <div style={{ flex: 1, minHeight: '220px', border: '1.5px dashed #dcdfe4', borderRadius: '10px', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '14px' }}>
-                  <span style={{ fontSize: '9.5px', color: '#bbb', fontWeight: 600 }}>+ Add prospect</span>
-                </div>
+                <div style={{ fontSize: '8.5px', color: '#aaa', marginBottom: '8px' }}>{prospects.length} contact{prospects.length === 1 ? '' : 's'} · {stage.pct}%</div>
+                {prospects.length === 0 ? (
+                  <div
+                    onClick={prospectsList.length === 0 ? openAddProspectModal : undefined}
+                    onDragOver={handleColumnDragOver(stage.name)}
+                    onDragLeave={handleColumnDragLeave(stage.name)}
+                    onDrop={handleColumnDrop(stage.name)}
+                    style={{ flex: 1, minHeight: '220px', border: isDropTarget ? '1.5px dashed #7C3AED' : '1.5px dashed #dcdfe4', background: isDropTarget ? '#F5F3FF' : 'transparent', borderRadius: '10px', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '14px', cursor: prospectsList.length === 0 ? 'pointer' : 'default', transition: 'background 120ms ease, border-color 120ms ease' }}
+                  >
+                    <span style={{ fontSize: '9.5px', color: isDropTarget ? '#7C3AED' : '#bbb', fontWeight: 600 }}>{isDropTarget ? 'Drop here' : '+ Add prospect'}</span>
+                  </div>
+                ) : (
+                  <div
+                    onDragOver={handleColumnDragOver(stage.name)}
+                    onDragLeave={handleColumnDragLeave(stage.name)}
+                    onDrop={handleColumnDrop(stage.name)}
+                    style={{ flex: 1, minHeight: '220px', display: 'flex', flexDirection: 'column', gap: '8px', borderRadius: '10px', padding: isDropTarget ? '4px' : '0px', background: isDropTarget ? '#F5F3FF' : 'transparent', border: isDropTarget ? '1.5px dashed #7C3AED' : '1.5px solid transparent', transition: 'background 120ms ease, border-color 120ms ease, padding 120ms ease' }}
+                  >
+                    {prospects.map((p, i) => (
+                      <div key={p.name} style={{ position: 'relative' }}>
+                        <div
+                          draggable
+                          onDragStart={handleProspectDragStart(p.name)}
+                          onDragEnd={handleProspectDragEnd}
+                          style={{ background: '#fff', border: '1px solid #eef0f2', borderRadius: '10px', padding: '10px', cursor: 'grab', opacity: draggedProspect === p.name ? 0.4 : 1, transition: 'opacity 120ms ease' }}
+                        >
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                            <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: p.color, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '9px', fontWeight: 700, flexShrink: 0 }}>{p.initials}</div>
+                            <div style={{ minWidth: 0, flex: 1 }}>
+                              <div style={{ fontSize: '10px', fontWeight: 700, color: '#1a1a1a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.name}</div>
+                              <div style={{ fontSize: '8.5px', color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.company}</div>
+                            </div>
+                            <MoreHorizontal size={13} style={{ color: '#bbb', flexShrink: 0 }} />
+                          </div>
+                          <div style={{ display: 'flex', gap: '5px' }}>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '8px', fontWeight: 600, color: '#2563eb', background: '#EFF6FF', borderRadius: '6px', padding: '3px 6px' }}><Mail size={9} /> Email</span>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '8px', fontWeight: 600, color: '#059669', background: '#ECFDF5', borderRadius: '6px', padding: '3px 6px' }}><Phone size={9} /> Call</span>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '8px', fontWeight: 600, color: '#0d9488', background: '#F0FDFA', borderRadius: '6px', padding: '3px 6px' }}><MessageCircle size={9} /> WhatsApp</span>
+                          </div>
+                        </div>
+
+                        {/* Coach mark — explains drag-and-drop, directly under the first Qualified card */}
+                        {tour === 12 && stage.name === 'Qualified' && i === 0 && (
+                          <div style={{ position: 'absolute', top: '100%', left: '0', marginTop: '10px', zIndex: 9999 }}>
+                            <Coachmark
+                              visible
+                              title="Drag to move a prospect"
+                              subtitle="Drag any prospect card into another column to move it through the pipeline — from Qualified all the way to Closed Won. Click Next to see forecasting."
+                              onNext={() => { gotoForecasting(); setActiveNav('Sales'); setTour(13); }}
+                              top="0" left="0" arrowSide="top" arrowOffset="30px" buttonLabel="Next"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                    <div onClick={openAddProspectModal} style={{ border: '1.5px dashed #dcdfe4', borderRadius: '10px', padding: '10px', textAlign: 'center', cursor: 'pointer' }}>
+                      <span style={{ fontSize: '9px', color: '#bbb', fontWeight: 600 }}>+ Add prospect</span>
+                    </div>
+                  </div>
+                )}
               </div>
-            ))}
+              );
+            })}
           </div>
 
-          {/* Coach mark — hands off to Sales Forecasting */}
+          {/* Coach mark — explains the pipeline, then opens the Add Prospect modal */}
           {tour === 10 && (
             <div style={{ position: 'absolute', top: '90px', left: '560px', zIndex: 9999 }}>
               <Coachmark
                 visible
                 title="Your sales pipeline"
-                subtitle="Track prospects from Qualified through Closed Won, right where your dashboard widgets get their data. Click Next to see forecasting."
-                onNext={() => { gotoForecasting(); setActiveNav('Sales'); setTour(11); }}
+                subtitle="Track prospects from Qualified through Closed Won, right where your dashboard widgets get their data. Click Next to add your first prospects."
+                onNext={openAddProspectModal}
                 top="0" left="0" arrowSide="top" arrowOffset="40px" buttonLabel="Next"
               />
             </div>
           )}
+
         </div>
         )}
 
@@ -662,13 +827,13 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
           </div>
 
           {/* Coach mark — explains Sales Forecasting */}
-          {tour === 11 && (
+          {tour === 13 && (
             <div style={{ position: 'absolute', top: '215px', left: '640px', zIndex: 9999 }}>
               <Coachmark
                 visible
                 title="Forecast your pipeline"
                 subtitle="See weighted pipeline value, quota attainment, and stage-by-stage breakdowns — all calculated automatically from your deals. Click Next."
-                onNext={() => { gotoTasks(); setActiveNav('Activities'); setTour(12); }}
+                onNext={() => { gotoTasks(); setActiveNav('Activities'); setTour(14); }}
                 top="0" left="0" arrowSide="top" arrowOffset="40px" buttonLabel="Next"
               />
             </div>
@@ -689,18 +854,18 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
                 <span style={{ padding: '6px 12px', borderRadius: '8px', fontSize: '10px', fontWeight: 600, background: '#fff', color: '#7C3AED', boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>List</span>
                 <span style={{ padding: '6px 12px', borderRadius: '8px', fontSize: '10px', fontWeight: 600, color: '#888' }}>Board</span>
               </div>
-              <button onClick={() => { setShowAddTaskForm(true); if (tour === 12) setTour(13); }} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 16px', borderRadius: '18px', background: 'linear-gradient(135deg, #7C3AED, #a855f7)', color: '#fff', border: 'none', fontSize: '10px', fontWeight: 600, cursor: 'pointer' }}><Plus size={12} /> Add Task</button>
+              <button onClick={() => { setShowAddTaskForm(true); if (tour === 14) setTour(15); }} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 16px', borderRadius: '18px', background: 'linear-gradient(135deg, #7C3AED, #a855f7)', color: '#fff', border: 'none', fontSize: '10px', fontWeight: 600, cursor: 'pointer' }}><Plus size={12} /> Add Task</button>
             </div>
           </div>
 
           {/* Coach mark — directly under +Add Task, positioned against the page (not the button) so it can't be pushed past the right edge */}
-          {tour === 12 && !showAddTaskForm && (
+          {tour === 14 && !showAddTaskForm && (
             <div style={{ position: 'absolute', top: '120px', left: '750px', zIndex: 9999 }}>
               <Coachmark
                 visible
                 title="Stay on top of tasks"
                 subtitle="Create and track follow-ups, calls, and to-dos tied to your deals and contacts. Click Next to add one."
-                onNext={() => { setShowAddTaskForm(true); setTour(13); }}
+                onNext={() => { setShowAddTaskForm(true); setTour(15); }}
                 top="0" left="0" arrowSide="top" arrowOffset="200px" buttonLabel="Next"
               />
             </div>
@@ -726,18 +891,18 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
               <input placeholder="Description (optional)" style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', marginBottom: '10px', boxSizing: 'border-box' }} />
               <select style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', color: '#999', marginBottom: '14px', boxSizing: 'border-box' }}><option>Link to contact (optional)</option></select>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <button onClick={() => { gotoCalls(); setActiveNav('Activities'); if (tour === 13) setTour(14); }} style={{ padding: '9px 20px', background: 'linear-gradient(135deg, #a78bfa, #8b5cf6)', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '10.5px', fontWeight: 600, cursor: 'pointer' }}>Add Task</button>
+                <button onClick={() => { gotoCalls(); setActiveNav('Activities'); if (tour === 15) setTour(16); }} style={{ padding: '9px 20px', background: 'linear-gradient(135deg, #a78bfa, #8b5cf6)', color: '#fff', border: 'none', borderRadius: '18px', fontSize: '10.5px', fontWeight: 600, cursor: 'pointer' }}>Add Task</button>
                 <span onClick={() => setShowAddTaskForm(false)} style={{ fontSize: '10px', color: '#888', cursor: 'pointer' }}>Cancel</span>
               </div>
 
               {/* Coach mark — explains the Add Task form */}
-              {tour === 13 && (
+              {tour === 15 && (
                 <div style={{ position: 'absolute', top: '100%', left: '0', marginTop: '10px', zIndex: 9999 }}>
                   <Coachmark
                     visible
                     title="Add a task"
                     subtitle="Give it a title, priority, and due date — link it to a contact so it shows up on their record. Click Next."
-                    onNext={() => { gotoCalls(); setActiveNav('Activities'); setTour(14); }}
+                    onNext={() => { gotoCalls(); setActiveNav('Activities'); setTour(16); }}
                     top="0" left="0" arrowSide="top" arrowOffset="40px" buttonLabel="Next"
                   />
                 </div>
@@ -767,20 +932,67 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px', marginBottom: '18px' }}>
-            <div style={{ background: '#fff', borderRadius: '12px', border: '1px solid #eef0f2', padding: '18px' }}>
-              <div style={{ width: '32px', height: '32px', borderRadius: '9px', background: '#ECFDF5', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}><Phone size={15} style={{ color: '#059669' }} /></div>
-              <div style={{ fontSize: '11.5px', fontWeight: 700, color: '#1a1a1a', marginBottom: '3px' }}>Make a Call</div>
-              <div style={{ fontSize: '9.5px', color: '#999' }}>Open dial pad and call via Telnyx</div>
+            <div style={{ position: 'relative' }}>
+              <div onClick={openPhoneModal} style={{ background: '#fff', borderRadius: '12px', border: '1px solid #eef0f2', padding: '18px', cursor: 'pointer' }}>
+                <div style={{ width: '32px', height: '32px', borderRadius: '9px', background: '#ECFDF5', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}><Phone size={15} style={{ color: '#059669' }} /></div>
+                <div style={{ fontSize: '11.5px', fontWeight: 700, color: '#1a1a1a', marginBottom: '3px' }}>Make a Call</div>
+                <div style={{ fontSize: '9.5px', color: '#999' }}>Open dial pad and call via Telnyx</div>
+              </div>
+
+              {/* Coach mark — directly under the Make a Call card */}
+              {tour === 16 && (
+                <div style={{ position: 'absolute', top: '100%', left: '0', marginTop: '10px', zIndex: 9999 }}>
+                  <Coachmark
+                    visible
+                    title="Call right from the CRM"
+                    subtitle="Open the dial pad and place a call via Telnyx — it logs automatically to the contact's record. Click Next."
+                    onNext={openPhoneModal}
+                    top="0" left="0" arrowSide="top" arrowOffset="30px" buttonLabel="Next"
+                  />
+                </div>
+              )}
             </div>
-            <div style={{ background: '#fff', borderRadius: '12px', border: '1px solid #eef0f2', padding: '18px' }}>
-              <div style={{ width: '32px', height: '32px', borderRadius: '9px', background: '#ECFEFF', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}><MessageCircle size={15} style={{ color: '#0d9488' }} /></div>
-              <div style={{ fontSize: '11.5px', fontWeight: 700, color: '#1a1a1a', marginBottom: '3px' }}>SMS / WhatsApp</div>
-              <div style={{ fontSize: '9.5px', color: '#999' }}>Send SMS or WhatsApp message via Telnyx</div>
+
+            <div style={{ position: 'relative' }}>
+              <div onClick={openCommModal} style={{ background: '#fff', borderRadius: '12px', border: '1px solid #eef0f2', padding: '18px', cursor: 'pointer' }}>
+                <div style={{ width: '32px', height: '32px', borderRadius: '9px', background: '#ECFEFF', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}><MessageCircle size={15} style={{ color: '#0d9488' }} /></div>
+                <div style={{ fontSize: '11.5px', fontWeight: 700, color: '#1a1a1a', marginBottom: '3px' }}>SMS / WhatsApp</div>
+                <div style={{ fontSize: '9.5px', color: '#999' }}>Send SMS or WhatsApp message via Telnyx</div>
+              </div>
+
+              {/* Coach mark — directly under the SMS/WhatsApp card */}
+              {tour === 18 && (
+                <div style={{ position: 'absolute', top: '100%', left: '0', marginTop: '10px', zIndex: 9999 }}>
+                  <Coachmark
+                    visible
+                    title="Text right from the CRM"
+                    subtitle="Send an SMS or WhatsApp message to any number without leaving the CRM. Click Next."
+                    onNext={openCommModal}
+                    top="0" left="0" arrowSide="top" arrowOffset="30px" buttonLabel="Next"
+                  />
+                </div>
+              )}
             </div>
-            <div style={{ background: '#fff', borderRadius: '12px', border: '1px solid #eef0f2', padding: '18px' }}>
-              <div style={{ width: '32px', height: '32px', borderRadius: '9px', background: '#EFF6FF', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}><Settings size={15} style={{ color: '#2563eb' }} /></div>
-              <div style={{ fontSize: '11.5px', fontWeight: 700, color: '#1a1a1a', marginBottom: '3px' }}>Connect Provider</div>
-              <div style={{ fontSize: '9.5px', color: '#999' }}>Add Twilio, WhatsApp Business, or VoIP</div>
+
+            <div style={{ position: 'relative' }}>
+              <div onClick={openProvidersModal} style={{ background: '#fff', borderRadius: '12px', border: '1px solid #eef0f2', padding: '18px', cursor: 'pointer' }}>
+                <div style={{ width: '32px', height: '32px', borderRadius: '9px', background: '#EFF6FF', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}><Settings size={15} style={{ color: '#2563eb' }} /></div>
+                <div style={{ fontSize: '11.5px', fontWeight: 700, color: '#1a1a1a', marginBottom: '3px' }}>Connect Provider</div>
+                <div style={{ fontSize: '9.5px', color: '#999' }}>Add Twilio, WhatsApp Business, or VoIP</div>
+              </div>
+
+              {/* Coach mark — directly under the Connect Provider card */}
+              {tour === 20 && (
+                <div style={{ position: 'absolute', top: '100%', left: '0', marginTop: '10px', zIndex: 9999 }}>
+                  <Coachmark
+                    visible
+                    title="Bring your own provider"
+                    subtitle="Connect Twilio, WhatsApp Business, or any SIP/VoIP trunk to power calls and messages. Click Next."
+                    onNext={openProvidersModal}
+                    top="0" left="0" arrowSide="top" arrowOffset="30px" buttonLabel="Next"
+                  />
+                </div>
+              )}
             </div>
           </div>
 
@@ -791,19 +1003,6 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
               <div style={{ fontSize: '10.5px', color: '#999' }}>No calls logged yet</div>
             </div>
           </div>
-
-          {/* Coach mark — explains the Calls page */}
-          {tour === 14 && (
-            <div style={{ position: 'absolute', top: '175px', left: '600px', zIndex: 9999 }}>
-              <Coachmark
-                visible
-                title="Call right from the CRM"
-                subtitle="Dial out, send SMS or WhatsApp, and every call logs automatically to the contact's record. Click Next."
-                onNext={() => { gotoContacts(); setActiveNav('Contacts'); setTour(15); }}
-                top="0" left="0" arrowSide="top" arrowOffset="40px" buttonLabel="Next"
-              />
-            </div>
-          )}
         </div>
         )}
 
@@ -817,7 +1016,7 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: 'auto' }}>
               <button style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 14px', borderRadius: '18px', background: '#fff', color: '#555', border: '1px solid #e5e7eb', fontSize: '10px', fontWeight: 600, cursor: 'pointer' }}><Upload size={12} /> Import</button>
-              <button onClick={() => { setShowAddContactModal(true); if (tour === 15) setTour(16); }} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 16px', borderRadius: '18px', background: 'linear-gradient(135deg, #7C3AED, #a855f7)', color: '#fff', border: 'none', fontSize: '10px', fontWeight: 600, cursor: 'pointer' }}><Plus size={12} /> Add Contact</button>
+              <button onClick={() => { setShowAddContactModal(true); if (tour === 22) setTour(23); }} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '8px 16px', borderRadius: '18px', background: 'linear-gradient(135deg, #7C3AED, #a855f7)', color: '#fff', border: 'none', fontSize: '10px', fontWeight: 600, cursor: 'pointer' }}><Plus size={12} /> Add Contact</button>
             </div>
           </div>
 
@@ -833,16 +1032,16 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
             <div style={{ fontSize: '12.5px', fontWeight: 700, color: '#1a1a1a', marginBottom: '5px' }}>No contacts found</div>
             <div style={{ fontSize: '10px', color: '#999', marginBottom: '16px' }}>Get started by adding your first contact</div>
             <div style={{ position: 'relative' }}>
-              <button onClick={() => { setShowAddContactModal(true); if (tour === 15) setTour(16); }} style={{ padding: '9px 22px', background: 'linear-gradient(135deg, #7C3AED, #a855f7)', color: '#fff', border: 'none', borderRadius: '20px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Add Contact</button>
+              <button onClick={() => { setShowAddContactModal(true); if (tour === 22) setTour(23); }} style={{ padding: '9px 22px', background: 'linear-gradient(135deg, #7C3AED, #a855f7)', color: '#fff', border: 'none', borderRadius: '20px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Add Contact</button>
 
               {/* Coach mark — beside the Add Contact button */}
-              {tour === 15 && !showAddContactModal && (
+              {tour === 22 && !showAddContactModal && (
                 <div style={{ position: 'absolute', top: '-4px', left: '160px', zIndex: 9999 }}>
                   <Coachmark
                     visible
                     title="Add your first contact"
                     subtitle="Every contact keeps a full history of emails, calls, tasks, and deals in one place. Click Next."
-                    onNext={() => { setShowAddContactModal(true); setTour(16); }}
+                    onNext={() => { setShowAddContactModal(true); setTour(23); }}
                     top="0" left="0" arrowSide="left" arrowOffset="20px" buttonLabel="Next"
                   />
                 </div>
@@ -958,6 +1157,245 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
         </div>
       )}
 
+      {/* Add Prospect modal — reuses the same "Add Contact" field layout as the Contacts
+          section's modal below (per the reference screenshots, the submit button is also
+          labeled "Add Contact" there), but submitting it seeds the whole pipeline instead
+          of ending the tour. */}
+      {showAddProspectModal && (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.35)', zIndex: 200, padding: '20px' }}>
+          <div style={{ position: 'relative', width: '400px', maxHeight: '100%', overflowY: 'auto', background: '#fff', borderRadius: '16px', boxShadow: '0 20px 60px -15px rgba(0,0,0,0.35)', padding: '20px 22px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <div style={{ fontSize: '15px', fontWeight: 700, color: '#1a1a1a' }}>Add Contact</div>
+              <X size={16} style={{ color: '#bbb', cursor: 'pointer' }} onClick={closeAddProspectModal} />
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '10px' }}>
+              <div>
+                <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>First name *</div>
+                <input placeholder="John" style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box' }} />
+              </div>
+              <div>
+                <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>Last name *</div>
+                <input placeholder="Doe" style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box' }} />
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '10px' }}>
+              <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>Email</div>
+              <input placeholder="john@example.com" style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box' }} />
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '10px' }}>
+              <div>
+                <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>Phone</div>
+                <input placeholder="+1 555 123 4567" style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box' }} />
+              </div>
+              <div>
+                <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>Mobile</div>
+                <input placeholder="+1 555 987 6543" style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box' }} />
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '10px' }}>
+              <div>
+                <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>Company</div>
+                <input placeholder="Acme Inc" style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box' }} />
+              </div>
+              <div>
+                <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>Job title</div>
+                <input placeholder="Marketing Manager" style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box' }} />
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '10px' }}>
+              <div>
+                <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>Source</div>
+                <select style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', color: '#999', boxSizing: 'border-box' }}><option>Select source</option></select>
+              </div>
+              <div>
+                <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>Status</div>
+                <select style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', color: '#555', boxSizing: 'border-box' }}><option>Lead</option></select>
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '10px' }}>
+              <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>Address</div>
+              <input style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box' }} />
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '10px' }}>
+              <div>
+                <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>City</div>
+                <input style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box' }} />
+              </div>
+              <div>
+                <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>Country</div>
+                <input style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box' }} />
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '10px' }}>
+              <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>Zip Code</div>
+              <input style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box' }} />
+            </div>
+
+            <div style={{ marginBottom: '16px' }}>
+              <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '5px' }}>Notes</div>
+              <textarea placeholder="Additional notes..." rows={2} style={{ width: '100%', padding: '9px 12px', border: '1px solid #eee', borderRadius: '8px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box', resize: 'none', fontFamily: 'inherit' }} />
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', borderTop: '1px solid #f0f0f2', paddingTop: '14px' }}>
+              <button onClick={closeAddProspectModal} style={{ flex: 1, padding: '10px', background: '#fff', color: '#333', border: '1px solid #e5e5e5', borderRadius: '20px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+              <button onClick={handleCreateProspects} style={{ flex: 1.4, padding: '10px', background: 'linear-gradient(135deg, #a78bfa, #8b5cf6)', color: '#fff', border: 'none', borderRadius: '20px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Add Contact</button>
+            </div>
+          </div>
+
+          {/* Coach mark — explains the Add Prospect modal. Kept OUTSIDE the scrollable
+              modal panel (which clips overflow) — sibling of it within the overlay
+              instead, same pattern as every other modal in this file. */}
+          {tour === 11 && (
+            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(210px, -100px)', zIndex: 9999 }}>
+              <Coachmark
+                visible
+                title="Add a prospect"
+                subtitle="Capture their details here — once saved, they'll appear as a card in the pipeline, ready to move through each stage. Click Next."
+                onNext={handleCreateProspects}
+                top="0" left="0" arrowSide="left" arrowOffset="24px" buttonLabel="Next"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Phone dial pad modal — from the "Make a Call" card */}
+      {showPhoneModal && (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.35)', zIndex: 200 }}>
+          <div style={{ position: 'relative', width: '300px', background: '#fff', borderRadius: '16px', boxShadow: '0 20px 60px -15px rgba(0,0,0,0.35)', padding: '20px 22px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a' }}>Phone</div>
+              <X size={16} style={{ color: '#bbb', cursor: 'pointer' }} onClick={closePhoneModal} />
+            </div>
+
+            <input placeholder="Enter number" style={{ width: '100%', padding: '10px 12px', background: '#f4f5f7', border: '1px solid #eee', borderRadius: '9px', fontSize: '12px', textAlign: 'center', outline: 'none', boxSizing: 'border-box', marginBottom: '14px' }} />
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '14px' }}>
+              {[['1', ''], ['2', 'ABC'], ['3', 'DEF'], ['4', 'GHI'], ['5', 'JKL'], ['6', 'MNO'], ['7', 'PQRS'], ['8', 'TUV'], ['9', 'WXYZ'], ['*', ''], ['0', '+'], ['#', '']].map(([d, sub]) => (
+                <div key={d} style={{ background: '#f4f5f7', borderRadius: '9px', padding: '9px 0', textAlign: 'center', cursor: 'pointer' }}>
+                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#333' }}>{d}</div>
+                  <div style={{ fontSize: '6.5px', fontWeight: 600, color: '#aaa', letterSpacing: '0.05em' }}>{sub}</div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '14px' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#0d9488', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+                <Phone size={16} style={{ color: '#fff' }} />
+              </div>
+            </div>
+
+            <div style={{ background: '#FFFBEB', border: '1px solid #fde68a', borderRadius: '9px', padding: '9px 12px', display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
+              <AlertCircle size={12} style={{ color: '#d97706', flexShrink: 0, marginTop: '1px' }} />
+              <span style={{ fontSize: '9px', color: '#92400e', lineHeight: 1.4 }}>Calling not configured. Ask your admin to set up a phone number.</span>
+            </div>
+          </div>
+
+          {/* Coach mark — explains the dial pad, then hands off to the SMS/WhatsApp card */}
+          {tour === 17 && (
+            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(160px, -70px)', zIndex: 9999 }}>
+              <Coachmark
+                visible
+                title="Dial right from here"
+                subtitle="Enter a number and call — once a provider's connected, the call and its recording log straight to the contact's record. Click Next."
+                onNext={closePhoneModal}
+                top="0" left="0" arrowSide="left" arrowOffset="24px" buttonLabel="Next"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* New Communication modal — from the "SMS / WhatsApp" card */}
+      {showCommModal && (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.35)', zIndex: 200 }}>
+          <div style={{ position: 'relative', width: '340px', background: '#fff', borderRadius: '16px', boxShadow: '0 20px 60px -15px rgba(0,0,0,0.35)', padding: '20px 22px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '18px' }}>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a' }}>New Communication</div>
+              <X size={16} style={{ color: '#bbb', cursor: 'pointer' }} onClick={closeCommModal} />
+            </div>
+
+            <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '6px' }}>Phone number</div>
+            <input placeholder="+234 800 123 4567" style={{ width: '100%', padding: '10px 12px', border: '1px solid #eee', borderRadius: '9px', fontSize: '10.5px', outline: 'none', boxSizing: 'border-box', marginBottom: '16px' }} />
+
+            <div style={{ fontSize: '9.5px', fontWeight: 600, color: '#333', marginBottom: '6px' }}>Method</div>
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '20px' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '7px 14px', borderRadius: '18px', background: '#ECFDF5', color: '#059669', fontSize: '10px', fontWeight: 600, border: '1px solid #a7f3d0' }}><Phone size={11} /> Call</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '7px 14px', borderRadius: '18px', background: '#f4f5f7', color: '#777', fontSize: '10px', fontWeight: 600 }}><MessageCircle size={11} /> SMS</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '7px 14px', borderRadius: '18px', background: '#f4f5f7', color: '#777', fontSize: '10px', fontWeight: 600 }}><MessageCircle size={11} /> WhatsApp</span>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <button onClick={closeCommModal} style={{ flex: 1, padding: '10px', background: '#fff', color: '#333', border: '1px solid #e5e5e5', borderRadius: '20px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+              <button onClick={closeCommModal} style={{ flex: 1.4, padding: '10px', background: '#0d9488', color: '#fff', border: 'none', borderRadius: '20px', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>Open Dial Pad</button>
+            </div>
+          </div>
+
+          {/* Coach mark — explains the New Communication modal, then hands off to the Connect Provider card */}
+          {tour === 19 && (
+            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(190px, -55px)', zIndex: 9999 }}>
+              <Coachmark
+                visible
+                title="Reach out any way"
+                subtitle="Pick Call, SMS, or WhatsApp for the same number — no need to switch apps. Click Next."
+                onNext={closeCommModal}
+                top="0" left="0" arrowSide="left" arrowOffset="24px" buttonLabel="Next"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Calling Providers modal — from the "Connect Provider" card */}
+      {showProvidersModal && (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.35)', zIndex: 200 }}>
+          <div style={{ position: 'relative', width: '400px', background: '#fff', borderRadius: '16px', boxShadow: '0 20px 60px -15px rgba(0,0,0,0.35)', padding: '20px 22px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: '#1a1a1a' }}>Calling Providers</div>
+              <X size={16} style={{ color: '#bbb', cursor: 'pointer' }} onClick={() => setShowProvidersModal(false)} />
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {[
+                { Icon: Phone, iconColor: '#e11d48', iconBg: '#FFF1F2', name: 'Twilio', desc: 'VoIP calls and SMS via Twilio API' },
+                { Icon: MessageCircle, iconColor: '#7C3AED', iconBg: '#F3EFFF', name: 'WhatsApp Business', desc: 'Send messages via WhatsApp Cloud API' },
+                { Icon: Building2, iconColor: '#e11d48', iconBg: '#FFF1F2', name: 'Custom VoIP/SIP', desc: 'Connect any SIP trunk or VoIP provider' },
+              ].map((p) => (
+                <div key={p.name} style={{ display: 'flex', alignItems: 'center', gap: '10px', border: '1px solid #eef0f2', borderRadius: '10px', padding: '12px' }}>
+                  <div style={{ width: '30px', height: '30px', borderRadius: '9px', background: p.iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><p.Icon size={14} style={{ color: p.iconColor }} /></div>
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div style={{ fontSize: '11px', fontWeight: 700, color: '#1a1a1a' }}>{p.name}</div>
+                    <div style={{ fontSize: '9px', color: '#999' }}>{p.desc}</div>
+                  </div>
+                  <span style={{ fontSize: '9.5px', fontWeight: 600, color: '#7C3AED', background: '#F3EFFF', borderRadius: '14px', padding: '6px 14px', flexShrink: 0 }}>Connect</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Coach mark — final Calls step, explains connecting a provider, then hands off to Contacts */}
+          {tour === 21 && (
+            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(215px, -60px)', zIndex: 9999 }}>
+              <Coachmark
+                visible
+                title="Connect once, call everywhere"
+                subtitle="Link Twilio, WhatsApp Business, or your own SIP/VoIP trunk and every teammate can call or message from the CRM. Click Next."
+                onNext={closeProvidersModalToContacts}
+                top="0" left="0" arrowSide="left" arrowOffset="24px" buttonLabel="Next"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Add Contact modal */}
       {showAddContactModal && (
         <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.35)', zIndex: 200, padding: '20px' }}>
@@ -1051,7 +1489,7 @@ export function CrmPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
           {/* Coach mark — final step, explains the Add Contact modal. Kept OUTSIDE the
               scrollable modal panel (which clips overflow) — sibling of it within the
               overlay instead, same pattern as the other modals in this file. */}
-          {tour === 16 && (
+          {tour === 23 && (
             <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(210px, -80px)', zIndex: 9999 }}>
               <Coachmark
                 visible

@@ -21,6 +21,7 @@ import { ZeusPreviewMockup } from '@/components/ZeusPreviewMockup';
 import { VerifyritPreviewMockup } from '@/components/VerifyritPreviewMockup';
 import { WorkforcePreviewMockup } from '@/components/WorkforcePreviewMockup';
 import { CrmPreviewMockup } from '@/components/CrmPreviewMockup';
+import { ProjectManagementPreviewMockup } from '@/components/ProjectManagementPreviewMockup';
 import { BooksPreviewMockup } from '@/components/BooksPreviewMockup';
 
 // Order is deliberate — product priority ranking, not build/alphabetical order.
@@ -31,6 +32,7 @@ import { BooksPreviewMockup } from '@/components/BooksPreviewMockup';
 const PRODUCT_ICONS = [
   { src: '/assets/icons/rail-mail.svg', label: 'Mail', name: 'Snaarp Mail', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
   { src: '/assets/icons/rail-crm.svg', label: 'CRM', name: 'CRM', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
+  { src: '/assets/icons/rail-project-management.svg', label: 'Project Management', name: 'Project Management', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
   { src: '/assets/icons/rail-books.svg', label: 'Books', name: 'Snaarp Books', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
   { src: '/assets/icons/rail-me.svg', label: 'Me', name: 'SnaarpMe', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
   { src: '/assets/icons/id-card.svg', label: 'ID Card', name: 'OneCardX', color: '#7C3AED', size: '22px', lucide: false, lucideIcon: null },
@@ -104,25 +106,26 @@ export function ProductShowcaseCard({ cardWidth = '800px', cardHeight = '620px',
       <div style={{ borderRadius: '18px', border: cardBorder || '1px solid #e5e5e5', boxShadow: '0 4px 12px -4px rgba(0,0,0,0.08), 0 24px 48px -12px rgba(0,0,0,0.12)', overflow: 'hidden', background: '#fff', width: cardWidth, height: cardHeight, position: 'relative' }}>
         {activeIndex === 0 && <MailPreviewMockup onEnd={() => setActiveIndex(1)} startPaused={startPaused} />}
         {activeIndex === 1 && <CrmPreviewMockup onEnd={() => setActiveIndex(2)} />}
-        {activeIndex === 2 && <BooksPreviewMockup onEnd={() => setActiveIndex(3)} />}
-        {activeIndex === 3 && <MePreviewMockup onEnd={() => setActiveIndex(4)} />}
-        {activeIndex === 4 && <IdCardPreviewMockup onEnd={() => setActiveIndex(5)} />}
-        {activeIndex === 5 && <PdfPreviewMockup onEnd={() => setActiveIndex(6)} />}
-        {activeIndex === 6 && <WorkforcePreviewMockup onEnd={() => setActiveIndex(7)} />}
-        {activeIndex === 7 && <SendritPreviewMockup onEnd={() => setActiveIndex(8)} />}
-        {activeIndex === 8 && <ZeusPreviewMockup onEnd={() => setActiveIndex(9)} />}
-        {activeIndex === 9 && <VerifyritPreviewMockup onEnd={() => setActiveIndex(10)} />}
+        {activeIndex === 2 && <ProjectManagementPreviewMockup onEnd={() => setActiveIndex(3)} />}
+        {activeIndex === 3 && <BooksPreviewMockup onEnd={() => setActiveIndex(4)} />}
+        {activeIndex === 4 && <MePreviewMockup onEnd={() => setActiveIndex(5)} />}
+        {activeIndex === 5 && <IdCardPreviewMockup onEnd={() => setActiveIndex(6)} />}
+        {activeIndex === 6 && <PdfPreviewMockup onEnd={() => setActiveIndex(7)} />}
+        {activeIndex === 7 && <WorkforcePreviewMockup onEnd={() => setActiveIndex(8)} />}
+        {activeIndex === 8 && <SendritPreviewMockup onEnd={() => setActiveIndex(9)} />}
+        {activeIndex === 9 && <ZeusPreviewMockup onEnd={() => setActiveIndex(10)} />}
+        {activeIndex === 10 && <VerifyritPreviewMockup onEnd={() => setActiveIndex(11)} />}
         {/* Contacts and Calendar temporarily disabled — rail/render indices renumbered to close
             the gap, so VerifyRit's onEnd now hands off straight to Lock. */}
         {/* {activeIndex === X && <ContactsPreviewMockup onEnd={() => setActiveIndex(X+1)} />} */}
         {/* {activeIndex === X && <KalenderPreviewMockup onEnd={() => setActiveIndex(X+1)} />} */}
-        {activeIndex === 10 && <LockPreviewMockup onEnd={() => setActiveIndex(11)} />}
-        {activeIndex === 11 && <DrivePreviewMockup onEnd={() => setActiveIndex(12)} />}
-        {activeIndex === 12 && <SheetPreviewMockup />}
-        {activeIndex === 13 && <DocumentPreviewMockup onEnd={() => setActiveIndex(14)} />}
-        {activeIndex === 14 && <TeamsPreviewMockup onEnd={() => setActiveIndex(15)} />}
-        {activeIndex === 15 && <PresentationPreviewMockup onEnd={() => setActiveIndex(16)} />}
-        {activeIndex === 16 && <MeetPreviewMockup />}
+        {activeIndex === 11 && <LockPreviewMockup onEnd={() => setActiveIndex(12)} />}
+        {activeIndex === 12 && <DrivePreviewMockup onEnd={() => setActiveIndex(13)} />}
+        {activeIndex === 13 && <SheetPreviewMockup />}
+        {activeIndex === 14 && <DocumentPreviewMockup onEnd={() => setActiveIndex(15)} />}
+        {activeIndex === 15 && <TeamsPreviewMockup onEnd={() => setActiveIndex(16)} />}
+        {activeIndex === 16 && <PresentationPreviewMockup onEnd={() => setActiveIndex(17)} />}
+        {activeIndex === 17 && <MeetPreviewMockup />}
       </div>
     </div>
   );

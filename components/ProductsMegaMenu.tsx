@@ -3,16 +3,14 @@
 import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import { usePathname } from 'next/navigation';
 import {
-  UsersRound,
-  ShieldCheck,
-  BookOpen,
-  Calculator,
-  Kanban,
-  GraduationCap,
-  BrainCircuit,
+  // Calculator and GraduationCap were used by the now-commented-out
+  // Accounting Software / Elearn entries; keep for easy restore.
+  // Calculator,
+  // GraduationCap,
   type LucideIcon,
 } from 'lucide-react';
-import { Price } from '@/components/currency/Price';
+// Price is only used by the temporarily commented-out promo panel below.
+// import { Price } from '@/components/currency/Price';
 
 type AppIcon = { kind: 'img'; src: string } | { kind: 'lucide'; Icon: LucideIcon };
 
@@ -49,57 +47,57 @@ export const CATEGORIES: ProductCategory[] = [
     id: 'communicate',
     label: 'Communicate',
     apps: [
-      { name: 'Snaarp Mail', desc: 'Business email on your own domain', icon: { kind: 'img', src: '/assets/icons/envelope.jpg' }, href: '/products/mail', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
+      { name: 'Snaarp Mail', desc: 'Business email on your own domain', icon: { kind: 'img', src: '/assets/icons/logos/mail.svg' }, href: '/products/mail', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
       { name: 'SnaarpMe', desc: 'Shared calendars & booking links', icon: { kind: 'img', src: '/assets/icons/logos/snaarpme.svg' }, href: '/products/kalender', platforms: ['ios', 'android', 'web'] },
-      { name: 'Contacts', desc: 'One shared address book', icon: { kind: 'img', src: '/assets/icons/search.jpg' }, href: '/products/contacts', platforms: ['ios', 'android', 'web'] },
-      { name: 'Meet', desc: 'Video calls, screen share & recording', icon: { kind: 'img', src: '/assets/icons/apps-meet.jpg' }, href: '/products/meet', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
-      { name: 'Teams', desc: 'Group chat & channels', icon: { kind: 'img', src: '/assets/icons/chat-bubbles.jpg' }, href: '/products/teams', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
-      { name: 'AI Compose', desc: 'AI drafting across every app', icon: { kind: 'img', src: '/assets/icons/ai-sparkle.jpg' }, href: '/products/ai-compose', platforms: ['web'] },
-      { name: 'Business Card', desc: 'Digital business card sharing', icon: { kind: 'img', src: '/assets/icons/logos/business-card.svg' }, href: '/products/business-card', platforms: ['ios', 'android'] },
+      { name: 'Contacts', desc: 'One shared address book', icon: { kind: 'img', src: '/assets/icons/logos/contacts.svg' }, href: '/products/contacts', platforms: ['ios', 'android', 'web'] },
+      { name: 'Meet', desc: 'Video calls, screen share & recording', icon: { kind: 'img', src: '/assets/icons/logos/meet.svg' }, href: '/products/meet', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
+      { name: 'Teams', desc: 'Group chat & channels', icon: { kind: 'img', src: '/assets/icons/logos/teams.svg' }, href: '/products/teams', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
+      { name: 'Thalking', desc: 'Local UK & US numbers, calls & texts', icon: { kind: 'img', src: '/assets/icons/logos/thalking.svg' }, href: '/products/thalking', platforms: ['ios', 'android', 'web'] },
     ],
   },
   {
     id: 'create-store',
     label: 'Create & Store',
     apps: [
-      { name: 'Work Drive', desc: 'Shared file storage', icon: { kind: 'img', src: '/assets/icons/cube.jpg' }, href: '/products/work-drive', platforms: ['web', 'windows', 'macos'] },
-      { name: 'Document', desc: 'Real-time co-editing docs', icon: { kind: 'img', src: '/assets/icons/apps-document.png' }, href: '/products/docs', platforms: ['web', 'windows', 'macos'] },
-      { name: 'Sheet', desc: 'Collaborative spreadsheets', icon: { kind: 'img', src: '/assets/icons/apps-sheet.jpg' }, href: '/products/sheets', platforms: ['web', 'windows', 'macos'] },
-      { name: 'Presentation', desc: 'Build & present decks', icon: { kind: 'img', src: '/assets/icons/p-icon.jpg' }, href: '/products/presentation', platforms: ['web', 'windows', 'macos'] },
+      { name: 'Work Drive', desc: 'Shared file storage', icon: { kind: 'img', src: '/assets/icons/logos/work-drive.svg' }, href: '/products/work-drive', platforms: ['web', 'windows', 'macos'] },
+      { name: 'Document', desc: 'Real-time co-editing docs', icon: { kind: 'img', src: '/assets/icons/logos/document.svg' }, href: '/products/docs', platforms: ['web', 'windows', 'macos'] },
+      { name: 'Sheet', desc: 'Collaborative spreadsheets', icon: { kind: 'img', src: '/assets/icons/logos/sheet.svg' }, href: '/products/sheets', platforms: ['web', 'windows', 'macos'] },
+      { name: 'Presentation', desc: 'Build & present decks', icon: { kind: 'img', src: '/assets/icons/logos/presentation.svg' }, href: '/products/presentation', platforms: ['web', 'windows', 'macos'] },
       { name: 'PDF Reader', desc: 'View, annotate & merge PDFs', icon: { kind: 'img', src: '/assets/icons/logos/pdf-reader.svg' }, href: '/products/pdf-reader', platforms: ['web', 'windows', 'macos'] },
-      { name: 'NotePad', desc: 'Notes & reminders, synced', icon: { kind: 'img', src: '/assets/icons/logos/notepad.svg' }, href: '/products/notepad', platforms: ['ios', 'android', 'web'] },
+      // { name: 'NotePad', desc: 'Notes & reminders, synced', icon: { kind: 'img', src: '/assets/icons/logos/notepad.svg' }, href: '/products/notepad', platforms: ['ios', 'android', 'web'] },
     ],
   },
   {
     id: 'grow-revenue',
     label: 'Grow Revenue',
     apps: [
-      { name: 'CRM', desc: 'Pipeline & deal tracking', icon: { kind: 'lucide', Icon: UsersRound }, href: '/products/crm', platforms: ['ios', 'android', 'web'] },
+      { name: 'CRM', desc: 'Pipeline & deal tracking', icon: { kind: 'img', src: '/assets/icons/logos/crm.svg' }, href: '/products/crm', platforms: ['ios', 'android', 'web'] },
       { name: 'Zeus Contacts', desc: 'Enriched lead data', icon: { kind: 'img', src: '/assets/icons/logos/zeus.svg' }, platforms: ['web'] },
-      { name: 'Sendrit', desc: 'Outbound email sequences', icon: { kind: 'img', src: '/assets/icons/apps-sendrit.jpg' }, platforms: ['web'] },
-      { name: 'VerifyRit', desc: 'Email verification', icon: { kind: 'lucide', Icon: ShieldCheck }, platforms: ['web'] },
+      { name: 'Sendrit', desc: 'Outbound email sequences', icon: { kind: 'img', src: '/assets/icons/logos/sendrit.svg' }, platforms: ['web'] },
+      { name: 'VerifyRit', desc: 'Email verification', icon: { kind: 'img', src: '/assets/icons/logos/verifyrit.svg' }, platforms: ['web'] },
     ],
   },
   {
     id: 'secure-sign',
     label: 'Secure & Sign',
     apps: [
-      { name: 'Lock', desc: 'Shared password manager', icon: { kind: 'img', src: '/assets/icons/apps-lock.jpg' }, href: '/products/lock', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
+      { name: 'Lock', desc: 'Shared password manager', icon: { kind: 'img', src: '/assets/icons/logos/lock.svg' }, href: '/products/lock', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
       // { name: 'VPN', desc: 'Secure remote access', icon: { kind: 'lucide', Icon: Shield } },
       { name: 'eSignature', desc: 'External contract signing', icon: { kind: 'img', src: '/assets/icons/logos/esignature.svg' }, href: '/products/esignature', platforms: ['ios', 'android', 'web'] },
-      { name: 'Doc Sign', desc: 'Internal document approval', icon: { kind: 'img', src: '/assets/icons/logos/doc-sign.svg' }, href: '/products/doc-sign', platforms: ['ios', 'android', 'web'] },
-      { name: 'ID Card', desc: 'Digital staff ID & access', icon: { kind: 'img', src: '/assets/icons/logos/id-card.svg' }, href: '/products/digital-id-card', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
+      // { name: 'Doc Sign', desc: 'Internal document approval', icon: { kind: 'img', src: '/assets/icons/logos/doc-sign.svg' }, href: '/products/doc-sign', platforms: ['ios', 'android', 'web'] },
     ],
   },
   {
     id: 'run-business',
     label: 'Run the Business',
     apps: [
-      { name: 'Books', desc: 'Invoicing & bookkeeping', icon: { kind: 'lucide', Icon: BookOpen }, href: '/products/books', platforms: ['web'] },
-      { name: 'Accounting Software', desc: 'Full accounting & reporting', icon: { kind: 'lucide', Icon: Calculator }, href: '/products/accounting-software', platforms: ['web'] },
-      { name: 'Project Management', desc: 'Sprints, tasks & tracking', icon: { kind: 'lucide', Icon: Kanban }, href: '/products/project-management', platforms: ['web'] },
-      { name: 'Elearn', desc: 'Team training & onboarding', icon: { kind: 'lucide', Icon: GraduationCap }, href: '/products/elearn', platforms: ['ios', 'android', 'web'] },
-      { name: 'Neo AI', desc: 'Cross-app AI assistant', icon: { kind: 'lucide', Icon: BrainCircuit }, platforms: ['web'] },
+      { name: 'Books', desc: 'Invoicing & bookkeeping', icon: { kind: 'img', src: '/assets/icons/logos/books.svg' }, href: '/products/books', platforms: ['web'] },
+      // { name: 'Accounting Software', desc: 'Full accounting & reporting', icon: { kind: 'lucide', Icon: Calculator }, href: '/products/accounting-software', platforms: ['web'] },
+      { name: 'Project Management', desc: 'Sprints, tasks & tracking', icon: { kind: 'img', src: '/assets/icons/logos/project-management.svg' }, href: '/products/project-management', platforms: ['web'] },
+      // { name: 'Elearn', desc: 'Team training & onboarding', icon: { kind: 'lucide', Icon: GraduationCap }, href: '/products/elearn', platforms: ['ios', 'android', 'web'] },
+      { name: 'Business Card', desc: 'Digital business card sharing', icon: { kind: 'img', src: '/assets/icons/logos/business-card.svg' }, href: '/products/business-card', platforms: ['ios', 'android'] },
+      { name: 'ID Card', desc: 'Digital staff ID & access', icon: { kind: 'img', src: '/assets/icons/logos/id-card.svg' }, href: '/products/digital-id-card', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },
+      { name: 'Neo AI', desc: 'Cross-app AI assistant', icon: { kind: 'img', src: '/assets/icons/logos/neo-ai.svg' }, platforms: ['web'] },
     ],
   },
 ];
@@ -137,37 +135,53 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef, forceCategoryId 
   // etc.) where there's no "current product" to reflect.
   const currentCategoryId = findCategoryIdForPath(pathname) ?? CATEGORIES[0].id;
   const [activeCategoryId, setActiveCategoryId] = useState(currentCategoryId);
-  const activeCategory = CATEGORIES.find((c) => c.id === activeCategoryId) ?? CATEGORIES[0];
 
-  const promoVideoRef = useRef<HTMLVideoElement>(null);
-  const [promoVideoLoaded, setPromoVideoLoaded] = useState(false);
+  // All categories now render at once in the apps column; the sidebar acts as
+  // quick-jump navigation that scrolls the matching section into view and
+  // highlights it as active.
+  const appsScrollRef = useRef<HTMLDivElement>(null);
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
-  // Deferred until the menu is first opened (never on initial page load),
-  // and skipped entirely under prefers-reduced-motion — the panel's
-  // gradient background shows through instead.
-  useEffect(() => {
-    if (!isOpen || promoVideoLoaded) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    setPromoVideoLoaded(true);
-  }, [isOpen, promoVideoLoaded]);
+  function jumpToCategory(id: string) {
+    setActiveCategoryId(id);
+    const section = sectionRefs.current[id];
+    const container = appsScrollRef.current;
+    if (section && container) {
+      container.scrollTo({ top: Math.max(0, section.offsetTop - 8), behavior: 'smooth' });
+    }
+  }
 
-  useEffect(() => {
-    if (!promoVideoLoaded) return;
-    const video = promoVideoRef.current;
-    if (!video) return;
-    // A <source> added after mount isn't picked up automatically.
-    video.load();
-    video.play().catch(() => {});
-  }, [promoVideoLoaded]);
-
-  // Pause while the menu is closed so the loop isn't burning cycles offscreen.
-  useEffect(() => {
-    if (!promoVideoLoaded) return;
-    const video = promoVideoRef.current;
-    if (!video) return;
-    if (isOpen) video.play().catch(() => {});
-    else video.pause();
-  }, [isOpen, promoVideoLoaded]);
+  // Promo panel (Column 3) is temporarily commented out in the JSX below, so
+  // its video ref/state and driving effects are disabled too. Restore together.
+  // const promoVideoRef = useRef<HTMLVideoElement>(null);
+  // const [promoVideoLoaded, setPromoVideoLoaded] = useState(false);
+  //
+  // // Deferred until the menu is first opened (never on initial page load),
+  // // and skipped entirely under prefers-reduced-motion — the panel's
+  // // gradient background shows through instead.
+  // useEffect(() => {
+  //   if (!isOpen || promoVideoLoaded) return;
+  //   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  //   setPromoVideoLoaded(true);
+  // }, [isOpen, promoVideoLoaded]);
+  //
+  // useEffect(() => {
+  //   if (!promoVideoLoaded) return;
+  //   const video = promoVideoRef.current;
+  //   if (!video) return;
+  //   // A <source> added after mount isn't picked up automatically.
+  //   video.load();
+  //   video.play().catch(() => {});
+  // }, [promoVideoLoaded]);
+  //
+  // // Pause while the menu is closed so the loop isn't burning cycles offscreen.
+  // useEffect(() => {
+  //   if (!promoVideoLoaded) return;
+  //   const video = promoVideoRef.current;
+  //   if (!video) return;
+  //   if (isOpen) video.play().catch(() => {});
+  //   else video.pause();
+  // }, [isOpen, promoVideoLoaded]);
 
   // Re-sync the sidebar to the current page's category every time the menu
   // opens, so it reflects where the user is rather than remembering
@@ -235,7 +249,8 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef, forceCategoryId 
         <div className="mega-menu-card" ref={panelRef}>
           <span className="mega-menu-notch" aria-hidden="true" />
 
-          {/* Column 1: category sidebar */}
+          {/* Column 1: category sidebar — quick-jump to each section.
+              Temporarily commented out per request.
           <div className="mega-menu-categories">
             <p className="mega-menu-categories-label">Product Categories</p>
             <ul className="mega-menu-categories-list">
@@ -245,7 +260,7 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef, forceCategoryId 
                     type="button"
                     className={`mega-menu-category-btn${cat.id === activeCategoryId ? ' is-active' : ''}`}
                     aria-current={cat.id === activeCategoryId}
-                    onClick={() => setActiveCategoryId(cat.id)}
+                    onClick={() => jumpToCategory(cat.id)}
                   >
                     {cat.label}
                   </button>
@@ -253,32 +268,44 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef, forceCategoryId 
               ))}
             </ul>
           </div>
+          */}
 
-          {/* Column 2: app grid for the active category */}
-          <div className="mega-menu-apps" key={activeCategory.id}>
-            {activeCategory.apps.map((app) => {
-              const isCurrentPage = Boolean(app.href) && app.href === pathname;
-              return (
-                <a
-                  key={app.name}
-                  href={app.href ?? '#'}
-                  className={`mega-menu-app${isCurrentPage ? ' is-active' : ''}`}
-                  aria-current={isCurrentPage ? 'page' : undefined}
-                  onClick={onClose}
-                >
-                  <span className="mega-app-icon">
-                    <AppIconView icon={app.icon} />
-                  </span>
-                  <span className="mega-menu-app-text">
-                    <span className="mega-menu-app-title">{app.name}</span>
-                    <span className="mega-menu-app-desc">{app.desc}</span>
-                  </span>
-                </a>
-              );
-            })}
+          {/* Column 2: every category and all its apps, grouped by section */}
+          <div className="mega-menu-apps-scroll" ref={appsScrollRef}>
+            {CATEGORIES.map((cat) => (
+              <section
+                key={cat.id}
+                className="mega-menu-cat-section"
+                ref={(el) => { sectionRefs.current[cat.id] = el; }}
+              >
+                <p className="mega-menu-cat-heading">{cat.label}</p>
+                <div className="mega-menu-apps">
+                  {cat.apps.map((app) => {
+                    const isCurrentPage = Boolean(app.href) && app.href === pathname;
+                    return (
+                      <a
+                        key={app.name}
+                        href={app.href ?? '#'}
+                        className={`mega-menu-app${isCurrentPage ? ' is-active' : ''}`}
+                        aria-current={isCurrentPage ? 'page' : undefined}
+                        onClick={onClose}
+                      >
+                        <span className="mega-app-icon">
+                          <AppIconView icon={app.icon} />
+                        </span>
+                        <span className="mega-menu-app-text">
+                          <span className="mega-menu-app-title">{app.name}</span>
+                          <span className="mega-menu-app-desc">{app.desc}</span>
+                        </span>
+                      </a>
+                    );
+                  })}
+                </div>
+              </section>
+            ))}
           </div>
 
-          {/* Column 3: promo panel */}
+          {/* Column 3: promo panel — temporarily commented out per request.
           <div className="mega-menu-promo">
             <div className="mega-menu-promo-media">
               <video
@@ -304,6 +331,7 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef, forceCategoryId 
               </a>
             </div>
           </div>
+          */}
         </div>
       </div>
     </div>

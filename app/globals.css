@@ -186,15 +186,48 @@ body {
 .mega-menu-card {
   position: relative;
   width: 100%;
-  max-width: 1040px;
+  max-width: 1200px;
   display: grid;
-  grid-template-columns: minmax(150px, 190px) minmax(280px, 1fr) minmax(200px, 260px);
-  gap: var(--space-10);
+  /* Sidebar (col 1) and promo (col 3) are temporarily commented out in
+     ProductsMegaMenu.tsx, so the card is a single full-width apps column for
+     now. Restore both when they come back:
+     grid-template-columns: minmax(150px, 180px) minmax(420px, 1fr) minmax(190px, 230px); */
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
   background: #fff;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
   box-shadow: 0 24px 48px -12px hsla(220, 30%, 10%, 0.14), 0 8px 16px -8px hsla(220, 30%, 10%, 0.06);
-  padding: var(--space-10);
+  padding: var(--space-8) var(--space-10);
+}
+
+/* Column 2 becomes a scroll area holding every category section, so all
+   products are visible while still grouped. Capped to the viewport so a
+   tall list scrolls internally rather than overflowing the screen. */
+.mega-menu-apps-scroll {
+  min-width: 0;
+  max-height: min(60vh, 460px);
+  overflow-y: auto;
+  padding-right: var(--space-2);
+  scrollbar-width: thin;
+}
+.mega-menu-apps-scroll::-webkit-scrollbar { width: 6px; }
+.mega-menu-apps-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 99px;
+}
+.mega-menu-cat-section + .mega-menu-cat-section {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-subtle);
+}
+.mega-menu-cat-heading {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 0 0 var(--space-4);
 }
 
 .mega-menu-notch {
@@ -257,9 +290,11 @@ body {
 
 .mega-menu-apps {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-6) var(--space-8);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5) var(--space-6);
   align-content: start;
+}
+.mega-menu-apps-scroll {
   animation: mega-fade-in 180ms var(--ease-out);
 }
 @keyframes mega-fade-in {
@@ -267,7 +302,10 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mega-menu-apps { animation: none; }
+  .mega-menu-apps-scroll { animation: none; }
+}
+@media (max-width: 1150px) {
+  .mega-menu-apps { grid-template-columns: repeat(2, 1fr); }
 }
 
 .mega-menu-app {

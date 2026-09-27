@@ -1,0 +1,162 @@
+/* =====================================================================
+   Snaarp Books — site-wide interaction polish (hover + reveal accents).
+   Hand-authored, kept separate from the auto-generated books.css so a
+   regeneration won't wipe it. Namespaced under .snaarp-books-page and
+   targets the bundle's inline-styled elements via their stable
+   data-dc-tpl "type" numbers (siblings of a kind share a number) or the
+   scp* behaviour classes. Inline styles win the cascade, so hover
+   overrides use !important where needed.
+
+   Layout-safety rules:
+   - Never style style="display:contents" wrappers.
+   - Never add transforms to the live mockup canvases (.books-hero-mock,
+     .books-eyn-mock, .books-reports-mock, .books-seamless-mock,
+     .books-mobile-mock) — their coordinate systems are scaled by `zoom`
+     and hold absolutely-positioned React demos with their own motion.
+   - Prefer transform / box-shadow / border hovers; they compose cleanly.
+   ===================================================================== */
+
+.snaarp-books-page {
+  --bk-brand: #7C3AED;
+  --bk-brand-dark: #6D28D9;
+  --bk-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Smooth base transition for the interactive element types we hover. */
+.snaarp-books-page [data-dc-tpl="228"],
+.snaarp-books-page [data-dc-tpl="69"],
+.snaarp-books-page [data-dc-tpl="71"],
+.snaarp-books-page [data-dc-tpl="493"],
+.snaarp-books-page [data-dc-tpl="501"],
+.snaarp-books-page [data-dc-tpl="504"],
+.snaarp-books-page [data-dc-tpl="508"],
+.snaarp-books-page [data-dc-tpl="511"],
+.snaarp-books-page [data-dc-tpl="515"],
+.snaarp-books-page [data-dc-tpl="475"],
+.snaarp-books-page [data-dc-tpl="479"] {
+  transition: transform 0.28s var(--bk-ease), box-shadow 0.28s var(--bk-ease),
+              border-color 0.28s var(--bk-ease), background 0.28s var(--bk-ease),
+              filter 0.28s var(--bk-ease), opacity 0.28s var(--bk-ease) !important;
+  will-change: transform;
+}
+
+/* ── Feature-icon cards ("everything in one platform" grid, tpl 228 / .scp8) ─ */
+.snaarp-books-page .scp8:hover,
+.snaarp-books-page [data-dc-tpl="228"]:hover {
+  transform: translateY(-6px) !important;
+  background: #ffffff !important;
+  box-shadow: rgba(60, 40, 140, 0.16) 0px 22px 40px -18px !important;
+}
+/* the 74x74 tinted tile + its inner colored chip pop/tilt on card hover */
+.snaarp-books-page [data-dc-tpl="228"] [data-dc-tpl="229"] {
+  transition: transform 0.32s var(--bk-ease);
+}
+.snaarp-books-page [data-dc-tpl="228"]:hover [data-dc-tpl="229"] {
+  transform: scale(1.06);
+}
+.snaarp-books-page [data-dc-tpl="228"] [data-dc-tpl="230"] {
+  transition: transform 0.4s var(--bk-ease);
+}
+.snaarp-books-page [data-dc-tpl="228"]:hover [data-dc-tpl="230"] {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+/* ── Primary CTA (tpl 69 / .scp5) reinforce + nudge arrow ────────────── */
+.snaarp-books-page [data-dc-tpl="69"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(124, 58, 237, 0.55) 0px 20px 34px -12px !important;
+}
+.snaarp-books-page [data-dc-tpl="69"]:active { transform: translateY(0) !important; }
+.snaarp-books-page [data-dc-tpl="69"] [data-dc-tpl="70"] { transition: transform 0.3s var(--bk-ease); }
+.snaarp-books-page [data-dc-tpl="69"]:hover [data-dc-tpl="70"] { transform: translateX(4px); }
+
+/* ── Secondary CTA (tpl 71 / .scp6) — play glyph pop ─────────────────── */
+.snaarp-books-page [data-dc-tpl="71"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--bk-brand) !important;
+  background: rgb(247, 244, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 14px 26px -12px !important;
+}
+.snaarp-books-page [data-dc-tpl="71"] [data-dc-tpl="72"] { transition: transform 0.3s var(--bk-ease); }
+.snaarp-books-page [data-dc-tpl="71"]:hover [data-dc-tpl="72"] { transform: scale(1.12); }
+
+/* ── Generic "Explore Reports" / "Create an Invoice" pill CTAs (.scp4/.scpg) ─ */
+.snaarp-books-page .scp4:hover,
+.snaarp-books-page .scpg:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(124, 58, 237, 0.5) 0px 18px 30px -12px !important;
+}
+.snaarp-books-page .scp4:active,
+.snaarp-books-page .scpg:active { transform: translateY(0) !important; }
+
+/* ── Stat cards ("Real results for real businesses", tpl 493 / .scpe) ── */
+.snaarp-books-page .scpe:hover,
+.snaarp-books-page [data-dc-tpl="493"]:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: rgba(124, 58, 237, 0.2) 0px 16px 30px -16px !important;
+  background: linear-gradient(160deg, rgb(248, 247, 254), rgb(244, 243, 251)) !important;
+}
+
+/* ── Integration logo tiles ("Works seamlessly", tpl 501/504/508/511/515) — */
+.snaarp-books-page [data-dc-tpl="501"],
+.snaarp-books-page [data-dc-tpl="504"],
+.snaarp-books-page [data-dc-tpl="508"],
+.snaarp-books-page [data-dc-tpl="511"],
+.snaarp-books-page [data-dc-tpl="515"] {
+  filter: grayscale(0.12);
+  opacity: 0.94;
+}
+.snaarp-books-page [data-dc-tpl="501"]:hover,
+.snaarp-books-page [data-dc-tpl="504"]:hover,
+.snaarp-books-page [data-dc-tpl="508"]:hover,
+.snaarp-books-page [data-dc-tpl="511"]:hover,
+.snaarp-books-page [data-dc-tpl="515"]:hover {
+  transform: translateY(-4px) scale(1.05) !important;
+  filter: grayscale(0) !important;
+  opacity: 1 !important;
+}
+
+/* ── Testimonial card (tpl 475) + its avatar (tpl 479) ───────────────── */
+.snaarp-books-page [data-dc-tpl="475"]:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: rgba(40, 20, 130, 0.16) 0px 22px 40px -22px !important;
+}
+.snaarp-books-page [data-dc-tpl="479"] { transition: transform 0.35s var(--bk-ease); }
+.snaarp-books-page [data-dc-tpl="475"]:hover [data-dc-tpl="479"] { transform: scale(1.06) rotate(-3deg); }
+
+/* ── Feature-check rows: pop the green check bullet on row hover ─────── */
+.snaarp-books-page [data-dc-tpl="64"] [data-dc-tpl="65"],
+.snaarp-books-page [data-dc-tpl="244"] [data-dc-tpl="245"],
+.snaarp-books-page [data-dc-tpl="420"] [data-dc-tpl="421"],
+.snaarp-books-page [data-dc-tpl="549"] [data-dc-tpl="550"],
+.snaarp-books-page [data-dc-tpl="629"] [data-dc-tpl="630"],
+.snaarp-books-page [data-dc-tpl="680"] [data-dc-tpl="681"] {
+  transition: transform 0.25s var(--bk-ease);
+}
+.snaarp-books-page [data-dc-tpl="64"]:hover [data-dc-tpl="65"],
+.snaarp-books-page [data-dc-tpl="244"]:hover [data-dc-tpl="245"],
+.snaarp-books-page [data-dc-tpl="420"]:hover [data-dc-tpl="421"],
+.snaarp-books-page [data-dc-tpl="549"]:hover [data-dc-tpl="550"],
+.snaarp-books-page [data-dc-tpl="629"]:hover [data-dc-tpl="630"],
+.snaarp-books-page [data-dc-tpl="680"]:hover [data-dc-tpl="681"] {
+  transform: scale(1.22);
+}
+
+/* ── Reveal accent: springy scale-in for card grids flagged .bk-pop ──── */
+.snaarp-books-page [data-reveal].bk-pop {
+  transform: translateY(26px) scale(0.97);
+}
+.snaarp-books-page [data-reveal].bk-pop.is-revealed {
+  transform: translateY(0) scale(1);
+}
+
+/* ── Reduced motion: disable movement ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-books-page [data-dc-tpl]:hover,
+  .snaarp-books-page [data-dc-tpl]:hover * {
+    transform: none !important;
+  }
+  .snaarp-books-page [data-reveal].bk-pop {
+    transform: none !important;
+  }
+}

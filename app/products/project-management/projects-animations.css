@@ -1,0 +1,232 @@
+/* =====================================================================
+   Snaarp Projects — site-wide interaction polish (hover + reveal accents).
+   Hand-authored (kept separate from the auto-generated projects.css so a
+   regeneration won't wipe it). Everything is namespaced under
+   .snaarp-projects-page and targets the bundle's inline-styled elements via
+   their stable data-dc-tpl "type" numbers (siblings of a kind share a
+   number) or the scp* behaviour classes. Inline styles win the cascade, so
+   hover overrides use !important where needed.
+
+   Layout-safety rules (from the injected-HTML audit):
+   - Never style the style="display:contents" wrappers.
+   - Never add transforms to the .projects-hero-mock / .projects-eyn-mock
+     zoom nodes (their coordinate system is already scaled by `zoom`).
+   - Prefer transform/box-shadow/border hovers; they compose cleanly.
+   ===================================================================== */
+
+.snaarp-projects-page {
+  --pj-brand: #7C3AED;
+  --pj-brand-dark: #6D28D9;
+  --pj-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Give injected interactive elements a smooth base transition even where the
+   bundle didn't set one. Scoped to the element types we actually hover. */
+.snaarp-projects-page [data-dc-tpl="246"],
+.snaarp-projects-page [data-dc-tpl="361"],
+.snaarp-projects-page [data-dc-tpl="64"],
+.snaarp-projects-page [data-dc-tpl="66"],
+.snaarp-projects-page [data-dc-tpl="268"],
+.snaarp-projects-page [data-dc-tpl="255"] {
+  transition: transform 0.28s var(--pj-ease), box-shadow 0.28s var(--pj-ease),
+              border-color 0.28s var(--pj-ease), background 0.28s var(--pj-ease) !important;
+  will-change: transform;
+}
+
+/* ── Feature-icon cards (6-up grid, tpl 246 / .scpa) ─────────────────── */
+.snaarp-projects-page .scpa:hover,
+.snaarp-projects-page [data-dc-tpl="246"]:hover {
+  transform: translateY(-6px) !important;
+  background: #ffffff !important;
+  box-shadow: rgba(60, 40, 140, 0.16) 0px 22px 40px -18px !important;
+}
+/* the 90x90 tinted tile inside — pop + tilt its inner colored chip */
+.snaarp-projects-page [data-dc-tpl="246"] [data-dc-tpl="247"] {
+  transition: transform 0.32s var(--pj-ease), box-shadow 0.32s var(--pj-ease);
+}
+.snaarp-projects-page [data-dc-tpl="246"]:hover [data-dc-tpl="247"] {
+  transform: scale(1.06);
+}
+.snaarp-projects-page [data-dc-tpl="246"] [data-dc-tpl="248"] {
+  transition: transform 0.4s var(--pj-ease);
+}
+.snaarp-projects-page [data-dc-tpl="246"]:hover [data-dc-tpl="248"] {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+/* ── Use-case tiles ("Built for Every Team", tpl 361 / .scpc) ────────── */
+.snaarp-projects-page .scpc:hover,
+.snaarp-projects-page [data-dc-tpl="361"]:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgb(183, 166, 255) !important;
+  background: rgb(247, 244, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.28) 0px 14px 26px -12px !important;
+}
+.snaarp-projects-page [data-dc-tpl="361"] [data-dc-tpl="362"] {
+  transition: transform 0.3s var(--pj-ease);
+}
+.snaarp-projects-page [data-dc-tpl="361"]:hover [data-dc-tpl="362"] {
+  transform: scale(1.15) translateY(-2px);
+}
+
+/* ── Primary / secondary CTA buttons (reinforce the scp* hovers) ─────── */
+.snaarp-projects-page [data-dc-tpl="64"]:hover,
+.snaarp-projects-page [data-dc-tpl="268"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(124, 58, 237, 0.55) 0px 20px 34px -12px !important;
+}
+.snaarp-projects-page [data-dc-tpl="64"]:active,
+.snaarp-projects-page [data-dc-tpl="268"]:active {
+  transform: translateY(0) !important;
+}
+.snaarp-projects-page [data-dc-tpl="66"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--pj-brand) !important;
+  background: rgb(247, 244, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 14px 26px -12px !important;
+}
+/* nudge the arrow / play glyph inside CTAs on hover */
+.snaarp-projects-page [data-dc-tpl="64"] [data-dc-tpl="65"],
+.snaarp-projects-page [data-dc-tpl="268"] [data-dc-tpl="269"] {
+  transition: transform 0.3s var(--pj-ease);
+}
+.snaarp-projects-page [data-dc-tpl="64"]:hover [data-dc-tpl="65"],
+.snaarp-projects-page [data-dc-tpl="268"]:hover [data-dc-tpl="269"] {
+  transform: translateX(4px);
+}
+.snaarp-projects-page [data-dc-tpl="66"] [data-dc-tpl="67"] {
+  transition: transform 0.3s var(--pj-ease);
+}
+.snaarp-projects-page [data-dc-tpl="66"]:hover [data-dc-tpl="67"] {
+  transform: scale(1.12);
+}
+
+/* ── Eyebrow badge micro-pop (tpl 255) ───────────────────────────────── */
+.snaarp-projects-page [data-dc-tpl="255"]:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: rgba(124, 58, 237, 0.25) 0px 8px 18px -8px !important;
+}
+
+/* ── Trust-logo strip: subtle lift + full-color on hover ─────────────── */
+.snaarp-projects-page [data-dc-tpl="198"] > span {
+  filter: grayscale(0.15);
+  opacity: 0.9;
+  transition: transform 0.28s var(--pj-ease), opacity 0.28s var(--pj-ease), filter 0.28s var(--pj-ease);
+}
+.snaarp-projects-page [data-dc-tpl="198"] > span:hover {
+  transform: translateY(-3px) scale(1.04);
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+/* ── Reveal accent: give card grids a springy entrance beyond the base
+   translateY the shared [data-reveal] system provides. The shared system
+   sets opacity/translateY; we add a gentle scale-in on cards flagged with
+   data-reveal-pop so grids feel alive without fighting the base rule. ─── */
+.snaarp-projects-page [data-reveal].pj-pop {
+  transform: translateY(26px) scale(0.97);
+}
+.snaarp-projects-page [data-reveal].pj-pop.is-revealed {
+  transform: translateY(0) scale(1);
+}
+
+/* ── AI + Automation prompt/action cards (.scpe, tpl 406 & 451) ──────── */
+.snaarp-projects-page .scpe {
+  transition: transform 0.26s var(--pj-ease), box-shadow 0.26s var(--pj-ease),
+              border-color 0.26s var(--pj-ease), background 0.26s var(--pj-ease) !important;
+}
+.snaarp-projects-page .scpe:hover {
+  transform: translateY(-5px) !important;
+  border-color: rgba(124, 58, 237, 0.45) !important;
+  box-shadow: rgba(124, 58, 237, 0.24) 0px 16px 28px -14px !important;
+}
+.snaarp-projects-page .scpe [data-dc-tpl="407"],
+.snaarp-projects-page .scpe [data-dc-tpl="452"] {
+  transition: transform 0.32s var(--pj-ease);
+}
+.snaarp-projects-page .scpe:hover [data-dc-tpl="407"],
+.snaarp-projects-page .scpe:hover [data-dc-tpl="452"] {
+  transform: scale(1.16) translateY(-2px);
+}
+
+/* ── AI input bar: glow on focus/hover + sparkle pulse ───────────────── */
+.snaarp-projects-page [data-dc-tpl="383"],
+.snaarp-projects-page [data-dc-tpl="437"] {
+  transition: border-color 0.25s var(--pj-ease), box-shadow 0.25s var(--pj-ease) !important;
+}
+.snaarp-projects-page [data-dc-tpl="383"]:hover,
+.snaarp-projects-page [data-dc-tpl="383"]:focus {
+  border-color: rgba(124, 58, 237, 0.5) !important;
+  box-shadow: rgba(124, 58, 237, 0.16) 0px 0px 0px 3px !important;
+}
+/* sparkle / rule icon gentle idle pulse */
+.snaarp-projects-page [data-dc-tpl="381"],
+.snaarp-projects-page [data-dc-tpl="435"] {
+  animation: pj-pulse 3s var(--pj-ease) infinite;
+}
+@keyframes pj-pulse {
+  0%, 100% { box-shadow: rgba(124, 58, 237, 0.7) 0px 10px 20px -8px; }
+  50% { box-shadow: rgba(124, 58, 237, 0.45) 0px 12px 26px -6px; }
+}
+
+/* ── Send / Run buttons (tpl 384 AI send, 441 automation run) — press ── */
+.snaarp-projects-page [data-dc-tpl="384"],
+.snaarp-projects-page [data-dc-tpl="441"] {
+  transition: transform 0.22s var(--pj-ease), background 0.22s var(--pj-ease),
+              box-shadow 0.22s var(--pj-ease) !important;
+}
+.snaarp-projects-page [data-dc-tpl="384"]:hover,
+.snaarp-projects-page [data-dc-tpl="441"]:hover {
+  background: var(--pj-brand-dark) !important;
+  transform: scale(1.08) !important;
+  box-shadow: rgba(124, 58, 237, 0.5) 0px 8px 18px -6px !important;
+}
+.snaarp-projects-page [data-dc-tpl="384"]:active,
+.snaarp-projects-page [data-dc-tpl="441"]:active {
+  transform: scale(0.94) !important;
+}
+
+/* ── Automation rule row (tpl 433) — subtle lift on hover ────────────── */
+.snaarp-projects-page [data-dc-tpl="433"] {
+  transition: transform 0.26s var(--pj-ease), box-shadow 0.26s var(--pj-ease) !important;
+}
+.snaarp-projects-page [data-dc-tpl="433"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(40, 20, 130, 0.16) 0px 22px 34px -22px !important;
+}
+
+/* ── Feature-list check bullets (tpl 71 hero / 264 EYN) — pop on row hover */
+.snaarp-projects-page [data-dc-tpl="71"] [data-dc-tpl="72"],
+.snaarp-projects-page [data-dc-tpl="264"] [data-dc-tpl="265"] {
+  transition: transform 0.25s var(--pj-ease);
+}
+.snaarp-projects-page [data-dc-tpl="71"]:hover [data-dc-tpl="72"],
+.snaarp-projects-page [data-dc-tpl="264"]:hover [data-dc-tpl="265"] {
+  transform: scale(1.2);
+}
+
+/* ── App-store badges (Stay Connected) — press feedback ──────────────── */
+.snaarp-projects-page [data-dc-tpl="474"],
+.snaarp-projects-page [data-dc-tpl="480"] {
+  transition: transform 0.22s var(--pj-ease), box-shadow 0.22s var(--pj-ease) !important;
+}
+.snaarp-projects-page [data-dc-tpl="474"]:hover,
+.snaarp-projects-page [data-dc-tpl="480"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(20, 10, 60, 0.22) 0px 10px 20px -8px !important;
+}
+
+/* ── Reduced motion: disable all of the above movement ───────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-projects-page [data-dc-tpl]:hover,
+  .snaarp-projects-page [data-dc-tpl]:hover * {
+    transform: none !important;
+  }
+  .snaarp-projects-page [data-reveal].pj-pop {
+    transform: none !important;
+  }
+  .snaarp-projects-page [data-dc-tpl="381"],
+  .snaarp-projects-page [data-dc-tpl="435"] {
+    animation: none !important;
+  }
+}

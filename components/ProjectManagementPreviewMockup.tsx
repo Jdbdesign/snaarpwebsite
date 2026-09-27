@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import {
   LayoutGrid,
   FolderKanban,
@@ -20,7 +20,6 @@ import {
   CheckCircle2,
   TrendingUp,
   AlertCircle,
-  Folder,
   ChevronDown,
   Grid3x3,
   List as ListIcon,
@@ -70,12 +69,39 @@ const CALENDAR_CELLS: (number | null)[] = [
 const TODAY = 14;
 
 const STATS = [
-  { label: 'To-do', value: '0', Icon: ClipboardList, color: '#7C3AED', bg: '#F3EFFF' },
-  { label: 'Total Projects', value: '0', Icon: FolderKanban, color: '#2563eb', bg: '#EFF6FF' },
-  { label: 'Assigned Tasks', value: '0', Icon: CheckCircle2, color: '#059669', bg: '#ECFDF5' },
-  { label: 'Completed', value: '0', Icon: TrendingUp, color: '#d97706', bg: '#FFFBEB' },
-  { label: 'Overdue', value: '0', Icon: AlertCircle, color: '#dc2626', bg: '#FEF2F2' },
+  { label: 'To-do', value: '18', Icon: ClipboardList, color: '#7C3AED', bg: '#F3EFFF' },
+  { label: 'Total Projects', value: '7', Icon: FolderKanban, color: '#2563eb', bg: '#EFF6FF' },
+  { label: 'Assigned Tasks', value: '32', Icon: CheckCircle2, color: '#059669', bg: '#ECFDF5' },
+  { label: 'Completed', value: '124', Icon: TrendingUp, color: '#d97706', bg: '#FFFBEB' },
+  { label: 'Overdue', value: '3', Icon: AlertCircle, color: '#dc2626', bg: '#FEF2F2' },
 ];
+
+// Populated dashboard content (default state — shown before the tour drives
+// the empty-state create-project flow). Gives the mockup a realistic,
+// "lived-in" look instead of all zeros.
+const CRITICAL_PROJECTS = [
+  { name: 'Website Redesign', tag: 'Design', tagColor: '#7C3AED', tagBg: '#F3EFFF', due: 'Due Sep 30', progress: 68, done: 17, total: 25, priority: 'High', priorityColor: '#dc2626', priorityBg: '#FEF2F2' },
+  { name: 'Mobile App Launch', tag: 'Product', tagColor: '#2563eb', tagBg: '#EFF6FF', due: 'Due Oct 12', progress: 42, done: 11, total: 26, priority: 'High', priorityColor: '#dc2626', priorityBg: '#FEF2F2' },
+  { name: 'Q4 Marketing Campaign', tag: 'Marketing', tagColor: '#059669', tagBg: '#ECFDF5', due: 'Due Oct 05', progress: 55, done: 9, total: 16, priority: 'Medium', priorityColor: '#d97706', priorityBg: '#FFFBEB' },
+];
+
+const TEAM_MEMBERS = [
+  { name: 'Maya Chen', email: 'maya.chen@snaarp.com', role: 'Owner', initials: 'M', color: '#7C3AED', status: '#22c55e' },
+  { name: 'James Okoro', email: 'james.okoro@snaarp.com', role: 'Developer', initials: 'JO', color: '#2563eb', status: '#22c55e' },
+  { name: 'Sofia Almeida', email: 'sofia.a@snaarp.com', role: 'Designer', initials: 'SA', color: '#e11d48', status: '#f59e0b' },
+  { name: 'Daniel Weiss', email: 'daniel.w@snaarp.com', role: 'QA Lead', initials: 'DW', color: '#0891b2', status: '#9ca3af' },
+];
+
+// Calendar events keyed by September day number.
+const CALENDAR_EVENTS: Record<number, { label: string; color: string; bg: string }[]> = {
+  3: [{ label: 'Design review', color: '#7C3AED', bg: '#F3EFFF' }],
+  9: [{ label: 'Sprint planning', color: '#2563eb', bg: '#EFF6FF' }],
+  14: [{ label: 'Client demo', color: '#059669', bg: '#ECFDF5' }],
+  17: [{ label: 'API deadline', color: '#dc2626', bg: '#FEF2F2' }],
+  22: [{ label: 'Marketing sync', color: '#d97706', bg: '#FFFBEB' }],
+  25: [{ label: 'QA testing', color: '#0891b2', bg: '#ECFEFF' }],
+  30: [{ label: 'Launch', color: '#7C3AED', bg: '#F3EFFF' }],
+};
 
 const TEMPLATE_CATEGORIES = ['All', 'Software/IT', 'Marketing/Sales', 'Construction', 'Manufacturing', 'Pharma', 'HR', 'Others'];
 
@@ -115,9 +141,47 @@ const SAMPLE_TASK = {
   dueDate: 'Sep 20, 2026',
 };
 
-export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void } = {}) {
+// ── Autoplay seed data ──────────────────────────────────────────────────
+// Rich, pre-populated content so the autoplay demo never shows empty states.
+// Projects match the `typeof TEMPLATES` shape (icon/title/desc/etc.), with a
+// `progress`/`done` overlay the render can pick up when present.
+const SEED_PROJECTS: (typeof TEMPLATES[number] & { progress?: number; done?: number })[] = [
+  { Icon: Globe, iconBg: '#ECFEFF', iconColor: '#0891b2', title: 'Website Redesign', desc: 'Revamp marketing site and design system.', tasks: 25, badge: 'Software/IT', predefinedTasks: [], progress: 68, done: 17 },
+  { Icon: Laptop2, iconBg: '#EFF6FF', iconColor: '#2563eb', title: 'Mobile App Launch', desc: 'Ship iOS & Android v1.0 to the stores.', tasks: 26, badge: 'Software/IT', predefinedTasks: [], progress: 42, done: 11 },
+  { Icon: LineChart, iconBg: '#EEF2FF', iconColor: '#6366f1', title: 'Q4 Marketing Campaign', desc: 'Plan and run the year-end growth push.', tasks: 16, badge: 'Marketing/Sales', predefinedTasks: [], progress: 55, done: 9 },
+  { Icon: Target, iconBg: '#FEF2F2', iconColor: '#dc2626', title: 'Customer Acquisition', desc: 'Data-driven pipeline & outreach program.', tasks: 14, badge: 'Marketing/Sales', predefinedTasks: [], progress: 30, done: 4 },
+  { Icon: Wrench, iconBg: '#F5F3FF', iconColor: '#7C3AED', title: 'IT Support Revamp', desc: 'Ticketing SLAs and response workflows.', tasks: 12, badge: 'Software/IT', predefinedTasks: [], progress: 80, done: 10 },
+];
+
+const SEED_SPRINTS: (typeof SAMPLE_SPRINT & { project: string; status?: string; statusColor?: string; statusBg?: string })[] = [
+  { name: 'Authentication & Onboarding', goal: 'Ship secure login, signup and session handling.', startDate: 'Sep 15, 2026', endDate: 'Sep 29, 2026', points: 40, project: 'Mobile App Launch', status: 'Active', statusColor: '#059669', statusBg: '#ECFDF5' },
+  { name: 'Design System v2', goal: 'Tokenize colors, type and components across web.', startDate: 'Sep 08, 2026', endDate: 'Sep 22, 2026', points: 34, project: 'Website Redesign', status: 'Active', statusColor: '#059669', statusBg: '#ECFDF5' },
+  { name: 'Checkout & Payments', goal: 'Integrate payment provider and receipts.', startDate: 'Sep 22, 2026', endDate: 'Oct 06, 2026', points: 28, project: 'Mobile App Launch', status: 'Planning', statusColor: '#2563eb', statusBg: '#EFF6FF' },
+];
+
+const SEED_TASKS: (typeof SAMPLE_TASK & { project: string; done?: boolean })[] = [
+  { title: 'Design the login screen', project: 'Mobile App Launch', priority: 'High', priorityColor: '#dc2626', priorityBg: '#FEF2F2', dueDate: 'Sep 20', done: true },
+  { title: 'Set up CI/CD pipeline', project: 'Website Redesign', priority: 'High', priorityColor: '#dc2626', priorityBg: '#FEF2F2', dueDate: 'Sep 21', done: false },
+  { title: 'Write API documentation', project: 'Mobile App Launch', priority: 'Medium', priorityColor: '#d97706', priorityBg: '#FFFBEB', dueDate: 'Sep 24', done: false },
+  { title: 'Audit landing page SEO', project: 'Q4 Marketing Campaign', priority: 'Medium', priorityColor: '#d97706', priorityBg: '#FFFBEB', dueDate: 'Sep 26', done: true },
+  { title: 'Prepare launch email', project: 'Q4 Marketing Campaign', priority: 'Low', priorityColor: '#059669', priorityBg: '#ECFDF5', dueDate: 'Sep 28', done: false },
+  { title: 'QA regression pass', project: 'Website Redesign', priority: 'High', priorityColor: '#dc2626', priorityBg: '#FEF2F2', dueDate: 'Sep 30', done: false },
+];
+
+// A "blank" project created mid-demo (matches the Blank Project template).
+const AUTOPLAY_NEW_PROJECT: typeof TEMPLATES[number] & { progress?: number; done?: number } = {
+  Icon: FileText, iconBg: '#EEF2FF', iconColor: '#6366f1', title: 'Blank Project', desc: 'Start from scratch with a clean slate.', tasks: 0, badge: null, predefinedTasks: [], progress: 0, done: 0,
+};
+
+export function ProjectManagementPreviewMockup({ onEnd, showTour = true, autoplay = false }: { onEnd?: () => void; showTour?: boolean; autoplay?: boolean } = {}) {
   const [activeNav, setActiveNav] = useState('Dashboard');
-  const [tour, setTour] = useState(1); // 1=dashboard, 2=projects, 3=template gallery, 4=template detail, 5=project created,
+  // showTour=false -> render the populated dashboard as a static preview (no
+  // coachmarks / auto-advance). autoplay=true -> run the animated, looping
+  // cursor demo (Dashboard -> Projects -> New Project -> Template Gallery ->
+  // Blank Project -> Use Template -> Sprints -> Tasks -> loop) with all pages
+  // pre-seeded so nothing shows an empty state. autoplay implies no coachmarks.
+  const noCoach = autoplay || !showTour;
+  const [tour, setTour] = useState(noCoach ? 0 : 1); // 1=dashboard, 2=projects, 3=template gallery, 4=template detail, 5=project created,
                                         // 6=sprints page, 7=new sprint modal, 8=sprint created, 9=tasks page, 10=create task modal,
                                         // 11=task created (Done -> onEnd, hands off to Books on the showcase rail), 0=done
   const [showProjects, setShowProjects] = useState(false);
@@ -126,11 +190,15 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
   const [showTemplateModal, setShowTemplateModal] = useState(false);
   const [templateCategory, setTemplateCategory] = useState('All');
   const [selectedTemplate, setSelectedTemplate] = useState<number | null>(null);
-  const [createdProjects, setCreatedProjects] = useState<typeof TEMPLATES>([]);
+  const [createdProjects, setCreatedProjects] = useState<typeof TEMPLATES>(autoplay ? (SEED_PROJECTS as unknown as typeof TEMPLATES) : []);
   const [showNewSprintModal, setShowNewSprintModal] = useState(false);
-  const [createdSprints, setCreatedSprints] = useState<(typeof SAMPLE_SPRINT & { project: string })[]>([]);
+  const [createdSprints, setCreatedSprints] = useState<(typeof SAMPLE_SPRINT & { project: string })[]>(autoplay ? (SEED_SPRINTS as (typeof SAMPLE_SPRINT & { project: string })[]) : []);
   const [showCreateTaskModal, setShowCreateTaskModal] = useState(false);
-  const [createdTasks, setCreatedTasks] = useState<(typeof SAMPLE_TASK & { project: string })[]>([]);
+  const [createdTasks, setCreatedTasks] = useState<(typeof SAMPLE_TASK & { project: string })[]>(autoplay ? (SEED_TASKS as (typeof SAMPLE_TASK & { project: string })[]) : []);
+
+  // ── Animated cursor (autoplay) ────────────────────────────────────────
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [cursor, setCursor] = useState<{ x: number; y: number; clicking: boolean; visible: boolean }>({ x: 120, y: 90, clicking: false, visible: false });
 
   const finishTour = () => {
     setTour(0);
@@ -230,8 +298,103 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
     if (tour === 10) setTour(11);
   };
 
+  // Reset to the seeded starting point for the next autoplay loop.
+  const resetForLoop = useCallback(() => {
+    setActiveNav('Dashboard');
+    setShowProjects(false);
+    setShowSprints(false);
+    setShowTasks(false);
+    setShowTemplateModal(false);
+    setShowNewSprintModal(false);
+    setShowCreateTaskModal(false);
+    setSelectedTemplate(null);
+    setCreatedProjects(SEED_PROJECTS as unknown as typeof TEMPLATES);
+  }, []);
+
+  // ── Autoplay engine ───────────────────────────────────────────────────
+  // A scripted loop that moves the animated cursor to real targets (tagged
+  // with data-auto="...") and performs the same actions a user's click would.
+  useEffect(() => {
+    if (!autoplay) return;
+    let cancelled = false;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    const wait = (ms: number) => new Promise<void>((res) => { const t = setTimeout(res, ms); timers.push(t); });
+
+    const moveTo = (sel: string) => new Promise<void>((resolve) => {
+      const container = containerRef.current;
+      const target = container?.querySelector<HTMLElement>(`[data-auto="${sel}"]`);
+      if (!container || !target) { resolve(); return; }
+      const cb = container.getBoundingClientRect();
+      const tb = target.getBoundingClientRect();
+      // The cursor lives inside the mockup, which may be scaled by CSS `zoom`
+      // on an ancestor. getBoundingClientRect() returns zoomed (screen) px,
+      // but the cursor's translate() is interpreted in the container's own
+      // (unzoomed) coordinate space. Divide by the effective zoom so the
+      // pointer lands exactly on the target. offsetWidth is the unzoomed
+      // layout width, so cb.width / offsetWidth == the applied zoom scale.
+      const zoom = container.offsetWidth ? cb.width / container.offsetWidth : 1;
+      const x = (tb.left - cb.left + tb.width / 2) / zoom;
+      const y = (tb.top - cb.top + tb.height / 2) / zoom;
+      setCursor((c) => ({ ...c, x, y, visible: true, clicking: false }));
+      resolve();
+    });
+
+    const click = async () => {
+      setCursor((c) => ({ ...c, clicking: true }));
+      await wait(240);
+      setCursor((c) => ({ ...c, clicking: false }));
+    };
+
+    const run = async () => {
+      while (!cancelled) {
+        // Start on the dashboard
+        resetForLoop();
+        setCursor({ x: 120, y: 90, clicking: false, visible: true });
+        await wait(1600);
+        if (cancelled) return;
+
+        // 1. Click Projects nav → filled Projects page
+        await moveTo('nav-Projects'); await wait(900);
+        await click(); goProjects(); await wait(1500);
+        if (cancelled) return;
+
+        // 2. Click New Project → Template Gallery modal
+        await moveTo('new-project'); await wait(800);
+        await click(); openTemplateModal(); await wait(1300);
+        if (cancelled) return;
+
+        // 3. Click the Blank Project card → template detail
+        await moveTo('template-0'); await wait(800);
+        await click(); openTemplateDetail(0); await wait(1400);
+        if (cancelled) return;
+
+        // 4. Click Use Template → project created, back on Projects page
+        await moveTo('use-template'); await wait(800);
+        await click(); handleUseTemplate(); await wait(1700);
+        if (cancelled) return;
+
+        // 5. Click Sprints nav → filled Sprints page
+        await moveTo('nav-Sprints'); await wait(900);
+        await click(); goSprints(); await wait(1900);
+        if (cancelled) return;
+
+        // 6. Click Tasks nav → filled Tasks page
+        await moveTo('nav-Tasks'); await wait(900);
+        await click(); goTasksPage(); await wait(2100);
+        if (cancelled) return;
+
+        // 7. Move back toward the dashboard nav, then loop
+        await moveTo('nav-Dashboard'); await wait(800);
+        await click(); goDashboard(); await wait(1400);
+      }
+    };
+    run();
+    return () => { cancelled = true; timers.forEach(clearTimeout); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoplay]);
+
   return (
-    <div style={{ display: 'flex', height: '100%', width: '100%', fontFamily: 'Poppins, sans-serif', fontSize: '11px', color: '#1a1a1a', overflow: 'hidden', background: '#f4f5f7', position: 'relative' }}>
+    <div ref={containerRef} style={{ display: 'flex', height: '100%', width: '100%', fontFamily: 'Poppins, sans-serif', fontSize: '11px', color: '#1a1a1a', overflow: 'hidden', background: '#f4f5f7', position: 'relative' }}>
       {/* Sidebar */}
       <div style={{ width: '158px', flexShrink: 0, background: '#fff', borderRight: '1px solid #eef0f2', padding: '12px 10px', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px', paddingLeft: '2px' }}>
@@ -247,6 +410,7 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
           return (
             <div
               key={item.label}
+              data-auto={`nav-${item.label}`}
               onClick={() => {
                 if (item.label === 'Dashboard') goDashboard();
                 else if (item.label === 'Projects') goProjects();
@@ -330,34 +494,54 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
           {/* Critical Projects + Team Status */}
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '16px' }}>
             <div style={{ background: '#fff', borderRadius: '12px', border: '1px solid #eef0f2', padding: '18px', minHeight: '230px', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '14px' }}>
                 <span style={{ fontSize: '13px', fontWeight: 700 }}>Critical Projects</span>
                 <span style={{ marginLeft: 'auto', fontSize: '10px', color: '#7C3AED', fontWeight: 600, cursor: 'pointer' }}>See All</span>
               </div>
-              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-                <div style={{ width: '52px', height: '52px', borderRadius: '50%', border: '1.5px solid #e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Folder size={22} style={{ color: '#bbb' }} />
-                </div>
-                <span style={{ fontSize: '11px', color: '#999' }}>No projects yet</span>
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {CRITICAL_PROJECTS.slice(0, 1).map((p) => (
+                  <div key={p.name} style={{ border: '1px solid #eef0f2', borderRadius: '10px', padding: '12px 14px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '9px' }}>
+                      <span style={{ fontSize: '11.5px', fontWeight: 700, color: '#1a1a1a' }}>{p.name}</span>
+                      <span style={{ fontSize: '8px', fontWeight: 700, color: p.tagColor, background: p.tagBg, borderRadius: '5px', padding: '2px 7px' }}>{p.tag}</span>
+                      <span style={{ marginLeft: 'auto', fontSize: '8px', fontWeight: 700, color: p.priorityColor, background: p.priorityBg, borderRadius: '5px', padding: '2px 7px' }}>{p.priority}</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '7px' }}>
+                      <div style={{ flex: 1, height: '5px', borderRadius: '4px', background: '#f0f0f2', overflow: 'hidden' }}>
+                        <div style={{ height: '100%', width: `${p.progress}%`, borderRadius: '4px', background: p.tagColor }} />
+                      </div>
+                      <span style={{ fontSize: '9px', fontWeight: 700, color: '#555', flexShrink: 0 }}>{p.progress}%</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: '9px', color: '#999' }}>{p.done} of {p.total} tasks</span>
+                      <span style={{ fontSize: '9px', color: '#999' }}>{p.due}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
             <div style={{ background: '#fff', borderRadius: '12px', border: '1px solid #eef0f2', padding: '18px' }}>
-              <div style={{ fontSize: '13px', fontWeight: 700, marginBottom: '14px' }}>Team Status</div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
-                <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '11px', fontWeight: 700, flexShrink: 0 }}>M</div>
-                <div style={{ minWidth: 0, flex: 1 }}>
-                  <div style={{ fontSize: '10.5px', fontWeight: 700, color: '#1a1a1a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>maya.chen@snaarp.com</div>
-                  <div style={{ fontSize: '9.5px', color: '#999' }}>Owner</div>
-                </div>
-                <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e', flexShrink: 0 }} />
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '14px' }}>
+                <span style={{ fontSize: '13px', fontWeight: 700 }}>Team Status</span>
+                <span style={{ marginLeft: 'auto', fontSize: '9px', fontWeight: 700, color: '#059669', background: '#ECFDF5', borderRadius: '5px', padding: '2px 7px' }}>2 online</span>
               </div>
+              {TEAM_MEMBERS.slice(0, 2).map((m) => (
+                <div key={m.email} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+                  <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: m.color, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '10px', fontWeight: 700, flexShrink: 0 }}>{m.initials}</div>
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div style={{ fontSize: '10.5px', fontWeight: 700, color: '#1a1a1a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{m.name}</div>
+                    <div style={{ fontSize: '9.5px', color: '#999' }}>{m.role}</div>
+                  </div>
+                  <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: m.status, flexShrink: 0 }} />
+                </div>
+              ))}
               <div style={{ borderTop: '1px solid #eef0f2', paddingTop: '12px', display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
                 <span style={{ fontSize: '10.5px', fontWeight: 600, color: '#555' }}>Team Progress</span>
-                <span style={{ marginLeft: 'auto', fontSize: '10.5px', fontWeight: 700, color: '#1a1a1a' }}>0%</span>
+                <span style={{ marginLeft: 'auto', fontSize: '10.5px', fontWeight: 700, color: '#1a1a1a' }}>72%</span>
               </div>
               <div style={{ height: '6px', borderRadius: '4px', background: '#f0f0f2', overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: '0%', borderRadius: '4px', background: '#7C3AED' }} />
+                <div style={{ height: '100%', width: '72%', borderRadius: '4px', background: '#7C3AED' }} />
               </div>
             </div>
           </div>
@@ -381,14 +565,18 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
                 {CALENDAR_CELLS.map((day, i) => {
                   const isToday = day === TODAY;
+                  const events = day !== null ? (CALENDAR_EVENTS[day] ?? []) : [];
                   return (
-                    <div key={i} style={{ height: '52px', borderRight: (i + 1) % 7 === 0 ? 'none' : '1px solid #f2f3f5', borderBottom: i < CALENDAR_CELLS.length - 7 ? '1px solid #f2f3f5' : 'none', display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start', padding: '6px' }}>
+                    <div key={i} style={{ height: '52px', borderRight: (i + 1) % 7 === 0 ? 'none' : '1px solid #f2f3f5', borderBottom: i < CALENDAR_CELLS.length - 7 ? '1px solid #f2f3f5' : 'none', display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '3px', padding: '5px' }}>
                       {day !== null && (
                         <span style={{
-                          width: '20px', height: '20px', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          width: '20px', height: '20px', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                           fontSize: '10px', fontWeight: isToday ? 700 : 500, color: isToday ? '#fff' : '#555', background: isToday ? '#7C3AED' : 'transparent',
                         }}>{day}</span>
                       )}
+                      {events.map((ev) => (
+                        <span key={ev.label} style={{ fontSize: '7.5px', fontWeight: 600, color: ev.color, background: ev.bg, borderRadius: '4px', padding: '2px 4px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ev.label}</span>
+                      ))}
                     </div>
                   );
                 })}
@@ -422,7 +610,7 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
                 <span style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '6px 10px', borderRadius: '6px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600 }}><Grid3x3 size={12} /> Grid</span>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '6px 10px', borderRadius: '6px', color: '#666', fontSize: '10.5px', fontWeight: 600, cursor: 'pointer' }}><ListIcon size={12} /> List</span>
               </div>
-              <div onClick={openTemplateModal} style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '7px 14px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, cursor: 'pointer' }}>
+              <div data-auto="new-project" onClick={openTemplateModal} style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '7px 14px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, cursor: 'pointer' }}>
                 <Plus size={12} /> New Project
               </div>
             </div>
@@ -480,10 +668,19 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
                     <span style={{ marginLeft: 'auto', fontSize: '8.5px', fontWeight: 700, color: '#059669', background: '#ECFDF5', borderRadius: '5px', padding: '2px 7px' }}>Active</span>
                   </div>
                   <div style={{ fontSize: '12px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px' }}>{p.title}</div>
-                  <div style={{ fontSize: '9.5px', color: '#888', marginBottom: '8px' }}>0 of {p.predefinedTasks.length || p.tasks || 0} tasks complete</div>
-                  <div style={{ height: '5px', borderRadius: '4px', background: '#f0f0f2', overflow: 'hidden' }}>
-                    <div style={{ height: '100%', width: '0%', borderRadius: '4px', background: '#7C3AED' }} />
-                  </div>
+                  {(() => {
+                    const total = p.predefinedTasks.length || p.tasks || 0;
+                    const done = (p as { done?: number }).done ?? 0;
+                    const pct = (p as { progress?: number }).progress ?? (total ? Math.round((done / total) * 100) : 0);
+                    return (
+                      <>
+                        <div style={{ fontSize: '9.5px', color: '#888', marginBottom: '8px' }}>{done} of {total} tasks complete</div>
+                        <div style={{ height: '5px', borderRadius: '4px', background: '#f0f0f2', overflow: 'hidden' }}>
+                          <div style={{ height: '100%', width: `${pct}%`, borderRadius: '4px', background: '#7C3AED' }} />
+                        </div>
+                      </>
+                    );
+                  })()}
                 </div>
               ))}
             </div>
@@ -541,13 +738,18 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '12px', marginBottom: '16px' }}>
-            {[
-              { label: 'Total Sprints', value: createdSprints.length, Icon: Repeat, color: '#7C3AED' },
-              { label: 'Active Sprint', value: createdSprints.length, Icon: CircleDot, color: '#059669' },
-              { label: 'Completed', value: 0, Icon: CheckCircle2, color: '#2563eb' },
-              { label: 'Avg Velocity', value: 0, Icon: TrendingUp, color: '#d97706' },
-              { label: 'Points Delivered', value: 0, Icon: Zap, color: '#dc2626' },
-            ].map((s) => (
+            {(() => {
+              const n = createdSprints.length;
+              const active = createdSprints.filter((s) => (s as { status?: string }).status !== 'Planning' && (s as { status?: string }).status !== 'Completed').length;
+              const planning = createdSprints.filter((s) => (s as { status?: string }).status === 'Planning').length;
+              const totalPts = createdSprints.reduce((sum, s) => sum + (s.points || 0), 0);
+              return [
+              { label: 'Total Sprints', value: n, Icon: Repeat, color: '#7C3AED' },
+              { label: 'Active Sprint', value: active, Icon: CircleDot, color: '#059669' },
+              { label: 'Completed', value: n ? Math.max(0, n - active - planning) : 0, Icon: CheckCircle2, color: '#2563eb' },
+              { label: 'Avg Velocity', value: n ? Math.round(totalPts / n) : 0, Icon: TrendingUp, color: '#d97706' },
+              { label: 'Points Delivered', value: totalPts, Icon: Zap, color: '#dc2626' },
+            ]; })().map((s) => (
               <div key={s.label} style={{ background: '#fff', borderRadius: '12px', border: '1px solid #eef0f2', padding: '14px' }}>
                 <div style={{ fontSize: '10px', fontWeight: 600, color: '#777', marginBottom: '10px' }}>{s.label}</div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -559,11 +761,18 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-            {SPRINT_FILTERS.map((f) => (
+            {SPRINT_FILTERS.map((f) => {
+              const count = f === 'All'
+                ? createdSprints.length
+                : createdSprints.filter((s) => {
+                    const st = (s as { status?: string }).status ?? 'Active';
+                    return f === st;
+                  }).length;
+              return (
               <span key={f} style={{ fontSize: '10px', fontWeight: 700, color: f === 'All' ? '#fff' : '#555', background: f === 'All' ? '#1a1a1a' : '#fff', border: '1px solid #eef0f2', borderRadius: '7px', padding: '5px 10px', cursor: 'pointer' }}>
-                {f === 'All' ? createdSprints.length : 0} {f}
+                {count} {f}
               </span>
-            ))}
+            ); })}
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '8px', background: '#f4f5f7', border: '1px solid #eef0f2', borderRadius: '9px', padding: '7px 12px', width: '180px' }}>
               <Search size={12} style={{ color: '#999' }} />
               <span style={{ fontSize: '10px', color: '#999' }}>Search sprints...</span>
@@ -585,7 +794,7 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
               <div key={`${s.name}-${i}`} style={{ background: '#fff', border: '1px solid #eef0f2', borderRadius: '12px', padding: '16px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '6px' }}>
                   <span style={{ fontSize: '12.5px', fontWeight: 700, color: '#1a1a1a' }}>{s.name}</span>
-                  <span style={{ marginLeft: 'auto', fontSize: '8.5px', fontWeight: 700, color: '#059669', background: '#ECFDF5', borderRadius: '5px', padding: '2px 7px' }}>Active</span>
+                  <span style={{ marginLeft: 'auto', fontSize: '8.5px', fontWeight: 700, color: (s as { statusColor?: string }).statusColor ?? '#059669', background: (s as { statusBg?: string }).statusBg ?? '#ECFDF5', borderRadius: '5px', padding: '2px 7px' }}>{(s as { status?: string }).status ?? 'Active'}</span>
                 </div>
                 <div style={{ fontSize: '10px', color: '#888', marginBottom: '10px' }}>{s.goal}</div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '14px', fontSize: '9.5px', color: '#666' }}>
@@ -638,7 +847,7 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
             </div>
             <div>
               <div style={{ fontSize: '17px', fontWeight: 800, color: '#1a1a1a' }}>Work Items</div>
-              <div style={{ fontSize: '9.5px', color: '#999' }}>{createdTasks.length} tasks · 0 issues · 0 bugs</div>
+              <div style={{ fontSize: '9.5px', color: '#999' }}>{createdTasks.length} tasks · {createdTasks.length ? 3 : 0} issues · {createdTasks.length ? 2 : 0} bugs</div>
             </div>
             <div onClick={openCreateTaskModal} style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '6px', padding: '7px 14px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600, cursor: 'pointer' }}>
               <Plus size={12} /> Add Task
@@ -646,20 +855,27 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#fff', border: '1px solid #eef0f2', borderRadius: '9px', padding: '10px 14px', marginBottom: '14px' }}>
-            <FolderKanban size={13} style={{ color: '#999' }} />
+            <FolderKanban size={13} style={{ color: createdTasks.length ? '#7C3AED' : '#999' }} />
             <span style={{ fontSize: '10px', fontWeight: 600, color: '#999' }}>Project:</span>
-            <span style={{ fontSize: '10.5px', color: '#bbb' }}>Select a project</span>
+            <span style={{ fontSize: '10.5px', color: createdTasks.length ? '#1a1a1a' : '#bbb', fontWeight: createdTasks.length ? 700 : 400 }}>{createdTasks.length ? 'All projects' : 'Select a project'}</span>
           </div>
 
+          {(() => {
+            const total = createdTasks.length;
+            const done = createdTasks.filter((t) => (t as { done?: boolean }).done).length;
+            const pct = total ? Math.round((done / total) * 100) : 0;
+            return (
           <div style={{ background: '#fff', border: '1px solid #eef0f2', borderRadius: '9px', padding: '12px 14px', marginBottom: '16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
               <span style={{ fontSize: '10.5px', fontWeight: 700, color: '#555' }}>Overall Progress</span>
-              <span style={{ marginLeft: 'auto', fontSize: '10px', color: '#999' }}>0 of {createdTasks.length} completed · 0%</span>
+              <span style={{ marginLeft: 'auto', fontSize: '10px', color: '#999' }}>{done} of {total} completed · {pct}%</span>
             </div>
             <div style={{ height: '6px', borderRadius: '4px', background: '#f0f0f2', overflow: 'hidden' }}>
-              <div style={{ height: '100%', width: '0%', borderRadius: '4px', background: '#7C3AED' }} />
+              <div style={{ height: '100%', width: `${pct}%`, borderRadius: '4px', background: '#7C3AED' }} />
             </div>
           </div>
+            );
+          })()}
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '7px 12px', borderRadius: '8px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 600 }}><CheckSquare size={12} /> Tasks ({createdTasks.length})</span>
@@ -706,8 +922,12 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {createdTasks.map((t, i) => (
                 <div key={`${t.title}-${i}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#fff', border: '1px solid #eef0f2', borderRadius: '10px', padding: '12px 14px' }}>
-                  <span style={{ width: '14px', height: '14px', borderRadius: '4px', border: '1.5px solid #ddd', flexShrink: 0 }} />
-                  <span style={{ fontSize: '11px', fontWeight: 600, color: '#1a1a1a' }}>{t.title}</span>
+                  {(t as { done?: boolean }).done ? (
+                    <span style={{ width: '14px', height: '14px', borderRadius: '4px', background: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><CheckSquare size={9} style={{ color: '#fff' }} /></span>
+                  ) : (
+                    <span style={{ width: '14px', height: '14px', borderRadius: '4px', border: '1.5px solid #ddd', flexShrink: 0 }} />
+                  )}
+                  <span style={{ fontSize: '11px', fontWeight: 600, color: '#1a1a1a', textDecoration: (t as { done?: boolean }).done ? 'line-through' : 'none' }}>{t.title}</span>
                   <span style={{ fontSize: '9.5px', color: '#999' }}>{t.project}</span>
                   <span style={{ marginLeft: 'auto', fontSize: '8.5px', fontWeight: 700, color: t.priorityColor, background: t.priorityBg, borderRadius: '5px', padding: '2px 7px' }}>{t.priority}</span>
                   <span style={{ fontSize: '9.5px', color: '#999' }}>{t.dueDate}</span>
@@ -764,7 +984,7 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                   {TEMPLATES.map((t, i) => (
-                    <div key={t.title} onClick={() => openTemplateDetail(i)} style={{ border: '1px solid #eef0f2', borderRadius: '10px', padding: '12px', cursor: 'pointer' }}>
+                    <div key={t.title} data-auto={`template-${i}`} onClick={() => openTemplateDetail(i)} style={{ border: '1px solid #eef0f2', borderRadius: '10px', padding: '12px', cursor: 'pointer' }}>
                       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '8px' }}>
                         <div style={{ width: '26px', height: '26px', borderRadius: '7px', background: t.iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <t.Icon size={13} style={{ color: t.iconColor }} />
@@ -820,7 +1040,7 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
 
                 <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', borderTop: '1px solid #eef0f2', paddingTop: '14px' }}>
                   <div onClick={closeTemplateModal} style={{ padding: '8px 18px', borderRadius: '9px', border: '1px solid #eef0f2', fontSize: '10.5px', fontWeight: 700, color: '#555', cursor: 'pointer' }}>Cancel</div>
-                  <div onClick={handleUseTemplate} style={{ padding: '8px 18px', borderRadius: '9px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 700, cursor: 'pointer' }}>Use Template</div>
+                  <div data-auto="use-template" onClick={handleUseTemplate} style={{ padding: '8px 18px', borderRadius: '9px', background: '#7C3AED', color: '#fff', fontSize: '10.5px', fontWeight: 700, cursor: 'pointer' }}>Use Template</div>
                 </div>
               </>
               )}
@@ -978,6 +1198,33 @@ export function ProjectManagementPreviewMockup({ onEnd }: { onEnd?: () => void }
           </div>
         )}
       </div>
+
+      {/* Animated cursor (autoplay only) */}
+      {autoplay && cursor.visible && (
+        <div
+          style={{
+            position: 'absolute', left: 0, top: 0, zIndex: 10000, pointerEvents: 'none',
+            transform: `translate(${cursor.x - 2}px, ${cursor.y - 1}px)`,
+            transition: 'transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
+            willChange: 'transform',
+          }}
+        >
+          {/* click ripple */}
+          <span
+            style={{
+              position: 'absolute', left: '-9px', top: '-9px', width: '32px', height: '32px', borderRadius: '50%',
+              background: 'rgba(124, 58, 237, 0.30)',
+              transform: cursor.clicking ? 'scale(1.4)' : 'scale(0.2)',
+              opacity: cursor.clicking ? 1 : 0,
+              transition: 'transform 0.25s ease-out, opacity 0.25s ease-out',
+            }}
+          />
+          {/* pointer — tip of the arrow is at the SVG origin (top-left) */}
+          <svg width="20" height="20" viewBox="0 0 24 24" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.25))', transform: cursor.clicking ? 'scale(0.82)' : 'scale(1)', transition: 'transform 0.12s ease' }}>
+            <path d="M5 3l3.5 15 2.5-6 6-2.5L5 3z" fill="#fff" stroke="#1a1a1a" strokeWidth="1.5" strokeLinejoin="round" />
+          </svg>
+        </div>
+      )}
     </div>
   );
 }

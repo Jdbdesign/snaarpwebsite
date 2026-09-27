@@ -1,4 +1,4 @@
-/* AUTO-GENERATED from standalone "Snaarp Books Website.html" — do not edit by hand. */
+/* AUTO-GENERATED from standalone "Snaarp Projects Website.html" — do not edit by hand. */
 
 /* Fonts: Caveat, Plus Jakarta Sans */
 
@@ -285,17 +285,16 @@
 
 
 
-/* ===== Snaarp Books page base (scoped) =====
-   Mirrors the standalone file's minimal reset AND neutralizes the host
-   app's Tailwind Preflight so text metrics match the original exactly.
-   The standalone relied on the browser default line-height (normal); the
-   host app sets line-height:1.5 globally, which inflated every wrapped
-   text block. Restore 'normal' here so the page renders pixel-identically. */
-.snaarp-books-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#0B0D2A;background:#FAFAFE;-webkit-font-smoothing:antialiased;scroll-behavior:smooth;line-height:normal}
-.snaarp-books-page *{box-sizing:border-box;line-height:normal}
-.snaarp-books-page a{color:#7C3AED;text-decoration:none}
-.snaarp-books-page a:hover{color:#6D28D9}
-.snaarp-books-page button,.snaarp-books-page input{font-family:inherit}
+/* ===== Snaarp Projects page base (scoped) — mirrors the standalone reset
+   AND neutralizes the host app's Tailwind Preflight so text metrics match
+   the original exactly (Preflight sets line-height:1.5 globally, which
+   inflated wrapped text; restore 'normal' here). ===== */
+.snaarp-projects-page{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#0B0D2A;background:#FAFAFE;-webkit-font-smoothing:antialiased;scroll-behavior:smooth;line-height:normal}
+.snaarp-projects-page *{box-sizing:border-box;line-height:normal}
+.snaarp-projects-page a{color:#7C3AED;text-decoration:none}
+.snaarp-projects-page a:hover{color:#6D28D9}
+.snaarp-projects-page button,.snaarp-projects-page input,.snaarp-projects-page select{font-family:inherit}
+@keyframes spn{to{transform:rotate(360deg)}}
 
 
 /* ===== Interactive hover styles (scp*) ===== */
@@ -307,207 +306,172 @@
 .scp4:hover { background: rgb(109, 40, 217) !important; }
 .scp5:hover { background: rgb(109, 40, 217) !important; transform: translateY(-1px) !important; }
 .scp6:hover { border-color: rgb(124, 58, 237) !important; background: rgb(247, 244, 255) !important; }
-.scp7:hover { border-color: rgb(217, 208, 255) !important; }
-.scp8:hover { background: rgb(255, 255, 255) !important; box-shadow: rgba(40, 20, 130, 0.25) 0px 18px 40px -20px !important; transform: translateY(-3px) !important; }
-.scp9:hover { background: rgb(247, 244, 255) !important; border-color: rgb(221, 212, 255) !important; }
+.scp7:hover { background: rgb(247, 245, 255) !important; }
+.scp8:hover { border-color: rgb(217, 208, 255) !important; box-shadow: rgba(124, 58, 237, 0.4) 0px 6px 14px -8px !important; }
+.scp9:hover { background: rgb(241, 237, 255) !important; }
 
 
 /* =====================================================================
-   Container width + gutters — aligned to the site's shared page layout,
-   using Snaarp Mail (/products/mail) as the reference (max-w-7xl mx-auto
-   px-6 lg:px-10, with the sitewide >=1440px full-bleed / 130px-gutter
-   cutover from globals.css lines ~6894-6911).
-
-   The standalone bundle locked every section to max-width:1280px with
-   clamp(20px,4vw,48px) side padding, so on large screens Books sat in a
-   narrower centered column than the rest of the site. These rules make the
-   Books section containers (.books-container, tagged on each inline-styled
-   1280px wrapper) behave exactly like every other page:
-     - laptop / desktop (<1440px): capped at 1280px, 40px side gutters
-       (matches lg:px-10). Vertical padding stays as authored inline.
-     - large screen (>=1440px): full-bleed, 130px side gutters (matches
-       main#main-content .max-w-7xl... :not(.header-container)).
-   Longhand + !important is required because the widths/side padding live
-   in the elements' inline `style` shorthand, which otherwise wins. Vertical
-   padding is left to the inline shorthand so each section keeps its rhythm.
+   Container width + gutters + hero typography — aligned to the site's
+   shared page layout, using Snaarp Mail (/products/mail) as the reference
+   (max-w-7xl mx-auto px-6 lg:px-10, with the sitewide >=1440px full-bleed /
+   130px-gutter cutover). Same treatment applied to Snaarp Books. The
+   standalone bundle locked sections to max-width:1280px + clamp gutters, so
+   on large screens the page sat in a narrower column than the rest of the
+   site. Longhand + !important overrides the elements' inline style.
    ===================================================================== */
-.snaarp-books-page .books-container {
+.snaarp-projects-page .projects-container {
   max-width: 1280px !important;
   padding-left: 40px !important;
   padding-right: 40px !important;
 }
 @media (min-width: 1440px) {
-  .snaarp-books-page .books-container {
+  .snaarp-projects-page .projects-container {
     max-width: none !important;
     padding-left: 130px !important;
     padding-right: 130px !important;
   }
 }
 
-/* =====================================================================
-   Hero typography — aligned to Snaarp Mail's display scale.
-   Mail's .mail-hero-heading ramps 56px (desktop/laptop) -> 72px (>=1440px)
-   and its hero lede is 18px (1.125rem). The standalone Books bundle used a
-   flat clamp(40px,5.2vw,62px) heading and a 16.5px lede, which read smaller
-   than the rest of the site on large screens. Match Mail's size ramp on
-   laptop / desktop / large-screen while keeping Books' own weight (800),
-   tight line-height (1.04) and letter-spacing so the page keeps its
-   character — only the SIZE tracks Mail, per request. Longhand !important
-   overrides the inline `font-size`. */
-.snaarp-books-page .books-hero-heading {
+/* Hero typography — match Mail's display scale: heading 56px (desktop/
+   laptop) -> 72px (>=1440), lede 18px/1.6. Keep the bundle's weight (800),
+   tight line-height and tracking so the page keeps its character — only the
+   SIZE tracks Mail. The heading has explicit <br>s (three intended lines:
+   "Plan Smarter." / "Work Together." / "Deliver Faster."), so no wrapping
+   fix is needed here. */
+.snaarp-projects-page .projects-hero-heading {
   font-size: 56px !important;
 }
 @media (min-width: 1440px) {
-  .snaarp-books-page .books-hero-heading {
+  .snaarp-projects-page .projects-hero-heading {
     font-size: 72px !important;
   }
 }
-/* Laptop range (below the 1440px large-screen cutover used sitewide):
-   Mail holds 56px down through the laptop range, so Books does too — but
-   drop to a smaller size on genuinely small screens to avoid overflow,
-   mirroring the bundle's original lower bound. */
 @media (max-width: 640px) {
-  .snaarp-books-page .books-hero-heading {
+  .snaarp-projects-page .projects-hero-heading {
     font-size: 44px !important;
   }
 }
-
-.snaarp-books-page .books-lede {
+.snaarp-projects-page .projects-lede {
   font-size: 1.125rem !important;
   line-height: 1.6 !important;
 }
 
-/* Hero heading line breaks: the markup is "Less Bookkeeping.<br>More Business."
-   — two intended lines. At the site's hero sizes the first segment ("Less
-   Bookkeeping.") was wrapping, pushing it to three visual lines. Keep each
-   segment on a single line so it reads as the intended two lines; the
-   explicit <br> still forces the break between them. Only from the
-   small-screen breakpoint up — on very narrow phones let it wrap. */
-@media (min-width: 641px) {
-  .snaarp-books-page .books-hero-heading {
-    white-space: nowrap !important;
-    text-wrap: nowrap !important;
-  }
-}
-/* The hero text column is capped at 600px in the bundle, which is narrower
-   than "Less Bookkeeping." at the >=1440px hero size (72px). Widen the
-   column at large screens so the nowrap first line fits without colliding
-   with the dashboard/phone mockups to its right. Below 1440px the 56px
-   heading fits the original 600px column, so it's left untouched there. */
-@media (min-width: 1440px) {
-  .snaarp-books-page .books-hero-col {
-    max-width: 760px !important;
-  }
-}
-
 /* =====================================================================
-   Hero mockup — bigger + top-aligned with the heading.
-   The bundle vertically centered the hero row (align-items:center), so the
-   tablet/phone mockup floated lower than the heading. Top-align it. The
-   mockup canvas (tpl 87) was frozen at zoom:0.808 by the bundle's JS
-   auto-fit (React isn't running in the static port), so it rendered small;
-   scale it back up toward full size and give its column the room to grow.
+   Hero mockup — bigger + top-aligned with the heading (same treatment as
+   the Books hero). The bundle vertically centered the hero row
+   (align-items:center) and froze the mockup canvas (tpl 75, 830x620) at
+   zoom:0.759 via its JS auto-fit (React isn't running in the static port),
+   so it rendered small and floated mid-height. Top-align the row and scale
+   the mockup up so it fills more of the column height (top-to-bottom with
+   the text) and reads clearly. Drop margin-left:auto so it grows toward the
+   bottom-right as it scales (zoom expands from the top-left corner).
    ===================================================================== */
-.snaarp-books-page .books-hero-row {
+.snaarp-projects-page .projects-hero-row {
   align-items: flex-start !important;
 }
-/* Give the mockup column more width so the enlarged mockup isn't clipped,
-   and drop the bundle's margin-left:auto right-pull so the mockup anchors
-   left within its column and grows toward the bottom-right as it scales up
-   (zoom expands from the top-left corner). */
-.snaarp-books-page .books-hero-mockcol {
-  max-width: 900px !important;
+.snaarp-projects-page .projects-hero-mockcol {
+  max-width: 1040px !important;
   margin-left: 0 !important;
 }
-/* Scale the mockup up. 0.808 -> 1.0 is ~24% larger; the canvas is 740x560,
-   so at zoom:1 it fills its column. Nudge slightly past 1 on large screens
-   where there's extra room for a more prominent, clearly-visible mockup. */
-.snaarp-books-page .books-hero-mock {
-  zoom: 0.9 !important;
+.snaarp-projects-page .projects-hero-mock {
+  zoom: 0.72 !important;
 }
-/* Large screens have the most room (full-bleed container, 130px gutters) —
-   render the mockup at close-to-full size so it's prominent and fully
-   visible, growing toward the bottom-right. */
+/* Large screens (full-bleed container, 130px gutters) have the most room —
+   render the wider dashboard close to full size, prominent and fully visible. */
 @media (min-width: 1440px) {
-  .snaarp-books-page .books-hero-mock {
-    zoom: 1.06 !important;
+  .snaarp-projects-page .projects-hero-mock {
+    zoom: 0.82 !important;
   }
 }
-/* Laptop range: side-by-side room is tighter — scale down so the mockup
+/* Laptop range: tighter side-by-side room — scale down so the wider dashboard
    stays fully visible next to the heading rather than bleeding off-screen. */
 @media (min-width: 1024px) and (max-width: 1439px) {
-  .snaarp-books-page .books-hero-mock {
-    zoom: 0.86 !important;
+  .snaarp-projects-page .projects-hero-mock {
+    zoom: 0.64 !important;
   }
 }
 
+/* Static hero preview: suppress the dashboard's own vertical scroll so no
+   scrollbar shows. Content taller than the framed box is simply clipped by
+   the rounded frame (the calendar peeks in at the bottom, as intended). */
+.snaarp-projects-page .projects-hero-dashwrap,
+.snaarp-projects-page .projects-hero-dashwrap * {
+  overflow-y: hidden !important;
+  scrollbar-width: none !important;
+}
+.snaarp-projects-page .projects-hero-dashwrap *::-webkit-scrollbar {
+  display: none !important;
+}
+
 /* =====================================================================
-   "Everything You Need. In One Place." section — laptop mockup.
-   The bundle froze this laptop canvas (tpl 254, 800x500) at zoom:0.81, so
-   it rendered smaller than it needs to. Scale it up a little so it reads as
-   a prominent, clearly-visible laptop, and give its column room to grow.
+   Hero mockup refinements:
+   - The "Turn ideas into achievements" annotation was removed from the
+     markup entirely.
+   - The dashboard frame (tpl 83) was inset to top:70px to leave room for
+     that annotation; pull it up to fill the canvas from the top, and widen
+     the whole mockup to use the freed space.
    ===================================================================== */
-.snaarp-books-page .books-eyn-mockcol {
+.snaarp-projects-page .projects-hero-dash {
+  top: 0 !important;
+  height: 620px !important;
+}
+
+/* =====================================================================
+   "Everything You Need to Deliver Projects" section — timeline tablet.
+   The "More control. Greater results." annotation was removed. Enlarge the
+   tablet mockup (tpl 277, 760x540, frozen at zoom:0.829) so it reads bigger,
+   and give its column room. Kept within the viewport at each breakpoint.
+   ===================================================================== */
+.snaarp-projects-page .projects-eyn-mockcol {
   max-width: 900px !important;
 }
-.snaarp-books-page .books-eyn-mock {
-  zoom: 0.9 !important;
-}
-/* Desktop range (below the 1440 full-bleed cutover): fit within the 1280px
-   capped container so the laptop isn't clipped on the right. */
-@media (min-width: 1024px) and (max-width: 1439px) {
-  .snaarp-books-page .books-eyn-mock {
-    zoom: 0.84 !important;
-  }
-}
-@media (min-width: 1440px) {
-  .snaarp-books-page .books-eyn-mock {
-    zoom: 1 !important;
-  }
-}
-
-/* =====================================================================
-   "Make Smarter Decisions with Powerful Reports." section — reports mockup.
-   The bundle froze this canvas (tpl 555, 700x440) at zoom:0.897. Scale it
-   up a little so it reads bigger/clearer, and give its column room.
-   ===================================================================== */
-.snaarp-books-page .books-reports-mockcol {
-  max-width: 820px !important;
-}
-.snaarp-books-page .books-reports-mock {
-  zoom: 1 !important;
-}
-@media (min-width: 1440px) {
-  .snaarp-books-page .books-reports-mock {
-    zoom: 1.12 !important;
-  }
-}
-/* Desktop range: keep within the 1280px capped container so it isn't clipped. */
-@media (min-width: 1024px) and (max-width: 1439px) {
-  .snaarp-books-page .books-reports-mock {
-    zoom: 0.98 !important;
-  }
-}
-
-/* =====================================================================
-   "Seamless Insights" reports section — mockup (Overview sidebar + P&L +
-   donut + Export Report PDF/CSV/Excel). Bundle froze the canvas (tpl 635,
-   720x320) at zoom:0.829. Scale it up a little and give its column room.
-   ===================================================================== */
-.snaarp-books-page .books-seamless-mockcol {
-  max-width: 860px !important;
-}
-.snaarp-books-page .books-seamless-mock {
+.snaarp-projects-page .projects-eyn-mock {
   zoom: 0.95 !important;
 }
 @media (min-width: 1440px) {
-  .snaarp-books-page .books-seamless-mock {
+  .snaarp-projects-page .projects-eyn-mock {
     zoom: 1.08 !important;
   }
 }
-/* Desktop range: keep within the 1280px capped container so it isn't clipped. */
 @media (min-width: 1024px) and (max-width: 1439px) {
-  .snaarp-books-page .books-seamless-mock {
-    zoom: 0.92 !important;
+  .snaarp-projects-page .projects-eyn-mock {
+    zoom: 0.9 !important;
   }
+}
+
+/* =====================================================================
+   Hero dashboard slot — the interactive "Hello Maya" project dashboard
+   (ProjectManagementPreviewMockup) is portaled into #projects-hero-slot,
+   replacing the bundle's static "Website Redesign" board. Frame it like an
+   app window (rounded corners, soft shadow, clipped) so it reads as a
+   product screenshot in the hero. The existing .projects-hero-mock zoom
+   rules still scale the whole 830x620 box responsively.
+   ===================================================================== */
+.snaarp-projects-page .projects-hero-dashwrap {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgb(233, 231, 244);
+  box-shadow: rgba(40, 20, 130, 0.28) 0px 50px 90px -30px, rgba(20, 10, 60, 0.16) 0px 20px 40px -24px;
+}
+
+/* =====================================================================
+   "Everything You Need to Deliver Projects" — interactive Project Timeline
+   tablet. The React component (ProjectTimelinePreviewMockup) is portaled
+   into the .projects-eyn-mock slot; this frames it like a tablet (dark
+   metallic bezel, rounded screen, soft shadow) matching the bundle's look.
+   The existing .projects-eyn-mock zoom rules still scale the 760x540 box.
+   ===================================================================== */
+.snaarp-projects-page .projects-eyn-tabletframe {
+  border-radius: 34px;
+  padding: 14px;
+  background: linear-gradient(150deg, #d9d9e2 0%, #b8b8c4 30%, #e4e4ea 70%, #a9a9b6 100%);
+  box-shadow: rgba(40, 20, 130, 0.45) 0px 50px 90px -34px, rgba(20, 10, 60, 0.30) 0px 16px 30px -18px;
+}
+.snaarp-projects-page .projects-eyn-tabletframe > div {
+  border-radius: 22px;
+  overflow: hidden;
+  height: 100%;
+  background: #fff;
 }

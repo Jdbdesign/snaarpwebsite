@@ -1,21 +1,20 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { ProjectManagementPage } from '@/components/project-management/ProjectManagementPage';
-import './project-management.css';
+import ProjectsPageClient from './ProjectsPageClient';
 
 export const metadata: Metadata = {
-  title: 'Project Management — Boards, tasks & timelines for work that moves | Snaarp',
+  title: 'Snaarp Projects — Plan Smarter. Work Together. Deliver Faster.',
   description:
-    'Boards, tasks, and timelines for work that actually moves. See what\u2019s due, who\u2019s on it, and what\u2019s next \u2014 without a separate tool for every team.',
+    'Bring your projects, people, tasks, deadlines and files together in one powerful workspace. Snaarp Projects helps teams get more done — on time, within budget, and with less chaos.',
 };
 
 export default function Page() {
   return (
     <>
       <Header />
-      <main id="main-content" className="pm-page">
-        <ProjectManagementPage />
+      <main id="main-content">
+        <ProjectsPageClient />
       </main>
       <Footer />
     </>

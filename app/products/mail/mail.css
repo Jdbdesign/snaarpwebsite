@@ -510,3 +510,48 @@ x-dc { display: none !important; }
     column-count: 1;
   }
 }
+
+/* =====================================================================
+   "Access your inbox, anytime, anywhere" section (tpl 280). The right-hand
+   lady image was removed, so the row is now just the devices mockup (tpl
+   282/283) + the text column (tpl 349). Enlarge the mockup so the
+   laptop+phone read clearly, widen its column, and push the text to the
+   right edge to fill the freed space. The mockup canvas (tpl 283, 540x480)
+   is scaled by `zoom`; give it responsive values like the other mockups.
+   ===================================================================== */
+.snaarp-mail-page [data-dc-tpl="282"] {
+  flex: 1 1 620px !important;
+  max-width: 780px !important;
+}
+.snaarp-mail-page [data-dc-tpl="283"] {
+  zoom: 1.06 !important;                /* desktop */
+}
+.snaarp-mail-page [data-dc-tpl="349"] {
+  max-width: 440px !important;
+}
+/* Only push the text to the right edge once the mockup + text sit side by
+   side (wide enough not to wrap). Below that the row wraps and a right-pull
+   would leave an awkward empty gap to the text's left. */
+@media (min-width: 1200px) {
+  .snaarp-mail-page [data-dc-tpl="349"] {
+    margin-left: auto !important;
+  }
+}
+/* Large screens: most room — render the devices mockup prominently. */
+@media (min-width: 1440px) {
+  .snaarp-mail-page [data-dc-tpl="282"] {
+    max-width: 900px !important;
+  }
+  .snaarp-mail-page [data-dc-tpl="283"] {
+    zoom: 1.28 !important;
+  }
+  .snaarp-mail-page [data-dc-tpl="349"] {
+    max-width: 480px !important;
+  }
+}
+/* Laptop range: keep the enlarged mockup fully visible next to the text. */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .snaarp-mail-page [data-dc-tpl="283"] {
+    zoom: 0.96 !important;
+  }
+}

@@ -575,12 +575,14 @@ body {
   position: absolute;
   inset: 0;
   z-index: -2;
-  background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=70');
+  background-image: url('/assets/products-menu-promo.jpg');
   background-size: cover;
   background-position: center;
-  transition: transform var(--duration-slow) var(--ease-out);
+  transform: scale(1);
+  transition: transform 600ms var(--ease-out);
+  will-change: transform;
 }
-.mega-menu-hero:hover .mega-menu-hero-media { transform: scale(1.04); }
+.mega-menu-hero:hover .mega-menu-hero-media { transform: scale(1.06); }
 .mega-menu-hero-overlay {
   position: absolute;
   inset: 0;

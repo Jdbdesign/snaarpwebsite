@@ -1,30 +1,7 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { MailHero } from '@/components/mail/MailHero';
-import { MailDashboardPreview } from '@/components/mail/MailDashboardPreview';
-import { MailFeatureGrid } from '@/components/mail/MailFeatureGrid';
-import { MailEntireTeam } from '@/components/mail/MailEntireTeam';
-import { StepsSection } from '@/components/sections/StepsSection';
-import { WhyMail } from '@/components/WhyMail';
-import { MailUseCases } from '@/components/mail/MailUseCases';
-import { BusinessMovesFast } from '@/components/BusinessMovesFast';
-import { HomeFinalCTA } from '@/components/HomeFinalCTA';
-
-const MAIL_STEPS = [
-  {
-    title: 'Connect Domain',
-    desc: 'Paste your domain settings and our automated wizard handles the DNS records for you.',
-  },
-  {
-    title: 'Invite Team',
-    desc: 'Add your colleagues and assign professional addresses in bulk through the dashboard.',
-  },
-  {
-    title: 'Start Sending',
-    desc: 'Launch your new inbox and experience business communication without the bloat.',
-  },
-];
+import MailPageClient from './MailPageClient';
 
 export const metadata: Metadata = {
   title: 'Snaarp Mail — Premium business email without the enterprise price tag | Snaarp',
@@ -37,16 +14,7 @@ export default function MailProductPage() {
     <>
       <Header />
       <main id="main-content">
-        <MailHero />
-        <MailDashboardPreview />
-        <MailFeatureGrid />
-        <StepsSection heading="Get started in three simple steps" steps={MAIL_STEPS} />
-        <MailEntireTeam />
-        <WhyMail />
-        <MailUseCases />
-        <BusinessMovesFast />
-
-        <HomeFinalCTA />
+        <MailPageClient />
       </main>
       <Footer />
     </>

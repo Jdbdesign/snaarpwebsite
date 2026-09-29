@@ -1,0 +1,94 @@
+/* =====================================================================
+   Snaarp Mail — interaction polish (hover + scroll-reveal accents).
+   Hand-authored, kept separate from the auto-generated mail.css so a
+   regeneration won't wipe it. Namespaced under .snaarp-mail-page and
+   targets the bundle's inline-styled elements via their stable
+   data-dc-tpl "type" numbers (siblings of a kind share a number) or the
+   scp* behaviour classes. Inline styles win the cascade, so hover
+   overrides use !important where needed.
+
+   Layout-safety: only transform / box-shadow / border / background /
+   filter hovers (they compose cleanly and never shift surrounding
+   layout). Never style display:contents wrappers.
+   ===================================================================== */
+
+.snaarp-mail-page {
+  --ml-brand: #7C3AED;
+  --ml-brand-dark: #6D28D9;
+  --ml-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Smooth base transition for the interactive element types we hover. */
+.snaarp-mail-page [data-dc-tpl="218"],   /* feature-icon strip cells */
+.snaarp-mail-page [data-dc-tpl="273"],   /* "complete solution" feature cards */
+.snaarp-mail-page [data-dc-tpl="538"],   /* business-type photo cards */
+.snaarp-mail-page [data-dc-tpl="567"],   /* FAQ accordion items */
+.snaarp-mail-page .scpi,                 /* business card wrapper */
+.snaarp-mail-page .scp4 {                /* video play button */
+  transition: transform 0.28s var(--ml-ease), box-shadow 0.28s var(--ml-ease),
+              border-color 0.28s var(--ml-ease), background 0.28s var(--ml-ease),
+              filter 0.28s var(--ml-ease) !important;
+  will-change: transform;
+}
+
+/* ── Feature-icon strip cells (tpl 218) — lift + icon pop ───────────── */
+.snaarp-mail-page [data-dc-tpl="218"]:hover {
+  transform: translateY(-4px) !important;
+}
+
+/* ── "Complete Solution" feature cards (tpl 273) — lift + shadow ────── */
+.snaarp-mail-page [data-dc-tpl="273"]:hover {
+  transform: translateY(-6px) !important;
+  background: #ffffff !important;
+  box-shadow: rgba(60, 40, 140, 0.16) 0px 22px 40px -18px !important;
+}
+
+/* ── Business-type photo cards (tpl 538 / .scpi) — lift + image zoom ── */
+.snaarp-mail-page .scpi:hover,
+.snaarp-mail-page [data-dc-tpl="538"]:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: rgba(20, 10, 60, 0.18) 0px 24px 44px -20px !important;
+}
+.snaarp-mail-page .scpj { transition: transform 0.5s var(--ml-ease); }
+.snaarp-mail-page .scpi:hover .scpj,
+.snaarp-mail-page [data-dc-tpl="538"]:hover .scpj { transform: scale(1.06); }
+
+/* ── FAQ accordion items (tpl 567) — brand border on hover ──────────── */
+.snaarp-mail-page [data-dc-tpl="567"]:hover {
+  border-color: var(--ml-brand) !important;
+}
+
+/* ── Video play button (.scp4) — gentle press feedback ──────────────── */
+.snaarp-mail-page .scp4:hover {
+  transform: translate(-50%, -50%) scale(1.08) !important;
+}
+.snaarp-mail-page .scp4:active {
+  transform: translate(-50%, -50%) scale(0.96) !important;
+}
+
+/* ── Primary CTA buttons (brand-filled .scp* buttons) — nudge up ────── */
+.snaarp-mail-page button.scp1:hover,
+.snaarp-mail-page button.scp2:hover,
+.snaarp-mail-page button.scp3:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(124, 58, 237, 0.5) 0px 18px 32px -12px;
+}
+
+/* ── Scroll-reveal accent: springy scale-in for card grids (.ml-pop) ── */
+.snaarp-mail-page [data-reveal].ml-pop {
+  transform: translateY(26px) scale(0.97);
+}
+.snaarp-mail-page [data-reveal].ml-pop.is-revealed {
+  transform: translateY(0) scale(1);
+}
+
+/* ── Reduced motion: disable movement ───────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-mail-page [data-dc-tpl]:hover,
+  .snaarp-mail-page [data-dc-tpl]:hover * {
+    transform: none !important;
+  }
+  .snaarp-mail-page [data-reveal].ml-pop {
+    transform: none !important;
+  }
+}

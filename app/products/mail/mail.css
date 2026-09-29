@@ -373,15 +373,17 @@ x-dc { display: none !important; }
    Top-align the row, drop the right-pull so it grows from the top-left,
    widen its column, and scale it per breakpoint like the other pages.
    ===================================================================== */
+/* Match the Books hero arrangement exactly: top-align the mockup with the
+   heading (align-items:flex-start), and anchor the mockup column LEFT within
+   its own column (margin-left:0) with a wide max-width so the zoomed compose
+   demo grows from the top-left and fills toward the right — the same way the
+   Books tablet/phone mockup sits. */
 .snaarp-mail-page [data-dc-tpl="49"] {
-  align-items: center !important;
+  align-items: flex-start !important;
 }
-/* Right-anchor the mockup column (as the hero was originally arranged) and
-   give it a generous width so the enlarged compose demo reads clearly and the
-   left text column keeps its breathing room. */
 .snaarp-mail-page [data-dc-tpl="78"] {
-  max-width: 820px !important;
-  margin-left: auto !important;
+  max-width: 900px !important;
+  margin-left: 0 !important;
 }
 .snaarp-mail-page [data-dc-tpl="79"] {
   zoom: 0.92 !important;               /* desktop — 720x600 compose demo */
@@ -390,10 +392,6 @@ x-dc { display: none !important; }
 @media (min-width: 1440px) {
   .snaarp-mail-page [data-dc-tpl="79"] {
     zoom: 1.06 !important;
-  }
-  .snaarp-mail-page [data-dc-tpl="78"] {
-    max-width: 900px !important;
-    margin-left: auto !important;
   }
 }
 /* Laptop range: tighter side-by-side room. Shrink the text column and the
@@ -408,7 +406,7 @@ x-dc { display: none !important; }
   .snaarp-mail-page [data-dc-tpl="78"] {
     flex: 1 1 480px !important;
     max-width: 620px !important;
-    margin-left: auto !important;
+    margin-left: 0 !important;
   }
   .snaarp-mail-page [data-dc-tpl="79"] {
     zoom: 0.66 !important;

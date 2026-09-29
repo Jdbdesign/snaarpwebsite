@@ -519,39 +519,48 @@ x-dc { display: none !important; }
    right edge to fill the freed space. The mockup canvas (tpl 283, 540x480)
    is scaled by `zoom`; give it responsive values like the other mockups.
    ===================================================================== */
+/* Balanced two-column layout for the Access-anywhere row: the mockup grows
+   to take the left space, the text is a fixed-width column on the right, and
+   a moderate gap sits between them. flex-basis kept small enough that the
+   pair never wraps at desktop widths (the previous large basis + centering
+   caused them to stack vertically and open a big void). */
+/* Center the mockup + text as a tight pair. The mockup column shrinks to hug
+   its visible art (flex:0 0 auto) instead of growing and leaving a void; the
+   text is a fixed column; the whole row is centered with a fixed gap so the
+   two sit close together in the middle regardless of viewport width. */
+.snaarp-mail-page [data-dc-tpl="281"] {
+  gap: 40px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
 .snaarp-mail-page [data-dc-tpl="282"] {
-  flex: 1 1 620px !important;
-  max-width: 780px !important;
+  flex: 0 0 auto !important;
+  max-width: none !important;
 }
 .snaarp-mail-page [data-dc-tpl="283"] {
-  zoom: 1.06 !important;                /* desktop */
+  zoom: 1.02 !important;                /* desktop */
 }
 .snaarp-mail-page [data-dc-tpl="349"] {
-  max-width: 440px !important;
+  flex: 0 0 400px !important;
+  max-width: 400px !important;
 }
-/* Only push the text to the right edge once the mockup + text sit side by
-   side (wide enough not to wrap). Below that the row wraps and a right-pull
-   would leave an awkward empty gap to the text's left. */
-@media (min-width: 1200px) {
-  .snaarp-mail-page [data-dc-tpl="349"] {
-    margin-left: auto !important;
-  }
-}
-/* Large screens: most room — render the devices mockup prominently. */
+/* Large screens (full-bleed container): bigger mockup + slightly wider text,
+   still centered as a pair with a comfortable gap. */
 @media (min-width: 1440px) {
-  .snaarp-mail-page [data-dc-tpl="282"] {
-    max-width: 900px !important;
+  .snaarp-mail-page [data-dc-tpl="281"] {
+    gap: 56px !important;
   }
   .snaarp-mail-page [data-dc-tpl="283"] {
-    zoom: 1.28 !important;
+    zoom: 1.18 !important;
   }
   .snaarp-mail-page [data-dc-tpl="349"] {
-    max-width: 480px !important;
+    flex: 0 0 440px !important;
+    max-width: 440px !important;
   }
 }
 /* Laptop range: keep the enlarged mockup fully visible next to the text. */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .snaarp-mail-page [data-dc-tpl="283"] {
-    zoom: 0.96 !important;
+    zoom: 0.94 !important;
   }
 }

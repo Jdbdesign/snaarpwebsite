@@ -463,3 +463,18 @@ x-dc { display: none !important; }
     transform-origin: top left;
   }
 }
+
+/* =====================================================================
+   "Whatever Your Business, Snaarp Mail Fits" — business-type cards grid
+   (tpl 536). The bundle used repeat(auto-fill, minmax(240px, 1fr)), which
+   on large screens (full-bleed container, 130px gutters) lays the 4 cards
+   out at their min width and leaves trailing empty column space on the
+   right. On >=1440 switch to auto-fit so the empty tracks collapse and the
+   4 cards stretch to fill the full row. Desktop/laptop keep the authored
+   layout (they already look right).
+   ===================================================================== */
+@media (min-width: 1440px) {
+  .snaarp-mail-page [data-dc-tpl="536"] {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}

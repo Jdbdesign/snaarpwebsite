@@ -446,3 +446,20 @@ x-dc { display: none !important; }
     zoom: 0.82 !important;
   }
 }
+
+/* =====================================================================
+   "Your AI Assistant for Every Email" section — the floating action-chips
+   column (tpl 246) that overlays the desktop photo (tpl 245) inside the
+   canvas (tpl 244). On large screens there's extra room, so nudge the chip
+   stack a little further left and scale it up slightly so it reads bigger
+   and clears the photo. Scoped to >=1440 only; smaller screens keep the
+   authored layout. Transform-origin top-left so it grows toward the photo,
+   not off the left edge.
+   ===================================================================== */
+@media (min-width: 1440px) {
+  .snaarp-mail-page [data-dc-tpl="246"] {
+    left: -48px !important;
+    transform: scale(1.1);
+    transform-origin: top left;
+  }
+}

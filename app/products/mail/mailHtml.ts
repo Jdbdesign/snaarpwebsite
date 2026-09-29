@@ -36,7 +36,7 @@ export const MAIL_HTML = `<section data-dc-tpl="48" data-screen-label="Hero" sty
     </div>
 
     <div data-dc-tpl="78" style="flex: 1 1 560px; min-width: 0px; max-width: 830px; margin-left: auto;">
-      <div data-dc-tpl="79" style="position: relative; width: 1070px; height: 620px; zoom: 0.771;">
+      <div data-dc-tpl="79" style="position: relative; width: 620px; height: 620px; zoom: 0.771;">
         
         <div data-dc-tpl="80" style="position: absolute; left: 0px; top: 22px; width: 620px; height: 590px; border-radius: 18px; background: rgb(255, 255, 255); border: 1px solid rgb(233, 231, 244); box-shadow: rgba(40, 20, 130, 0.35) 0px 60px 100px -40px, rgba(20, 10, 60, 0.18) 0px 20px 40px -24px; overflow: hidden; display: flex; flex-direction: column;">
           <div data-dc-tpl="81" style="height: 30px; background: rgb(245, 244, 249); border-bottom: 1px solid rgb(236, 235, 243); display: flex; align-items: center; padding: 0px 12px; gap: 14px; flex: 0 0 auto;">
@@ -189,7 +189,7 @@ export const MAIL_HTML = `<section data-dc-tpl="48" data-screen-label="Hero" sty
         </div>
 
         
-        <div data-dc-tpl="136" style="position: absolute; left: 720px; top: 0px; width: 344px; height: 614px; border-radius: 18px; background: rgb(255, 255, 255); border: 1px solid rgb(233, 231, 244); box-shadow: rgba(40, 20, 130, 0.4) 0px 50px 90px -30px, rgba(20, 10, 60, 0.2) 0px 14px 30px -18px; display: flex; flex-direction: column; overflow: hidden;">
+<!-- AI Assistant panel temporarily hidden --><div data-dc-tpl="136" style="display: none; position: absolute; left: 720px; top: 0px; width: 344px; height: 614px; border-radius: 18px; background: rgb(255, 255, 255); border: 1px solid rgb(233, 231, 244); box-shadow: rgba(40, 20, 130, 0.4) 0px 50px 90px -30px, rgba(20, 10, 60, 0.2) 0px 14px 30px -18px; flex-direction: column; overflow: hidden;">
           <div data-dc-tpl="137" style="height: 52px; display: flex; align-items: center; gap: 10px; padding: 0px 16px; border-bottom: 1px solid rgb(240, 239, 246); flex: 0 0 auto;">
             <span data-dc-tpl="138" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 20px; line-height: 1; color: rgb(124, 58, 237);">auto_awesome</span>
             <span data-dc-tpl="139" style="font-weight: 800; font-size: 13px;">AI Assistant</span>

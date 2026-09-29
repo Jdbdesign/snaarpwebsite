@@ -478,3 +478,35 @@ x-dc { display: none !important; }
     grid-template-columns: repeat(4, 1fr) !important;
   }
 }
+
+/* =====================================================================
+   FAQ grid (tpl 565) — pack the question cards tightly with no gaps.
+   The bundle used a CSS grid with align-items:start, so whichever card is
+   expanded makes its whole row tall and the sibling cards in that row leave
+   an empty gap beneath them. Switch to a CSS multi-column (masonry-style)
+   flow: cards fill each column top-to-bottom and never leave row gaps,
+   regardless of which one is open. Cards must not split across columns.
+   Column layout uses margins (not grid gap), so give each card a bottom
+   margin to preserve the 10px vertical rhythm.
+   ===================================================================== */
+.snaarp-mail-page [data-dc-tpl="565"] {
+  display: block !important;
+  column-count: 2;
+  column-gap: 18px;
+}
+.snaarp-mail-page [data-dc-tpl="565"] > [data-dc-tpl="567"] {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  margin-bottom: 10px;
+}
+@media (min-width: 1440px) {
+  .snaarp-mail-page [data-dc-tpl="565"] {
+    column-count: 3;
+  }
+}
+/* Single column on narrow screens so questions stay full-width and readable. */
+@media (max-width: 720px) {
+  .snaarp-mail-page [data-dc-tpl="565"] {
+    column-count: 1;
+  }
+}

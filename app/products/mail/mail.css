@@ -378,20 +378,36 @@ x-dc { display: none !important; }
    its own column (margin-left:0) with a wide max-width so the zoomed compose
    demo grows from the top-left and fills toward the right — the same way the
    Books tablet/phone mockup sits. */
+/* Hero row: match the shared container (1280px cap / 40px gutters, then
+   full-bleed / 130px gutters at >=1440). The JSX inline max-width may render
+   without the space the [style*="max-width: 1280px"] selector needs, so apply
+   it explicitly here (like CRM's .crm-hero-row). */
 .snaarp-mail-page [data-dc-tpl="49"] {
   align-items: flex-start !important;
+  max-width: 1280px !important;
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+}
+@media (min-width: 1440px) {
+  .snaarp-mail-page [data-dc-tpl="49"] {
+    max-width: none !important;
+    padding-left: 130px !important;
+    padding-right: 130px !important;
+  }
 }
 .snaarp-mail-page [data-dc-tpl="78"] {
   max-width: 900px !important;
   margin-left: 0 !important;
 }
+/* Scale the compose demo up so it fills its column and reaches the right
+   gutter, matching how the Books hero mockup stretches to the right edge. */
 .snaarp-mail-page [data-dc-tpl="79"] {
-  zoom: 0.92 !important;               /* desktop — 720x600 compose demo */
+  zoom: 1.22 !important;               /* desktop — 720x600 compose demo */
 }
 /* Large screens (full-bleed, 130px gutters) — most room, render larger. */
 @media (min-width: 1440px) {
   .snaarp-mail-page [data-dc-tpl="79"] {
-    zoom: 1.06 !important;
+    zoom: 1.14 !important;
   }
 }
 /* Laptop range: tighter side-by-side room. Shrink the text column and the
@@ -404,12 +420,12 @@ x-dc { display: none !important; }
     max-width: 420px !important;
   }
   .snaarp-mail-page [data-dc-tpl="78"] {
-    flex: 1 1 480px !important;
-    max-width: 620px !important;
+    flex: 1 1 520px !important;
+    max-width: 720px !important;
     margin-left: 0 !important;
   }
   .snaarp-mail-page [data-dc-tpl="79"] {
-    zoom: 0.66 !important;
+    zoom: 0.9 !important;
   }
 }
 /* Tablet / mobile: the mock column wraps under the text — center it, scale

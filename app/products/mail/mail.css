@@ -295,3 +295,154 @@ x-dc { display: none !important; }
 @keyframes spn { to { transform: rotate(360deg); } }
 @keyframes pls { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); } 100% { box-shadow: 0 0 0 8px rgba(34,197,94,0); } }
 @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* =====================================================================
+   RESPONSIVE / LARGE-SCREEN TREATMENT — hand-added below the generated
+   base above (do not regenerate over this). Matches the sitewide layout
+   used by Books / CRM / Projects: the standalone bundle locked every
+   section to max-width:1280px + clamp() side gutters, so on large screens
+   the page sat in a narrower centered column than the rest of the site.
+   These rules make each 1280px section wrapper behave like the shared
+   `max-w-7xl mx-auto px-6 lg:px-10` container (globals.css ~6896-6913):
+     - laptop / desktop (<1440px): capped at 1280px, 40px side gutters.
+     - large screen (>=1440px): full-bleed, 130px side gutters.
+     - small screen (<=640px): 20px gutters.
+   Longhand + !important overrides the inline `style` shorthand. Vertical
+   padding is left to the inline shorthand so each section keeps its rhythm.
+   ===================================================================== */
+.snaarp-mail-page [style*="max-width: 1280px"] {
+  max-width: 1280px !important;
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+}
+@media (min-width: 1440px) {
+  .snaarp-mail-page [style*="max-width: 1280px"] {
+    max-width: none !important;
+    padding-left: 130px !important;
+    padding-right: 130px !important;
+  }
+}
+@media (max-width: 640px) {
+  .snaarp-mail-page [style*="max-width: 1280px"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+/* =====================================================================
+   Hero typography — track the site display scale (Books/Projects use
+   56px desktop/laptop -> 72px on >=1440). The bundle used a flat
+   clamp(40px,5vw,64px) which read small on large screens. Keep the
+   bundle's weight (800), tight line-height (1.03) and tracking; only the
+   SIZE tracks the rest of the site. The heading (tpl 57) has explicit
+   <br>s (three intended lines: "Professional" / "Business Email." /
+   "From £0.50."), so no wrapping fix is needed. Longhand !important
+   overrides the inline font-size.
+   ===================================================================== */
+.snaarp-mail-page [data-dc-tpl="57"] {
+  font-size: 56px !important;
+}
+@media (min-width: 1440px) {
+  .snaarp-mail-page [data-dc-tpl="57"] {
+    font-size: 68px !important;
+  }
+}
+@media (max-width: 640px) {
+  .snaarp-mail-page [data-dc-tpl="57"] {
+    font-size: 42px !important;
+  }
+}
+/* Hero lede (tpl 61) — 18px/1.6, matches the other pages' lede scale. */
+.snaarp-mail-page [data-dc-tpl="61"] {
+  font-size: 18px !important;
+  line-height: 1.6 !important;
+}
+/* Widen the hero text column (tpl 50, capped 520px in the bundle) at
+   large screens so the 68px heading breathes next to the mockup. */
+@media (min-width: 1440px) {
+  .snaarp-mail-page [data-dc-tpl="50"] {
+    max-width: 600px !important;
+  }
+}
+
+/* =====================================================================
+   Hero mockup (tpl 79) — a fixed 830x620 canvas of absolutely-positioned
+   children scaled by `zoom`. The bundle's JS auto-fit froze it at
+   zoom:0.771 (React isn't running in the static port), so it rendered
+   small and floated mid-height, right-anchored by margin-left:auto.
+   Top-align the row, drop the right-pull so it grows from the top-left,
+   widen its column, and scale it per breakpoint like the other pages.
+   ===================================================================== */
+.snaarp-mail-page [data-dc-tpl="49"] {
+  align-items: flex-start !important;
+}
+.snaarp-mail-page [data-dc-tpl="78"] {
+  max-width: 1000px !important;
+  margin-left: 0 !important;
+}
+.snaarp-mail-page [data-dc-tpl="79"] {
+  zoom: 0.82 !important;               /* desktop */
+}
+/* Large screens (full-bleed, 130px gutters) — most room, render larger. */
+@media (min-width: 1440px) {
+  .snaarp-mail-page [data-dc-tpl="79"] {
+    zoom: 0.94 !important;
+  }
+  .snaarp-mail-page [data-dc-tpl="78"] {
+    max-width: 1080px !important;
+    margin-left: auto !important;
+  }
+}
+/* Laptop range: tighter side-by-side room. Shrink the text column and the
+   mock column's flex-basis so the two stay on ONE row (they'd otherwise
+   wrap, dropping the mockup into a dead gap below the text), and scale the
+   canvas down so the dual-panel mockup stays fully visible next to the
+   heading rather than bleeding off-screen. */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .snaarp-mail-page [data-dc-tpl="50"] {
+    flex: 1 1 360px !important;
+    max-width: 440px !important;
+  }
+  .snaarp-mail-page [data-dc-tpl="78"] {
+    flex: 1 1 440px !important;
+    max-width: 560px !important;
+  }
+  .snaarp-mail-page [data-dc-tpl="79"] {
+    zoom: 0.58 !important;
+  }
+}
+/* Tablet / mobile: the mock column wraps under the text — center it, scale
+   to fit the viewport, and cap the reserved height so there's no dead gap. */
+@media (max-width: 1023px) {
+  .snaarp-mail-page [data-dc-tpl="78"] {
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+  .snaarp-mail-page [data-dc-tpl="79"] {
+    zoom: 0.62 !important;
+  }
+}
+@media (max-width: 640px) {
+  .snaarp-mail-page [data-dc-tpl="79"] {
+    zoom: 0.44 !important;
+  }
+}
+
+/* =====================================================================
+   "Access your inbox, anytime, anywhere" section — devices mockup canvas
+   (tpl 283, 540x480, frozen at zoom:0.872). Scale it up a touch on large
+   screens and keep it fully visible in the laptop band.
+   ===================================================================== */
+@media (min-width: 1440px) {
+  .snaarp-mail-page [data-dc-tpl="283"] {
+    zoom: 1 !important;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .snaarp-mail-page [data-dc-tpl="283"] {
+    zoom: 0.82 !important;
+  }
+}

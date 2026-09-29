@@ -7,9 +7,16 @@
    scp* behaviour classes. Inline styles win the cascade, so hover
    overrides use !important where needed.
 
-   Layout-safety: only transform / box-shadow / border / background /
-   filter hovers (they compose cleanly and never shift surrounding
-   layout). Never style display:contents wrappers.
+   Anti-glitch rules (matching Books / CRM / Projects):
+   - Hovers are transform / box-shadow / border / background ONLY — they
+     compose cleanly over the bundle's inline styles and never shift the
+     surrounding layout.
+   - The static hero + devices mockups (tpl 79, tpl 283) are dense grids of
+     tiny inline-styled buttons/rows (.scp4 .scp7 .scp8 …). They must NEVER
+     get hover transforms or their inner UI jumps around. Every hover rule
+     is scoped to real content elements OUTSIDE those canvases, and the two
+     hero CTAs are targeted by their exact tpl ids (68, 70) rather than a
+     blanket `button` selector.
    ===================================================================== */
 
 .snaarp-mail-page {
@@ -18,23 +25,48 @@
   --ml-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Smooth base transition for the interactive element types we hover. */
-.snaarp-mail-page [data-dc-tpl="218"],   /* feature-icon strip cells */
+/* Smooth base transition for the specific interactive element types we
+   hover (never the mockup canvases or display:contents wrappers). */
+.snaarp-mail-page [data-dc-tpl="68"],    /* hero primary CTA */
+.snaarp-mail-page [data-dc-tpl="70"],    /* hero secondary CTA */
+.snaarp-mail-page [data-dc-tpl="220"],   /* feature-icon strip cells (.scpc) */
 .snaarp-mail-page [data-dc-tpl="273"],   /* "complete solution" feature cards */
 .snaarp-mail-page [data-dc-tpl="538"],   /* business-type photo cards */
 .snaarp-mail-page [data-dc-tpl="567"],   /* FAQ accordion items */
-.snaarp-mail-page .scpi,                 /* business card wrapper */
-.snaarp-mail-page .scp4 {                /* video play button */
-  transition: transform 0.28s var(--ml-ease), box-shadow 0.28s var(--ml-ease),
-              border-color 0.28s var(--ml-ease), background 0.28s var(--ml-ease),
-              filter 0.28s var(--ml-ease) !important;
+.snaarp-mail-page .scpi {                /* business card wrapper */
+  transition: transform 0.26s var(--ml-ease), box-shadow 0.26s var(--ml-ease),
+              border-color 0.26s var(--ml-ease), background 0.26s var(--ml-ease),
+              filter 0.26s var(--ml-ease) !important;
   will-change: transform;
 }
 
-/* ── Feature-icon strip cells (tpl 218) — lift + icon pop ───────────── */
-.snaarp-mail-page [data-dc-tpl="218"]:hover {
-  transform: translateY(-4px) !important;
+/* ── Hero primary CTA (tpl 68 / .scp5) — lift + deepen shadow + nudge ── */
+.snaarp-mail-page [data-dc-tpl="68"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(124, 58, 237, 0.55) 0px 20px 34px -12px !important;
 }
+.snaarp-mail-page [data-dc-tpl="68"]:active { transform: translateY(0) !important; }
+
+/* ── Hero secondary CTA (tpl 70 / .scp6) — lift + brand tint ────────── */
+.snaarp-mail-page [data-dc-tpl="70"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--ml-brand) !important;
+  background: rgb(247, 244, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 14px 26px -12px !important;
+}
+.snaarp-mail-page [data-dc-tpl="70"]:active { transform: translateY(0) !important; }
+
+/* ── Feature-icon strip cells (tpl 220 / .scpc) — lift + icon tile pop ─ */
+.snaarp-mail-page .scpc:hover,
+.snaarp-mail-page [data-dc-tpl="220"]:hover {
+  transform: translateY(-4px) !important;
+  background: #ffffff !important;
+  box-shadow: rgba(60, 40, 140, 0.14) 0px 18px 34px -18px !important;
+}
+.snaarp-mail-page [data-dc-tpl="220"] [data-dc-tpl="221"] { transition: transform 0.32s var(--ml-ease); }
+.snaarp-mail-page [data-dc-tpl="220"]:hover [data-dc-tpl="221"] { transform: scale(1.06); }
+.snaarp-mail-page [data-dc-tpl="220"] [data-dc-tpl="222"] { transition: transform 0.4s var(--ml-ease); }
+.snaarp-mail-page [data-dc-tpl="220"]:hover [data-dc-tpl="222"] { transform: rotate(-8deg) scale(1.08); }
 
 /* ── "Complete Solution" feature cards (tpl 273) — lift + shadow ────── */
 .snaarp-mail-page [data-dc-tpl="273"]:hover {
@@ -53,25 +85,22 @@
 .snaarp-mail-page .scpi:hover .scpj,
 .snaarp-mail-page [data-dc-tpl="538"]:hover .scpj { transform: scale(1.06); }
 
-/* ── FAQ accordion items (tpl 567) — brand border on hover ──────────── */
+/* ── FAQ accordion items (tpl 567) — lift + brand border on hover ───── */
 .snaarp-mail-page [data-dc-tpl="567"]:hover {
-  border-color: var(--ml-brand) !important;
+  transform: translateY(-2px) !important;
+  border-color: rgb(183, 166, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.28) 0px 16px 30px -18px !important;
 }
 
-/* ── Video play button (.scp4) — gentle press feedback ──────────────── */
-.snaarp-mail-page .scp4:hover {
-  transform: translate(-50%, -50%) scale(1.08) !important;
-}
-.snaarp-mail-page .scp4:active {
-  transform: translate(-50%, -50%) scale(0.96) !important;
-}
-
-/* ── Primary CTA buttons (brand-filled .scp* buttons) — nudge up ────── */
-.snaarp-mail-page button.scp1:hover,
-.snaarp-mail-page button.scp2:hover,
-.snaarp-mail-page button.scp3:hover {
-  transform: translateY(-2px);
-  box-shadow: rgba(124, 58, 237, 0.5) 0px 18px 32px -12px;
+/* =====================================================================
+   Hard exclusions: never let a hover transform touch the static hero and
+   devices mockups. They contain dense inline-styled buttons/rows
+   (.scp4 sidebar compose, .scp7 nav rows, .scp8 email rows) that would
+   otherwise jump on hover. Kill any transform inside those canvases.
+   ===================================================================== */
+.snaarp-mail-page [data-dc-tpl="79"] *:hover,
+.snaarp-mail-page [data-dc-tpl="283"] *:hover {
+  transform: none !important;
 }
 
 /* ── Scroll-reveal accent: springy scale-in for card grids (.ml-pop) ── */

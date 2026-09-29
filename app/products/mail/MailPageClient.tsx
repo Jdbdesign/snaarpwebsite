@@ -34,8 +34,8 @@ export default function MailPageClient() {
       section.querySelectorAll<HTMLElement>('h1, h2, h3').forEach((h) => tag(h, { group }));
     });
 
-    // 2) Feature-icon strip cells (tpl 218) — staggered batch.
-    root.querySelectorAll<HTMLElement>('[data-dc-tpl="218"]').forEach((c) => tag(c, { group: 'ml-iconstrip', batch: 'iconstrip', pop: true }));
+    // 2) Feature-icon strip cells (tpl 220 / .scpc) — staggered batch.
+    root.querySelectorAll<HTMLElement>('[data-dc-tpl="220"]').forEach((c) => tag(c, { group: 'ml-iconstrip', batch: 'iconstrip', pop: true }));
 
     // 3) "Complete Solution" feature cards (tpl 273) — staggered batch.
     root.querySelectorAll<HTMLElement>('[data-dc-tpl="273"]').forEach((c) => tag(c, { group: 'ml-features', batch: 'features', pop: true }));

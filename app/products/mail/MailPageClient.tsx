@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import './mail.css';
 import './mail-animations.css';
@@ -64,6 +64,49 @@ export default function MailPageClient() {
       const idx = sec ? Array.from(root.querySelectorAll('section')).indexOf(sec) : 0;
       tag(c, { group: `ml-cards-${idx}`, batch: `cards-${idx}`, pop: true });
     });
+  }, []);
+
+  // Pricing card slider — drag through the 5 real Snaarp Mail plans, updating
+  // the plan name, seat count, monthly price and the per-mailbox rate live.
+  // The rate note keeps the "£0.50 / mailbox" headline honest: it's the
+  // price ÷ included users for that plan, shown next to the real monthly cost.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const slider = root.querySelector<HTMLInputElement>('[data-mail-plan-slider]');
+    if (!slider) return;
+
+    // From the official Snaarp Mail pricing (monthly): 5 plans.
+    const PLANS = [
+      { name: 'Starter', users: 10, price: 5, storage: '10 GB' },
+      { name: 'Growth', users: 25, price: 25, storage: '100 GB' },
+      { name: 'Business', users: 25, price: 50, storage: '600 GB' },
+      { name: 'Scale', users: 50, price: 100, storage: '2.5 TB' },
+      { name: 'Enterprise', users: 100, price: 200, storage: '5 TB' },
+    ];
+
+    const nameEl = root.querySelector<HTMLElement>('[data-mail-plan-name]');
+    const usersEl = root.querySelector<HTMLElement>('[data-mail-plan-users]');
+    const priceEl = root.querySelector<HTMLElement>('[data-mail-plan-price]');
+    const noteEl = root.querySelector<HTMLElement>('[data-mail-plan-note]');
+    // The small "X GB · Y users" line under the slider.
+    const metaEl = root.querySelector<HTMLElement>('[data-mail-plan-meta]');
+
+    const render = () => {
+      const p = PLANS[Math.max(0, Math.min(PLANS.length - 1, Number(slider.value)))];
+      if (!p) return;
+      const perMailbox = p.price / p.users; // e.g. 5/10 = 0.50
+      const perStr = perMailbox < 1 ? `£${perMailbox.toFixed(2)}` : `£${perMailbox % 1 === 0 ? perMailbox : perMailbox.toFixed(2)}`;
+      if (nameEl) nameEl.textContent = p.name;
+      if (usersEl) usersEl.textContent = `${p.users} users`;
+      if (priceEl) priceEl.textContent = `£${p.price}`;
+      if (noteEl) noteEl.textContent = `= ${perStr} / mailbox`;
+      if (metaEl) metaEl.textContent = `${p.storage} · ${p.users} users`;
+    };
+
+    render();
+    slider.addEventListener('input', render);
+    return () => slider.removeEventListener('input', render);
   }, []);
 
   useScrollReveal(rootRef);

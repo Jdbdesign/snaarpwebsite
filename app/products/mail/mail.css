@@ -381,15 +381,15 @@ x-dc { display: none !important; }
   margin-left: 0 !important;
 }
 .snaarp-mail-page [data-dc-tpl="79"] {
-  zoom: 0.76 !important;               /* desktop */
+  zoom: 0.68 !important;               /* desktop */
 }
 /* Large screens (full-bleed, 130px gutters) — most room, render larger. */
 @media (min-width: 1440px) {
   .snaarp-mail-page [data-dc-tpl="79"] {
-    zoom: 0.8 !important;
+    zoom: 0.72 !important;
   }
   .snaarp-mail-page [data-dc-tpl="78"] {
-    max-width: 1180px !important;
+    max-width: 1320px !important;
     margin-left: 0 !important;
   }
 }
@@ -404,11 +404,11 @@ x-dc { display: none !important; }
     max-width: 440px !important;
   }
   .snaarp-mail-page [data-dc-tpl="78"] {
-    flex: 1 1 460px !important;
-    max-width: 600px !important;
+    flex: 1 1 500px !important;
+    max-width: 660px !important;
   }
   .snaarp-mail-page [data-dc-tpl="79"] {
-    zoom: 0.54 !important;
+    zoom: 0.47 !important;
   }
 }
 /* Tablet / mobile: the mock column wraps under the text — center it, scale

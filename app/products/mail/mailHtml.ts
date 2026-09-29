@@ -36,9 +36,9 @@ export const MAIL_HTML = `<section data-dc-tpl="48" data-screen-label="Hero" sty
     </div>
 
     <div data-dc-tpl="78" style="flex: 1 1 560px; min-width: 0px; max-width: 830px; margin-left: auto;">
-      <div data-dc-tpl="79" style="position: relative; width: 620px; height: 620px; zoom: 0.771;">
+      <div data-dc-tpl="79" style="position: relative; width: 780px; height: 620px; zoom: 0.771;">
         
-        <div data-dc-tpl="80" style="position: absolute; left: 0px; top: 22px; width: 620px; height: 590px; border-radius: 18px; background: rgb(255, 255, 255); border: 1px solid rgb(233, 231, 244); box-shadow: rgba(40, 20, 130, 0.35) 0px 60px 100px -40px, rgba(20, 10, 60, 0.18) 0px 20px 40px -24px; overflow: hidden; display: flex; flex-direction: column;">
+        <div data-dc-tpl="80" style="position: absolute; left: 0px; top: 22px; width: 780px; height: 590px; border-radius: 18px; background: rgb(255, 255, 255); border: 1px solid rgb(233, 231, 244); box-shadow: rgba(40, 20, 130, 0.35) 0px 60px 100px -40px, rgba(20, 10, 60, 0.18) 0px 20px 40px -24px; overflow: hidden; display: flex; flex-direction: column;">
           <div data-dc-tpl="81" style="height: 30px; background: rgb(245, 244, 249); border-bottom: 1px solid rgb(236, 235, 243); display: flex; align-items: center; padding: 0px 12px; gap: 14px; flex: 0 0 auto;">
             <span data-dc-tpl="82" style="display: flex; gap: 6px;"><span data-dc-tpl="83" style="width: 10px; height: 10px; border-radius: 50%; background: rgb(255, 95, 87);"></span><span data-dc-tpl="84" style="width: 10px; height: 10px; border-radius: 50%; background: rgb(254, 188, 46);"></span><span data-dc-tpl="85" style="width: 10px; height: 10px; border-radius: 50%; background: rgb(40, 200, 64);"></span></span>
             <span data-dc-tpl="86" style="margin-left: 120px; width: 220px; height: 18px; border-radius: 5px; background: rgb(255, 255, 255); border: 1px solid rgb(232, 231, 240); display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 9px; color: rgb(107, 112, 144);"><span data-dc-tpl="87" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 10px; line-height: 1;">lock</span>mail.snaarp.com/inbox</span>
@@ -183,6 +183,37 @@ export const MAIL_HTML = `<section data-dc-tpl="48" data-screen-label="Hero" sty
                   </div>
                 
                 
+              </div>
+            </div>
+            <div data-dc-tpl="130" style="flex: 1 1 0%; min-width: 0px; display: flex; flex-direction: column; background: rgb(255, 255, 255);">
+              <div data-dc-tpl="131" style="padding: 14px 20px; border-bottom: 1px solid rgb(240, 239, 246); flex: 0 0 auto;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="font-size: 15px; font-weight: 800; color: rgb(11, 13, 42); line-height: 1.3;">Re: Project Proposal</span>
+                  <span style="margin-left: auto; display: flex; gap: 12px; color: rgb(140, 144, 168);"><span style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 16px; line-height: 1;">reply</span><span style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 16px; line-height: 1;">forward</span><span style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 16px; line-height: 1;">archive</span><span style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 16px; line-height: 1;">delete</span></span>
+                </div>
+                <div style="margin-top: 12px; display: flex; align-items: center; gap: 10px;">
+                  <span style="width: 34px; height: 34px; border-radius: 50%; background: rgb(244, 63, 94); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; display: grid; place-items: center; flex: 0 0 auto;">SJ</span>
+                  <div style="display: flex; flex-direction: column; gap: 1px; min-width: 0px;">
+                    <span style="font-size: 12px; font-weight: 700; color: rgb(30, 33, 64);">Sarah Johnson</span>
+                    <span style="font-size: 10px; color: rgb(140, 144, 168);">to me · 10:24</span>
+                  </div>
+                  <span style="margin-left: auto; font-family: &quot;Material Symbols Rounded&quot;; font-size: 16px; line-height: 1; color: rgb(245, 180, 0); flex: 0 0 auto;">star</span>
+                </div>
+              </div>
+              <div data-dc-tpl="132" style="flex: 1 1 0%; overflow: hidden; padding: 16px 20px; display: flex; flex-direction: column; gap: 11px; font-size: 11px; line-height: 1.65; color: rgb(63, 68, 99);">
+                <span>Hi team,</span>
+                <span>Thanks for the updated proposal — the whole team loved the new direction and the refreshed timeline looks solid.</span>
+                <span>A couple of small notes on the budget breakdown, but nothing blocking. I've attached the marked-up version with my comments inline.</span>
+                <span>Can we lock the kickoff for early next week? Happy to send calendar invites once you confirm.</span>
+                <span>Best,<br>Sarah</span>
+                <div style="margin-top: 4px; display: flex; align-items: center; gap: 8px; padding: 9px 12px; border: 1px solid rgb(238, 237, 247); border-radius: 10px; background: rgb(250, 249, 254); max-width: 260px;">
+                  <span style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 18px; line-height: 1; color: rgb(124, 58, 237);">description</span>
+                  <span style="display: flex; flex-direction: column; gap: 1px; min-width: 0px;"><span style="font-size: 10.5px; font-weight: 700; color: rgb(30, 33, 64);">Proposal_v3.pdf</span><span style="font-size: 9px; color: rgb(140, 144, 168);">2.4 MB</span></span>
+                </div>
+              </div>
+              <div data-dc-tpl="133" style="padding: 12px 20px; border-top: 1px solid rgb(240, 239, 246); flex: 0 0 auto; display: flex; gap: 10px;">
+                <button style="height: 34px; padding: 0px 20px; border: none; border-radius: 9px; background: rgb(124, 58, 237); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 7px;"><span style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 15px; line-height: 1;">reply</span>Reply</button>
+                <button style="height: 34px; padding: 0px 18px; border: 1px solid rgb(224, 220, 242); border-radius: 9px; background: rgb(255, 255, 255); color: rgb(75, 80, 112); font-size: 11px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px;"><span style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 15px; line-height: 1;">forward</span>Forward</button>
               </div>
             </div>
           </div>

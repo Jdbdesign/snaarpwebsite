@@ -1,18 +1,35 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, type CSSProperties } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import './mail.css';
 import './mail-animations.css';
-import { MAIL_HTML } from './mailHtml';
+import { MAIL_HERO_TEXTCOL, MAIL_AFTER_HERO } from './mailHtml';
+import { MailComposeDemo } from '@/components/MailComposeDemo';
 
-// The Snaarp Mail page is a static, fully server-rendered layout (every
-// "mockup" — inbox, AI panel, devices, workflow diagram — was frozen into
-// plain HTML by the bundler, so there are no live React demos to rebuild).
-// We inject the whole page body as balanced HTML through a display:contents
-// wrapper so it lays out exactly as authored, then tag elements with the
-// site's shared [data-reveal] attributes so they animate in on scroll,
-// reusing the global reveal system (globals.css + useScrollReveal).
+// The hero is reconstructed in JSX so the live, animated "compose an email
+// with AI + attachment" demo (MailComposeDemo) sits in the mock canvas —
+// it clicks Compose, fills To/Subject, uses AI to draft the body, attaches a
+// file with an upload progress bar, and sends, on an autoplay loop. The
+// hero's left text column and every section after the hero are injected as
+// balanced HTML (display:contents wrappers) so they lay out as authored.
+const heroSectionStyle: CSSProperties = {
+  position: 'relative',
+  overflow: 'hidden',
+  background:
+    'radial-gradient(800px 560px at 78% 34%, rgb(236, 230, 255) 0%, rgba(236, 230, 255, 0) 62%), radial-gradient(600px 420px at 0% 100%, rgb(242, 239, 255) 0%, rgba(242, 239, 255, 0) 70%), rgb(250, 250, 254)',
+};
+const heroRowStyle: CSSProperties = {
+  position: 'relative',
+  maxWidth: '1280px',
+  margin: '0px auto',
+  padding: 'clamp(32px, 4vw, 48px) clamp(20px, 4vw, 48px) clamp(40px, 5vw, 56px)',
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  gap: '44px',
+};
+
 export default function MailPageClient() {
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -116,7 +133,22 @@ export default function MailPageClient() {
       <div id="dc-root">
         <div className="sc-host" data-sc-name="Snaarp Email">
           <div style={{ minHeight: '100vh', background: 'rgb(250, 250, 254)', overflowX: 'hidden' }}>
-            <div style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: MAIL_HTML }} />
+            {/* ── Hero (reconstructed so the live compose demo sits in the canvas) ── */}
+            <section data-dc-tpl="48" data-screen-label="Hero" style={heroSectionStyle}>
+              <div data-dc-tpl="49" className="mail-hero-row" style={heroRowStyle}>
+                {/* Left text column (balanced HTML) */}
+                <div style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: MAIL_HERO_TEXTCOL }} />
+                {/* Right: live animated compose demo */}
+                <div data-dc-tpl="78" className="mail-hero-mockcol" style={{ flex: '1 1 560px', minWidth: 0, maxWidth: '830px', marginLeft: 'auto' }}>
+                  <div data-dc-tpl="79" className="mail-hero-mock" style={{ position: 'relative', width: '620px', height: '590px' }}>
+                    <MailComposeDemo autoplay />
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* ── Every section after the hero (balanced HTML) ── */}
+            <div style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: MAIL_AFTER_HERO }} />
           </div>
         </div>
       </div>

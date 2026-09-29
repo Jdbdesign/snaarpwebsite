@@ -139,8 +139,8 @@ export default function MailPageClient() {
                 {/* Left text column (balanced HTML) */}
                 <div style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: MAIL_HERO_TEXTCOL }} />
                 {/* Right: live animated compose demo */}
-                <div data-dc-tpl="78" className="mail-hero-mockcol" style={{ flex: '1 1 560px', minWidth: 0, maxWidth: '830px', marginLeft: 'auto' }}>
-                  <div data-dc-tpl="79" className="mail-hero-mock" style={{ position: 'relative', width: '620px', height: '590px' }}>
+                <div data-dc-tpl="78" className="mail-hero-mockcol" style={{ flex: '1 1 620px', minWidth: 0, maxWidth: '860px', marginLeft: 'auto' }}>
+                  <div data-dc-tpl="79" className="mail-hero-mock" style={{ position: 'relative', width: '720px', height: '600px' }}>
                     <MailComposeDemo autoplay />
                   </div>
                 </div>

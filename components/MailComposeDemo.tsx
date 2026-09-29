@@ -147,7 +147,7 @@ export function MailComposeDemo({ autoplay = true }: { autoplay?: boolean } = {}
   const F = 'Poppins, sans-serif';
 
   return (
-    <div ref={rootRef} style={{ position: 'absolute', left: 0, top: 0, width: '620px', height: '590px', borderRadius: '16px', background: '#fff', border: '1px solid rgb(233,231,244)', boxShadow: 'rgba(40,20,130,0.35) 0px 60px 100px -40px, rgba(20,10,60,0.18) 0px 20px 40px -24px', overflow: 'hidden', display: 'flex', flexDirection: 'column', fontFamily: F, color: '#1a1a2e' }}>
+    <div ref={rootRef} style={{ position: 'absolute', left: 0, top: 0, width: '720px', height: '600px', borderRadius: '16px', background: '#fff', border: '1px solid rgb(233,231,244)', boxShadow: 'rgba(40,20,130,0.35) 0px 60px 100px -40px, rgba(20,10,60,0.18) 0px 20px 40px -24px', overflow: 'hidden', display: 'flex', flexDirection: 'column', fontFamily: F, color: '#1a1a2e' }}>
       {/* top bar */}
       <div style={{ height: '44px', flex: '0 0 auto', borderBottom: '1px solid #F0EFF6', display: 'flex', alignItems: 'center', gap: '12px', padding: '0 14px' }}>
         <span style={{ fontWeight: 800, fontSize: '15px', letterSpacing: '-0.04em' }}>snaarp</span>

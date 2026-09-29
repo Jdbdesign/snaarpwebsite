@@ -1203,7 +1203,7 @@ export function ProjectManagementPreviewMockup({ onEnd, showTour = true, autopla
       {autoplay && cursor.visible && (
         <div
           style={{
-            position: 'absolute', left: 0, top: 0, zIndex: 10000, pointerEvents: 'none',
+            position: 'absolute', left: 0, top: 0, zIndex: 50, pointerEvents: 'none',
             transform: `translate(${cursor.x - 2}px, ${cursor.y - 1}px)`,
             transition: 'transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
             willChange: 'transform',

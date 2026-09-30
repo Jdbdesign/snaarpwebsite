@@ -100,17 +100,27 @@ export default function KalenderPageClient() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
-    const card = root.querySelector<HTMLElement>('[data-dc-tpl="314"]');
-    if (!card) return;
+    // Both analytics mockups: the "Know Where Your Time Goes" card (canvas
+    // tpl 314, bars tpl 332) and the "Powerful Analytics" card (canvas
+    // tpl 377, bars tpl 394). Each gets a staggered per-bar index and its
+    // own reveal→loop trigger.
+    const cards = [
+      { canvas: '314', bar: '332' },
+      { canvas: '377', bar: '394' },
+    ]
+      .map((c) => ({ el: root.querySelector<HTMLElement>(`[data-dc-tpl="${c.canvas}"]`), bar: c.bar }))
+      .filter((c): c is { el: HTMLElement; bar: string } => !!c.el);
+    if (!cards.length) return;
 
-    // Give each chart bar a staggered index so the grow-in cascades L→R.
-    card.querySelectorAll<HTMLElement>('[data-dc-tpl="332"]').forEach((bar, i) => {
-      bar.style.setProperty('--kl-bar-i', String(i));
+    cards.forEach(({ el, bar }) => {
+      el.querySelectorAll<HTMLElement>(`[data-dc-tpl="${bar}"]`).forEach((b, i) => {
+        b.style.setProperty('--kl-bar-i', String(i));
+      });
     });
 
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) {
-      card.classList.add('kl-analytics-live');
+      cards.forEach(({ el }) => el.classList.add('kl-analytics-live'));
       return;
     }
 
@@ -118,15 +128,14 @@ export default function KalenderPageClient() {
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting) {
-            card.classList.add('kl-analytics-live');
-            io.disconnect();
-            break;
+            e.target.classList.add('kl-analytics-live');
+            io.unobserve(e.target);
           }
         }
       },
       { threshold: 0.35 }
     );
-    io.observe(card);
+    cards.forEach(({ el }) => io.observe(el));
     return () => io.disconnect();
   }, []);
 

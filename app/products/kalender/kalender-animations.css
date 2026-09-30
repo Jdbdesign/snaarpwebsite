@@ -268,3 +268,75 @@
     animation: none !important;
   }
 }
+
+/* =====================================================================
+   "Powerful Analytics for Smarter Decisions" card (mockup canvas tpl 377)
+   — same autonomous, continuous-loop treatment as the tpl 314 card, mapped
+   to this card's element numbers: bar column tpl 394 / inner bar tpl 397 /
+   label tpl 398, donut tpl 411 (centre child tpl 412), stat numbers
+   tpl 401 & 405. Runs on its own once .kl-analytics-live is added.
+   ===================================================================== */
+
+/* Bars: entrance grow-in, then infinite ripple wave */
+.snaarp-kalender-page [data-dc-tpl="377"] [data-dc-tpl="397"] {
+  transform-origin: bottom center;
+  transition: background 0.2s var(--kl-ease), box-shadow 0.2s var(--kl-ease) !important;
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="394"] [data-dc-tpl="397"] {
+  animation:
+    kl-bar-grow 0.6s var(--kl-ease) backwards,
+    kl-bar-wave 2.6s ease-in-out infinite;
+  animation-delay:
+    calc(120ms + var(--kl-bar-i, 0) * 55ms),
+    calc(800ms + var(--kl-bar-i, 0) * 130ms);
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="394"] [data-dc-tpl="398"] {
+  animation: kl-barlabel-pulse 2.6s ease-in-out infinite;
+  animation-delay: calc(800ms + var(--kl-bar-i, 0) * 130ms);
+}
+
+/* Donut: pop in, then slow rotate + breathe; centre label counter-rotates */
+.snaarp-kalender-page [data-dc-tpl="377"] [data-dc-tpl="411"] {
+  transition: transform 0.3s var(--kl-ease), box-shadow 0.3s var(--kl-ease);
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="411"] {
+  animation:
+    kl-donut-in 0.7s var(--kl-ease) 0.25s backwards,
+    kl-donut-spin 16s linear 1s infinite;
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="411"] > * {
+  animation: kl-donut-spin-rev 16s linear 1s infinite;
+}
+
+/* Stat tiles (tpl 400 / 404): rise in, then gentle breathing */
+.snaarp-kalender-page [data-dc-tpl="377"] [data-dc-tpl="400"],
+.snaarp-kalender-page [data-dc-tpl="377"] [data-dc-tpl="404"] {
+  transition: transform 0.28s var(--kl-ease);
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="400"] {
+  animation: kl-stat-in 0.5s var(--kl-ease) 0.55s backwards, kl-stat-breathe 4s ease-in-out 1.1s infinite;
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="404"] {
+  animation: kl-stat-in 0.5s var(--kl-ease) 0.65s backwards, kl-stat-breathe 4s ease-in-out 1.5s infinite;
+}
+/* stat numbers softly tint toward brand purple on the beat */
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="401"] {
+  animation: kl-statnum-tint 4s ease-in-out infinite;
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="405"] {
+  animation: kl-statnum-tint 4s ease-in-out 0.4s infinite;
+}
+
+/* Reduced motion: hold still */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="397"],
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="398"],
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="411"],
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="411"] > *,
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="400"],
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="404"],
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="401"],
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="405"] {
+    animation: none !important;
+  }
+}

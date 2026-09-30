@@ -405,10 +405,6 @@ export const KALENDER_AFTER_HERO = `<section data-dc-tpl="177" data-screen-label
           <span data-dc-tpl="249" style="width: 44px; height: 44px; border-radius: 10px; background: rgb(124, 58, 237); display: grid; place-items: center; flex: 0 0 auto;"><span data-dc-tpl="250" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 26px; line-height: 1; color: rgb(255, 255, 255);">videocam</span></span>
           <span data-dc-tpl="251" style="font-size: 14px; font-weight: 700; line-height: 1.4;">Unlimited video meetings<br data-dc-tpl="252">included. No extra cost.</span>
         </div>
-        <div data-dc-tpl="253" style="position: absolute; left: 614px; top: 282px; color: rgb(124, 58, 237);">
-          <div data-dc-tpl="254" style="font-family: Caveat, cursive; font-size: 27px; line-height: 1.05; transform: rotate(-9deg); transform-origin: left top; font-weight: 500;">Meet.<br data-dc-tpl="255">Collaborate.<br data-dc-tpl="256">Move forward.</div>
-          <svg data-dc-tpl="257" width="80" height="56" style="margin-top: 4px;"><path data-dc-tpl="258" d="M66 4 C 66 30, 44 44, 12 40" style="fill: none; stroke: rgb(124, 58, 237); stroke-width: 1.8; stroke-linecap: round;"></path><path data-dc-tpl="259" d="M20 32 L11 40 L21 47" style="fill: none; stroke: rgb(124, 58, 237); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"></path></svg>
-        </div>
       </div>
     </div>
   </div></section><section data-dc-tpl="260" id="tools" data-screen-label="Integrations" style="background: rgb(251, 252, 255);">

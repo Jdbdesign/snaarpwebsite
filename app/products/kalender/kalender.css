@@ -379,3 +379,38 @@ x-dc { display: none !important; }
 @media (min-width: 1024px) and (max-width: 1439px) {
   .snaarp-kalender-page [data-dc-tpl="70"] { zoom: 0.82 !important; }
 }
+
+/* =====================================================================
+   "More Than Scheduling / Meet Without Limits" (section tpl 185).
+   Enlarge the Snaarp Meet video mockup (canvas tpl 199, 780x480 frozen at
+   zoom:0.836) so it is both taller and wider, aligning to the top and
+   bottom of the left text column. The row (tpl 186) stretches so the mock
+   column matches the text column's height; the canvas is centred within
+   it. Anchor the mock column LEFT (margin-left:0) and give it a wider
+   max-width. The removed handwritten annotation freed the bottom-right,
+   so the bigger canvas has room.
+   ===================================================================== */
+.snaarp-kalender-page [data-dc-tpl="186"] {
+  align-items: stretch !important;
+}
+.snaarp-kalender-page [data-dc-tpl="198"] {
+  flex: 1 1 620px !important;
+  max-width: 960px !important;
+  margin-left: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.snaarp-kalender-page [data-dc-tpl="199"] {
+  zoom: 1 !important;                 /* desktop: 780x480 rendered (was ~652x401) */
+}
+@media (min-width: 1440px) {
+  .snaarp-kalender-page [data-dc-tpl="199"] { zoom: 1.12 !important; }
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .snaarp-kalender-page [data-dc-tpl="199"] { zoom: 0.94 !important; }
+}
+@media (max-width: 1023px) {
+  /* stacked: keep it comfortably sized, don't overflow narrow screens */
+  .snaarp-kalender-page [data-dc-tpl="199"] { zoom: 0.82 !important; }
+}

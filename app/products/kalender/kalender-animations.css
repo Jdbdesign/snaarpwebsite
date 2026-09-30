@@ -1,0 +1,139 @@
+/* =====================================================================
+   SnaarpMe (Kalender) — site-wide interaction polish (hover + reveal).
+   Hand-authored, kept separate from the auto-generated kalender.css so a
+   regeneration won't wipe it. Namespaced under .snaarp-kalender-page and
+   targets the bundle's inline-styled elements via their stable data-dc-tpl
+   "type" numbers (siblings of a kind share a number) or the scp* behaviour
+   classes. Inline styles win the cascade, so hover overrides use
+   !important where needed.
+
+   Layout-safety rules:
+   - Never style style="display:contents" wrappers.
+   - Never add transforms to the static mockup canvases (tpl 70 hero booking,
+     tpl 198 video call, tpl 313 / 377 analytics, tpl 446 phone) — their
+     coordinate systems are frozen by `zoom` and hold absolutely-positioned
+     art with its own composition.
+   - Prefer transform / box-shadow / border hovers; they compose cleanly.
+   ===================================================================== */
+
+.snaarp-kalender-page {
+  --kl-brand: #7C3AED;
+  --kl-brand-dark: #6D28D9;
+  --kl-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Smooth base transition for the interactive element types we hover. */
+.snaarp-kalender-page [data-dc-tpl="59"],
+.snaarp-kalender-page [data-dc-tpl="61"],
+.snaarp-kalender-page [data-dc-tpl="180"],
+.snaarp-kalender-page [data-dc-tpl="293"],
+.snaarp-kalender-page [data-dc-tpl="267"],
+.snaarp-kalender-page [data-dc-tpl="545"],
+.snaarp-kalender-page [data-dc-tpl="562"],
+.snaarp-kalender-page [data-dc-tpl="556"] {
+  transition: transform 0.28s var(--kl-ease), box-shadow 0.28s var(--kl-ease),
+              border-color 0.28s var(--kl-ease), background 0.28s var(--kl-ease),
+              filter 0.28s var(--kl-ease), opacity 0.28s var(--kl-ease) !important;
+  will-change: transform;
+}
+
+/* ── Hero primary CTA ("Get Started Free", tpl 59 / .scp4) — lift + arrow ── */
+.snaarp-kalender-page .scp4:hover,
+.snaarp-kalender-page [data-dc-tpl="59"]:hover {
+  transform: translateY(-2px) !important;
+  background: var(--kl-brand-dark) !important;
+  box-shadow: rgba(124, 58, 237, 0.6) 0px 20px 34px -12px !important;
+}
+.snaarp-kalender-page .scp4:active,
+.snaarp-kalender-page [data-dc-tpl="59"]:active { transform: translateY(0) !important; }
+.snaarp-kalender-page [data-dc-tpl="59"] [data-dc-tpl="60"] { transition: transform 0.3s var(--kl-ease); }
+.snaarp-kalender-page [data-dc-tpl="59"]:hover [data-dc-tpl="60"] { transform: translateX(4px); }
+
+/* ── Hero secondary CTA ("See How It Works", tpl 61 / .scp5) — play glyph pop ── */
+.snaarp-kalender-page .scp5:hover,
+.snaarp-kalender-page [data-dc-tpl="61"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--kl-brand) !important;
+  background: rgb(247, 244, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 14px 26px -12px !important;
+}
+.snaarp-kalender-page [data-dc-tpl="61"] [data-dc-tpl="62"] { transition: transform 0.3s var(--kl-ease); }
+.snaarp-kalender-page [data-dc-tpl="61"]:hover [data-dc-tpl="62"] { transform: scale(1.12); }
+
+/* ── Feature-icon cards ("everything you need" grid, tpl 180 / .scpa) ── */
+.snaarp-kalender-page .scpa:hover,
+.snaarp-kalender-page [data-dc-tpl="180"]:hover {
+  transform: translateY(-6px) !important;
+  background: #ffffff !important;
+  box-shadow: rgba(60, 40, 140, 0.16) 0px 22px 40px -18px !important;
+}
+/* the tinted icon tile pops on card hover */
+.snaarp-kalender-page [data-dc-tpl="180"] [data-dc-tpl="181"] {
+  transition: transform 0.32s var(--kl-ease);
+}
+.snaarp-kalender-page [data-dc-tpl="180"]:hover [data-dc-tpl="181"] {
+  transform: scale(1.06);
+}
+
+/* ── "Perfect for" use-case cards (tpl 293 / .scpd) ── */
+.snaarp-kalender-page .scpd:hover,
+.snaarp-kalender-page [data-dc-tpl="293"]:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: rgba(124, 58, 237, 0.18) 0px 20px 38px -18px !important;
+}
+
+/* ── Integration platform tiles (tpl 267 / .scpc) — logo lifts + saturates ── */
+.snaarp-kalender-page [data-dc-tpl="267"] {
+  filter: grayscale(0.1);
+}
+.snaarp-kalender-page .scpc:hover,
+.snaarp-kalender-page [data-dc-tpl="267"]:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgb(183, 166, 255) !important;
+  background: #ffffff !important;
+  filter: grayscale(0) !important;
+  box-shadow: rgba(124, 58, 237, 0.18) 0px 16px 30px -14px !important;
+}
+.snaarp-kalender-page [data-dc-tpl="267"] [data-dc-tpl="269"] { transition: transform 0.3s var(--kl-ease); }
+.snaarp-kalender-page [data-dc-tpl="267"]:hover [data-dc-tpl="269"] { transform: scale(1.08); }
+
+/* ── Final-CTA button (tpl 545 / .scpj) — lift ── */
+.snaarp-kalender-page .scpj:hover,
+.snaarp-kalender-page [data-dc-tpl="545"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(15, 20, 60, 0.4) 0px 20px 34px -12px !important;
+}
+.snaarp-kalender-page .scpj:active,
+.snaarp-kalender-page [data-dc-tpl="545"]:active { transform: translateY(0) !important; }
+
+/* ── FAQ items (tpl 562) — subtle lift on hover ── */
+.snaarp-kalender-page [data-dc-tpl="562"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(60, 40, 140, 0.12) 0px 14px 26px -16px !important;
+}
+
+/* ── "View all FAQs" link (tpl 556) — color emphasis ── */
+.snaarp-kalender-page [data-dc-tpl="556"] { transition: color 0.2s var(--kl-ease), transform 0.2s var(--kl-ease); }
+.snaarp-kalender-page [data-dc-tpl="556"]:hover {
+  color: var(--kl-brand-dark) !important;
+  transform: translateX(3px);
+}
+
+/* ── Reveal accent: springy scale-in for card grids flagged .kl-pop ── */
+.snaarp-kalender-page [data-reveal].kl-pop {
+  transform: translateY(26px) scale(0.97);
+}
+.snaarp-kalender-page [data-reveal].kl-pop.is-revealed {
+  transform: translateY(0) scale(1);
+}
+
+/* ── Reduced motion: disable movement ── */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-kalender-page [data-dc-tpl]:hover,
+  .snaarp-kalender-page [data-dc-tpl]:hover * {
+    transform: none !important;
+  }
+  .snaarp-kalender-page [data-reveal].kl-pop {
+    transform: none !important;
+  }
+}

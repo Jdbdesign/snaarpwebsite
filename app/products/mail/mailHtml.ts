@@ -558,39 +558,6 @@ export const MAIL_AFTER_HERO_2 = `<section data-dc-tpl="371" data-screen-label="
         </div>
       
     </div>
-  </div></section><section data-dc-tpl="544" style="background: linear-gradient(rgb(250, 250, 254), rgb(244, 242, 253));">
-  <div data-dc-tpl="545" style="max-width: 1280px; margin: 0px auto; padding: clamp(24px, 3vw, 36px) clamp(20px, 4vw, 48px) clamp(40px, 5vw, 56px); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px 30px;">
-    
-      <div data-dc-tpl="547" style="display: flex; gap: 18px; align-items: flex-start;">
-        <img data-dc-tpl="548" src="/assets/mail/avatar-tunde.png" alt="Tunde A." style="width: 104px; height: 116px; border-radius: 14px; object-fit: cover; flex: 0 0 auto; box-shadow: rgba(20, 10, 60, 0.4) 0px 14px 30px -18px;">
-        <div data-dc-tpl="549" style="min-width: 0px;">
-          <div data-dc-tpl="550" style="font-size: 14.5px; line-height: 1.55; color: rgb(42, 46, 77); text-wrap: pretty;"><span class="sc-interp">“Snaarp Mail has transformed the way we communicate. Professional email for our team, with AI built in, at a fraction of the usual cost.”</span></div>
-          <div data-dc-tpl="551" style="margin-top: 12px; font-size: 15px; font-weight: 700;"><span class="sc-interp">Tunde A.</span></div>
-          <div data-dc-tpl="552" style="font-size: 13px; color: rgb(90, 95, 125);"><span class="sc-interp">CEO, BrightPath Solutions</span></div>
-          <div data-dc-tpl="553" style="margin-top: 6px; display: flex; gap: 1px; color: rgb(245, 180, 0);"><span data-dc-tpl="554" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span><span data-dc-tpl="555" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span><span data-dc-tpl="556" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span><span data-dc-tpl="557" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span><span data-dc-tpl="558" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span></div>
-        </div>
-      </div>
-    
-      <div data-dc-tpl="547" style="display: flex; gap: 18px; align-items: flex-start;">
-        <img data-dc-tpl="548" src="/assets/mail/avatar-sarah.png" alt="Sarah K." style="width: 104px; height: 116px; border-radius: 14px; object-fit: cover; flex: 0 0 auto; box-shadow: rgba(20, 10, 60, 0.4) 0px 14px 30px -18px;">
-        <div data-dc-tpl="549" style="min-width: 0px;">
-          <div data-dc-tpl="550" style="font-size: 14.5px; line-height: 1.55; color: rgb(42, 46, 77); text-wrap: pretty;"><span class="sc-interp">“The AI assistant saves me hours every week. I can summarise, reply and schedule meetings in seconds.”</span></div>
-          <div data-dc-tpl="551" style="margin-top: 12px; font-size: 15px; font-weight: 700;"><span class="sc-interp">Sarah K.</span></div>
-          <div data-dc-tpl="552" style="font-size: 13px; color: rgb(90, 95, 125);"><span class="sc-interp">Operations Director</span></div>
-          <div data-dc-tpl="553" style="margin-top: 6px; display: flex; gap: 1px; color: rgb(245, 180, 0);"><span data-dc-tpl="554" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span><span data-dc-tpl="555" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span><span data-dc-tpl="556" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span><span data-dc-tpl="557" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span><span data-dc-tpl="558" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span></div>
-        </div>
-      </div>
-    
-      <div data-dc-tpl="547" style="display: flex; gap: 18px; align-items: flex-start;">
-        <img data-dc-tpl="548" src="/assets/mail/avatar-james.png" alt="James L." style="width: 104px; height: 116px; border-radius: 14px; object-fit: cover; flex: 0 0 auto; box-shadow: rgba(20, 10, 60, 0.4) 0px 14px 30px -18px;">
-        <div data-dc-tpl="549" style="min-width: 0px;">
-          <div data-dc-tpl="550" style="font-size: 14.5px; line-height: 1.55; color: rgb(42, 46, 77); text-wrap: pretty;"><span class="sc-interp">“Easy to set up, reliable and powerful. We moved from Google Workspace without any issues.”</span></div>
-          <div data-dc-tpl="551" style="margin-top: 12px; font-size: 15px; font-weight: 700;"><span class="sc-interp">James L.</span></div>
-          <div data-dc-tpl="552" style="font-size: 13px; color: rgb(90, 95, 125);"><span class="sc-interp">Founder, NovaTech Ltd</span></div>
-          <div data-dc-tpl="553" style="margin-top: 6px; display: flex; gap: 1px; color: rgb(245, 180, 0);"><span data-dc-tpl="554" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span><span data-dc-tpl="555" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span><span data-dc-tpl="556" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span><span data-dc-tpl="557" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span><span data-dc-tpl="558" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">star</span></div>
-        </div>
-      </div>
-    
   </div></section><section data-dc-tpl="559" id="faq" data-screen-label="FAQ" style="background: rgb(250, 250, 254);">
   <div data-dc-tpl="560" style="max-width: 1280px; margin: 0px auto; padding: clamp(36px, 5vw, 52px) clamp(20px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 30px;">
     <div data-dc-tpl="561" style="flex: 1 1 240px; min-width: 0px; max-width: 300px;">

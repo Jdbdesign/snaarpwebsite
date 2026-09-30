@@ -4,8 +4,9 @@ import { useEffect, useLayoutEffect, useRef, type CSSProperties } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import './mail.css';
 import './mail-animations.css';
-import { MAIL_HERO_TEXTCOL, MAIL_AFTER_HERO } from './mailHtml';
+import { MAIL_HERO_TEXTCOL, MAIL_AFTER_HERO_1, MAIL_ACCESS_TEXTCOL, MAIL_AFTER_HERO_2 } from './mailHtml';
 import { MailComposeDemo } from '@/components/MailComposeDemo';
+import { MailDevicesDemo } from '@/components/MailDevicesDemo';
 
 // The hero is reconstructed in JSX so the live, animated "compose an email
 // with AI + attachment" demo (MailComposeDemo) sits in the mock canvas —
@@ -74,6 +75,8 @@ export default function MailPageClient() {
     const sel = CARD_RADII.map((r) => `section [style*="border-radius: ${r}"]`).join(', ');
     root.querySelectorAll<HTMLElement>(sel).forEach((c) => {
       if (c.hasAttribute('data-reveal')) return;
+      // Never tag anything inside the live devices demo (it has its own motion).
+      if (c.closest('[data-dc-tpl="283"]')) return;
       if (c.querySelector('[data-dc-tpl="273"], [data-dc-tpl="538"], [data-dc-tpl="547"], [data-dc-tpl="567"], [data-reveal]')) return;
       const r = c.getBoundingClientRect();
       if (r.width < 220) return;
@@ -147,8 +150,26 @@ export default function MailPageClient() {
               </div>
             </section>
 
-            {/* ── Every section after the hero (balanced HTML) ── */}
-            <div style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: MAIL_AFTER_HERO }} />
+            {/* ── Sections between the hero and the "Access anywhere" section ── */}
+            <div style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: MAIL_AFTER_HERO_1 }} />
+
+            {/* ── "Access your inbox, anytime, anywhere" (reconstructed so the
+                 live devices demo — a cursor opens a new email and replies —
+                 sits in the mockup slot) ── */}
+            <section data-dc-tpl="280" data-screen-label="Access Anywhere" style={{ background: 'linear-gradient(rgb(244, 242, 253), rgb(250, 250, 254))' }}>
+              <div data-dc-tpl="281" style={{ maxWidth: '1280px', margin: '0px auto', padding: 'clamp(40px, 5vw, 60px) clamp(20px, 4vw, 48px)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '36px' }}>
+                <div data-dc-tpl="282" style={{ flex: '1 1 440px', minWidth: 0, maxWidth: '540px' }}>
+                  <div data-dc-tpl="283" style={{ position: 'relative', width: '640px', height: '600px' }}>
+                    <MailDevicesDemo autoplay />
+                  </div>
+                </div>
+                {/* Right text column (balanced HTML) */}
+                <div style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: MAIL_ACCESS_TEXTCOL }} />
+              </div>
+            </section>
+
+            {/* ── Every section from Integrations onward (balanced HTML) ── */}
+            <div style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: MAIL_AFTER_HERO_2 }} />
           </div>
         </div>
       </div>

@@ -555,7 +555,7 @@ x-dc { display: none !important; }
   max-width: none !important;
 }
 .snaarp-mail-page [data-dc-tpl="283"] {
-  zoom: 1.02 !important;                /* desktop */
+  zoom: 0.82 !important;                /* desktop — 640x600 live devices demo */
 }
 .snaarp-mail-page [data-dc-tpl="349"] {
   flex: 0 0 400px !important;
@@ -568,16 +568,16 @@ x-dc { display: none !important; }
     gap: 56px !important;
   }
   .snaarp-mail-page [data-dc-tpl="283"] {
-    zoom: 1.18 !important;
+    zoom: 0.96 !important;
   }
   .snaarp-mail-page [data-dc-tpl="349"] {
     flex: 0 0 440px !important;
     max-width: 440px !important;
   }
 }
-/* Laptop range: keep the enlarged mockup fully visible next to the text. */
+/* Laptop range: keep the demo fully visible next to the text. */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .snaarp-mail-page [data-dc-tpl="283"] {
-    zoom: 0.94 !important;
+    zoom: 0.72 !important;
   }
 }

@@ -117,6 +117,118 @@
   transform: translateY(0) scale(1);
 }
 
+/* =====================================================================
+   PAGE-WIDE MICRO-INTERACTIONS — hover polish for the remaining static,
+   clickable content. Scoped to real controls only (never the live hero /
+   devices demos tpl 79 & tpl 283, never decorative cards/illustrations).
+   Transform / shadow / border / background only. Each element type gets a
+   base transition so the hover eases instead of snapping.
+   ===================================================================== */
+
+/* Base transition for every control type below. */
+.snaarp-mail-page [data-dc-tpl="200"], .snaarp-mail-page [data-dc-tpl="205"],  /* AI-assistant chips */
+.snaarp-mail-page [data-dc-tpl="213"],                                          /* Connect card */
+.snaarp-mail-page [data-dc-tpl="235"], .snaarp-mail-page [data-dc-tpl="379"],   /* filled CTAs */
+.snaarp-mail-page [data-dc-tpl="515"],
+.snaarp-mail-page [data-dc-tpl="481"], .snaarp-mail-page [data-dc-tpl="579"],   /* white-on-color CTAs */
+.snaarp-mail-page [data-dc-tpl="581"],                                          /* ghost CTA */
+.snaarp-mail-page [data-dc-tpl="427"],                                          /* video play */
+.snaarp-mail-page [data-dc-tpl="271"],                                          /* View all features link */
+.snaarp-mail-page .scpf, .snaarp-mail-page .scph, .snaarp-mail-page .scpd {     /* tiles + AI chips */
+  transition: transform 0.24s var(--ml-ease), box-shadow 0.24s var(--ml-ease),
+              border-color 0.24s var(--ml-ease), background 0.24s var(--ml-ease),
+              filter 0.24s var(--ml-ease) !important;
+  will-change: transform;
+}
+
+/* ── Filled purple CTAs (tpl 235 / 379 / 515) — lift + deepen shadow ── */
+.snaarp-mail-page [data-dc-tpl="235"]:hover,
+.snaarp-mail-page [data-dc-tpl="379"]:hover,
+.snaarp-mail-page [data-dc-tpl="515"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(124, 58, 237, 0.55) 0px 18px 32px -12px !important;
+}
+.snaarp-mail-page [data-dc-tpl="235"]:active,
+.snaarp-mail-page [data-dc-tpl="379"]:active,
+.snaarp-mail-page [data-dc-tpl="515"]:active { transform: translateY(0) !important; }
+/* nudge the arrow glyph inside these CTAs */
+.snaarp-mail-page [data-dc-tpl="236"], .snaarp-mail-page [data-dc-tpl="380"], .snaarp-mail-page [data-dc-tpl="516"] { transition: transform 0.25s var(--ml-ease); }
+.snaarp-mail-page [data-dc-tpl="235"]:hover [data-dc-tpl="236"],
+.snaarp-mail-page [data-dc-tpl="379"]:hover [data-dc-tpl="380"],
+.snaarp-mail-page [data-dc-tpl="515"]:hover [data-dc-tpl="516"] { transform: translateX(4px); }
+
+/* ── White-on-color CTAs (tpl 481 "View Pricing", 579 CTA banner) ───── */
+.snaarp-mail-page [data-dc-tpl="481"]:hover,
+.snaarp-mail-page [data-dc-tpl="579"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(20, 10, 60, 0.28) 0px 16px 30px -12px !important;
+}
+.snaarp-mail-page [data-dc-tpl="481"]:active,
+.snaarp-mail-page [data-dc-tpl="579"]:active { transform: translateY(0) !important; }
+.snaarp-mail-page [data-dc-tpl="580"] { transition: transform 0.25s var(--ml-ease); }
+.snaarp-mail-page [data-dc-tpl="579"]:hover [data-dc-tpl="580"] { transform: translateX(4px); }
+
+/* ── Ghost CTA on the dark banner (tpl 581 "See Pricing") ───────────── */
+.snaarp-mail-page [data-dc-tpl="581"]:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.95) !important;
+}
+.snaarp-mail-page [data-dc-tpl="581"]:active { transform: translateY(0) !important; }
+.snaarp-mail-page [data-dc-tpl="582"] { transition: transform 0.25s var(--ml-ease); }
+.snaarp-mail-page [data-dc-tpl="581"]:hover [data-dc-tpl="582"] { transform: translateX(4px); }
+
+/* ── Video play button (tpl 427 / .scp4 circle) — scale + ring bloom ── */
+.snaarp-mail-page [data-dc-tpl="427"]:hover {
+  transform: translate(-50%, -50%) scale(1.1) !important;
+  box-shadow: rgba(255, 255, 255, 0.45) 0px 0px 0px 12px !important;
+}
+.snaarp-mail-page [data-dc-tpl="427"]:active { transform: translate(-50%, -50%) scale(0.96) !important; }
+
+/* ── AI-assistant chips (tpl 200 ChatGPT / 205 Claude, .scpb) ───────── */
+.snaarp-mail-page [data-dc-tpl="200"]:hover,
+.snaarp-mail-page [data-dc-tpl="205"]:hover {
+  background: rgb(247, 244, 255) !important;
+  transform: translateY(-2px) !important;
+}
+.snaarp-mail-page [data-dc-tpl="201"], .snaarp-mail-page [data-dc-tpl="206"] { transition: transform 0.3s var(--ml-ease); }
+.snaarp-mail-page [data-dc-tpl="200"]:hover [data-dc-tpl="201"],
+.snaarp-mail-page [data-dc-tpl="205"]:hover [data-dc-tpl="206"] { transform: scale(1.08); }
+
+/* ── "Connect Snaarp Mail…" card (tpl 213 / .scp3) — lift + brand border ─ */
+.snaarp-mail-page [data-dc-tpl="213"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--ml-brand) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 14px 26px -14px !important;
+}
+
+/* ── Integration tiles (tpl 383 / .scpf) — lift + brand border + logo pop ─ */
+.snaarp-mail-page .scpf:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgb(196, 181, 253) !important;
+  box-shadow: rgba(40, 20, 130, 0.22) 0px 18px 34px -18px !important;
+}
+.snaarp-mail-page .scpf > span:not([data-dc-tpl="385"]):not([data-dc-tpl="409"]) { transition: transform 0.3s var(--ml-ease); }
+.snaarp-mail-page .scpf:hover > span:not([data-dc-tpl="385"]):not([data-dc-tpl="409"]) { transform: scale(1.12); }
+
+/* ── Migration provider tiles (tpl 503 / .scph) — lift + brand border ─ */
+.snaarp-mail-page .scph:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgb(196, 181, 253) !important;
+  box-shadow: rgba(40, 20, 130, 0.2) 0px 16px 30px -16px !important;
+}
+
+/* ── AI action chips over the photo (tpl 248 / .scpd) — slide + shadow ─ */
+.snaarp-mail-page .scpd:hover {
+  transform: translateX(6px) !important;
+  box-shadow: rgba(40, 20, 130, 0.45) 0px 18px 34px -14px !important;
+}
+
+/* ── "View all features" arrow link (tpl 271) — brand color + arrow nudge ─ */
+.snaarp-mail-page [data-dc-tpl="271"]:hover { color: var(--ml-brand-dark) !important; }
+.snaarp-mail-page [data-dc-tpl="272"] { transition: transform 0.25s var(--ml-ease); }
+.snaarp-mail-page [data-dc-tpl="271"]:hover [data-dc-tpl="272"] { transform: translateX(4px); }
+
 /* ── Reduced motion: disable movement ───────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .snaarp-mail-page [data-dc-tpl]:hover,

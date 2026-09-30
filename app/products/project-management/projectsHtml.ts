@@ -5,7 +5,7 @@
 // column; AFTER_HERO = every section after the hero (balanced).
 /* eslint-disable */
 export const PROJECTS_HERO_TEXTCOL = `<div data-dc-tpl="51" style="flex: 1 1 440px; min-width: 0px; max-width: 540px;">
-      
+      <div class="product-eyebrow" style="display: flex; flex-direction: column; gap: 3px; margin-bottom: 22px;"><span style="font-weight: 700; font-size: 17px; color: rgb(11, 13, 42);">Snaarp Projects</span><span style="font-size: 14px; color: rgb(90, 95, 125);">Project Management for High-Performing Teams.</span></div>
       <h1 data-dc-tpl="58" class="projects-hero-heading" style="margin: 0px; font-size: clamp(40px, 5.1vw, 64px); line-height: 1.03; letter-spacing: -0.04em; font-weight: 800; color: rgb(11, 13, 42);">Plan Smarter.<br data-dc-tpl="59">Work Together.<br data-dc-tpl="60"><span data-dc-tpl="61" style="color: rgb(124, 58, 237);">Deliver Faster.</span></h1>
       <p data-dc-tpl="62" class="projects-lede" style="margin: 24px 0px 0px; font-size: 17px; line-height: 1.6; color: rgb(63, 68, 99); max-width: 500px; text-wrap: pretty;">Bring your projects, people, tasks, deadlines and files together in one powerful workspace. Snaarp Projects helps teams get more done — on time, within budget, and with less chaos.</p>
       <div data-dc-tpl="63" style="margin-top: 32px; display: flex; flex-wrap: wrap; gap: 16px;">

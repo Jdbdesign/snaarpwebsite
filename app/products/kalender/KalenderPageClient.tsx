@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef, type CSSProperties } from 'react';
+import { useEffect, useLayoutEffect, useRef, type CSSProperties } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import './kalender.css';
 import './kalender-animations.css';
@@ -86,6 +86,48 @@ export default function KalenderPageClient() {
     root.querySelectorAll<HTMLElement>('[data-dc-tpl="562"]').forEach((c) => {
       if (!inMockup(c)) tag(c, { group: 'kl-faq', batch: 'faq', pop: true });
     });
+  }, []);
+
+  // Micro-interactions for the "Know Where Your Time Goes" analytics card
+  // (mockup canvas tpl 314). The card is excluded from the shared scroll-
+  // reveal system (it's a frozen, zoom-scaled canvas), so it gets its own
+  // lightweight IntersectionObserver here: when it scrolls into view we add
+  // `kl-analytics-live`, which drives a one-shot entrance animation defined
+  // in kalender-animations.css — the bars grow up from the baseline in a
+  // staggered sweep, the donut wipes in, and the stat tiles pop. Hover
+  // polish (bar highlight, donut lift, stat-tile raise) is pure CSS. We
+  // only add a class + per-bar index var; we never transform the canvas.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const card = root.querySelector<HTMLElement>('[data-dc-tpl="314"]');
+    if (!card) return;
+
+    // Give each chart bar a staggered index so the grow-in cascades L→R.
+    card.querySelectorAll<HTMLElement>('[data-dc-tpl="332"]').forEach((bar, i) => {
+      bar.style.setProperty('--kl-bar-i', String(i));
+    });
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      card.classList.add('kl-analytics-live');
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            card.classList.add('kl-analytics-live');
+            io.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(card);
+    return () => io.disconnect();
   }, []);
 
   useScrollReveal(rootRef);

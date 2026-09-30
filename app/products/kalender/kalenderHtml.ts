@@ -348,7 +348,7 @@ export const KALENDER_AFTER_HERO = `<section data-dc-tpl="177" data-screen-label
 
     <div data-dc-tpl="198" style="flex: 1 1 560px; min-width: 0px; max-width: 780px; margin-left: auto;">
       <div data-dc-tpl="199" style="position: relative; width: 780px; height: 480px; zoom: 0.836;">
-        <div data-dc-tpl="200" style="position: absolute; left: 0px; top: 56px; width: 600px; height: 420px; border-radius: 22px; background: rgba(255, 255, 255, 0.75); border: 1px solid rgb(228, 234, 248); box-shadow: rgba(20, 50, 150, 0.4) 0px 40px 80px -40px; padding: 14px;">
+        <div data-dc-tpl="200" style="position: absolute; left: 0px; top: 0px; width: 660px; height: 480px; border-radius: 22px; background: rgba(255, 255, 255, 0.75); border: 1px solid rgb(228, 234, 248); box-shadow: rgba(20, 50, 150, 0.4) 0px 40px 80px -40px; padding: 14px;">
           <div data-dc-tpl="201" style="position: relative; width: 100%; height: 100%; border-radius: 14px; overflow: hidden; background: rgb(27, 32, 48);">
             <img data-dc-tpl="202" src="/assets/kalender/video-call.png" alt="Snaarp Meet video call" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block; filter: none; transition: filter 0.3s;">
             <div data-dc-tpl="203" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 90px; background: linear-gradient(rgba(10, 14, 30, 0.55), rgba(10, 14, 30, 0));"></div>
@@ -401,7 +401,7 @@ export const KALENDER_AFTER_HERO = `<section data-dc-tpl="177" data-screen-label
             
           </div>
         </div>
-        <div data-dc-tpl="248" style="position: absolute; left: 432px; top: 0px; width: 330px; height: 74px; border-radius: 14px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 248); box-shadow: rgba(20, 50, 150, 0.35) 0px 20px 40px -20px; display: flex; align-items: center; gap: 16px; padding: 0px 20px;">
+        <div data-dc-tpl="248" style="position: absolute; right: 0px; top: -18px; width: 330px; height: 74px; border-radius: 14px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 248); box-shadow: rgba(20, 50, 150, 0.35) 0px 20px 40px -20px; display: flex; align-items: center; gap: 16px; padding: 0px 20px; z-index: 3;">
           <span data-dc-tpl="249" style="width: 44px; height: 44px; border-radius: 10px; background: rgb(124, 58, 237); display: grid; place-items: center; flex: 0 0 auto;"><span data-dc-tpl="250" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 26px; line-height: 1; color: rgb(255, 255, 255);">videocam</span></span>
           <span data-dc-tpl="251" style="font-size: 14px; font-weight: 700; line-height: 1.4;">Unlimited video meetings<br data-dc-tpl="252">included. No extra cost.</span>
         </div>

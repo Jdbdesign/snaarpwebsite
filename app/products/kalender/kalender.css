@@ -414,3 +414,17 @@ x-dc { display: none !important; }
   /* stacked: keep it comfortably sized, don't overflow narrow screens */
   .snaarp-kalender-page [data-dc-tpl="199"] { zoom: 0.82 !important; }
 }
+
+/* Meet section feature list (tpl 191): keep the two-column grid on
+   laptop/tablet widths instead of collapsing to one long single column.
+   The bundle's auto-fit + minmax(220px) drops to 1 column once the text
+   column narrows; pin it to 2 columns down to small screens, then allow
+   a single column only on true mobile. */
+.snaarp-kalender-page [data-dc-tpl="191"] {
+  grid-template-columns: 1fr 1fr !important;
+}
+@media (max-width: 520px) {
+  .snaarp-kalender-page [data-dc-tpl="191"] {
+    grid-template-columns: 1fr !important;
+  }
+}

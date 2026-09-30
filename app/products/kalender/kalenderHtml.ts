@@ -8,7 +8,6 @@
 
 export const KALENDER_HERO_TEXTCOL = `<div data-dc-tpl="45" style="flex: 1 1 420px; min-width: 0px; max-width: 540px;">
       <div data-dc-tpl="46" style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px;">
-        <span data-dc-tpl="47" style="width: 56px; height: 56px; border-radius: 12px; background: linear-gradient(145deg, rgb(139, 92, 246), rgb(124, 58, 237)); display: grid; place-items: center; box-shadow: rgba(124, 58, 237, 0.7) 0px 10px 22px -8px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset; flex: 0 0 auto;"><span data-dc-tpl="48" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 30px; line-height: 1; color: rgb(255, 255, 255);">calendar_month</span></span>
         <span data-dc-tpl="49" style="display: flex; flex-direction: column; gap: 4px;"><span data-dc-tpl="50" style="font-weight: 800; font-size: 22px; letter-spacing: -0.02em;">Snaarp.me</span><span data-dc-tpl="51" style="font-size: 15px; color: rgb(91, 99, 128);">Schedule. Meet. Get Things Done.</span></span>
       </div>
       <h1 data-dc-tpl="52" style="margin: 0px; font-size: clamp(42px, 5.2vw, 68px); line-height: 1.04; letter-spacing: -0.045em; font-weight: 800; color: rgb(11, 20, 55);">Scheduling<br data-dc-tpl="53"><span data-dc-tpl="54" style="color: rgb(11, 36, 114);">made </span><span data-dc-tpl="55" style="color: rgb(124, 58, 237);">effortless.</span></h1>
@@ -38,8 +37,8 @@ export const KALENDER_HERO_MOCK = `<div data-dc-tpl="69" style="flex: 1 1 560px;
         
         <div data-dc-tpl="78" style="position: absolute; left: 0px; top: 92px; width: 760px; height: 520px; border-radius: 18px; background: rgba(255, 255, 255, 0.88); border: 1px solid rgb(231, 236, 248); box-shadow: rgba(20, 50, 150, 0.35) 0px 50px 90px -40px, rgba(10, 20, 60, 0.18) 0px 16px 36px -24px;">
           <div data-dc-tpl="79" style="position: absolute; left: 0px; top: 0px; width: 290px; height: 100%; padding: 26px 22px; display: flex; flex-direction: column; align-items: center;">
-            <img data-dc-tpl="80" src="/assets/kalender/avatar-victor.png" alt="Victor Ariyibi-Oke" style="width: 92px; height: 92px; border-radius: 50%; object-fit: cover; display: block; box-shadow: rgba(10, 20, 60, 0.4) 0px 8px 20px -10px;">
-            <div data-dc-tpl="81" style="margin-top: 14px; font-size: 15.5px; font-weight: 700;">Victor Ariyibi-Oke</div>
+            <img data-dc-tpl="80" src="/assets/kalender/avatar-victor.png" alt="Amara Okafor" style="width: 92px; height: 92px; border-radius: 50%; object-fit: cover; display: block; box-shadow: rgba(10, 20, 60, 0.4) 0px 8px 20px -10px;">
+            <div data-dc-tpl="81" style="margin-top: 14px; font-size: 15.5px; font-weight: 700;">Amara Okafor</div>
             <div data-dc-tpl="82" style="margin-top: 2px; font-size: 12.5px; color: rgb(91, 99, 128);">Founder &amp; CEO</div>
             <div data-dc-tpl="83" style="margin-top: 10px; font-size: 12.5px; color: rgb(91, 99, 128); text-align: center; line-height: 1.5;">Book a meeting with me<br data-dc-tpl="84">at a time that works for you.</div>
             <div data-dc-tpl="85" style="margin-top: 18px; width: 100%; display: flex; flex-direction: column; gap: 10px;">
@@ -265,16 +264,16 @@ export const KALENDER_HERO_MOCK = `<div data-dc-tpl="69" style="flex: 1 1 560px;
         <div data-dc-tpl="166" style="position: absolute; left: 0px; right: 0px; top: 630px; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
           <span data-dc-tpl="167" style="font-size: 11.5px; color: rgb(91, 99, 128); line-height: 1.45;">Works with the tools<br data-dc-tpl="168">you already use.</span>
           
-            <span data-dc-tpl="170" style="display: flex; align-items: center; gap: 8px;"><img data-dc-tpl="171" src="/assets/kalender/logo-gcal.png" alt="Google Calendar" style="width: 34px; height: 34px; object-fit: contain; display: block;"><span data-dc-tpl="172" style="font-size: 11px; color: rgb(63, 71, 102); line-height: 1.3; white-space: pre-line;"><span class="sc-interp">Google
+            <span data-dc-tpl="170" style="display: flex; align-items: center; gap: 8px;"><img data-dc-tpl="171" src="/assets/kalender/gcal.svg" alt="Google Calendar" style="width: 34px; height: 34px; object-fit: contain; display: block;"><span data-dc-tpl="172" style="font-size: 11px; color: rgb(63, 71, 102); line-height: 1.3; white-space: pre-line;"><span class="sc-interp">Google
 Calendar</span></span></span>
           
-            <span data-dc-tpl="170" style="display: flex; align-items: center; gap: 8px;"><img data-dc-tpl="171" src="/assets/kalender/logo-outlook.png" alt="Microsoft Outlook" style="width: 34px; height: 34px; object-fit: contain; display: block;"><span data-dc-tpl="172" style="font-size: 11px; color: rgb(63, 71, 102); line-height: 1.3; white-space: pre-line;"><span class="sc-interp">Microsoft
+            <span data-dc-tpl="170" style="display: flex; align-items: center; gap: 8px;"><img data-dc-tpl="171" src="/assets/kalender/outlook.svg" alt="Microsoft Outlook" style="width: 34px; height: 34px; object-fit: contain; display: block;"><span data-dc-tpl="172" style="font-size: 11px; color: rgb(63, 71, 102); line-height: 1.3; white-space: pre-line;"><span class="sc-interp">Microsoft
 Outlook</span></span></span>
           
-            <span data-dc-tpl="170" style="display: flex; align-items: center; gap: 8px;"><img data-dc-tpl="171" src="/assets/kalender/logo-teams.png" alt="Microsoft Teams" style="width: 34px; height: 34px; object-fit: contain; display: block;"><span data-dc-tpl="172" style="font-size: 11px; color: rgb(63, 71, 102); line-height: 1.3; white-space: pre-line;"><span class="sc-interp">Microsoft
+            <span data-dc-tpl="170" style="display: flex; align-items: center; gap: 8px;"><img data-dc-tpl="171" src="/assets/kalender/teams.svg" alt="Microsoft Teams" style="width: 34px; height: 34px; object-fit: contain; display: block;"><span data-dc-tpl="172" style="font-size: 11px; color: rgb(63, 71, 102); line-height: 1.3; white-space: pre-line;"><span class="sc-interp">Microsoft
 Teams</span></span></span>
           
-            <span data-dc-tpl="170" style="display: flex; align-items: center; gap: 8px;"><img data-dc-tpl="171" src="/assets/kalender/logo-gmeet.png" alt="Google Meet" style="width: 34px; height: 34px; object-fit: contain; display: block;"><span data-dc-tpl="172" style="font-size: 11px; color: rgb(63, 71, 102); line-height: 1.3; white-space: pre-line;"><span class="sc-interp">Google Meet</span></span></span>
+            <span data-dc-tpl="170" style="display: flex; align-items: center; gap: 8px;"><img data-dc-tpl="171" src="/assets/kalender/gmeet.svg" alt="Google Meet" style="width: 34px; height: 34px; object-fit: contain; display: block;"><span data-dc-tpl="172" style="font-size: 11px; color: rgb(63, 71, 102); line-height: 1.3; white-space: pre-line;"><span class="sc-interp">Google Meet</span></span></span>
           
           <span data-dc-tpl="173" style="display: flex; align-items: center; gap: 8px;"><span data-dc-tpl="174" style="width: 34px; height: 34px; border-radius: 8px; background: rgb(124, 58, 237); display: grid; place-items: center;"><span data-dc-tpl="175" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 22px; line-height: 1; color: rgb(255, 255, 255);">videocam</span></span><span data-dc-tpl="176" style="font-size: 13px; font-weight: 800; color: rgb(11, 20, 55);">Snaarp Meet</span></span>
         </div>
@@ -420,7 +419,7 @@ export const KALENDER_AFTER_HERO = `<section data-dc-tpl="177" data-screen-label
       <div data-dc-tpl="265" style="margin-top: 32px; display: flex; flex-wrap: wrap; gap: 18px 20px;">
         
           <button data-dc-tpl="267" class="scpc" style="width: 148px; padding: 16px 8px 12px; border-radius: 14px; border: 1px solid rgb(227, 234, 251); background: rgb(251, 252, 255); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; position: relative; transition: 0.2s;">
-            <img data-dc-tpl="269" src="/assets/kalender/logo2-gcal.png" alt="Google Calendar" style="width: 72px; height: 72px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s;">
+            <img data-dc-tpl="269" src="/assets/kalender/gcal.svg" alt="Google Calendar" style="width: 72px; height: 72px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s;">
             
             <span data-dc-tpl="274" style="font-size: 14px; color: rgb(63, 71, 102); font-weight: 400; line-height: 1.35; text-align: center; white-space: pre-line;"><span class="sc-interp">Google
 Calendar</span></span>
@@ -428,7 +427,7 @@ Calendar</span></span>
           </button>
         
           <button data-dc-tpl="267" class="scpc" style="width: 148px; padding: 16px 8px 12px; border-radius: 14px; border: 1px solid rgb(227, 234, 251); background: rgb(251, 252, 255); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; position: relative; transition: 0.2s;">
-            <img data-dc-tpl="269" src="/assets/kalender/logo2-outlook.png" alt="Microsoft Outlook" style="width: 72px; height: 72px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s;">
+            <img data-dc-tpl="269" src="/assets/kalender/outlook.svg" alt="Microsoft Outlook" style="width: 72px; height: 72px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s;">
             
             <span data-dc-tpl="274" style="font-size: 14px; color: rgb(63, 71, 102); font-weight: 400; line-height: 1.35; text-align: center; white-space: pre-line;"><span class="sc-interp">Microsoft
 Outlook</span></span>
@@ -436,7 +435,7 @@ Outlook</span></span>
           </button>
         
           <button data-dc-tpl="267" class="scpc" style="width: 148px; padding: 16px 8px 12px; border-radius: 14px; border: 1px solid rgb(227, 234, 251); background: rgb(251, 252, 255); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; position: relative; transition: 0.2s;">
-            <img data-dc-tpl="269" src="/assets/kalender/logo2-teams.png" alt="Microsoft Teams" style="width: 72px; height: 72px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s;">
+            <img data-dc-tpl="269" src="/assets/kalender/teams.svg" alt="Microsoft Teams" style="width: 72px; height: 72px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s;">
             
             <span data-dc-tpl="274" style="font-size: 14px; color: rgb(63, 71, 102); font-weight: 400; line-height: 1.35; text-align: center; white-space: pre-line;"><span class="sc-interp">Microsoft
 Teams</span></span>
@@ -444,7 +443,7 @@ Teams</span></span>
           </button>
         
           <button data-dc-tpl="267" class="scpc" style="width: 148px; padding: 16px 8px 12px; border-radius: 14px; border: 1px solid rgb(227, 234, 251); background: rgb(251, 252, 255); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; position: relative; transition: 0.2s;">
-            <img data-dc-tpl="269" src="/assets/kalender/logo2-gmeet.png" alt="Google Meet" style="width: 72px; height: 72px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s;">
+            <img data-dc-tpl="269" src="/assets/kalender/gmeet.svg" alt="Google Meet" style="width: 72px; height: 72px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s;">
             
             <span data-dc-tpl="274" style="font-size: 14px; color: rgb(63, 71, 102); font-weight: 400; line-height: 1.35; text-align: center; white-space: pre-line;"><span class="sc-interp">Google Meet</span></span>
             <span data-dc-tpl="275" style="font-size: 11.5px; font-weight: 700; color: rgb(22, 163, 74); display: flex; align-items: center; gap: 4px;"><span data-dc-tpl="276" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 14px; line-height: 1;"><span class="sc-interp">check_circle</span></span><span class="sc-interp">Connected</span></span>

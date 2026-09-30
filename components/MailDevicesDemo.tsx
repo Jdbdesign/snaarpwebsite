@@ -96,8 +96,8 @@ export function MailDevicesDemo({ autoplay = true }: { autoplay?: boolean } = {}
       <Chip x={452} y={64} icon={<Tag size={13} color={BRAND} />} title="Organise with" sub="smart labels" />
       <Chip x={430} y={344} icon={<Bell size={13} color={BRAND} />} title="Real-time" sub="notifications" pulse={phase === 'arrive'} />
 
-      {/* ── LAPTOP ── */}
-      <div style={{ position: 'absolute', left: 0, top: 40, width: 452, zIndex: 2 }}>
+      {/* ── LAPTOP (scaled up independently, growing toward the bottom-left) ── */}
+      <div className="mdv-laptop" style={{ position: 'absolute', left: 0, top: 40, width: 452, zIndex: 2, transformOrigin: 'bottom left' }}>
         <div style={{ borderRadius: '16px 16px 6px 6px', background: 'linear-gradient(160deg,#3a3a44,#121216 42%,#26262e)', padding: '2px', boxShadow: 'rgba(40,20,130,0.4) 0px 40px 80px -34px' }}>
           <div style={{ borderRadius: '15px 15px 5px 5px', background: '#0b0b0e', padding: '10px' }}>
             <LaptopScreen mails={mails} unread={unread} selected={selected} phase={phase} replyText={replyText} F={F} />

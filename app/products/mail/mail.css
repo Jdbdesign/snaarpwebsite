@@ -581,3 +581,12 @@ x-dc { display: none !important; }
     zoom: 0.84 !important;
   }
 }
+/* Scale up JUST the laptop (desktop) mockup independently of the phone,
+   growing toward the bottom-left so it reads bigger and fills the space the
+   arrow points to. Applies on laptop + large screens only (desktop widths). */
+@media (min-width: 1024px) {
+  .snaarp-mail-page [data-dc-tpl="283"] .mdv-laptop {
+    transform: scale(1.16) !important;
+    transform-origin: bottom left !important;
+  }
+}

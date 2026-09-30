@@ -74,6 +74,13 @@
 .snaarp-kalender-page [data-dc-tpl="180"]:hover [data-dc-tpl="181"] {
   transform: scale(1.06);
 }
+/* the vivid inner chip tilts + lifts a touch on card hover */
+.snaarp-kalender-page [data-dc-tpl="180"] [data-dc-tpl="230"] {
+  transition: transform 0.4s var(--kl-ease);
+}
+.snaarp-kalender-page [data-dc-tpl="180"]:hover [data-dc-tpl="230"] {
+  transform: rotate(-6deg) scale(1.08);
+}
 
 /* ── "Perfect for" use-case cards (tpl 293 / .scpd) ── */
 .snaarp-kalender-page .scpd:hover,

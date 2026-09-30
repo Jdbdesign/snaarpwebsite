@@ -781,22 +781,34 @@ Teams</span></span>
       </div>
     </div>
     <div data-dc-tpl="446" style="flex: 1 1 520px; min-width: 0px; max-width: 780px; margin-left: auto;">
-      <div data-dc-tpl="447" style="position: relative; width: 780px; height: 350px; zoom: 0.856;">
+      <div data-dc-tpl="447" style="position: relative; width: 800px; height: 500px; zoom: 0.856;">
         
-        <div data-dc-tpl="448" style="position: absolute; left: 0px; top: 8px; width: 194px; height: 330px; border-radius: 26px; background: rgb(11, 13, 26); padding: 5px; box-shadow: rgba(60, 40, 200, 0.55) 0px 30px 60px -30px;">
-          <div data-dc-tpl="449" style="width: 100%; height: 100%; border-radius: 21px; background: rgb(255, 255, 255); overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 0px 16px;">
+        <div data-dc-tpl="448" style="position: absolute; left: 6px; top: 30px; width: 216px; height: 442px; border-radius: 40px; background: linear-gradient(150deg, rgb(90, 90, 102) 0%, rgb(31, 31, 37) 30%, rgb(52, 52, 60) 70%, rgb(20, 20, 24) 100%); padding: 3px; box-shadow: rgba(60, 40, 200, 0.5) 0px 40px 70px -24px; transform: rotate(-4deg);">
+          <span style="position: absolute; left: -2px; top: 96px; width: 3px; height: 26px; border-radius: 2px; background: rgb(42, 42, 49);"></span>
+          <span style="position: absolute; left: -2px; top: 134px; width: 3px; height: 40px; border-radius: 2px; background: rgb(42, 42, 49);"></span>
+          <span style="position: absolute; right: -2px; top: 128px; width: 3px; height: 54px; border-radius: 2px; background: rgb(42, 42, 49);"></span>
+          <div style="position: relative; width: 100%; height: 100%; border-radius: 37px; background: rgb(8, 8, 10); padding: 6px;">
+          <div data-dc-tpl="449" style="position: relative; width: 100%; height: 100%; border-radius: 31px; background: rgb(255, 255, 255); overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 26px 16px 0px;">
+            <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 58px; height: 15px; border-radius: 9px; background: rgb(10, 10, 12); z-index: 30;"></div>
             <div data-dc-tpl="450" style="width: 100%; height: 22px; display: flex; align-items: center; justify-content: space-between; font-size: 7.5px; font-weight: 700; padding: 0px 4px;">9:41<span data-dc-tpl="451" style="display: flex; gap: 2px;"><span data-dc-tpl="452" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 9px; line-height: 1;">signal_cellular_alt</span><span data-dc-tpl="453" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 9px; line-height: 1;">battery_full</span></span></div>
             <div data-dc-tpl="454" style="margin-top: 18px; font-weight: 800; font-size: 15px; letter-spacing: -0.05em;">snaarp<span data-dc-tpl="455" style="color: rgb(124, 58, 237); font-size: 10px; letter-spacing: 0px;">.me</span></div>
             <div data-dc-tpl="456" style="margin-top: 16px; width: 86px; height: 86px; border-radius: 50%; background: rgb(238, 235, 255); display: grid; place-items: center;"><span data-dc-tpl="457" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 48px; line-height: 1; color: rgb(124, 58, 237);"><span class="sc-interp">groups</span></span></div>
             <div data-dc-tpl="458" style="margin-top: 14px; font-size: 12px; font-weight: 800; text-align: center; line-height: 1.3;"><span class="sc-interp">Your schedule, your way.</span></div>
             <div data-dc-tpl="459" style="margin-top: 4px; font-size: 8.5px; color: rgb(107, 115, 144); text-align: center;"><span class="sc-interp">Book, meet and manage on the go.</span></div>
             <button data-dc-tpl="460" class="scpf" style="margin-top: auto; width: 100%; height: 30px; border-radius: 7px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: rgb(124, 58, 237); color: rgb(255, 255, 255); font-size: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;"><span class="sc-interp">Sign in</span></button>
-            <button data-dc-tpl="463" style="margin: 8px 0px 16px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; color: rgb(124, 58, 237); font-size: 9px; font-weight: 600; cursor: pointer;"><span class="sc-interp">Create account</span></button>
+            <button data-dc-tpl="463" style="margin: 8px 0px 22px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; color: rgb(124, 58, 237); font-size: 9px; font-weight: 600; cursor: pointer;"><span class="sc-interp">Create account</span></button>
+            <span style="position: absolute; bottom: 7px; left: 50%; margin-left: -34px; width: 68px; height: 4px; border-radius: 3px; background: rgb(11, 13, 42);"></span>
+          </div>
           </div>
         </div>
         
-        <div data-dc-tpl="464" style="position: absolute; left: 212px; top: 0px; width: 194px; height: 322px; border-radius: 24px; background: rgb(11, 13, 26); padding: 5px; box-shadow: rgba(60, 40, 200, 0.55) 0px 30px 60px -30px;">
-          <div data-dc-tpl="465" style="width: 100%; height: 100%; border-radius: 19px; background: rgb(255, 255, 255); overflow: hidden; display: flex; flex-direction: column; padding: 0px 12px;">
+        <div data-dc-tpl="464" style="position: absolute; left: 236px; top: 12px; width: 216px; height: 452px; border-radius: 40px; background: linear-gradient(150deg, rgb(90, 90, 102) 0%, rgb(31, 31, 37) 30%, rgb(52, 52, 60) 70%, rgb(20, 20, 24) 100%); padding: 3px; box-shadow: rgba(60, 40, 200, 0.5) 0px 40px 70px -24px; transform: rotate(1.5deg); z-index: 2;">
+          <span style="position: absolute; left: -2px; top: 100px; width: 3px; height: 26px; border-radius: 2px; background: rgb(42, 42, 49);"></span>
+          <span style="position: absolute; left: -2px; top: 138px; width: 3px; height: 40px; border-radius: 2px; background: rgb(42, 42, 49);"></span>
+          <span style="position: absolute; right: -2px; top: 132px; width: 3px; height: 54px; border-radius: 2px; background: rgb(42, 42, 49);"></span>
+          <div style="position: relative; width: 100%; height: 100%; border-radius: 37px; background: rgb(8, 8, 10); padding: 6px;">
+          <div data-dc-tpl="465" style="position: relative; width: 100%; height: 100%; border-radius: 31px; background: rgb(255, 255, 255); overflow: hidden; display: flex; flex-direction: column; padding: 26px 12px 0px;">
+            <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 58px; height: 15px; border-radius: 9px; background: rgb(10, 10, 12); z-index: 30;"></div>
             <div data-dc-tpl="466" style="height: 22px; display: flex; align-items: center; justify-content: space-between; font-size: 7.5px; font-weight: 700; padding: 0px 4px;">9:41<span data-dc-tpl="467" style="display: flex; gap: 2px;"><span data-dc-tpl="468" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 9px; line-height: 1;">signal_cellular_alt</span><span data-dc-tpl="469" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 9px; line-height: 1;">battery_full</span></span></div>
             <div data-dc-tpl="470" style="margin-top: 6px; display: flex; align-items: center; justify-content: space-between;"><span data-dc-tpl="471" style="font-weight: 800; font-size: 10px; letter-spacing: -0.04em;">snaarp<span data-dc-tpl="472" style="color: rgb(124, 58, 237);">.me</span></span><span data-dc-tpl="473" style="font-size: 8.5px; font-weight: 600; color: rgb(63, 71, 102);">Dashboard</span><span data-dc-tpl="474" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 13px; line-height: 1; color: rgb(107, 115, 144);">notifications</span></div>
             <div data-dc-tpl="475" style="margin-top: 12px; font-size: 11.5px; font-weight: 800;">September 2026</div>
@@ -831,20 +843,29 @@ Teams</span></span>
               <span data-dc-tpl="490" style="width: 18px; height: 18px; border-radius: 50%; background: rgb(124, 58, 237); display: grid; place-items: center;"><span data-dc-tpl="491" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 11px; line-height: 1; color: rgb(255, 255, 255);">home</span></span>
               <span data-dc-tpl="492" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 14px; line-height: 1;">calendar_month</span><span data-dc-tpl="493" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 14px; line-height: 1;">videocam</span><span data-dc-tpl="494" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 14px; line-height: 1;">person</span>
             </div>
+            <span style="position: absolute; bottom: 7px; left: 50%; margin-left: -34px; width: 68px; height: 4px; border-radius: 3px; background: rgb(11, 13, 42);"></span>
+          </div>
           </div>
         </div>
         
-        <div data-dc-tpl="495" style="position: absolute; left: 424px; top: 12px; width: 190px; height: 318px; border-radius: 24px; background: rgb(11, 13, 26); padding: 5px; box-shadow: rgba(60, 40, 200, 0.55) 0px 30px 60px -30px;">
-          <div data-dc-tpl="496" style="width: 100%; height: 100%; border-radius: 19px; background: rgb(255, 255, 255); overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 0px 16px; transition: background 0.3s;">
+        <div data-dc-tpl="495" style="position: absolute; left: 466px; top: 34px; width: 214px; height: 440px; border-radius: 40px; background: linear-gradient(150deg, rgb(90, 90, 102) 0%, rgb(31, 31, 37) 30%, rgb(52, 52, 60) 70%, rgb(20, 20, 24) 100%); padding: 3px; box-shadow: rgba(60, 40, 200, 0.5) 0px 40px 70px -24px; transform: rotate(4deg);">
+          <span style="position: absolute; left: -2px; top: 96px; width: 3px; height: 26px; border-radius: 2px; background: rgb(42, 42, 49);"></span>
+          <span style="position: absolute; left: -2px; top: 134px; width: 3px; height: 40px; border-radius: 2px; background: rgb(42, 42, 49);"></span>
+          <span style="position: absolute; right: -2px; top: 128px; width: 3px; height: 54px; border-radius: 2px; background: rgb(42, 42, 49);"></span>
+          <div style="position: relative; width: 100%; height: 100%; border-radius: 37px; background: rgb(8, 8, 10); padding: 6px;">
+          <div data-dc-tpl="496" style="position: relative; width: 100%; height: 100%; border-radius: 31px; background: rgb(255, 255, 255); overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 26px 16px 0px; transition: background 0.3s;">
+            <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 58px; height: 15px; border-radius: 9px; background: rgb(10, 10, 12); z-index: 30;"></div>
             <div data-dc-tpl="497" style="width: 100%; height: 22px; display: flex; align-items: center; justify-content: space-between; font-size: 7.5px; font-weight: 700; padding: 0px 4px; color: rgb(11, 20, 55);">9:41<span data-dc-tpl="498" style="display: flex; gap: 2px;"><span data-dc-tpl="499" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 9px; line-height: 1;">signal_cellular_alt</span><span data-dc-tpl="500" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 9px; line-height: 1;">battery_full</span></span></div>
             <div data-dc-tpl="501" style="margin-top: 18px; font-size: 12px; font-weight: 700; color: rgb(11, 20, 55);"><span class="sc-interp">Join Meeting</span></div>
             <div data-dc-tpl="502" style="margin-top: 20px; width: 92px; height: 92px; border-radius: 50%; background: rgb(238, 235, 255); display: grid; place-items: center; position: relative;"><span data-dc-tpl="503" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 54px; line-height: 1; color: rgb(124, 58, 237);"><span class="sc-interp">person</span></span></div>
             <div data-dc-tpl="506" style="margin-top: 18px; font-size: 11.5px; font-weight: 800; color: rgb(11, 20, 55);"><span class="sc-interp">Quick and easy</span></div>
             <div data-dc-tpl="507" style="margin-top: 4px; font-size: 8.5px; color: rgb(107, 115, 144); text-align: center; font-variant-numeric: tabular-nums;"><span class="sc-interp">Join meetings with one tap.</span></div>
-            <button data-dc-tpl="508" style="margin: auto 0px 22px; width: 100%; height: 30px; border-radius: 7px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: rgb(124, 58, 237); color: rgb(255, 255, 255); font-size: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;"><span class="sc-interp">Join Now</span></button>
+            <button data-dc-tpl="508" style="margin: auto 0px 26px; width: 100%; height: 30px; border-radius: 7px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: rgb(124, 58, 237); color: rgb(255, 255, 255); font-size: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;"><span class="sc-interp">Join Now</span></button>
+            <span style="position: absolute; bottom: 7px; left: 50%; margin-left: -34px; width: 68px; height: 4px; border-radius: 3px; background: rgb(11, 13, 42);"></span>
+          </div>
           </div>
         </div>
-        <div data-dc-tpl="511" style="position: absolute; left: 650px; top: 18px; color: rgb(124, 58, 237);">
+        <div data-dc-tpl="511" style="position: absolute; left: 690px; top: 40px; color: rgb(124, 58, 237);">
           <div data-dc-tpl="512" style="font-family: Caveat, cursive; font-size: 25px; line-height: 1.05; transform: rotate(-10deg); transform-origin: left top; font-weight: 500;">&nbsp;&nbsp;Stay<br data-dc-tpl="513">Connected<br data-dc-tpl="514">&nbsp;Anywhere</div>
           <svg data-dc-tpl="515" width="80" height="50" style="margin-top: 2px;"><path data-dc-tpl="516" d="M58 4 C 58 26, 40 36, 12 34" style="fill: none; stroke: rgb(124, 58, 237); stroke-width: 1.8; stroke-linecap: round;"></path><path data-dc-tpl="517" d="M20 27 L11 34 L20 41" style="fill: none; stroke: rgb(124, 58, 237); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"></path></svg>
         </div>

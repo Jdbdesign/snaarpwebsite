@@ -96,6 +96,28 @@ balanced HTML. The row and mock column must use:
   headings per section; batch card grids; add the `.<prefix>-pop` class for
   springy scale-in. Include a `prefers-reduced-motion` block.
 
+## Realistic device mockups (phones / tablets)
+
+Bundle mockups often render devices as flat, thin-bordered rectangles that
+look like screenshots. Make them look like real hardware, matching the
+Books mockups (components/BooksMobile*.tsx). Wrap each screen in these
+layers, outermost → innermost:
+1. Metal frame: `background: linear-gradient(150deg, rgb(90,90,102) 0%,
+   rgb(31,31,37) 30%, rgb(52,52,60) 70%, rgb(20,20,24) 100%)`, large radius
+   (~40px), `padding: 3px`, soft drop shadow, a slight `rotate()` for a
+   fanned/candid look.
+2. Side buttons: thin absolutely-positioned `<span>`s on the left/right
+   edges (`width:3px`, `background: rgb(42,42,49)`).
+3. Black rim: `background: rgb(8,8,10)`, radius ~37px, `padding: 6px` — the
+   thick bezel that sells the realism.
+4. Screen: the app content, radius ~31px, `overflow: hidden`, add top
+   padding (~26px) so content clears the notch.
+5. Dynamic Island notch: pill at top-centre (`width:58px; height:15px;
+   border-radius:9px; background: rgb(10,10,12); z-index:30`).
+6. Home indicator: thin pill at the bottom-centre.
+Enlarge the device and EXPAND the mockup canvas height to fit the taller,
+detailed body — cropping a device body looks worse than a smaller one.
+
 ## Verification checklist (must pass before commit)
 
 - `npx tsc --noEmit -p tsconfig.json` → exit 0.

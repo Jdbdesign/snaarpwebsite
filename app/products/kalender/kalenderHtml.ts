@@ -37,8 +37,8 @@ export const KALENDER_HERO_MOCK = `<div data-dc-tpl="69" style="flex: 1 1 560px;
         
         <div data-dc-tpl="78" style="position: absolute; left: 0px; top: 92px; width: 760px; height: 520px; border-radius: 18px; background: rgba(255, 255, 255, 0.88); border: 1px solid rgb(231, 236, 248); box-shadow: rgba(20, 50, 150, 0.35) 0px 50px 90px -40px, rgba(10, 20, 60, 0.18) 0px 16px 36px -24px;">
           <div data-dc-tpl="79" style="position: absolute; left: 0px; top: 0px; width: 290px; height: 100%; padding: 26px 22px; display: flex; flex-direction: column; align-items: center;">
-            <img data-dc-tpl="80" src="/assets/kalender/avatar-victor.png" alt="Amara Okafor" style="width: 92px; height: 92px; border-radius: 50%; object-fit: cover; display: block; box-shadow: rgba(10, 20, 60, 0.4) 0px 8px 20px -10px;">
-            <div data-dc-tpl="81" style="margin-top: 14px; font-size: 15.5px; font-weight: 700;">Amara Okafor</div>
+            <img data-dc-tpl="80" src="/assets/kalender/avatar-hero.png" alt="Sofia Marchetti" style="width: 92px; height: 92px; border-radius: 50%; object-fit: cover; display: block; box-shadow: rgba(10, 20, 60, 0.4) 0px 8px 20px -10px;">
+            <div data-dc-tpl="81" style="margin-top: 14px; font-size: 15.5px; font-weight: 700;">Sofia Marchetti</div>
             <div data-dc-tpl="82" style="margin-top: 2px; font-size: 12.5px; color: rgb(91, 99, 128);">Founder &amp; CEO</div>
             <div data-dc-tpl="83" style="margin-top: 10px; font-size: 12.5px; color: rgb(91, 99, 128); text-align: center; line-height: 1.5;">Book a meeting with me<br data-dc-tpl="84">at a time that works for you.</div>
             <div data-dc-tpl="85" style="margin-top: 18px; width: 100%; display: flex; flex-direction: column; gap: 10px;">

@@ -139,6 +139,75 @@ export default function KalenderPageClient() {
     return () => io.disconnect();
   }, []);
 
+  // Continuous "day in the app" story across the three phone mockups
+  // (canvas tpl 447). Once it scrolls into view we add `kl-phones-live`,
+  // which drives seamless, self-running CSS loops (no hover):
+  //   • Phone 1 (Sign in): a tap-cursor presses the button on a loop, the
+  //     welcome content gently floats.
+  //   • Phone 2 (Dashboard): the selected calendar day steps across the
+  //     week, and the agenda rows re-cascade in like live updates.
+  //   • Phone 3 (Join Meeting): the avatar emits "calling" rings and the
+  //     Join button pulses.
+  // We inject a couple of decorative nodes (cursor dots, calling rings) and
+  // set per-item index vars; we never transform the canvas itself.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const canvas = root.querySelector<HTMLElement>('[data-dc-tpl="447"]');
+    if (!canvas) return;
+
+    // stagger the agenda rows (phone 2) so they cascade in sequence
+    canvas.querySelectorAll<HTMLElement>('[data-dc-tpl="484"]').forEach((row, i) => {
+      row.style.setProperty('--kl-row-i', String(i));
+    });
+    // index the calendar day cells (phone 2) so the highlight can walk them
+    canvas.querySelectorAll<HTMLElement>('[data-dc-tpl="478"]').forEach((day, i) => {
+      day.style.setProperty('--kl-day-i', String(i));
+    });
+
+    // Inject a tap-cursor into phone 1 (Sign in btn tpl 460) and phone 3
+    // (Join btn tpl 508), plus concentric "calling" rings behind phone 3's
+    // avatar (tpl 502). Idempotent — guard against re-injection.
+    const addCursor = (btn: Element | null, cls: string) => {
+      if (!btn || btn.parentElement?.querySelector(`.${cls}`)) return;
+      const dot = document.createElement('span');
+      dot.className = cls;
+      (btn as HTMLElement).style.position = (btn as HTMLElement).style.position || 'relative';
+      btn.appendChild(dot);
+    };
+    addCursor(canvas.querySelector('[data-dc-tpl="460"]'), 'kl-tap-cursor');
+    addCursor(canvas.querySelector('[data-dc-tpl="508"]'), 'kl-tap-cursor');
+
+    const avatar = canvas.querySelector<HTMLElement>('[data-dc-tpl="502"]');
+    if (avatar && !avatar.querySelector('.kl-ring')) {
+      for (let i = 0; i < 2; i++) {
+        const ring = document.createElement('span');
+        ring.className = 'kl-ring';
+        ring.style.setProperty('--kl-ring-i', String(i));
+        avatar.appendChild(ring);
+      }
+    }
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      canvas.classList.add('kl-phones-live');
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add('kl-phones-live');
+            io.unobserve(e.target);
+          }
+        }
+      },
+      { threshold: 0.3 }
+    );
+    io.observe(canvas);
+    return () => io.disconnect();
+  }, []);
+
   useScrollReveal(rootRef);
 
   return (

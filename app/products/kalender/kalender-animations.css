@@ -340,3 +340,149 @@
     animation: none !important;
   }
 }
+
+/* =====================================================================
+   Mobile-app phones (mockup canvas tpl 447) — a seamless, self-running
+   "day in the app" story. Fires once the canvas scrolls in (PageClient
+   adds .kl-phones-live); everything below loops forever with no hover.
+     • Phone 1 (Sign in): tap-cursor presses the button on a loop; the
+       welcome avatar gently floats.
+     • Phone 2 (Dashboard): a purple highlight walks across the week's day
+       cells; the agenda rows re-cascade in like live updates.
+     • Phone 3 (Join Meeting): concentric "calling" rings pulse out from
+       the avatar; the Join button glows on a beat.
+   Decorative nodes (.kl-tap-cursor, .kl-ring) are injected by the client.
+   ===================================================================== */
+
+/* ---------- shared injected nodes ---------- */
+.snaarp-kalender-page .kl-tap-cursor {
+  position: absolute;
+  right: 14px; bottom: 6px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: rgba(17, 17, 17, 0.55);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.35), inset 0 0 0 1.5px rgba(255,255,255,0.7);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 40;
+}
+.snaarp-kalender-page .kl-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(124, 58, 237, 0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─────────────── PHONE 1 — Sign in tap + floating avatar ─────────────── */
+/* welcome avatar (tpl 456) gently floats up/down */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="456"] {
+  animation: kl-float 3.4s ease-in-out infinite;
+}
+@keyframes kl-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+/* Sign in button (tpl 460) presses on the beat the cursor lands */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="460"] {
+  animation: kl-btn-press 3.6s ease-in-out infinite;
+}
+@keyframes kl-btn-press {
+  0%, 55%, 100% { transform: scale(1); box-shadow: rgba(124,58,237,0.35) 0 6px 16px -6px; }
+  62%           { transform: scale(0.95); box-shadow: rgba(124,58,237,0.2) 0 2px 8px -4px; }
+  72%           { transform: scale(1.02); box-shadow: rgba(124,58,237,0.5) 0 10px 22px -8px; }
+}
+/* the tap-cursor glides in, taps at the press moment, fades out */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="460"] .kl-tap-cursor {
+  animation: kl-tap 3.6s ease-in-out infinite;
+}
+@keyframes kl-tap {
+  0%   { opacity: 0; transform: translate(10px, 10px) scale(1); }
+  40%  { opacity: 0.9; transform: translate(0, 0) scale(1); }
+  62%  { opacity: 0.9; transform: translate(0, 0) scale(0.7); }
+  80%  { opacity: 0.9; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(10px, 10px) scale(1); }
+}
+
+/* ─────────────── PHONE 2 — highlight walks the week + agenda cascade ─── */
+/* neutralize the baked-in purple on day 18 so the walking highlight owns it */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="478"] {
+  background: transparent !important;
+  color: rgb(42, 49, 80) !important;
+  animation: kl-day-walk 5.6s ease-in-out infinite;
+  animation-delay: calc(var(--kl-day-i, 0) * 0.8s);
+}
+@keyframes kl-day-walk {
+  0%, 100% { background: transparent; color: rgb(42, 49, 80); }
+  8%       { background: rgb(124, 58, 237); color: rgb(255, 255, 255); }
+  14%      { background: rgb(124, 58, 237); color: rgb(255, 255, 255); }
+  22%      { background: transparent; color: rgb(42, 49, 80); }
+}
+/* the "Friday · 3 meetings" agenda rows (tpl 484) re-cascade in on a loop */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="484"] {
+  animation: kl-row-cascade 5.6s ease-in-out infinite;
+  animation-delay: calc(0.2s + var(--kl-row-i, 0) * 0.35s);
+}
+@keyframes kl-row-cascade {
+  0%    { opacity: 0; transform: translateX(14px); }
+  10%   { opacity: 1; transform: translateX(0); }
+  86%   { opacity: 1; transform: translateX(0); }
+  94%   { opacity: 0; transform: translateX(14px); }
+  100%  { opacity: 0; transform: translateX(14px); }
+}
+/* the coloured accent stripe on each row pulses as it settles */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="484"] [data-dc-tpl="485"] {
+  animation: kl-stripe-grow 5.6s ease-in-out infinite;
+  animation-delay: calc(0.2s + var(--kl-row-i, 0) * 0.35s);
+  transform-origin: top center;
+}
+@keyframes kl-stripe-grow {
+  0%, 4% { transform: scaleY(0); }
+  12%    { transform: scaleY(1); }
+  100%   { transform: scaleY(1); }
+}
+
+/* ─────────────── PHONE 3 — calling rings + Join pulse ─────────────── */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="502"] .kl-ring {
+  animation: kl-ring-pulse 2.8s ease-out infinite;
+  animation-delay: calc(var(--kl-ring-i, 0) * 1.4s);
+}
+@keyframes kl-ring-pulse {
+  0%   { opacity: 0.6; transform: scale(1); }
+  70%  { opacity: 0; transform: scale(1.8); }
+  100% { opacity: 0; transform: scale(1.8); }
+}
+/* the avatar icon breathes */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="503"] {
+  animation: kl-float 2.8s ease-in-out infinite;
+}
+/* Join Now button (tpl 508) glows on a beat */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="508"] {
+  animation: kl-join-glow 2.8s ease-in-out infinite;
+}
+@keyframes kl-join-glow {
+  0%, 100% { transform: scale(1); box-shadow: rgba(124,58,237,0.35) 0 6px 16px -6px; }
+  50%      { transform: scale(1.03); box-shadow: rgba(124,58,237,0.6) 0 12px 26px -8px; }
+}
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="508"] .kl-tap-cursor {
+  animation: kl-tap 2.8s ease-in-out infinite;
+}
+
+/* ---------- reduced motion: hold everything still ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="456"],
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="460"],
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="478"],
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="484"],
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="485"],
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="502"] .kl-ring,
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="503"],
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="508"] {
+    animation: none !important;
+  }
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="478"] {
+    background: transparent !important;
+  }
+  .snaarp-kalender-page .kl-tap-cursor, .snaarp-kalender-page .kl-ring { display: none !important; }
+}

@@ -1,16 +1,12 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { HomeFinalCTA } from '@/components/HomeFinalCTA';
-import { KalenderHero } from '@/components/kalender/KalenderHero';
-import { KalenderTrustBar } from '@/components/kalender/KalenderTrustBar';
-import { KalenderScheduling } from '@/components/kalender/KalenderScheduling';
-import { KalenderMasterSchedule } from '@/components/kalender/KalenderMasterSchedule';
-import { KalenderIntegrations } from '@/components/kalender/KalenderIntegrations';
+import KalenderPageClient from './KalenderPageClient';
 
 export const metadata: Metadata = {
-  title: 'Kalender | Snaarp',
-  description: 'Shared calendars and booking links that keep every meeting in sync.',
+  title: 'SnaarpMe — Schedule. Meet. Get Things Done. | Snaarp',
+  description:
+    'Share one link, let them choose a time, and meet instantly. SnaarpMe is an appointment scheduling platform with unlimited video meetings built in through Snaarp Meet.',
 };
 
 export default function KalenderProductPage() {
@@ -18,13 +14,7 @@ export default function KalenderProductPage() {
     <>
       <Header />
       <main id="main-content">
-        <KalenderHero />
-        <KalenderTrustBar />
-        <KalenderScheduling />
-        <KalenderMasterSchedule />
-        <KalenderIntegrations />
-
-        <HomeFinalCTA />
+        <KalenderPageClient />
       </main>
       <Footer />
     </>

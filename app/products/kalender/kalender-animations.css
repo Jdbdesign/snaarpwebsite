@@ -1,0 +1,495 @@
+/* =====================================================================
+   SnaarpMe (Kalender) — site-wide interaction polish (hover + reveal).
+   Hand-authored, kept separate from the auto-generated kalender.css so a
+   regeneration won't wipe it. Namespaced under .snaarp-kalender-page and
+   targets the bundle's inline-styled elements via their stable data-dc-tpl
+   "type" numbers (siblings of a kind share a number) or the scp* behaviour
+   classes. Inline styles win the cascade, so hover overrides use
+   !important where needed.
+
+   Layout-safety rules:
+   - Never style style="display:contents" wrappers.
+   - Never add transforms to the static mockup canvases (tpl 70 hero booking,
+     tpl 198 video call, tpl 313 / 377 analytics, tpl 446 phone) — their
+     coordinate systems are frozen by `zoom` and hold absolutely-positioned
+     art with its own composition.
+   - Prefer transform / box-shadow / border hovers; they compose cleanly.
+   ===================================================================== */
+
+.snaarp-kalender-page {
+  --kl-brand: #7C3AED;
+  --kl-brand-dark: #6D28D9;
+  --kl-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Smooth base transition for the interactive element types we hover. */
+.snaarp-kalender-page [data-dc-tpl="59"],
+.snaarp-kalender-page [data-dc-tpl="61"],
+.snaarp-kalender-page [data-dc-tpl="180"],
+.snaarp-kalender-page [data-dc-tpl="293"],
+.snaarp-kalender-page [data-dc-tpl="267"],
+.snaarp-kalender-page [data-dc-tpl="545"],
+.snaarp-kalender-page [data-dc-tpl="562"],
+.snaarp-kalender-page [data-dc-tpl="556"] {
+  transition: transform 0.28s var(--kl-ease), box-shadow 0.28s var(--kl-ease),
+              border-color 0.28s var(--kl-ease), background 0.28s var(--kl-ease),
+              filter 0.28s var(--kl-ease), opacity 0.28s var(--kl-ease) !important;
+  will-change: transform;
+}
+
+/* ── Hero primary CTA ("Get Started Free", tpl 59 / .scp4) — lift + arrow ── */
+.snaarp-kalender-page .scp4:hover,
+.snaarp-kalender-page [data-dc-tpl="59"]:hover {
+  transform: translateY(-2px) !important;
+  background: var(--kl-brand-dark) !important;
+  box-shadow: rgba(124, 58, 237, 0.6) 0px 20px 34px -12px !important;
+}
+.snaarp-kalender-page .scp4:active,
+.snaarp-kalender-page [data-dc-tpl="59"]:active { transform: translateY(0) !important; }
+.snaarp-kalender-page [data-dc-tpl="59"] [data-dc-tpl="60"] { transition: transform 0.3s var(--kl-ease); }
+.snaarp-kalender-page [data-dc-tpl="59"]:hover [data-dc-tpl="60"] { transform: translateX(4px); }
+
+/* ── Hero secondary CTA ("See How It Works", tpl 61 / .scp5) — play glyph pop ── */
+.snaarp-kalender-page .scp5:hover,
+.snaarp-kalender-page [data-dc-tpl="61"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--kl-brand) !important;
+  background: rgb(247, 244, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 14px 26px -12px !important;
+}
+.snaarp-kalender-page [data-dc-tpl="61"] [data-dc-tpl="62"] { transition: transform 0.3s var(--kl-ease); }
+.snaarp-kalender-page [data-dc-tpl="61"]:hover [data-dc-tpl="62"] { transform: scale(1.12); }
+
+/* ── Feature-icon cards ("everything you need" grid, tpl 180 / .scpa) ── */
+.snaarp-kalender-page .scpa:hover,
+.snaarp-kalender-page [data-dc-tpl="180"]:hover {
+  transform: translateY(-6px) !important;
+  background: #ffffff !important;
+  box-shadow: rgba(60, 40, 140, 0.16) 0px 22px 40px -18px !important;
+}
+/* the tinted icon tile pops on card hover */
+.snaarp-kalender-page [data-dc-tpl="180"] [data-dc-tpl="181"] {
+  transition: transform 0.32s var(--kl-ease);
+}
+.snaarp-kalender-page [data-dc-tpl="180"]:hover [data-dc-tpl="181"] {
+  transform: scale(1.06);
+}
+/* the vivid inner chip tilts + lifts a touch on card hover */
+.snaarp-kalender-page [data-dc-tpl="180"] [data-dc-tpl="230"] {
+  transition: transform 0.4s var(--kl-ease);
+}
+.snaarp-kalender-page [data-dc-tpl="180"]:hover [data-dc-tpl="230"] {
+  transform: rotate(-6deg) scale(1.08);
+}
+
+/* ── "Perfect for" use-case cards (tpl 293 / .scpd) ── */
+.snaarp-kalender-page .scpd:hover,
+.snaarp-kalender-page [data-dc-tpl="293"]:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: rgba(124, 58, 237, 0.18) 0px 20px 38px -18px !important;
+}
+
+/* ── Integration platform tiles (tpl 267 / .scpc) — logo lifts + saturates ── */
+.snaarp-kalender-page [data-dc-tpl="267"] {
+  filter: grayscale(0.1);
+}
+.snaarp-kalender-page .scpc:hover,
+.snaarp-kalender-page [data-dc-tpl="267"]:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgb(183, 166, 255) !important;
+  background: #ffffff !important;
+  filter: grayscale(0) !important;
+  box-shadow: rgba(124, 58, 237, 0.18) 0px 16px 30px -14px !important;
+}
+.snaarp-kalender-page [data-dc-tpl="267"] [data-dc-tpl="269"] { transition: transform 0.3s var(--kl-ease); }
+.snaarp-kalender-page [data-dc-tpl="267"]:hover [data-dc-tpl="269"] { transform: scale(1.08); }
+
+/* ── Final-CTA button (tpl 545 / .scpj) — lift ── */
+.snaarp-kalender-page .scpj:hover,
+.snaarp-kalender-page [data-dc-tpl="545"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(15, 20, 60, 0.4) 0px 20px 34px -12px !important;
+}
+.snaarp-kalender-page .scpj:active,
+.snaarp-kalender-page [data-dc-tpl="545"]:active { transform: translateY(0) !important; }
+
+/* ── FAQ items (tpl 562) — subtle lift on hover ── */
+.snaarp-kalender-page [data-dc-tpl="562"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(60, 40, 140, 0.12) 0px 14px 26px -16px !important;
+}
+
+/* ── "View all FAQs" link (tpl 556) — color emphasis ── */
+.snaarp-kalender-page [data-dc-tpl="556"] { transition: color 0.2s var(--kl-ease), transform 0.2s var(--kl-ease); }
+.snaarp-kalender-page [data-dc-tpl="556"]:hover {
+  color: var(--kl-brand-dark) !important;
+  transform: translateX(3px);
+}
+
+/* ── Reveal accent: springy scale-in for card grids flagged .kl-pop ── */
+.snaarp-kalender-page [data-reveal].kl-pop {
+  transform: translateY(26px) scale(0.97);
+}
+.snaarp-kalender-page [data-reveal].kl-pop.is-revealed {
+  transform: translateY(0) scale(1);
+}
+
+/* ── Reduced motion: disable movement ── */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-kalender-page [data-dc-tpl]:hover,
+  .snaarp-kalender-page [data-dc-tpl]:hover * {
+    transform: none !important;
+  }
+  .snaarp-kalender-page [data-reveal].kl-pop {
+    transform: none !important;
+  }
+}
+
+/* =====================================================================
+   "Know Where Your Time Goes" analytics card (mockup canvas tpl 314).
+   Micro-interactions to make the section feel alive:
+     • Entrance (fired once when the card scrolls in — the PageClient adds
+       .kl-analytics-live): the bar-chart columns grow up from the baseline
+       in a staggered L→R sweep, the donut pops in, and the three stat
+       tiles rise + fade in.
+     • Hover polish (always on): hovering a bar column highlights that bar
+       and floats its value; the donut lifts; the stat tiles raise and turn
+       their number purple; the "Last 30 days" pill and the whole panel get
+       a soft emphasis.
+   We only animate elements INSIDE the card (bars, donut, tiles) — never
+   the zoom-scaled canvas (tpl 313/314) itself.
+   ===================================================================== */
+
+/* The card animates ON ITS OWN, continuously — no hover needed. Once it
+   scrolls into view (.kl-analytics-live), a one-shot entrance plays, then
+   each element eases into a gentle infinite loop: the bars ripple up and
+   down in a staggered wave (like live data), the donut slowly rotates and
+   breathes, and the stat tiles softly pulse. Per-bar timing is offset by
+   the --kl-bar-i index set in the PageClient so the wave travels L→R. */
+
+/* ---- Bars (inner bar = tpl 335): entrance grow-in, then infinite wave ---- */
+.snaarp-kalender-page [data-dc-tpl="314"] [data-dc-tpl="335"] {
+  transform-origin: bottom center;
+  transition: background 0.2s var(--kl-ease), box-shadow 0.2s var(--kl-ease) !important;
+}
+.snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="332"] [data-dc-tpl="335"] {
+  animation:
+    kl-bar-grow 0.6s var(--kl-ease) backwards,
+    kl-bar-wave 2.6s ease-in-out infinite;
+  /* entrance staggers L→R; the wave loop starts after the grow-in and is
+     phase-shifted per bar so the ripple travels across the chart. */
+  animation-delay:
+    calc(120ms + var(--kl-bar-i, 0) * 55ms),
+    calc(800ms + var(--kl-bar-i, 0) * 130ms);
+}
+@keyframes kl-bar-grow {
+  0%   { transform: scaleY(0); opacity: 0.35; }
+  60%  { transform: scaleY(1.06); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+@keyframes kl-bar-wave {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(1.14); }
+}
+/* Every few bars, brighten at the top of the ripple for a "pulse" accent.
+   Bars whose index makes them the wave crest glow briefly. */
+.snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="332"] [data-dc-tpl="336"] {
+  animation: kl-barlabel-pulse 2.6s ease-in-out infinite;
+  animation-delay: calc(800ms + var(--kl-bar-i, 0) * 130ms);
+}
+@keyframes kl-barlabel-pulse {
+  0%, 40%, 100% { color: rgb(160, 167, 191); transform: translateY(0) scale(1); }
+  50%           { color: rgb(124, 58, 237); transform: translateY(-2px) scale(1.12); }
+}
+
+/* ---- Donut (tpl 340): pop in, then slow continuous rotate + breathe ---- */
+.snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="340"] {
+  animation:
+    kl-donut-in 0.7s var(--kl-ease) 0.25s backwards,
+    kl-donut-spin 16s linear 1s infinite;
+}
+@keyframes kl-donut-in {
+  0%   { transform: scale(0.55) rotate(-35deg); opacity: 0; }
+  70%  { transform: scale(1.05) rotate(4deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes kl-donut-spin {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.04); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+/* The donut's centre label (124 meetings) counter-rotates so it stays
+   upright while the ring spins — keeps the number readable. */
+.snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="340"] > * {
+  animation: kl-donut-spin-rev 16s linear 1s infinite;
+}
+@keyframes kl-donut-spin-rev {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(-180deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+/* ---- Stat tiles (tpl 350/354/358): rise in, then gentle breathing ---- */
+.snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="350"] {
+  animation: kl-stat-in 0.5s var(--kl-ease) 0.55s backwards, kl-stat-breathe 4s ease-in-out 1.1s infinite;
+}
+.snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="354"] {
+  animation: kl-stat-in 0.5s var(--kl-ease) 0.65s backwards, kl-stat-breathe 4s ease-in-out 1.5s infinite;
+}
+.snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="358"] {
+  animation: kl-stat-in 0.5s var(--kl-ease) 0.75s backwards, kl-stat-breathe 4s ease-in-out 1.9s infinite;
+}
+@keyframes kl-stat-in {
+  0%   { transform: translateY(14px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes kl-stat-breathe {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+/* the big stat numbers softly shift toward brand purple on the up-beat */
+.snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="351"],
+.snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="355"],
+.snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="359"] {
+  animation: kl-statnum-tint 4s ease-in-out infinite;
+}
+.snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="355"] { animation-delay: 0.4s; }
+.snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="359"] { animation-delay: 0.8s; }
+@keyframes kl-statnum-tint {
+  0%, 100% { color: rgb(17, 24, 39); }
+  50%      { color: rgb(124, 58, 237); }
+}
+
+/* ---- Reduced motion: hold everything still (no loops, no entrance) ---- */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="335"],
+  .snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="336"],
+  .snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="340"],
+  .snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="340"] > *,
+  .snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="350"],
+  .snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="354"],
+  .snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="358"],
+  .snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="351"],
+  .snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="355"],
+  .snaarp-kalender-page [data-dc-tpl="314"].kl-analytics-live [data-dc-tpl="359"] {
+    animation: none !important;
+  }
+}
+
+/* =====================================================================
+   "Powerful Analytics for Smarter Decisions" card (mockup canvas tpl 377)
+   — same autonomous, continuous-loop treatment as the tpl 314 card, mapped
+   to this card's element numbers: bar column tpl 394 / inner bar tpl 397 /
+   label tpl 398, donut tpl 411 (centre child tpl 412), stat numbers
+   tpl 401 & 405. Runs on its own once .kl-analytics-live is added.
+   ===================================================================== */
+
+/* Bars: entrance grow-in, then infinite ripple wave */
+.snaarp-kalender-page [data-dc-tpl="377"] [data-dc-tpl="397"] {
+  transform-origin: bottom center;
+  transition: background 0.2s var(--kl-ease), box-shadow 0.2s var(--kl-ease) !important;
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="394"] [data-dc-tpl="397"] {
+  animation:
+    kl-bar-grow 0.6s var(--kl-ease) backwards,
+    kl-bar-wave 2.6s ease-in-out infinite;
+  animation-delay:
+    calc(120ms + var(--kl-bar-i, 0) * 55ms),
+    calc(800ms + var(--kl-bar-i, 0) * 130ms);
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="394"] [data-dc-tpl="398"] {
+  animation: kl-barlabel-pulse 2.6s ease-in-out infinite;
+  animation-delay: calc(800ms + var(--kl-bar-i, 0) * 130ms);
+}
+
+/* Donut: pop in, then slow rotate + breathe; centre label counter-rotates */
+.snaarp-kalender-page [data-dc-tpl="377"] [data-dc-tpl="411"] {
+  transition: transform 0.3s var(--kl-ease), box-shadow 0.3s var(--kl-ease);
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="411"] {
+  animation:
+    kl-donut-in 0.7s var(--kl-ease) 0.25s backwards,
+    kl-donut-spin 16s linear 1s infinite;
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="411"] > * {
+  animation: kl-donut-spin-rev 16s linear 1s infinite;
+}
+
+/* Stat tiles (tpl 400 / 404): rise in, then gentle breathing */
+.snaarp-kalender-page [data-dc-tpl="377"] [data-dc-tpl="400"],
+.snaarp-kalender-page [data-dc-tpl="377"] [data-dc-tpl="404"] {
+  transition: transform 0.28s var(--kl-ease);
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="400"] {
+  animation: kl-stat-in 0.5s var(--kl-ease) 0.55s backwards, kl-stat-breathe 4s ease-in-out 1.1s infinite;
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="404"] {
+  animation: kl-stat-in 0.5s var(--kl-ease) 0.65s backwards, kl-stat-breathe 4s ease-in-out 1.5s infinite;
+}
+/* stat numbers softly tint toward brand purple on the beat */
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="401"] {
+  animation: kl-statnum-tint 4s ease-in-out infinite;
+}
+.snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="405"] {
+  animation: kl-statnum-tint 4s ease-in-out 0.4s infinite;
+}
+
+/* Reduced motion: hold still */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="397"],
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="398"],
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="411"],
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="411"] > *,
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="400"],
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="404"],
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="401"],
+  .snaarp-kalender-page [data-dc-tpl="377"].kl-analytics-live [data-dc-tpl="405"] {
+    animation: none !important;
+  }
+}
+
+/* =====================================================================
+   Mobile-app phones (mockup canvas tpl 447) — a seamless, self-running
+   "day in the app" story. Fires once the canvas scrolls in (PageClient
+   adds .kl-phones-live); everything below loops forever with no hover.
+     • Phone 1 (Sign in): tap-cursor presses the button on a loop; the
+       welcome avatar gently floats.
+     • Phone 2 (Dashboard): a purple highlight walks across the week's day
+       cells; the agenda rows re-cascade in like live updates.
+     • Phone 3 (Join Meeting): concentric "calling" rings pulse out from
+       the avatar; the Join button glows on a beat.
+   Decorative nodes (.kl-tap-cursor, .kl-ring) are injected by the client.
+   ===================================================================== */
+
+/* ---------- shared injected nodes ---------- */
+.snaarp-kalender-page .kl-tap-cursor {
+  position: absolute;
+  right: 14px; bottom: 6px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: rgba(17, 17, 17, 0.55);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.35), inset 0 0 0 1.5px rgba(255,255,255,0.7);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 40;
+}
+.snaarp-kalender-page .kl-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(124, 58, 237, 0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─────────────── PHONE 1 — Sign in tap + floating avatar ─────────────── */
+/* welcome avatar (tpl 456) gently floats up/down */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="456"] {
+  animation: kl-float 3.4s ease-in-out infinite;
+}
+@keyframes kl-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+/* Sign in button (tpl 460) presses on the beat the cursor lands */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="460"] {
+  animation: kl-btn-press 3.6s ease-in-out infinite;
+}
+@keyframes kl-btn-press {
+  0%, 55%, 100% { transform: scale(1); box-shadow: rgba(124,58,237,0.35) 0 6px 16px -6px; }
+  62%           { transform: scale(0.95); box-shadow: rgba(124,58,237,0.2) 0 2px 8px -4px; }
+  72%           { transform: scale(1.02); box-shadow: rgba(124,58,237,0.5) 0 10px 22px -8px; }
+}
+/* the tap-cursor glides in, taps at the press moment, fades out */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="460"] .kl-tap-cursor {
+  animation: kl-tap 3.6s ease-in-out infinite;
+}
+@keyframes kl-tap {
+  0%   { opacity: 0; transform: translate(10px, 10px) scale(1); }
+  40%  { opacity: 0.9; transform: translate(0, 0) scale(1); }
+  62%  { opacity: 0.9; transform: translate(0, 0) scale(0.7); }
+  80%  { opacity: 0.9; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(10px, 10px) scale(1); }
+}
+
+/* ─────────────── PHONE 2 — highlight walks the week + agenda cascade ─── */
+/* neutralize the baked-in purple on day 18 so the walking highlight owns it */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="478"] {
+  background: transparent !important;
+  color: rgb(42, 49, 80) !important;
+  animation: kl-day-walk 5.6s ease-in-out infinite;
+  animation-delay: calc(var(--kl-day-i, 0) * 0.8s);
+}
+@keyframes kl-day-walk {
+  0%, 100% { background: transparent; color: rgb(42, 49, 80); }
+  8%       { background: rgb(124, 58, 237); color: rgb(255, 255, 255); }
+  14%      { background: rgb(124, 58, 237); color: rgb(255, 255, 255); }
+  22%      { background: transparent; color: rgb(42, 49, 80); }
+}
+/* the "Friday · 3 meetings" agenda rows (tpl 484) re-cascade in on a loop */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="484"] {
+  animation: kl-row-cascade 5.6s ease-in-out infinite;
+  animation-delay: calc(0.2s + var(--kl-row-i, 0) * 0.35s);
+}
+@keyframes kl-row-cascade {
+  0%    { opacity: 0; transform: translateX(14px); }
+  10%   { opacity: 1; transform: translateX(0); }
+  86%   { opacity: 1; transform: translateX(0); }
+  94%   { opacity: 0; transform: translateX(14px); }
+  100%  { opacity: 0; transform: translateX(14px); }
+}
+/* the coloured accent stripe on each row pulses as it settles */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="484"] [data-dc-tpl="485"] {
+  animation: kl-stripe-grow 5.6s ease-in-out infinite;
+  animation-delay: calc(0.2s + var(--kl-row-i, 0) * 0.35s);
+  transform-origin: top center;
+}
+@keyframes kl-stripe-grow {
+  0%, 4% { transform: scaleY(0); }
+  12%    { transform: scaleY(1); }
+  100%   { transform: scaleY(1); }
+}
+
+/* ─────────────── PHONE 3 — calling rings + Join pulse ─────────────── */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="502"] .kl-ring {
+  animation: kl-ring-pulse 2.8s ease-out infinite;
+  animation-delay: calc(var(--kl-ring-i, 0) * 1.4s);
+}
+@keyframes kl-ring-pulse {
+  0%   { opacity: 0.6; transform: scale(1); }
+  70%  { opacity: 0; transform: scale(1.8); }
+  100% { opacity: 0; transform: scale(1.8); }
+}
+/* the avatar icon breathes */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="503"] {
+  animation: kl-float 2.8s ease-in-out infinite;
+}
+/* Join Now button (tpl 508) glows on a beat */
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="508"] {
+  animation: kl-join-glow 2.8s ease-in-out infinite;
+}
+@keyframes kl-join-glow {
+  0%, 100% { transform: scale(1); box-shadow: rgba(124,58,237,0.35) 0 6px 16px -6px; }
+  50%      { transform: scale(1.03); box-shadow: rgba(124,58,237,0.6) 0 12px 26px -8px; }
+}
+.snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="508"] .kl-tap-cursor {
+  animation: kl-tap 2.8s ease-in-out infinite;
+}
+
+/* ---------- reduced motion: hold everything still ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="456"],
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="460"],
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="478"],
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="484"],
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="485"],
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="502"] .kl-ring,
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="503"],
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="508"] {
+    animation: none !important;
+  }
+  .snaarp-kalender-page [data-dc-tpl="447"].kl-phones-live [data-dc-tpl="478"] {
+    background: transparent !important;
+  }
+  .snaarp-kalender-page .kl-tap-cursor, .snaarp-kalender-page .kl-ring { display: none !important; }
+}

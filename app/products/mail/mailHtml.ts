@@ -7,7 +7,6 @@
 
 export const MAIL_HERO_TEXTCOL = `<div data-dc-tpl="50" style="flex: 1 1 420px; min-width: 0px; max-width: 520px;">
       <div data-dc-tpl="51" style="display: flex; align-items: center; gap: 14px; margin-bottom: 26px;">
-        <span data-dc-tpl="52" style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(145deg, rgb(109, 59, 255), rgb(109, 40, 217)); display: grid; place-items: center; box-shadow: rgba(124, 58, 237, 0.7) 0px 10px 22px -8px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset; flex: 0 0 auto;"><span data-dc-tpl="53" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 27px; line-height: 1; color: rgb(255, 255, 255);">mail</span></span>
         <span data-dc-tpl="54" style="display: flex; flex-direction: column; gap: 3px;"><span data-dc-tpl="55" style="font-weight: 700; font-size: 17px;">Snaarp Mail</span><span data-dc-tpl="56" style="font-size: 14px; color: rgb(90, 95, 125);">Professional Business Email for Modern Businesses.</span></span>
       </div>
       <h1 data-dc-tpl="57" style="margin: 0px; font-size: clamp(40px, 5vw, 64px); line-height: 1.03; letter-spacing: -0.04em; font-weight: 800; color: rgb(11, 13, 42);">Professional<br data-dc-tpl="58">Business Email.<br data-dc-tpl="59"><span data-dc-tpl="60" style="color: rgb(124, 58, 237);">From £0.50.</span></h1>

@@ -30,7 +30,7 @@
 .snaarp-mail-page [data-dc-tpl="68"],    /* hero primary CTA */
 .snaarp-mail-page [data-dc-tpl="70"],    /* hero secondary CTA */
 .snaarp-mail-page [data-dc-tpl="220"],   /* feature-icon strip cells (.scpc) */
-.snaarp-mail-page [data-dc-tpl="273"],   /* "complete solution" feature cards */
+.snaarp-mail-page [data-dc-tpl="275"],   /* "complete solution" feature cards (.scpe) */
 .snaarp-mail-page [data-dc-tpl="538"],   /* business-type photo cards */
 .snaarp-mail-page [data-dc-tpl="567"],   /* FAQ accordion items */
 .snaarp-mail-page .scpi {                /* business card wrapper */
@@ -68,11 +68,20 @@
 .snaarp-mail-page [data-dc-tpl="220"] [data-dc-tpl="222"] { transition: transform 0.4s var(--ml-ease); }
 .snaarp-mail-page [data-dc-tpl="220"]:hover [data-dc-tpl="222"] { transform: rotate(-8deg) scale(1.08); }
 
-/* ── "Complete Solution" feature cards (tpl 273) — lift + shadow ────── */
-.snaarp-mail-page [data-dc-tpl="273"]:hover {
+/* ── "Complete Solution" feature cards (tpl 275 / .scpe) — lift + shadow.
+   Hover the individual card, NOT the grid container (tpl 273). ────────── */
+.snaarp-mail-page [data-dc-tpl="275"]:hover,
+.snaarp-mail-page .scpe:hover {
   transform: translateY(-6px) !important;
-  background: #ffffff !important;
+  border-color: rgb(224, 218, 245) !important;
   box-shadow: rgba(60, 40, 140, 0.16) 0px 22px 40px -18px !important;
+}
+/* the icon tile pops on card hover */
+.snaarp-mail-page [data-dc-tpl="275"] [data-dc-tpl="276"] {
+  transition: transform 0.3s var(--ml-ease);
+}
+.snaarp-mail-page [data-dc-tpl="275"]:hover [data-dc-tpl="276"] {
+  transform: scale(1.08) rotate(-4deg);
 }
 
 /* ── Business-type photo cards (tpl 538 / .scpi) — lift + image zoom ── */

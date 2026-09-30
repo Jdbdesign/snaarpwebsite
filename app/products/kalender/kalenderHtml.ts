@@ -350,40 +350,12 @@ export const KALENDER_AFTER_HERO = `<section data-dc-tpl="177" data-screen-label
       <div data-dc-tpl="199" style="position: relative; width: 780px; height: 480px; zoom: 0.836;">
         <div data-dc-tpl="200" style="position: absolute; left: 0px; top: 0px; width: 660px; height: 480px; border-radius: 22px; background: rgba(255, 255, 255, 0.75); border: 1px solid rgb(228, 234, 248); box-shadow: rgba(20, 50, 150, 0.4) 0px 40px 80px -40px; padding: 14px;">
           <div data-dc-tpl="201" style="position: relative; width: 100%; height: 100%; border-radius: 14px; overflow: hidden; background: rgb(27, 32, 48);">
-            <img data-dc-tpl="202" src="/assets/kalender/video-call.png" alt="Snaarp Meet video call" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block; filter: none; transition: filter 0.3s;">
+            <video data-dc-tpl="202" src="/assets/kalender/meet-video.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Snaarp Meet video call" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block; filter: none; transition: filter 0.3s;"></video>
             <div data-dc-tpl="203" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 90px; background: linear-gradient(rgba(10, 14, 30, 0.55), rgba(10, 14, 30, 0));"></div>
             <div data-dc-tpl="204" style="position: absolute; left: 20px; top: 18px; display: flex; align-items: center; gap: 12px;">
               <span data-dc-tpl="205" style="font-size: 19px; font-weight: 700; color: rgb(255, 255, 255); letter-spacing: -0.01em;">Snaarp Meet</span>
-              <span data-dc-tpl="206" style="display: flex; align-items: center; gap: 6px; height: 24px; padding: 0px 9px; border-radius: 6px; background: rgba(10, 14, 30, 0.5); color: rgb(255, 255, 255); font-size: 11.5px; font-weight: 600; font-variant-numeric: tabular-nums;"><span class="sc-interp">12:07</span></span>
             </div>
             
-            <div data-dc-tpl="213" style="position: absolute; right: 10px; top: 12px; display: flex; flex-direction: column; gap: 8px;">
-              
-                <div data-dc-tpl="215" style="position: relative; width: 106px; height: 96px; border-radius: 9px; overflow: hidden; background: rgb(36, 48, 82); box-shadow: rgb(74, 222, 128) 0px 0px 0px 2px; transition: box-shadow 0.3s;">
-                  <img data-dc-tpl="217" src="/assets/kalender/avatar-tunde.png" alt="Tunde" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                  
-                  
-                  <span data-dc-tpl="223" style="position: absolute; left: 6px; bottom: 6px; display: flex; align-items: center; gap: 3px; height: 18px; padding: 0px 6px; border-radius: 5px; background: rgba(10, 14, 30, 0.6); color: rgb(255, 255, 255); font-size: 9.5px; font-weight: 600;"><span class="sc-interp">Tunde</span></span>
-                  
-                </div>
-              
-                <div data-dc-tpl="215" style="position: relative; width: 106px; height: 96px; border-radius: 9px; overflow: hidden; background: rgb(36, 48, 82); box-shadow: rgba(255, 255, 255, 0.15) 0px 0px 0px 2px; transition: box-shadow 0.3s;">
-                  <img data-dc-tpl="217" src="/assets/kalender/avatar-sarah.png" alt="Sarah" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                  
-                  
-                  <span data-dc-tpl="223" style="position: absolute; left: 6px; bottom: 6px; display: flex; align-items: center; gap: 3px; height: 18px; padding: 0px 6px; border-radius: 5px; background: rgba(10, 14, 30, 0.6); color: rgb(255, 255, 255); font-size: 9.5px; font-weight: 600;"><span class="sc-interp">Sarah</span></span>
-                  
-                </div>
-              
-                <div data-dc-tpl="215" style="position: relative; width: 106px; height: 96px; border-radius: 9px; overflow: hidden; background: rgb(36, 48, 82); box-shadow: rgba(255, 255, 255, 0.15) 0px 0px 0px 2px; transition: box-shadow 0.3s;">
-                  <img data-dc-tpl="217" src="/assets/kalender/avatar-you.png" alt="You" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                  
-                  
-                  <span data-dc-tpl="223" style="position: absolute; left: 6px; bottom: 6px; display: flex; align-items: center; gap: 3px; height: 18px; padding: 0px 6px; border-radius: 5px; background: rgba(10, 14, 30, 0.6); color: rgb(255, 255, 255); font-size: 9.5px; font-weight: 600;"><span class="sc-interp">You</span></span>
-                  
-                </div>
-              
-            </div>
             
             <div data-dc-tpl="236" style="position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); display: flex; gap: 10px; padding: 9px 14px; border-radius: 14px; background: rgba(22, 26, 42, 0.88); backdrop-filter: blur(8px);">
               

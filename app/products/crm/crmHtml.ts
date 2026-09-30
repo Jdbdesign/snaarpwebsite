@@ -5,6 +5,7 @@
 /* eslint-disable */
 export const CRM_HERO_DECO = `<div data-dc-tpl="45" style="position: absolute; right: 120px; top: 60px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(170, 150, 255, 0.2), rgba(170, 150, 255, 0) 70%); pointer-events: none;"></div>`;
 export const CRM_HERO_TEXTCOL = `<div data-dc-tpl="47" style="flex: 1 1 440px; min-width: 0px; max-width: 560px;">
+      <div class="product-eyebrow" style="display: flex; flex-direction: column; gap: 3px; margin-bottom: 22px;"><span style="font-weight: 700; font-size: 17px; color: rgb(11, 13, 42);">Snaarp CRM</span><span style="font-size: 14px; color: rgb(90, 95, 125);">The All-in-One CRM for Growing Teams.</span></div>
       <h1 data-dc-tpl="54" style="margin: 0px; font-size: clamp(40px, 5vw, 62px); line-height: 1.06; letter-spacing: -0.045em; font-weight: 800; color: rgb(11, 13, 42);"><span data-dc-tpl="54a" class="crm-hero-line1">Turn Every Lead</span><br data-dc-tpl="55">Into an <span data-dc-tpl="56" style="color: rgb(124, 58, 237);">Opportunity.</span></h1>
       <p data-dc-tpl="57" style="margin: 20px 0px 0px; font-size: 18px; line-height: 1.55; color: rgb(63, 68, 99); max-width: 530px; text-wrap: pretty;">The all-in-one CRM to capture leads from any channel, engage customers, automate follow-ups and close more deals — faster.</p>
       <div data-dc-tpl="58" style="margin-top: 30px; display: flex; flex-wrap: wrap; gap: 18px;">

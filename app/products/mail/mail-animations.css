@@ -121,3 +121,109 @@
     transform: none !important;
   }
 }
+
+/* =====================================================================
+   "Access your inbox, anytime, anywhere" — devices mockup interaction.
+   Animate the EXISTING static mockup (tpl 283: laptop tpl 284 + phone
+   tpl 310 + annotation chips tpl 328/332/338 + stats tpl 344) in place —
+   no markup changes. The story it tells matches the section copy:
+   real-time sync across devices + live notifications + a unified inbox.
+
+   A ~9s loop:
+     0.0s  a new email lands on the LAPTOP (first row tpl 296 highlights
+           + slides in)
+     1.2s  the Real-time notifications chip (tpl 338) pings — bell tile
+           tpl 339 pulses
+     1.6s  the SAME email syncs to the PHONE (first row tpl 321 highlights
+           + slides in, slightly later = "instantly on your phone too")
+   Plus ambient life: the chips float, the devices breathe gently, and the
+   Compose button glints. Only transform / opacity / box-shadow / filter
+   are animated (safe under the mockup's `zoom`); the mockup canvas itself
+   is never transformed.
+   ===================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  /* New email on the laptop — first inbox row highlights + slides in. */
+  .snaarp-mail-page [data-dc-tpl="283"] [data-dc-tpl="291"] > div:first-of-type,
+  .snaarp-mail-page [data-dc-tpl="283"] [data-dc-tpl="296"]:first-of-type {
+    animation: ml-newmail-laptop 9s ease-in-out infinite;
+  }
+  /* Same email syncs to the phone — first row, offset later in the loop. */
+  .snaarp-mail-page [data-dc-tpl="283"] [data-dc-tpl="321"]:first-of-type {
+    animation: ml-newmail-phone 9s ease-in-out infinite;
+  }
+  /* Real-time notifications chip (tpl 338) — the whole chip pings; the bell
+     tile (tpl 339) pulses its glow in time with the phone sync. */
+  .snaarp-mail-page [data-dc-tpl="283"] [data-dc-tpl="338"] {
+    animation: ml-chip-ping 9s ease-in-out infinite;
+  }
+  .snaarp-mail-page [data-dc-tpl="283"] [data-dc-tpl="339"] {
+    animation: ml-bell-pulse 9s ease-in-out infinite;
+  }
+  /* Unified-inbox + Organise chips — gentle continuous float so the frame
+     feels alive without stealing focus. */
+  .snaarp-mail-page [data-dc-tpl="283"] [data-dc-tpl="328"] {
+    animation: ml-float 5.5s ease-in-out infinite;
+  }
+  .snaarp-mail-page [data-dc-tpl="283"] [data-dc-tpl="332"] {
+    animation: ml-float 6.2s ease-in-out infinite 0.4s;
+  }
+  /* Laptop + phone breathe very subtly (kept tiny so text stays crisp). */
+  .snaarp-mail-page [data-dc-tpl="283"] [data-dc-tpl="284"] {
+    animation: ml-breathe-a 7s ease-in-out infinite;
+  }
+  .snaarp-mail-page [data-dc-tpl="283"] [data-dc-tpl="310"] {
+    animation: ml-breathe-b 7s ease-in-out infinite;
+  }
+  /* Compose button glint on the laptop. */
+  .snaarp-mail-page [data-dc-tpl="283"] [data-dc-tpl="288"] {
+    animation: ml-compose-glint 9s ease-in-out infinite;
+  }
+}
+
+/* Laptop: highlight bar sweeps in on the first row, then settles. */
+@keyframes ml-newmail-laptop {
+  0%       { background: rgb(255,255,255); box-shadow: inset 3px 0 0 rgba(124,58,237,0); }
+  4%       { background: rgb(246,242,255); box-shadow: inset 3px 0 0 rgba(124,58,237,1); transform: translateY(-3px); }
+  8%       { transform: translateY(0); }
+  30%      { background: rgb(246,242,255); box-shadow: inset 3px 0 0 rgba(124,58,237,0.9); }
+  55%,100% { background: rgb(255,255,255); box-shadow: inset 3px 0 0 rgba(124,58,237,0); }
+}
+/* Phone: same row lights up a beat later (synced from the laptop). */
+@keyframes ml-newmail-phone {
+  0%,16%   { background: rgb(255,255,255); box-shadow: inset 3px 0 0 rgba(124,58,237,0); }
+  20%      { background: rgb(246,242,255); box-shadow: inset 3px 0 0 rgba(124,58,237,1); transform: translateY(-3px); }
+  24%      { transform: translateY(0); }
+  46%      { background: rgb(246,242,255); box-shadow: inset 3px 0 0 rgba(124,58,237,0.9); }
+  66%,100% { background: rgb(255,255,255); box-shadow: inset 3px 0 0 rgba(124,58,237,0); }
+}
+/* Real-time chip pings (nudge + shadow bloom) as the sync reaches the phone. */
+@keyframes ml-chip-ping {
+  0%,12%   { transform: translateY(0) scale(1); box-shadow: rgba(40,20,130,0.4) 0px 16px 30px -16px; }
+  16%      { transform: translateY(-3px) scale(1.05); box-shadow: rgba(124,58,237,0.5) 0px 18px 34px -14px; }
+  22%      { transform: translateY(0) scale(1); }
+  100%     { transform: translateY(0) scale(1); box-shadow: rgba(40,20,130,0.4) 0px 16px 30px -16px; }
+}
+/* Bell tile: expanding ring pulse (the "notification" pop). */
+@keyframes ml-bell-pulse {
+  0%,12%   { box-shadow: 0 0 0 0 rgba(124,58,237,0.5); }
+  18%      { box-shadow: 0 0 0 7px rgba(124,58,237,0); }
+  30%      { box-shadow: 0 0 0 0 rgba(124,58,237,0); }
+  100%     { box-shadow: 0 0 0 0 rgba(124,58,237,0); }
+}
+/* Ambient floats / breathes. */
+@keyframes ml-float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-5px); }
+}
+@keyframes ml-breathe-a {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-3px); }
+}
+@keyframes ml-breathe-b {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(3px); }
+}
+@keyframes ml-compose-glint {
+  0%,90%,100% { filter: brightness(1); }
+  94%         { filter: brightness(1.18); }
+}

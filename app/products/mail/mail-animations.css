@@ -102,15 +102,12 @@
 }
 
 /* =====================================================================
-   Hard exclusions: never let a hover transform touch the static hero and
-   devices mockups. They contain dense inline-styled buttons/rows
-   (.scp4 sidebar compose, .scp7 nav rows, .scp8 email rows) that would
-   otherwise jump on hover. Kill any transform inside those canvases.
+   The hero (tpl 79) and devices (tpl 283) mockups are live React demos with
+   their own autoplay motion — never apply ANY hover effect to them or their
+   contents. The old `* :hover { transform: none }` exclusion is gone: it was
+   fighting the demos' own live transforms and made the laptop glitch on
+   hover. No hover rule targets anything inside these canvases.
    ===================================================================== */
-.snaarp-mail-page [data-dc-tpl="79"] *:hover,
-.snaarp-mail-page [data-dc-tpl="283"] *:hover {
-  transform: none !important;
-}
 
 /* ── Scroll-reveal accent: springy scale-in for card grids (.ml-pop) ── */
 .snaarp-mail-page [data-reveal].ml-pop {

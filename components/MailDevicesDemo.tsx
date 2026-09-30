@@ -90,7 +90,7 @@ export function MailDevicesDemo({ autoplay = true }: { autoplay?: boolean } = {}
   const unread = mails.filter((m) => m.unread).length + 3;
 
   return (
-    <div ref={rootRef} style={{ position: 'absolute', left: 0, top: 0, width: '640px', height: '600px', fontFamily: F, color: '#1a1a2e' }}>
+    <div ref={rootRef} style={{ position: 'absolute', left: 0, top: 0, width: '640px', height: '512px', fontFamily: F, color: '#1a1a2e' }}>
       {/* floating chips (kept from the original mockup look) */}
       <Chip x={148} y={0} icon={<Inbox size={13} color={BRAND} />} title="Unified inbox" sub="across all devices" />
       <Chip x={452} y={64} icon={<Tag size={13} color={BRAND} />} title="Organise with" sub="smart labels" />
@@ -140,16 +140,6 @@ export function MailDevicesDemo({ autoplay = true }: { autoplay?: boolean } = {}
             )}
           </div>
         </div>
-      </div>
-
-      {/* stats card */}
-      <div style={{ position: 'absolute', left: 14, top: 470, width: 440, height: 92, borderRadius: '16px', background: '#fff', border: '1px solid rgb(238,237,247)', boxShadow: 'rgba(40,20,130,0.35) 0px 20px 40px -26px', display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', zIndex: 3 }}>
-        {[['99.9%', 'Uptime'], ['< 1s', 'Search speed'], ['24/7', 'Support']].map(([v, l], i) => (
-          <div key={l} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '3px', borderRight: i < 2 ? '1px solid #F1F0F7' : 'none' }}>
-            <span style={{ fontSize: '22px', fontWeight: 800, color: BRAND, letterSpacing: '-0.02em' }}>{v}</span>
-            <span style={{ fontSize: '12px', color: '#6B7090' }}>{l}</span>
-          </div>
-        ))}
       </div>
 
       {/* cursor */}

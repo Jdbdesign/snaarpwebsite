@@ -555,7 +555,7 @@ x-dc { display: none !important; }
   max-width: none !important;
 }
 .snaarp-mail-page [data-dc-tpl="283"] {
-  zoom: 0.82 !important;                /* desktop — 640x600 live devices demo */
+  zoom: 0.98 !important;                /* desktop — 640x512 live devices demo */
 }
 .snaarp-mail-page [data-dc-tpl="349"] {
   flex: 0 0 400px !important;
@@ -568,7 +568,7 @@ x-dc { display: none !important; }
     gap: 56px !important;
   }
   .snaarp-mail-page [data-dc-tpl="283"] {
-    zoom: 0.96 !important;
+    zoom: 1.04 !important;
   }
   .snaarp-mail-page [data-dc-tpl="349"] {
     flex: 0 0 440px !important;
@@ -578,6 +578,6 @@ x-dc { display: none !important; }
 /* Laptop range: keep the demo fully visible next to the text. */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .snaarp-mail-page [data-dc-tpl="283"] {
-    zoom: 0.72 !important;
+    zoom: 0.84 !important;
   }
 }

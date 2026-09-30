@@ -159,7 +159,7 @@ export default function MailPageClient() {
             <section data-dc-tpl="280" data-screen-label="Access Anywhere" style={{ background: 'linear-gradient(rgb(244, 242, 253), rgb(250, 250, 254))' }}>
               <div data-dc-tpl="281" style={{ maxWidth: '1280px', margin: '0px auto', padding: 'clamp(40px, 5vw, 60px) clamp(20px, 4vw, 48px)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '36px' }}>
                 <div data-dc-tpl="282" style={{ flex: '1 1 440px', minWidth: 0, maxWidth: '540px' }}>
-                  <div data-dc-tpl="283" style={{ position: 'relative', width: '640px', height: '600px' }}>
+                  <div data-dc-tpl="283" style={{ position: 'relative', width: '640px', height: '512px' }}>
                     <MailDevicesDemo autoplay />
                   </div>
                 </div>

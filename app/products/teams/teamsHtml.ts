@@ -838,10 +838,6 @@ Here’s the latest version.</span><span data-dc-tpl="494" style="margin-top: 5p
             </div>
           </div>
 
-          <div data-dc-tpl="585" style="position: absolute; left: 222px; top: 6px; display: flex; align-items: flex-end; gap: 2px; color: rgb(124, 58, 237);">
-            <span data-dc-tpl="586" style="font-family: Caveat, cursive; font-size: 19px; font-weight: 600; transform: rotate(-6deg); white-space: nowrap;">Tap to explore</span>
-            <svg data-dc-tpl="587" width="20" height="26"><path data-dc-tpl="588" d="M14 2 C 16 12, 12 20, 4 24" style="fill: none; stroke: rgb(124, 58, 237); stroke-width: 1.5; stroke-linecap: round;"></path></svg>
-          </div>
           <div data-dc-tpl="589" style="position: absolute; left: 214px; top: 44px; width: 158px; display: flex; flex-direction: column; gap: 8px;">
             
               <button data-dc-tpl="591" class="scp6" style="border: 1px solid rgb(157, 184, 255); background: rgb(247, 249, 255); box-shadow: rgba(124, 58, 237, 0.55) 0px 10px 22px -14px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 9px 8px; text-align: left; transition: 0.15s;">

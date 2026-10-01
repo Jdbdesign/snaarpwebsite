@@ -10,6 +10,7 @@ import {
   TEAMS_AFTER_HERO,
 } from './teamsHtml';
 import { startTeamsChatDemo } from './teamsChatDemo';
+import { startTeamsInsightsDemo } from './teamsInsightsDemo';
 
 // The Snaarp Teams hero is reconstructed in JSX (the row shell only) so the
 // workspace mockup canvas sits top-aligned and fills the right column the
@@ -115,6 +116,34 @@ export default function TeamsPageClient() {
       { threshold: 0.25 }
     );
     io.observe(canvas);
+    return () => { io.disconnect(); if (stop) stop(); };
+  }, []);
+
+  // Continuous micro-interactions for the "Insights / Mobile / Sync" section
+  // (tpl 390): the Analytics card loops (chart redraw, donut spin, stat
+  // ticks), the Mobile phone cycles its screen through Chat → Video → Files
+  // → Notifications in sync with the explore list, and the Cross-Device card
+  // cycles its device tabs + types into the sync field. Starts when the
+  // section scrolls into view; preserves each card's fixed size.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const section = root.querySelector<HTMLElement>('[data-dc-tpl="390"]');
+    if (!section) return;
+    let stop: (() => void) | null = null;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting && !stop) {
+            stop = startTeamsInsightsDemo(section);
+            io.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.2 }
+    );
+    io.observe(section);
     return () => { io.disconnect(); if (stop) stop(); };
   }, []);
 

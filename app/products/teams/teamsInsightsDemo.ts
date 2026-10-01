@@ -58,23 +58,7 @@ export function startTeamsInsightsDemo(section: HTMLElement): () => void {
       if (donutLabel) donutLabel.style.animation = 'tmins-spin-rev 20s linear infinite';
     }
 
-    // Stat numbers (tpl 411): members / messages / files tick gently.
-    const stats = Array.from(section.querySelectorAll<HTMLElement>('[data-dc-tpl="411"]'));
-    const bases = [24, 1248, 86];
-    if (stats.length >= 3) {
-      every(2600, () => {
-        if (cancelled) return;
-        stats.forEach((el, i) => {
-          const jitter = Math.floor(Math.random() * (i === 1 ? 24 : 3));
-          const val = bases[i] + jitter;
-          const txt = el.querySelector('.sc-interp') || el;
-          txt.textContent = i === 1 ? val.toLocaleString() : String(val);
-          el.style.transition = `color 0.4s ${ease}`;
-          el.style.color = 'rgb(124,58,237)';
-          timers.push(window.setTimeout(() => { el.style.color = ''; }, 500));
-        });
-      });
-    }
+    // Stat numbers (tpl 411) are left static — no rolling/jitter.
   };
 
   /* ───────────────── Mobile card (tpl 454) ───────────────── */

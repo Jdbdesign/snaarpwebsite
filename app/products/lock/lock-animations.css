@@ -80,6 +80,16 @@
 .snaarp-lock-page [data-reveal].lk-pop { transform: translateY(26px) scale(0.97); }
 .snaarp-lock-page [data-reveal].lk-pop.is-revealed { transform: translateY(0) scale(1); }
 
+/* ── "How it works" step player ── */
+/* Phone-screen swap-in used by the step player (LockPageClient). */
+@keyframes lkRise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* The step buttons advance a player and are clickable to jump between steps. */
+.snaarp-lock-page button[data-lk-step] { cursor: pointer; }
+.snaarp-lock-page button[data-lk-step] [data-lk-circle] { transition: background .2s, box-shadow .2s, color .2s; }
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .snaarp-lock-page [data-dc-tpl]:hover,

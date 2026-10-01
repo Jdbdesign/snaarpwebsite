@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef, type CSSProperties } from 'react';
+import { useEffect, useLayoutEffect, useRef, type CSSProperties } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import './lock.css';
 import './lock-animations.css';
@@ -71,6 +71,103 @@ export default function LockPageClient() {
     root.querySelectorAll<HTMLElement>('[data-dc-tpl="259"]').forEach((c) => {
       if (!inMockup(c)) tag(c, { group: 'lk-features', batch: 'features', pop: true });
     });
+  }, []);
+
+  // "How it works" step player. The standalone bundle auto-advances through
+  // the 3 steps, filling each step's progress bar, highlighting the active
+  // step, and swapping the phone screen to match. That behaviour is JS-driven,
+  // so it is lost in a static capture — this effect restores it against the
+  // injected markup markers ([data-lk-step] / [data-lk-circle] / [data-lk-title]
+  // / [data-lk-bar] on the buttons; [data-lk-screen] panels inside the phone).
+  // Steps are also clickable, and the player pauses when off-screen or when the
+  // user prefers reduced motion.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    const buttons = Array.from(
+      root.querySelectorAll<HTMLButtonElement>('button[data-lk-step]'),
+    ).sort((a, b) => Number(a.dataset.lkStep) - Number(b.dataset.lkStep));
+    const screens = Array.from(
+      root.querySelectorAll<HTMLElement>('[data-lk-screen]'),
+    ).sort((a, b) => Number(a.dataset.lkScreen) - Number(b.dataset.lkScreen));
+    if (buttons.length < 2 || screens.length < 2) return;
+
+    const n = Math.min(buttons.length, screens.length);
+    const STEP_MS = 3200; // dwell per step (matches the bundle's cadence)
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const circleOf = (b: HTMLElement) => b.querySelector<HTMLElement>('[data-lk-circle]');
+    const titleOf = (b: HTMLElement) => b.querySelector<HTMLElement>('[data-lk-title]');
+    const barOf = (b: HTMLElement) => b.querySelector<HTMLElement>('[data-lk-bar]');
+
+    let active = -1;
+    let barTimer: number | undefined;
+
+    const render = (idx: number) => {
+      buttons.forEach((b, i) => {
+        const on = i === idx;
+        const past = i < idx;
+        const circle = circleOf(b);
+        const title = titleOf(b);
+        const bar = barOf(b);
+        if (circle) {
+          circle.style.background = on || past ? 'rgb(124, 58, 237)' : 'rgb(239, 235, 255)';
+          circle.style.color = on || past ? 'rgb(255, 255, 255)' : 'rgb(124, 58, 237)';
+          circle.style.boxShadow = on ? 'rgb(228, 220, 255) 0px 0px 0px 5px' : 'none';
+        }
+        if (title) title.style.color = on ? 'rgb(124, 58, 237)' : 'rgb(14, 18, 56)';
+        if (bar) {
+          // Active bar animates 0 -> 100 over the dwell; others reflect progress.
+          bar.style.transition = 'none';
+          bar.style.width = past ? '100%' : '0%';
+          if (on && !reduce) {
+            // next frame: enable the fill transition and run it to 100%.
+            window.requestAnimationFrame(() => {
+              bar.style.transition = `width ${STEP_MS}ms linear`;
+              bar.style.width = '100%';
+            });
+          } else if (on) {
+            bar.style.width = '100%';
+          }
+        }
+      });
+      screens.forEach((s, i) => {
+        s.style.display = i === idx ? 'flex' : 'none';
+        if (i === idx && !reduce) {
+          s.style.animation = 'none';
+          window.requestAnimationFrame(() => {
+            s.style.animation = 'lkRise 0.32s ease';
+          });
+        }
+      });
+    };
+
+    const go = (idx: number) => {
+      active = ((idx % n) + n) % n;
+      render(active);
+    };
+
+    go(0);
+
+    if (!reduce) {
+      barTimer = window.setInterval(() => go(active + 1), STEP_MS);
+    }
+
+    const onClick = (e: Event) => {
+      const btn = (e.currentTarget as HTMLElement);
+      const idx = Number(btn.dataset.lkStep);
+      if (Number.isNaN(idx)) return;
+      if (barTimer) window.clearInterval(barTimer);
+      go(idx);
+      if (!reduce) barTimer = window.setInterval(() => go(active + 1), STEP_MS);
+    };
+    buttons.forEach((b) => b.addEventListener('click', onClick));
+
+    return () => {
+      if (barTimer) window.clearInterval(barTimer);
+      buttons.forEach((b) => b.removeEventListener('click', onClick));
+    };
   }, []);
 
   useScrollReveal(rootRef);

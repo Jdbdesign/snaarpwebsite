@@ -1,0 +1,156 @@
+/* =====================================================================
+   Snaarp Sheet — site-wide interaction polish (hover + reveal accents).
+   Hand-authored, kept separate from the auto-generated sheets.css so a
+   regeneration won't wipe it. Namespaced under .snaarp-sheets-page and
+   targets the bundle's inline-styled elements via stable data-dc-tpl
+   numbers or scp* behaviour classes. Inline styles win the cascade, so
+   hover overrides use !important where needed.
+
+   Layout-safety: never transform the zoom-scaled mockup canvases
+   (tpl 76 hero sheet, tpl 258 AI, tpl 311 dashboard, tpl 406 devices) or
+   display:contents wrappers. Their inner scpa..scpc controls are frozen
+   demo art and are intentionally left untouched.
+   ===================================================================== */
+
+.snaarp-sheets-page {
+  --sh-brand: #7C3AED;
+  --sh-brand-dark: #6D28D9;
+  --sh-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Smooth base transition for the interactive element types we hover. */
+.snaarp-sheets-page [data-dc-tpl="65"],
+.snaarp-sheets-page [data-dc-tpl="67"],
+.snaarp-sheets-page [data-dc-tpl="235"],
+.snaarp-sheets-page [data-dc-tpl="397"],
+.snaarp-sheets-page [data-dc-tpl="503"],
+.snaarp-sheets-page [data-dc-tpl="523"],
+.snaarp-sheets-page [data-dc-tpl="525"],
+.snaarp-sheets-page [data-dc-tpl="536"],
+.snaarp-sheets-page [data-dc-tpl="530"] {
+  transition: transform 0.28s var(--sh-ease), box-shadow 0.28s var(--sh-ease),
+              border-color 0.28s var(--sh-ease), background 0.28s var(--sh-ease),
+              filter 0.28s var(--sh-ease), opacity 0.28s var(--sh-ease) !important;
+  will-change: transform;
+}
+
+/* ── Hero primary CTA ("Create a Spreadsheet", tpl 65 / .scp4) ── */
+.snaarp-sheets-page .scp4:hover,
+.snaarp-sheets-page [data-dc-tpl="65"]:hover {
+  transform: translateY(-2px) !important;
+  background: var(--sh-brand-dark) !important;
+  box-shadow: rgba(124, 58, 237, 0.6) 0px 20px 34px -12px !important;
+}
+.snaarp-sheets-page [data-dc-tpl="65"]:active { transform: translateY(0) !important; }
+.snaarp-sheets-page [data-dc-tpl="65"] [data-dc-tpl="66"] { transition: transform 0.3s var(--sh-ease); }
+.snaarp-sheets-page [data-dc-tpl="65"]:hover [data-dc-tpl="66"] { transform: translateX(4px); }
+
+/* ── Hero secondary CTA ("See How It Works", tpl 67 / .scp5) ── */
+.snaarp-sheets-page .scp5:hover,
+.snaarp-sheets-page [data-dc-tpl="67"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--sh-brand) !important;
+  background: rgb(247, 244, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 14px 26px -12px !important;
+}
+.snaarp-sheets-page [data-dc-tpl="67"] [data-dc-tpl="68"] { transition: transform 0.3s var(--sh-ease); }
+.snaarp-sheets-page [data-dc-tpl="67"]:hover [data-dc-tpl="68"] { transform: scale(1.12); }
+
+/* ── Feature cards ("everything you need" grid, tpl 235 / .scpd) ── */
+.snaarp-sheets-page .scpd:hover,
+.snaarp-sheets-page [data-dc-tpl="235"]:hover {
+  transform: translateY(-6px) !important;
+}
+.snaarp-sheets-page [data-dc-tpl="235"] [data-dc-tpl="236"] { transition: transform 0.32s var(--sh-ease); }
+.snaarp-sheets-page [data-dc-tpl="235"]:hover [data-dc-tpl="236"] { transform: scale(1.08); }
+
+/* ── AI formula example rows (tpl 397 / .scpg) ── */
+.snaarp-sheets-page .scpg:hover,
+.snaarp-sheets-page [data-dc-tpl="397"]:hover {
+  background: rgb(247, 244, 255) !important;
+  transform: translateX(3px) !important;
+}
+
+/* ── Ecosystem app tiles (tpl 503 / .scph, icon tile tpl 504) ── */
+.snaarp-sheets-page .scph:hover,
+.snaarp-sheets-page [data-dc-tpl="503"]:hover {
+  transform: translateY(-4px) !important;
+}
+.snaarp-sheets-page [data-dc-tpl="503"] [data-dc-tpl="504"] { transition: transform 0.4s var(--sh-ease), box-shadow 0.3s var(--sh-ease); }
+.snaarp-sheets-page [data-dc-tpl="503"]:hover [data-dc-tpl="504"] { transform: rotate(-6deg) scale(1.08); }
+
+/* ── Final-CTA buttons (tpl 523 / .scpi filled-white, tpl 525 / .scpj outline) ── */
+.snaarp-sheets-page .scpi:hover,
+.snaarp-sheets-page [data-dc-tpl="523"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(15, 20, 60, 0.4) 0px 18px 30px -12px !important;
+}
+.snaarp-sheets-page .scpj:hover,
+.snaarp-sheets-page [data-dc-tpl="525"]:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgb(255, 255, 255) !important;
+}
+.snaarp-sheets-page [data-dc-tpl="523"]:active,
+.snaarp-sheets-page [data-dc-tpl="525"]:active { transform: translateY(0) !important; }
+
+/* ── FAQ items (tpl 536) — subtle lift ── */
+.snaarp-sheets-page [data-dc-tpl="536"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgb(183, 166, 255) !important;
+  box-shadow: rgba(60, 40, 140, 0.14) 0px 14px 26px -16px !important;
+}
+
+/* ── "View all FAQs" link (tpl 530) ── */
+.snaarp-sheets-page [data-dc-tpl="530"] { transition: color 0.2s var(--sh-ease), transform 0.2s var(--sh-ease); }
+.snaarp-sheets-page [data-dc-tpl="530"]:hover { color: var(--sh-brand-dark) !important; transform: translateX(3px); }
+
+/* ── Reveal accent: springy scale-in for card grids flagged .sh-pop ── */
+.snaarp-sheets-page [data-reveal].sh-pop { transform: translateY(26px) scale(0.97); }
+.snaarp-sheets-page [data-reveal].sh-pop.is-revealed { transform: translateY(0) scale(1); }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-sheets-page [data-dc-tpl]:hover,
+  .snaarp-sheets-page [data-dc-tpl]:hover * { transform: none !important; }
+  .snaarp-sheets-page [data-reveal].sh-pop { transform: none !important; }
+}
+
+/* =====================================================================
+   Hero "Ask Snaarp AI × Sheet" demo (canvas tpl 76) — keyframes for the
+   JS-driven continuous loop (sheetsAiDemo.ts). Chat turns ease in; the
+   AI typing indicator's three dots bounce. Helper classes are created by
+   the demo script at runtime; this adds no structural styles.
+   ===================================================================== */
+@keyframes tmai-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.snaarp-sheets-page .tmai-typing span {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgb(150, 157, 184); display: inline-block;
+  animation: tmai-bounce 1.2s infinite ease-in-out;
+}
+.snaarp-sheets-page .tmai-typing span:nth-child(2) { animation-delay: 0.18s; }
+.snaarp-sheets-page .tmai-typing span:nth-child(3) { animation-delay: 0.36s; }
+@keyframes tmai-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30%           { transform: translateY(-4px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-sheets-page .tmai-typing span { animation: none !important; }
+}
+
+/* =====================================================================
+   "Living dashboard" demo (canvas tpl 311) — keyframes for the JS-driven
+   loop (sheetsDashboardDemo.ts). The Sales-by-Region donut rotates slowly
+   while its centre total counter-rotates to stay upright. No structural
+   styles; the demo toggles everything else inline.
+   ===================================================================== */
+@keyframes shdash-donut {
+  0%, 100% { transform: scale(1); box-shadow: rgba(124,58,237,0) 0 0 0 0; }
+  50%      { transform: scale(1.035); box-shadow: rgba(124,58,237,0.18) 0 0 24px 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-sheets-page [data-dc-tpl="357"] { animation: none !important; }
+}

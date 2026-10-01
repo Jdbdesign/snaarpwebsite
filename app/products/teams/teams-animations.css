@@ -131,3 +131,35 @@
   .snaarp-teams-page [data-dc-tpl]:hover * { transform: none !important; }
   .snaarp-teams-page [data-reveal].tm-pop { transform: none !important; }
 }
+
+/* =====================================================================
+   Hero workspace chat demo (canvas tpl 70) — keyframes for the JS-driven
+   continuous "Product Team" conversation (teamsChatDemo.ts). Message rows,
+   file cards and shared-file tiles ease in; reaction chips pop; the typing
+   indicator's three dots bounce. Namespaced helper classes are created by
+   the demo script at runtime.
+   ===================================================================== */
+@keyframes tmchat-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes tmchat-pop {
+  0%   { opacity: 0; transform: scale(0.6); }
+  70%  { opacity: 1; transform: scale(1.12); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.snaarp-teams-page .tmchat-typing span {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgb(150, 157, 184);
+  display: inline-block;
+  animation: tmchat-bounce 1.2s infinite ease-in-out;
+}
+.snaarp-teams-page .tmchat-typing span:nth-child(2) { animation-delay: 0.18s; }
+.snaarp-teams-page .tmchat-typing span:nth-child(3) { animation-delay: 0.36s; }
+@keyframes tmchat-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30%           { transform: translateY(-4px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-teams-page .tmchat-typing span { animation: none !important; }
+}

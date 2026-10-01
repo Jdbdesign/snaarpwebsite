@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef, type CSSProperties } from 'react';
+import { useEffect, useLayoutEffect, useRef, type CSSProperties } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import './teams.css';
 import './teams-animations.css';
@@ -9,6 +9,7 @@ import {
   TEAMS_HERO_MOCK,
   TEAMS_AFTER_HERO,
 } from './teamsHtml';
+import { startTeamsChatDemo } from './teamsChatDemo';
 
 // The Snaarp Teams hero is reconstructed in JSX (the row shell only) so the
 // workspace mockup canvas sits top-aligned and fills the right column the
@@ -86,6 +87,35 @@ export default function TeamsPageClient() {
     root.querySelectorAll<HTMLElement>('[data-dc-tpl="742"]').forEach((c) => {
       if (!inMockup(c)) tag(c, { group: 'tm-faq', batch: 'faq', pop: true });
     });
+  }, []);
+
+  // Continuous "Product Team" chat demo inside the hero workspace mockup
+  // (canvas tpl 70): messages, file uploads (which also appear in Shared
+  // Files), voice notes, emoji reactions and typing indicators run on a
+  // loop — no hover. Starts once the hero scrolls into view and preserves
+  // the mockup's fixed size (message + file lists are capped). Scoped to the
+  // hero canvas so the second (features) chat mockup is untouched.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const canvas = root.querySelector<HTMLElement>('[data-dc-tpl="70"]');
+    if (!canvas) return;
+
+    let stop: (() => void) | null = null;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting && !stop) {
+            stop = startTeamsChatDemo(canvas);
+            io.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(canvas);
+    return () => { io.disconnect(); if (stop) stop(); };
   }, []);
 
   useScrollReveal(rootRef);

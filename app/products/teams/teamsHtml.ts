@@ -76,7 +76,7 @@ export const TEAMS_HERO_MOCK = `<div data-dc-tpl="69" style="flex: 1 1 560px; mi
               
                 <button data-dc-tpl="101" class="scp7" style="position: relative; height: 32px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 8px; background: rgb(228, 236, 255); display: flex; align-items: center; gap: 10px; padding: 0px 10px; cursor: pointer; text-align: left; font-size: 12.5px; font-weight: 700; color: rgb(124, 58, 237); white-space: nowrap;">
                   <span data-dc-tpl="102" style="position: absolute; left: -12px; top: 6px; bottom: 6px; width: 3px; border-radius: 0px 3px 3px 0px; background: rgb(124, 58, 237);"></span>
-                  <span data-dc-tpl="103" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 17px; line-height: 1;"><span class="sc-interp">tag</span></span><span class="sc-interp">Channels</span>
+                  <span data-dc-tpl="103" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 17px; line-height: 1;"><span class="sc-interp">groups</span></span><span class="sc-interp">Group</span>
                   
                   
                 </button>

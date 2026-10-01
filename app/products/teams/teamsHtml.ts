@@ -575,7 +575,7 @@ built for business</span></span>
         
           <button data-dc-tpl="371" title="Google Workspace connected — click to disconnect" class="scpg" style="position: relative; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 4px; border-radius: 14px; transition: background 0.15s;">
             <span data-dc-tpl="372" style="position: relative; width: 64px; height: 64px; border-radius: 14px; background: transparent; display: grid; place-items: center;">
-              <img data-dc-tpl="374" src="/assets/teams/google-workspace.png" alt="Google Workspace" style="width: 58px; height: 58px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s; mix-blend-mode: multiply;">
+              <img data-dc-tpl="374" src="/assets/teams/google-workspace.svg" alt="Google Workspace" style="width: 54px; height: 54px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s;">
               
               <span data-dc-tpl="378" style="position: absolute; right: -4px; bottom: -4px; width: 20px; height: 20px; border-radius: 50%; background: rgb(34, 197, 94); border: 2px solid rgb(255, 255, 255); display: grid; place-items: center;"><span data-dc-tpl="379" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 12px; line-height: 1; color: rgb(255, 255, 255);"><span class="sc-interp">check</span></span></span>
             </span>
@@ -585,7 +585,7 @@ Workspace</span></span>
         
           <button data-dc-tpl="371" title="Microsoft 365 connected — click to disconnect" class="scpg" style="position: relative; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 4px; border-radius: 14px; transition: background 0.15s;">
             <span data-dc-tpl="372" style="position: relative; width: 64px; height: 64px; border-radius: 14px; background: transparent; display: grid; place-items: center;">
-              <img data-dc-tpl="374" src="/assets/teams/microsoft-365.png" alt="Microsoft 365" style="width: 58px; height: 58px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s; mix-blend-mode: multiply;">
+              <img data-dc-tpl="374" src="/assets/teams/microsoft-365.svg" alt="Microsoft 365" style="width: 54px; height: 54px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s;">
               
               <span data-dc-tpl="378" style="position: absolute; right: -4px; bottom: -4px; width: 20px; height: 20px; border-radius: 50%; background: rgb(34, 197, 94); border: 2px solid rgb(255, 255, 255); display: grid; place-items: center;"><span data-dc-tpl="379" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 12px; line-height: 1; color: rgb(255, 255, 255);"><span class="sc-interp">check</span></span></span>
             </span>
@@ -595,7 +595,7 @@ Workspace</span></span>
         
           <button data-dc-tpl="371" title="Outlook connected — click to disconnect" class="scpg" style="position: relative; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 4px; border-radius: 14px; transition: background 0.15s;">
             <span data-dc-tpl="372" style="position: relative; width: 64px; height: 64px; border-radius: 14px; background: transparent; display: grid; place-items: center;">
-              <img data-dc-tpl="374" src="/assets/teams/outlook.png" alt="Outlook" style="width: 58px; height: 58px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s; mix-blend-mode: multiply;">
+              <img data-dc-tpl="374" src="/assets/teams/outlook.svg" alt="Outlook" style="width: 54px; height: 54px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s;">
               
               <span data-dc-tpl="378" style="position: absolute; right: -4px; bottom: -4px; width: 20px; height: 20px; border-radius: 50%; background: rgb(34, 197, 94); border: 2px solid rgb(255, 255, 255); display: grid; place-items: center;"><span data-dc-tpl="379" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 12px; line-height: 1; color: rgb(255, 255, 255);"><span class="sc-interp">check</span></span></span>
             </span>
@@ -604,7 +604,7 @@ Workspace</span></span>
         
           <button data-dc-tpl="371" title="Google Calendar connected — click to disconnect" class="scpg" style="position: relative; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 4px; border-radius: 14px; transition: background 0.15s;">
             <span data-dc-tpl="372" style="position: relative; width: 64px; height: 64px; border-radius: 14px; background: transparent; display: grid; place-items: center;">
-              <img data-dc-tpl="374" src="/assets/teams/google-calendar.png" alt="Google Calendar" style="width: 58px; height: 58px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s; mix-blend-mode: multiply;">
+              <img data-dc-tpl="374" src="/assets/teams/google-calendar.svg" alt="Google Calendar" style="width: 54px; height: 54px; object-fit: contain; display: block; filter: none; opacity: 1; transition: 0.2s;">
               
               <span data-dc-tpl="378" style="position: absolute; right: -4px; bottom: -4px; width: 20px; height: 20px; border-radius: 50%; background: rgb(34, 197, 94); border: 2px solid rgb(255, 255, 255); display: grid; place-items: center;"><span data-dc-tpl="379" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 12px; line-height: 1; color: rgb(255, 255, 255);"><span class="sc-interp">check</span></span></span>
             </span>
@@ -614,7 +614,7 @@ Calendar</span></span>
         
           <button data-dc-tpl="371" title="Connect Microsoft Teams" class="scpg" style="position: relative; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 4px; border-radius: 14px; transition: background 0.15s;">
             <span data-dc-tpl="372" style="position: relative; width: 64px; height: 64px; border-radius: 14px; background: transparent; display: grid; place-items: center;">
-              <img data-dc-tpl="374" src="/assets/teams/microsoft-teams.png" alt="Microsoft Teams" style="width: 58px; height: 58px; object-fit: contain; display: block; filter: grayscale(1); opacity: 0.45; transition: 0.2s; mix-blend-mode: multiply;">
+              <img data-dc-tpl="374" src="/assets/teams/microsoft-teams.svg" alt="Microsoft Teams" style="width: 54px; height: 54px; object-fit: contain; display: block; filter: grayscale(1); opacity: 0.45; transition: 0.2s;">
               
               <span data-dc-tpl="378" style="position: absolute; right: -4px; bottom: -4px; width: 20px; height: 20px; border-radius: 50%; background: rgb(160, 167, 191); border: 2px solid rgb(255, 255, 255); display: grid; place-items: center;"><span data-dc-tpl="379" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 12px; line-height: 1; color: rgb(255, 255, 255);"><span class="sc-interp">add</span></span></span>
             </span>

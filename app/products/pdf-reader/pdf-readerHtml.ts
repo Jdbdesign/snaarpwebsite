@@ -583,19 +583,19 @@ export const PDF_AFTER_HERO = `<section data-dc-tpl="246" data-screen-label="Fea
     <p data-dc-tpl="496" style="margin: 8px 0px 0px; font-size: 15.5px; color: rgb(62, 68, 102);">Your PDFs connect with all your Snaarp apps, so your work flows seamlessly.</p>
     <div data-dc-tpl="497" style="margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr)); gap: 18px 10px;">
       
-        <a data-dc-tpl="499" href="#" class="scp8" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; padding: 10px 4px; border-radius: 14px; color: rgb(14, 18, 56); transition: background 0.2s;">
+        <a data-dc-tpl="499" href="/products/work-drive" class="scp8" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; padding: 10px 4px; border-radius: 14px; color: rgb(14, 18, 56); transition: background 0.2s;">
           <span data-dc-tpl="500" style="width: 50px; height: 50px; border-radius: 14px; background: rgb(234, 242, 255); display: grid; place-items: center; margin-bottom: 6px;"><span data-dc-tpl="501" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 26px; line-height: 1; color: rgb(26, 115, 232);"><span class="sc-interp">add_to_drive</span></span></span>
           <span data-dc-tpl="502" style="font-size: 13.5px; font-weight: 700;"><span class="sc-interp">Snaarp Drive</span></span>
           <span data-dc-tpl="503" style="font-size: 12px; line-height: 1.4; color: rgb(91, 97, 128); max-width: 130px;"><span class="sc-interp">Store and organise your files</span></span>
         </a>
       
-        <a data-dc-tpl="499" href="Snaarp Email.dc.html" class="scp8" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; padding: 10px 4px; border-radius: 14px; color: rgb(14, 18, 56); transition: background 0.2s;">
+        <a data-dc-tpl="499" href="/products/mail" class="scp8" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; padding: 10px 4px; border-radius: 14px; color: rgb(14, 18, 56); transition: background 0.2s;">
           <span data-dc-tpl="500" style="width: 50px; height: 50px; border-radius: 14px; background: rgb(234, 242, 255); display: grid; place-items: center; margin-bottom: 6px;"><span data-dc-tpl="501" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 26px; line-height: 1; color: rgb(37, 99, 235);"><span class="sc-interp">mail</span></span></span>
           <span data-dc-tpl="502" style="font-size: 13.5px; font-weight: 700;"><span class="sc-interp">Snaarp Mail</span></span>
           <span data-dc-tpl="503" style="font-size: 12px; line-height: 1.4; color: rgb(91, 97, 128); max-width: 130px;"><span class="sc-interp">Send and receive PDFs securely</span></span>
         </a>
       
-        <a data-dc-tpl="499" href="Snaarp Teams.dc.html" class="scp8" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; padding: 10px 4px; border-radius: 14px; color: rgb(14, 18, 56); transition: background 0.2s;">
+        <a data-dc-tpl="499" href="/products/teams" class="scp8" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; padding: 10px 4px; border-radius: 14px; color: rgb(14, 18, 56); transition: background 0.2s;">
           <span data-dc-tpl="500" style="width: 50px; height: 50px; border-radius: 14px; background: rgb(243, 238, 255); display: grid; place-items: center; margin-bottom: 6px;"><span data-dc-tpl="501" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 26px; line-height: 1; color: rgb(124, 58, 237);"><span class="sc-interp">groups</span></span></span>
           <span data-dc-tpl="502" style="font-size: 13.5px; font-weight: 700;"><span class="sc-interp">Snaarp Teams</span></span>
           <span data-dc-tpl="503" style="font-size: 12px; line-height: 1.4; color: rgb(91, 97, 128); max-width: 130px;"><span class="sc-interp">Collaborate on documents</span></span>
@@ -607,7 +607,7 @@ export const PDF_AFTER_HERO = `<section data-dc-tpl="246" data-screen-label="Fea
           <span data-dc-tpl="503" style="font-size: 12px; line-height: 1.4; color: rgb(91, 97, 128); max-width: 130px;"><span class="sc-interp">Turn PDFs into editable documents</span></span>
         </a>
       
-        <a data-dc-tpl="499" href="Snaarp Sheet.dc.html" class="scp8" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; padding: 10px 4px; border-radius: 14px; color: rgb(14, 18, 56); transition: background 0.2s;">
+        <a data-dc-tpl="499" href="/products/sheets" class="scp8" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; padding: 10px 4px; border-radius: 14px; color: rgb(14, 18, 56); transition: background 0.2s;">
           <span data-dc-tpl="500" style="width: 50px; height: 50px; border-radius: 14px; background: rgb(233, 248, 239); display: grid; place-items: center; margin-bottom: 6px;"><span data-dc-tpl="501" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 26px; line-height: 1; color: rgb(18, 161, 80);"><span class="sc-interp">grid_on</span></span></span>
           <span data-dc-tpl="502" style="font-size: 13.5px; font-weight: 700;"><span class="sc-interp">Snaarp Sheets</span></span>
           <span data-dc-tpl="503" style="font-size: 12px; line-height: 1.4; color: rgb(91, 97, 128); max-width: 130px;"><span class="sc-interp">Work with data from your PDFs</span></span>
@@ -619,7 +619,7 @@ export const PDF_AFTER_HERO = `<section data-dc-tpl="246" data-screen-label="Fea
           <span data-dc-tpl="503" style="font-size: 12px; line-height: 1.4; color: rgb(91, 97, 128); max-width: 130px;"><span class="sc-interp">Create presentations from your PDFs</span></span>
         </a>
       
-        <a data-dc-tpl="499" href="Snaarp Me.dc.html" class="scp8" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; padding: 10px 4px; border-radius: 14px; color: rgb(14, 18, 56); transition: background 0.2s;">
+        <a data-dc-tpl="499" href="/products/meet" class="scp8" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; padding: 10px 4px; border-radius: 14px; color: rgb(14, 18, 56); transition: background 0.2s;">
           <span data-dc-tpl="500" style="width: 50px; height: 50px; border-radius: 14px; background: rgb(234, 242, 255); display: grid; place-items: center; margin-bottom: 6px;"><span data-dc-tpl="501" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 26px; line-height: 1; color: rgb(37, 99, 235);"><span class="sc-interp">videocam</span></span></span>
           <span data-dc-tpl="502" style="font-size: 13.5px; font-weight: 700;"><span class="sc-interp">Snaarp Meet</span></span>
           <span data-dc-tpl="503" style="font-size: 12px; line-height: 1.4; color: rgb(91, 97, 128); max-width: 130px;"><span class="sc-interp">Present and discuss in meetings</span></span>
@@ -666,7 +666,7 @@ export const PDF_AFTER_HERO = `<section data-dc-tpl="246" data-screen-label="Fea
       <h2 data-dc-tpl="537" style="margin: 0px; font-size: clamp(26px, 2.6vw, 32px); letter-spacing: -0.035em; font-weight: 800;">Frequently Asked Questions</h2>
       <a data-dc-tpl="538" href="#" style="font-size: 14.5px; font-weight: 600; display: flex; align-items: center; gap: 6px;"><span class="sc-interp">View all FAQs</span> <span data-dc-tpl="539" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 18px; line-height: 1;">arrow_forward</span></a>
     </div>
-    <div data-dc-tpl="540" style="margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 10px 24px; align-items: start;">
+    <div data-dc-tpl="540" data-pdf-faq style="margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 10px 24px; align-items: start;">
       
         <div data-dc-tpl="542" style="display: flex; flex-direction: column; gap: 10px;">
           

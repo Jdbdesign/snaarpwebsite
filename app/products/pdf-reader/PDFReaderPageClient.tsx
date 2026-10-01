@@ -11,6 +11,8 @@ import {
 } from './pdf-readerHtml';
 import { startPdfEditorDemo } from './pdfEditorDemo';
 import { startPdfEditSection } from './pdfEditSection';
+import { startPdfAiTools } from './pdfAiTools';
+import { startPdfFaq } from './pdfFaq';
 
 // The Snaarp PDF hero is reconstructed in JSX (the row shell only) so the
 // PDF-editor mockup canvas sits top-aligned and fills the right column the way
@@ -87,12 +89,13 @@ export default function PDFReaderPageClient() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
-    const stopHero = startPdfEditorDemo(root);
-    const stopEdit = startPdfEditSection(root);
-    return () => {
-      stopHero();
-      stopEdit();
-    };
+    const stops = [
+      startPdfEditorDemo(root),
+      startPdfEditSection(root),
+      startPdfAiTools(root),
+      startPdfFaq(root),
+    ];
+    return () => stops.forEach((stop) => stop());
   }, []);
 
   useScrollReveal(rootRef);

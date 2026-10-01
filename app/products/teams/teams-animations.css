@@ -68,6 +68,9 @@
 }
 .snaarp-teams-page [data-dc-tpl="258"] [data-dc-tpl="259"] { transition: transform 0.32s var(--tm-ease); }
 .snaarp-teams-page [data-dc-tpl="258"]:hover [data-dc-tpl="259"] { transform: scale(1.08); }
+/* the vivid inner chip tilts + lifts on card hover */
+.snaarp-teams-page [data-dc-tpl="258"] [data-dc-tpl="257b"] { transition: transform 0.4s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="258"]:hover [data-dc-tpl="257b"] { transform: rotate(-6deg) scale(1.08); }
 
 /* ── Feature list items ("More Than Chat", tpl 270 / .scpd) ── */
 .snaarp-teams-page .scpd:hover,

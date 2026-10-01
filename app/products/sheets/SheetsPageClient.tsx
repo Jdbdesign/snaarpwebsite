@@ -11,6 +11,7 @@ import {
 } from './sheetsHtml';
 import { startSheetsAiDemo } from './sheetsAiDemo';
 import { startSheetsDashboardDemo } from './sheetsDashboardDemo';
+import { startSheetsFormulaDemo, startSheetsDeviceDemo } from './sheetsExtrasDemo';
 
 // The Snaarp Sheet hero is reconstructed in JSX (the row shell only) so the
 // spreadsheet mockup canvas sits top-aligned and fills the right column the
@@ -139,6 +140,43 @@ export default function SheetsPageClient() {
     );
     io.observe(dash);
     return () => { io.disconnect(); if (stop) stop(); };
+  }, []);
+
+  // Remaining mockup demos: the AI Formulas card (canvas tpl 258) cycles
+  // its preset chips, retyping the prompt and swapping the generated
+  // formula; the Every-Device phone (canvas tpl 406) cycles its mini bar
+  // chart + a synced-badge pulse. Each starts when its canvas scrolls in.
+  // Runtime toggles only — authored structure/layout untouched.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const specs: Array<{ sel: string; start: (el: HTMLElement) => () => void }> = [
+      { sel: '[data-dc-tpl="258"]', start: startSheetsFormulaDemo },
+      { sel: '[data-dc-tpl="406"]', start: startSheetsDeviceDemo },
+    ];
+    const stops: Array<() => void> = [];
+    const observers: IntersectionObserver[] = [];
+    specs.forEach(({ sel, start }) => {
+      const el = root.querySelector<HTMLElement>(sel);
+      if (!el) return;
+      let started = false;
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting && !started) {
+              started = true;
+              stops.push(start(e.target as HTMLElement));
+              io.disconnect();
+              break;
+            }
+          }
+        },
+        { threshold: 0.3 }
+      );
+      io.observe(el);
+      observers.push(io);
+    });
+    return () => { observers.forEach((o) => o.disconnect()); stops.forEach((s) => s()); };
   }, []);
 
   useScrollReveal(rootRef);

@@ -1007,37 +1007,37 @@ export const SHEETS_AFTER_HERO = `<section data-dc-tpl="232" data-screen-label="
       <div data-dc-tpl="501" style="margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 110px), 1fr)); gap: 18px 12px;">
         
           <a data-dc-tpl="503" href="Snaarp Email.dc.html" class="scph" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 12px 6px; border-radius: 14px; color: rgb(11, 20, 55); transition: transform 0.2s;">
-            <span data-dc-tpl="504" style="width: 56px; height: 56px; border-radius: 14px; background: rgb(232, 240, 255); display: grid; place-items: center; box-shadow: rgb(109, 40, 217) 0px 10px 20px -14px;"><span data-dc-tpl="505" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 30px; line-height: 1; color: rgb(109, 40, 217);"><span class="sc-interp">mail</span></span></span>
+            <span data-dc-tpl="504" style="width: 56px; height: 56px; border-radius: 14px; background: rgb(232, 240, 255); display: grid; place-items: center; box-shadow: rgb(109, 40, 217) 0px 10px 20px -14px;"><img data-dc-tpl="505" src="/assets/sheets/app-mail.svg" alt="Snaarp Mail" style="width: 34px; height: 34px; object-fit: contain; display: block;"></span>
             <span data-dc-tpl="506" style="font-size: 13.5px; font-weight: 700;"><span class="sc-interp">Snaarp Mail</span></span>
             <span data-dc-tpl="507" style="font-size: 12px; color: rgb(100, 108, 138); line-height: 1.4;"><span class="sc-interp">Send and share spreadsheets</span></span>
           </a>
         
           <a data-dc-tpl="503" href="Snaarp Teams.dc.html" class="scph" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 12px 6px; border-radius: 14px; color: rgb(11, 20, 55); transition: transform 0.2s;">
-            <span data-dc-tpl="504" style="width: 56px; height: 56px; border-radius: 14px; background: rgb(241, 235, 255); display: grid; place-items: center; box-shadow: rgb(124, 58, 237) 0px 10px 20px -14px;"><span data-dc-tpl="505" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 30px; line-height: 1; color: rgb(124, 58, 237);"><span class="sc-interp">groups</span></span></span>
+            <span data-dc-tpl="504" style="width: 56px; height: 56px; border-radius: 14px; background: rgb(241, 235, 255); display: grid; place-items: center; box-shadow: rgb(124, 58, 237) 0px 10px 20px -14px;"><img data-dc-tpl="505" src="/assets/sheets/app-teams.svg" alt="Snaarp Teams" style="width: 34px; height: 34px; object-fit: contain; display: block;"></span>
             <span data-dc-tpl="506" style="font-size: 13.5px; font-weight: 700;"><span class="sc-interp">Snaarp Teams</span></span>
             <span data-dc-tpl="507" style="font-size: 12px; color: rgb(100, 108, 138); line-height: 1.4;"><span class="sc-interp">Collaborate together</span></span>
           </a>
         
           <a data-dc-tpl="503" href="#" class="scph" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 12px 6px; border-radius: 14px; color: rgb(11, 20, 55); transition: transform 0.2s;">
-            <span data-dc-tpl="504" style="width: 56px; height: 56px; border-radius: 14px; background: rgb(231, 248, 238); display: grid; place-items: center; box-shadow: rgb(18, 161, 80) 0px 10px 20px -14px;"><span data-dc-tpl="505" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 30px; line-height: 1; color: rgb(18, 161, 80);"><span class="sc-interp">change_history</span></span></span>
+            <span data-dc-tpl="504" style="width: 56px; height: 56px; border-radius: 14px; background: rgb(231, 248, 238); display: grid; place-items: center; box-shadow: rgb(18, 161, 80) 0px 10px 20px -14px;"><img data-dc-tpl="505" src="/assets/sheets/app-drive.svg" alt="Snaarp Drive" style="width: 34px; height: 34px; object-fit: contain; display: block;"></span>
             <span data-dc-tpl="506" style="font-size: 13.5px; font-weight: 700;"><span class="sc-interp">Snaarp Drive</span></span>
             <span data-dc-tpl="507" style="font-size: 12px; color: rgb(100, 108, 138); line-height: 1.4;"><span class="sc-interp">Store and organise all your files</span></span>
           </a>
         
           <a data-dc-tpl="503" href="#" class="scph" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 12px 6px; border-radius: 14px; color: rgb(11, 20, 55); transition: transform 0.2s;">
-            <span data-dc-tpl="504" style="width: 56px; height: 56px; border-radius: 14px; background: rgb(230, 238, 255); display: grid; place-items: center; box-shadow: rgb(124, 58, 237) 0px 10px 20px -14px;"><span data-dc-tpl="505" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 30px; line-height: 1; color: rgb(124, 58, 237);"><span class="sc-interp">article</span></span></span>
+            <span data-dc-tpl="504" style="width: 56px; height: 56px; border-radius: 14px; background: rgb(230, 238, 255); display: grid; place-items: center; box-shadow: rgb(124, 58, 237) 0px 10px 20px -14px;"><img data-dc-tpl="505" src="/assets/sheets/app-docs.svg" alt="Snaarp Doc" style="width: 34px; height: 34px; object-fit: contain; display: block;"></span>
             <span data-dc-tpl="506" style="font-size: 13.5px; font-weight: 700;"><span class="sc-interp">Snaarp Doc</span></span>
             <span data-dc-tpl="507" style="font-size: 12px; color: rgb(100, 108, 138); line-height: 1.4;"><span class="sc-interp">Turn data into documents</span></span>
           </a>
         
           <a data-dc-tpl="503" href="#" class="scph" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 12px 6px; border-radius: 14px; color: rgb(11, 20, 55); transition: transform 0.2s;">
-            <span data-dc-tpl="504" style="width: 56px; height: 56px; border-radius: 14px; background: rgb(255, 236, 230); display: grid; place-items: center; box-shadow: rgb(234, 88, 12) 0px 10px 20px -14px;"><span data-dc-tpl="505" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 30px; line-height: 1; color: rgb(234, 88, 12);"><span class="sc-interp">slideshow</span></span></span>
+            <span data-dc-tpl="504" style="width: 56px; height: 56px; border-radius: 14px; background: rgb(255, 236, 230); display: grid; place-items: center; box-shadow: rgb(234, 88, 12) 0px 10px 20px -14px;"><img data-dc-tpl="505" src="/assets/sheets/app-presentation.svg" alt="Snaarp Presentations" style="width: 34px; height: 34px; object-fit: contain; display: block;"></span>
             <span data-dc-tpl="506" style="font-size: 13.5px; font-weight: 700;"><span class="sc-interp">Snaarp Presentations</span></span>
             <span data-dc-tpl="507" style="font-size: 12px; color: rgb(100, 108, 138); line-height: 1.4;"><span class="sc-interp">Create compelling visual reports</span></span>
           </a>
         
           <a data-dc-tpl="503" href="Snaarp CRM.dc.html" class="scph" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 12px 6px; border-radius: 14px; color: rgb(11, 20, 55); transition: transform 0.2s;">
-            <span data-dc-tpl="504" style="width: 56px; height: 56px; border-radius: 14px; background: rgb(227, 246, 244); display: grid; place-items: center; box-shadow: rgb(13, 148, 136) 0px 10px 20px -14px;"><span data-dc-tpl="505" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 30px; line-height: 1; color: rgb(13, 148, 136);"><span class="sc-interp">wifi_tethering</span></span></span>
+            <span data-dc-tpl="504" style="width: 56px; height: 56px; border-radius: 14px; background: rgb(227, 246, 244); display: grid; place-items: center; box-shadow: rgb(13, 148, 136) 0px 10px 20px -14px;"><img data-dc-tpl="505" src="/assets/sheets/app-crm.svg" alt="Snaarp CRM" style="width: 34px; height: 34px; object-fit: contain; display: block;"></span>
             <span data-dc-tpl="506" style="font-size: 13.5px; font-weight: 700;"><span class="sc-interp">Snaarp CRM</span></span>
             <span data-dc-tpl="507" style="font-size: 12px; color: rgb(100, 108, 138); line-height: 1.4;"><span class="sc-interp">Analyse customer data</span></span>
           </a>

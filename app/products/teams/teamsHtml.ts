@@ -11,7 +11,7 @@ export const TEAMS_HERO_TEXTCOL = `<div data-dc-tpl="46" style="flex: 1 1 400px;
       <div data-dc-tpl="47" style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px;">
         <span data-dc-tpl="50" style="display: flex; flex-direction: column; gap: 4px;"><span data-dc-tpl="51" style="font-weight: 800; font-size: 22px; letter-spacing: -0.02em;">Snaarp Teams</span><span data-dc-tpl="52" style="font-size: 15px; color: rgb(91, 99, 128);">Chat. Collaborate. Get Work Done.</span></span>
       </div>
-      <h1 data-dc-tpl="53" style="margin: 0px; font-size: clamp(44px, 5.4vw, 72px); line-height: 1.02; letter-spacing: -0.045em; font-weight: 800; color: rgb(11, 20, 55);">Where Your<br data-dc-tpl="54">Team Gets<br data-dc-tpl="55"><span data-dc-tpl="56" style="color: rgb(124, 58, 237);">Work Done.</span></h1>
+      <h1 data-dc-tpl="53" style="margin: 0px; font-size: clamp(44px, 5.4vw, 72px); line-height: 1.02; letter-spacing: -0.045em; font-weight: 800; color: rgb(11, 20, 55);">Where Your<br data-dc-tpl="54" class="tm-h1-br-a"> Team<br class="tm-h1-br-b"> Gets<br data-dc-tpl="55" class="tm-h1-br-c"> <span data-dc-tpl="56" style="color: rgb(124, 58, 237);">Work Done.</span></h1>
       <p data-dc-tpl="57" style="margin: 24px 0px 0px; font-size: 17px; line-height: 1.62; color: rgb(63, 71, 102); max-width: 480px; text-wrap: pretty;">Stop losing conversations across email, WhatsApp and disconnected apps. Snaarp Teams gives your organisation one professional place to communicate, collaborate and keep work moving.</p>
       <div data-dc-tpl="58" style="margin-top: 26px; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px 16px; max-width: 480px;">
         

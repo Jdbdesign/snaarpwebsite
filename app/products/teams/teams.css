@@ -353,6 +353,22 @@
 @media (min-width: 1440px) { .snaarp-teams-page [data-dc-tpl="53"] { font-size: 72px !important; } }
 @media (max-width: 640px) { .snaarp-teams-page [data-dc-tpl="53"] { font-size: 44px !important; } }
 
+/* Hero heading line breaks per breakpoint.
+   Desktop / laptop (default): "Where Your" / "Team Gets" / "Work Done." —
+   breaks A (after "Where Your") and C (after "Gets") act as line breaks;
+   break B (after "Team") collapses to a normal space.
+   Large screens (>=1440): "Where Your Team" / "Gets Work Done." — break B
+   acts as the line break; A and C collapse to spaces. */
+.snaarp-teams-page .tm-h1-br-b { display: none; }
+@media (min-width: 1440px) {
+  .snaarp-teams-page .tm-h1-br-a,
+  .snaarp-teams-page .tm-h1-br-c { display: none; }
+  .snaarp-teams-page .tm-h1-br-b { display: inline; }
+  /* widen the hero text column so "Where Your Team" fits on one line at
+     72px; the paragraph keeps its own narrower max-width (tpl 57). */
+  .snaarp-teams-page [data-dc-tpl="46"] { max-width: 640px !important; }
+}
+
 /* Hero mock column: anchor LEFT, wide max-width; canvas tpl 70 (780x690,
    frozen zoom 0.838) ramps per breakpoint. */
 .snaarp-teams-page .teams-hero-mockcol,

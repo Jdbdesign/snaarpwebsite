@@ -59,7 +59,7 @@ export const PDF_HERO_MOCK = `<div data-dc-tpl="63" style="flex: 1 1 560px; min-
             <span data-dc-tpl="105" style="margin-left: auto; font-size: 10px; color: rgb(138, 143, 173); font-weight: 600;"><span class="sc-interp">Page 1 of 3</span></span>
             <span data-dc-tpl="106" style="font-size: 10px; color: rgb(138, 143, 173); font-weight: 600; padding: 3px 7px; border-radius: 6px; background: rgb(244, 243, 250);">100%</span>
           </div>
-          <div data-dc-tpl="107" style="height: 54px; flex: 0 0 auto; display: flex; align-items: stretch; padding: 0px 10px; border-bottom: 1px solid rgb(240, 238, 248); border-top: 1px solid rgb(245, 244, 250);">
+          <div data-dc-tpl="107" data-pdf-toolbar style="height: 54px; flex: 0 0 auto; display: flex; align-items: stretch; padding: 0px 10px; border-bottom: 1px solid rgb(240, 238, 248); border-top: 1px solid rgb(245, 244, 250);">
             
               <button data-dc-tpl="109" title="Pages" class="scp7" style="flex: 1 1 0%; min-width: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; border-radius: 8px; margin: 5px 1px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: rgb(62, 68, 102); transition: background 0.15s;">
                 <span data-dc-tpl="110" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 18px; line-height: 1;"><span class="sc-interp">view_list</span></span>
@@ -124,14 +124,14 @@ export const PDF_HERO_MOCK = `<div data-dc-tpl="63" style="flex: 1 1 560px; min-
           </div>
           <div data-dc-tpl="112" style="flex: 1 1 0%; min-height: 0px; display: flex;">
             <div data-dc-tpl="113" style="flex: 1 1 0%; min-width: 0px; position: relative; background: rgb(241, 242, 248); overflow: hidden; display: flex; justify-content: center; padding-top: 14px;">
-              <div data-dc-tpl="114" style="position: relative; flex: 0 0 auto; width: 340px; height: 430px; background: rgb(255, 255, 255); box-shadow: rgba(14, 18, 56, 0.08) 0px 1px 2px, rgba(14, 18, 56, 0.2) 0px 10px 30px -12px; cursor: default; overflow: hidden;">
-                <textarea data-dc-tpl="115" readonly="" spellcheck="false" style="position: absolute; left: 18px; top: 20px; width: 156px; height: 68px; padding: 2px 4px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; resize: none; overflow: hidden; background: transparent; font-size: 24px; line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; color: rgb(14, 18, 56); outline: none; border-radius: 3px; cursor: default;">Business
+              <div data-dc-tpl="114" data-pdf-canvas style="position: relative; flex: 0 0 auto; width: 340px; height: 430px; background: rgb(255, 255, 255); box-shadow: rgba(14, 18, 56, 0.08) 0px 1px 2px, rgba(14, 18, 56, 0.2) 0px 10px 30px -12px; cursor: default; overflow: hidden;">
+                <textarea data-dc-tpl="115" data-pdf-title readonly="" spellcheck="false" style="position: absolute; left: 18px; top: 20px; width: 156px; height: 68px; padding: 2px 4px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; resize: none; overflow: hidden; background: transparent; font-size: 24px; line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; color: rgb(14, 18, 56); outline: none; border-radius: 3px; cursor: default;">Business
 Proposal</textarea>
-                <div data-dc-tpl="116" style="position: absolute; left: 22px; top: 96px; width: 134px; font-size: 9.5px; line-height: 1.45; color: rgb(62, 68, 102);"><span class="sc-interp">Innovative solutions for a brighter tomorrow.</span></div>
+                <div data-dc-tpl="116" data-pdf-subtitle style="position: absolute; left: 22px; top: 96px; width: 134px; font-size: 9.5px; line-height: 1.45; color: rgb(62, 68, 102);">Innovative solutions for a brighter tomorrow.</div>
                 <div data-dc-tpl="117" style="position: absolute; left: 22px; top: 132px; width: 14px; height: 2px; background: rgb(14, 18, 56);"></div>
                 <div data-dc-tpl="118" style="position: absolute; right: 18px; top: 22px; width: 150px; height: 118px; background: url(&quot;/assets/pdf-reader/doc-photo-building.png&quot;) center center / cover; border-radius: 2px;"></div>
-                <div data-dc-tpl="119" style="position: absolute; left: 22px; top: 158px; width: 232px; font-size: 9.5px; line-height: 1.78; color: rgb(30, 35, 80);">
-                  <span data-dc-tpl="120" style="background: rgb(213, 225, 251); color: rgb(30, 35, 80); -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 1px; cursor: pointer; transition: background 0.2s;"><span class="sc-interp">We are excited to present this proposal for a strategic partnership. Our solution is designed to help your organisation achieve greater efficiency, growth and long-term success.</span></span>
+                <div data-dc-tpl="119" data-pdf-para style="position: absolute; left: 22px; top: 158px; width: 232px; font-size: 9.5px; line-height: 1.78; color: rgb(30, 35, 80);">
+                  <span data-dc-tpl="120" data-pdf-highlight style="background: transparent; color: rgb(30, 35, 80); -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 1px; cursor: pointer; transition: background 0.3s;">We are excited to present this proposal for a strategic partnership. Our solution is designed to help your organisation achieve greater efficiency, growth and long-term success.</span>
                 </div>
                 <div data-dc-tpl="121" style="position: absolute; left: 22px; top: 250px; display: flex; flex-direction: column; gap: 7px;">
                   <span data-dc-tpl="122" style="display: block; width: 132px; height: 6px; border-radius: 3px; background: rgb(227, 229, 238);"></span>
@@ -145,7 +145,7 @@ Proposal</textarea>
                   <span data-dc-tpl="129" style="display: block; width: 282px; height: 6px; border-radius: 3px; background: rgb(237, 238, 244);"></span>
                   <span data-dc-tpl="130" style="display: block; width: 180px; height: 6px; border-radius: 3px; background: rgb(237, 238, 244);"></span>
                 </div>
-                <div data-dc-tpl="131" style="position: absolute; left: 60%; top: 53%; width: 110px; height: 46px; border: 1.4px solid rgb(124, 58, 237); border-radius: 2px; display: grid; place-items: center; cursor: move; touch-action: none; user-select: none;">
+                <div data-dc-tpl="131" data-pdf-signature style="position: absolute; left: 60%; top: 53%; width: 110px; height: 46px; border: 1.4px solid rgb(124, 58, 237); border-radius: 2px; display: grid; place-items: center; cursor: move; touch-action: none; user-select: none;">
                   <span data-dc-tpl="133" style="font-family: Caveat, cursive; font-size: 30px; font-weight: 700; color: rgb(44, 58, 184); transform: rotate(-6deg); line-height: 1; pointer-events: none;">Okafor</span>
                   
                   

@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef, type CSSProperties } from 'react';
+import { useEffect, useLayoutEffect, useRef, type CSSProperties } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import './pdf-reader.css';
 import './pdf-reader-animations.css';
@@ -9,6 +9,7 @@ import {
   PDF_HERO_MOCK,
   PDF_AFTER_HERO,
 } from './pdf-readerHtml';
+import { startPdfEditorDemo } from './pdfEditorDemo';
 
 // The Snaarp PDF hero is reconstructed in JSX (the row shell only) so the
 // PDF-editor mockup canvas sits top-aligned and fills the right column the way
@@ -76,6 +77,16 @@ export default function PDFReaderPageClient() {
     root.querySelectorAll<HTMLElement>('[data-dc-tpl="544"]').forEach((c) => {
       if (!inMockup(c)) tag(c, { group: 'pdf-faq', batch: 'faq', pop: true });
     });
+  }, []);
+
+  // Hero PDF-editor guided-tour demo — a plain DOM controller over the injected
+  // toolbar/canvas markers that auto-cycles the tools and transforms the
+  // document (add text, edit, highlight, redact, sign, annotate, watermark,
+  // translate), pausing on real interaction. Runs after mount, cleans up itself.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    return startPdfEditorDemo(root);
   }, []);
 
   useScrollReveal(rootRef);

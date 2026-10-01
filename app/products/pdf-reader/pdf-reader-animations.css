@@ -55,6 +55,18 @@
 .snaarp-pdf-reader-page .scpf:hover,
 .snaarp-pdf-reader-page .scp3:hover { transform: translateY(-2px) !important; }
 
+/* ── Hero editor guided-tour demo (pdfEditorDemo) ── */
+/* Toolbar tools auto-cycle (and stay clickable); smooth the active tint. */
+.snaarp-pdf-reader-page [data-pdf-toolbar] [data-dc-tpl="109"] { transition: background .2s ease, color .2s ease !important; }
+/* The injected "edit text" caret blinks while that tool is active. */
+@keyframes pdfCaretBlink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+.snaarp-pdf-reader-page [data-pdf-caret],
+.snaarp-pdf-reader-page [data-pdf-titlecaret] { animation: pdfCaretBlink 1s step-end infinite; }
+/* The document title/subtitle swap (translate) gets a soft fade. */
+.snaarp-pdf-reader-page [data-pdf-title],
+.snaarp-pdf-reader-page [data-pdf-subtitle] { transition: background .25s ease; }
+.snaarp-pdf-reader-page [data-pdf-signature] { transition: opacity .3s ease; }
+
 /* ── Scroll reveal (shared system; .pdf-pop = springy scale-in) ── */
 .snaarp-pdf-reader-page [data-reveal].pdf-pop {
   opacity: 0;
@@ -72,4 +84,6 @@
   .snaarp-pdf-reader-page .scpf:hover,
   .snaarp-pdf-reader-page .scp3:hover { transform: none !important; }
   .snaarp-pdf-reader-page [data-reveal].pdf-pop { transform: none !important; }
+  .snaarp-pdf-reader-page [data-pdf-caret],
+  .snaarp-pdf-reader-page [data-pdf-titlecaret] { animation: none !important; }
 }

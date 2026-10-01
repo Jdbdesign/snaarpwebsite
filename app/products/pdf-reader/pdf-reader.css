@@ -338,6 +338,21 @@
 @media (min-width: 1440px) { .snaarp-pdf-reader-page [data-dc-tpl="49"] { font-size: 62px !important; } }
 @media (max-width: 640px) { .snaarp-pdf-reader-page [data-dc-tpl="49"] { font-size: 38px !important; } }
 
+/* Hero heading line breaks. Desktop/laptop (<1440) keeps the bundle's natural
+   balanced wrap (both forced breaks collapse to spaces). Large screens (>=1440)
+   activate break-A + break-B to force exactly 3 lines:
+     "Everything You" / "Need to Do With a" / "PDF. In One Place." */
+.snaarp-pdf-reader-page .pdf-h1-br-a,
+.snaarp-pdf-reader-page .pdf-h1-br-b { display: none; }
+@media (min-width: 1440px) {
+  /* let the explicit <br>s control wrapping instead of the balancer */
+  .snaarp-pdf-reader-page [data-dc-tpl="49"] { text-wrap: initial !important; white-space: nowrap; }
+  .snaarp-pdf-reader-page .pdf-h1-br-a,
+  .snaarp-pdf-reader-page .pdf-h1-br-b { display: inline; }
+  /* widen the text column so "PDF. In One Place." stays on one line at 62px */
+  .snaarp-pdf-reader-page [data-dc-tpl="43"] { max-width: 640px !important; }
+}
+
 /* Hero mock column anchor LEFT + wide; canvas tpl 64 (700x520 zoom 0.951) ramps.
    The injected mock root is tpl 63 and carries inline margin-left:auto /
    max-width:700px — override here so it fills the right column with no gap. */

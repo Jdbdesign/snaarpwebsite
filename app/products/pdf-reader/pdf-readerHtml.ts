@@ -288,42 +288,42 @@ export const PDF_AFTER_HERO = `<section data-dc-tpl="246" data-screen-label="Fea
     <div data-dc-tpl="256" style="flex: 1 1 360px; min-width: 0px; max-width: 480px;">
       <h2 data-dc-tpl="257" style="margin: 0px; font-size: clamp(30px, 3.2vw, 40px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800;">Edit. Annotate. Protect.<br data-dc-tpl="258">All in One Place.</h2>
       <p data-dc-tpl="259" style="margin: 14px 0px 0px; font-size: 16px; line-height: 1.6; color: rgb(62, 68, 102); text-wrap: pretty;">From simple edits to advanced redaction, Snaarp PDF gives you the tools to work with your documents the way you need.</p>
-      <div data-dc-tpl="260" style="margin-top: 20px; display: flex; flex-direction: column; gap: 4px;">
+      <div data-dc-tpl="260" data-pdf-editlist style="margin-top: 20px; display: flex; flex-direction: column; gap: 4px;">
         
-          <button data-dc-tpl="262" class="scpc" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; border-radius: 9px; padding: 6px 8px; margin-left: -8px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; font-size: 15px; color: rgb(38, 43, 76); font-weight: 500; transition: background 0.15s;">
+          <button data-dc-tpl="262" data-pdf-editrow="0" class="scpc" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; border-radius: 9px; padding: 6px 8px; margin-left: -8px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; font-size: 15px; color: rgb(38, 43, 76); font-weight: 500; transition: background 0.2s, color 0.2s;">
             <span data-dc-tpl="263" style="width: 20px; height: 20px; border-radius: 50%; background: rgb(124, 58, 237); display: grid; place-items: center; flex: 0 0 auto;"><span data-dc-tpl="264" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 14px; line-height: 1; color: rgb(255, 255, 255);">check</span></span>
-            <span data-dc-tpl="265" style="flex: 1 1 0%;"><span class="sc-interp">Add and edit text, images and elements</span></span>
-            
+            <span data-dc-tpl="265" style="flex: 1 1 0%;">Add and edit text, images and elements</span>
+            <span data-dc-tpl="267" data-pdf-editbadge style="display: none; font-size: 11px; font-weight: 700; color: rgb(124, 58, 237); background: rgb(232, 226, 255); padding: 3px 8px; border-radius: 6px;">On</span>
           </button>
         
-          <button data-dc-tpl="262" class="scpc" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: rgb(244, 241, 255); border-radius: 9px; padding: 6px 8px; margin-left: -8px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; font-size: 15px; color: rgb(42, 28, 143); font-weight: 700; transition: background 0.15s;">
+          <button data-dc-tpl="262" data-pdf-editrow="1" class="scpc" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; border-radius: 9px; padding: 6px 8px; margin-left: -8px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; font-size: 15px; color: rgb(38, 43, 76); font-weight: 500; transition: background 0.2s, color 0.2s;">
             <span data-dc-tpl="263" style="width: 20px; height: 20px; border-radius: 50%; background: rgb(124, 58, 237); display: grid; place-items: center; flex: 0 0 auto;"><span data-dc-tpl="264" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 14px; line-height: 1; color: rgb(255, 255, 255);">check</span></span>
-            <span data-dc-tpl="265" style="flex: 1 1 0%;"><span class="sc-interp">Highlight, annotate and draw</span></span>
-            <span data-dc-tpl="267" style="font-size: 11px; font-weight: 700; color: rgb(124, 58, 237); background: rgb(232, 226, 255); padding: 3px 8px; border-radius: 6px;">On</span>
+            <span data-dc-tpl="265" style="flex: 1 1 0%;">Highlight, annotate and draw</span>
+            <span data-dc-tpl="267" data-pdf-editbadge style="display: none; font-size: 11px; font-weight: 700; color: rgb(124, 58, 237); background: rgb(232, 226, 255); padding: 3px 8px; border-radius: 6px;">On</span>
           </button>
         
-          <button data-dc-tpl="262" class="scpc" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; border-radius: 9px; padding: 6px 8px; margin-left: -8px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; font-size: 15px; color: rgb(38, 43, 76); font-weight: 500; transition: background 0.15s;">
+          <button data-dc-tpl="262" data-pdf-editrow="2" class="scpc" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; border-radius: 9px; padding: 6px 8px; margin-left: -8px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; font-size: 15px; color: rgb(38, 43, 76); font-weight: 500; transition: background 0.2s, color 0.2s;">
             <span data-dc-tpl="263" style="width: 20px; height: 20px; border-radius: 50%; background: rgb(124, 58, 237); display: grid; place-items: center; flex: 0 0 auto;"><span data-dc-tpl="264" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 14px; line-height: 1; color: rgb(255, 255, 255);">check</span></span>
-            <span data-dc-tpl="265" style="flex: 1 1 0%;"><span class="sc-interp">Redact sensitive information</span></span>
-            
+            <span data-dc-tpl="265" style="flex: 1 1 0%;">Redact sensitive information</span>
+            <span data-dc-tpl="267" data-pdf-editbadge style="display: none; font-size: 11px; font-weight: 700; color: rgb(124, 58, 237); background: rgb(232, 226, 255); padding: 3px 8px; border-radius: 6px;">On</span>
           </button>
         
-          <button data-dc-tpl="262" class="scpc" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; border-radius: 9px; padding: 6px 8px; margin-left: -8px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; font-size: 15px; color: rgb(38, 43, 76); font-weight: 500; transition: background 0.15s;">
+          <button data-dc-tpl="262" data-pdf-editrow="3" class="scpc" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; border-radius: 9px; padding: 6px 8px; margin-left: -8px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; font-size: 15px; color: rgb(38, 43, 76); font-weight: 500; transition: background 0.2s, color 0.2s;">
             <span data-dc-tpl="263" style="width: 20px; height: 20px; border-radius: 50%; background: rgb(124, 58, 237); display: grid; place-items: center; flex: 0 0 auto;"><span data-dc-tpl="264" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 14px; line-height: 1; color: rgb(255, 255, 255);">check</span></span>
-            <span data-dc-tpl="265" style="flex: 1 1 0%;"><span class="sc-interp">Add watermarks, links and page numbers</span></span>
-            
+            <span data-dc-tpl="265" style="flex: 1 1 0%;">Add watermarks, links and page numbers</span>
+            <span data-dc-tpl="267" data-pdf-editbadge style="display: none; font-size: 11px; font-weight: 700; color: rgb(124, 58, 237); background: rgb(232, 226, 255); padding: 3px 8px; border-radius: 6px;">On</span>
           </button>
         
-          <button data-dc-tpl="262" class="scpc" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; border-radius: 9px; padding: 6px 8px; margin-left: -8px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; font-size: 15px; color: rgb(38, 43, 76); font-weight: 500; transition: background 0.15s;">
+          <button data-dc-tpl="262" data-pdf-editrow="4" class="scpc" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; border-radius: 9px; padding: 6px 8px; margin-left: -8px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; font-size: 15px; color: rgb(38, 43, 76); font-weight: 500; transition: background 0.2s, color 0.2s;">
             <span data-dc-tpl="263" style="width: 20px; height: 20px; border-radius: 50%; background: rgb(124, 58, 237); display: grid; place-items: center; flex: 0 0 auto;"><span data-dc-tpl="264" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 14px; line-height: 1; color: rgb(255, 255, 255);">check</span></span>
-            <span data-dc-tpl="265" style="flex: 1 1 0%;"><span class="sc-interp">Sign and send documents</span></span>
-            
+            <span data-dc-tpl="265" style="flex: 1 1 0%;">Sign and send documents</span>
+            <span data-dc-tpl="267" data-pdf-editbadge style="display: none; font-size: 11px; font-weight: 700; color: rgb(124, 58, 237); background: rgb(232, 226, 255); padding: 3px 8px; border-radius: 6px;">On</span>
           </button>
         
-          <button data-dc-tpl="262" class="scpc" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; border-radius: 9px; padding: 6px 8px; margin-left: -8px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; font-size: 15px; color: rgb(38, 43, 76); font-weight: 500; transition: background 0.15s;">
+          <button data-dc-tpl="262" data-pdf-editrow="5" class="scpc" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; border-radius: 9px; padding: 6px 8px; margin-left: -8px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; font-size: 15px; color: rgb(38, 43, 76); font-weight: 500; transition: background 0.2s, color 0.2s;">
             <span data-dc-tpl="263" style="width: 20px; height: 20px; border-radius: 50%; background: rgb(124, 58, 237); display: grid; place-items: center; flex: 0 0 auto;"><span data-dc-tpl="264" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 14px; line-height: 1; color: rgb(255, 255, 255);">check</span></span>
-            <span data-dc-tpl="265" style="flex: 1 1 0%;"><span class="sc-interp">Use AI to save time and do more</span></span>
-            
+            <span data-dc-tpl="265" style="flex: 1 1 0%;">Use AI to save time and do more</span>
+            <span data-dc-tpl="267" data-pdf-editbadge style="display: none; font-size: 11px; font-weight: 700; color: rgb(124, 58, 237); background: rgb(232, 226, 255); padding: 3px 8px; border-radius: 6px;">On</span>
           </button>
         
       </div>
@@ -331,7 +331,7 @@ export const PDF_AFTER_HERO = `<section data-dc-tpl="246" data-screen-label="Fea
     </div>
 
     <div data-dc-tpl="270" style="flex: 1 1 560px; min-width: 0px; max-width: 720px; margin-left: auto;">
-      <div data-dc-tpl="271" style="position: relative; width: 720px; height: 440px; zoom: 0.933;">
+      <div data-dc-tpl="271" data-pdf-editmock style="position: relative; width: 720px; height: 440px; zoom: 0.933;">
         <div data-dc-tpl="272" style="position: absolute; left: 0px; top: 0px; width: 690px; height: 410px; border-radius: 16px; background: rgb(255, 255, 255); border: 1px solid rgb(236, 233, 248); box-shadow: rgba(60, 30, 180, 0.38) 0px 50px 90px -40px, rgba(14, 18, 56, 0.2) 0px 16px 36px -24px; overflow: hidden; display: flex; flex-direction: column;">
           <div data-dc-tpl="273" style="height: 46px; flex: 0 0 auto; display: flex; align-items: center; gap: 12px; padding: 0px 16px; border-bottom: 1px solid rgb(240, 238, 248);">
             <span data-dc-tpl="274" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1; color: rgb(62, 68, 102);">menu</span>
@@ -402,7 +402,7 @@ export const PDF_AFTER_HERO = `<section data-dc-tpl="246" data-screen-label="Fea
                 
                   <div data-dc-tpl="319" style="position: absolute; left: 24px; top: 28px; width: 200px; font-size: 30px; line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; outline: none; outline-offset: 4px; border-radius: 2px;">Q3<br data-dc-tpl="320">Performance<br data-dc-tpl="321">Report</div>
                   
-                  <div data-dc-tpl="324" style="position: absolute; left: 24px; top: 142px; width: 196px; font-size: 10px; line-height: 1.75; color: rgb(30, 35, 80);"><span data-dc-tpl="325" style="background: rgb(255, 229, 138); color: rgb(30, 35, 80); -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 1px 2px; transition: background 0.25s;">Our performance in Q3 shows strong growth across key markets, driven by innovation and customer success.</span></div>
+                  <div data-dc-tpl="324" style="position: absolute; left: 24px; top: 142px; width: 196px; font-size: 10px; line-height: 1.75; color: rgb(30, 35, 80);"><span data-dc-tpl="325" data-pdf-edithl style="background: transparent; color: rgb(30, 35, 80); -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 1px 2px; transition: background 0.25s;">Our performance in Q3 shows strong growth across key markets, driven by innovation and customer success.</span></div>
                   <div data-dc-tpl="326" style="position: absolute; left: 24px; top: 232px; display: flex; flex-direction: column; gap: 7px;">
                     <span data-dc-tpl="327" style="display: block; width: 150px; height: 6px; border-radius: 3px; background: rgb(230, 231, 239);"></span>
                     <span data-dc-tpl="328" style="display: block; width: 136px; height: 6px; border-radius: 3px; background: rgb(230, 231, 239);"></span>
@@ -426,8 +426,8 @@ export const PDF_AFTER_HERO = `<section data-dc-tpl="246" data-screen-label="Fea
           </div>
         </div>
         
-          <div data-dc-tpl="374" style="position: absolute; left: 520px; top: 210px; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(150deg, rgb(139, 92, 246), rgb(124, 58, 237)); display: grid; place-items: center; box-shadow: rgba(124, 58, 237, 0.7) 0px 12px 24px -8px, rgb(255, 255, 255) 0px 0px 0px 4px; animation: 0.25s ease 0s 1 normal none running rise;"><span data-dc-tpl="375" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 22px; line-height: 1; color: rgb(255, 255, 255);"><span class="sc-interp">ink_highlighter</span></span></div>
-          <div data-dc-tpl="376" style="position: absolute; left: 548px; top: 280px; width: 172px; background: rgb(255, 255, 255); border-radius: 14px; padding: 12px 14px; box-shadow: rgba(40, 20, 120, 0.35) 0px 20px 40px -14px; transform: rotate(-6deg); animation: 0.25s ease 0s 1 normal none running rise;"><div data-dc-tpl="377" style="font-family: Caveat, cursive; font-size: 21px; line-height: 1.05; font-weight: 700; color: rgb(124, 58, 237);"><span class="sc-interp">Great progress! Let’s highlight this.</span></div></div>
+          <div data-dc-tpl="374" data-pdf-editcursor style="position: absolute; left: 520px; top: 210px; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(150deg, rgb(139, 92, 246), rgb(124, 58, 237)); display: grid; place-items: center; box-shadow: rgba(124, 58, 237, 0.7) 0px 12px 24px -8px, rgb(255, 255, 255) 0px 0px 0px 4px; transition: left 0.5s cubic-bezier(.22,1,.36,1), top 0.5s cubic-bezier(.22,1,.36,1);"><span data-dc-tpl="375" data-pdf-editcursor-icon style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 22px; line-height: 1; color: rgb(255, 255, 255);">ink_highlighter</span></div>
+          <div data-dc-tpl="376" style="position: absolute; left: 548px; top: 280px; width: 172px; background: rgb(255, 255, 255); border-radius: 14px; padding: 12px 14px; box-shadow: rgba(40, 20, 120, 0.35) 0px 20px 40px -14px; transform: rotate(-6deg);"><div data-dc-tpl="377" data-pdf-editnote style="font-family: Caveat, cursive; font-size: 21px; line-height: 1.05; font-weight: 700; color: rgb(124, 58, 237); transition: opacity 0.25s ease;">Great progress! Let’s highlight this.</div></div>
         
       </div>
     </div>

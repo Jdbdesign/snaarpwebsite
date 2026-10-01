@@ -50,13 +50,8 @@ export function startTeamsInsightsDemo(section: HTMLElement): () => void {
       every(6000, () => { if (!cancelled) draw(); });
     }
 
-    // Donut (tpl 439) slow rotate; centre label (tpl 440) counter-rotates.
-    const donut = section.querySelector<HTMLElement>('[data-dc-tpl="439"]');
-    const donutLabel = section.querySelector<HTMLElement>('[data-dc-tpl="440"]');
-    if (donut) {
-      donut.style.animation = 'tmins-spin 20s linear infinite';
-      if (donutLabel) donutLabel.style.animation = 'tmins-spin-rev 20s linear infinite';
-    }
+    // Donut (tpl 439) is left static — no rotation, so the centre
+    // "1,248 messages" label never spins.
 
     // Stat numbers (tpl 411) are left static — no rolling/jitter.
   };

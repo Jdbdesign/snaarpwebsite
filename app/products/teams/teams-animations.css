@@ -193,20 +193,4 @@
   .snaarp-teams-page .tmchat-typing span { animation: none !important; }
 }
 
-/* =====================================================================
-   Insights / Mobile / Sync section (tpl 390) — keyframes for the JS-driven
-   continuous demos (teamsInsightsDemo.ts). The Analytics donut rotates
-   slowly while its centre label counter-rotates to stay upright.
-   ===================================================================== */
-@keyframes tmins-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-@keyframes tmins-spin-rev {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(-360deg); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .snaarp-teams-page [data-dc-tpl="439"],
-  .snaarp-teams-page [data-dc-tpl="440"] { animation: none !important; }
-}
+

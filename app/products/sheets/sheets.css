@@ -344,6 +344,13 @@
   .snaarp-sheets-page [data-dc-tpl="50"] { max-width: 620px !important; }
 }
 
+/* Dashboards section (tpl 309): give the dashboard mockup and the text
+   column more breathing room on large screens. On desktop/laptop the
+   default 40px gap is fine. */
+@media (min-width: 1440px) {
+  .snaarp-sheets-page [data-dc-tpl="309"] { gap: 96px !important; }
+}
+
 /* Hero mock column anchor LEFT + wide; canvas tpl 76 (800x600 zoom 0.835) ramps. */
 .snaarp-sheets-page .sheets-hero-mockcol,
 .snaarp-sheets-page .sheets-hero-row > [data-dc-tpl="75"] {

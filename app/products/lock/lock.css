@@ -335,6 +335,21 @@
 @media (min-width: 1440px) { .snaarp-lock-page [data-dc-tpl="55"] { font-size: 66px !important; } }
 @media (max-width: 640px) { .snaarp-lock-page [data-dc-tpl="55"] { font-size: 40px !important; } }
 
+/* Hero heading line breaks.
+   Desktop/laptop (<1440): only break-B (tpl 56) is active, giving the
+   original wrap behaviour. Large screens (>=1440): break-B collapses and
+   break-A + break-C activate, forcing exactly 3 lines:
+     "Stop Remembering" / "Passwords. Start" / "Protecting Them."
+   The text column is widened modestly so each line fits at 66px. */
+.snaarp-lock-page .lk-h1-br-a,
+.snaarp-lock-page .lk-h1-br-c { display: none; }
+@media (min-width: 1440px) {
+  .snaarp-lock-page [data-dc-tpl="48"] { max-width: 580px !important; }
+  .snaarp-lock-page .lk-h1-br-b { display: none; }
+  .snaarp-lock-page .lk-h1-br-a,
+  .snaarp-lock-page .lk-h1-br-c { display: inline; }
+}
+
 /* Hero mock column anchor LEFT + wide; canvas tpl 71 (670x620 zoom 0.991) ramps. */
 .snaarp-lock-page .lock-hero-mockcol,
 .snaarp-lock-page .lock-hero-row > [data-dc-tpl="70"] {

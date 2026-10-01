@@ -10,6 +10,7 @@ import {
   SHEETS_AFTER_HERO,
 } from './sheetsHtml';
 import { startSheetsAiDemo } from './sheetsAiDemo';
+import { startSheetsDashboardDemo } from './sheetsDashboardDemo';
 
 // The Snaarp Sheet hero is reconstructed in JSX (the row shell only) so the
 // spreadsheet mockup canvas sits top-aligned and fills the right column the
@@ -109,6 +110,34 @@ export default function SheetsPageClient() {
       { threshold: 0.25 }
     );
     io.observe(canvas);
+    return () => { io.disconnect(); if (stop) stop(); };
+  }, []);
+
+  // Continuous "living dashboard" demo for the "Turn Numbers Into a Clearer
+  // Story" marketing-dashboard mockup (canvas tpl 311): the Revenue Trend
+  // line re-draws with a travelling glow dot, the donut rotates while its
+  // legend rows highlight in sync, the KPI cards cycle a soft active state,
+  // and the period pills cycle. Runtime class/transform toggles only — the
+  // authored structure/layout is unchanged. Starts when it scrolls in.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const dash = root.querySelector<HTMLElement>('[data-dc-tpl="311"]');
+    if (!dash) return;
+    let stop: (() => void) | null = null;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting && !stop) {
+            stop = startSheetsDashboardDemo(dash);
+            io.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.3 }
+    );
+    io.observe(dash);
     return () => { io.disconnect(); if (stop) stop(); };
   }, []);
 

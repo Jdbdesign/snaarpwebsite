@@ -140,3 +140,17 @@
 @media (prefers-reduced-motion: reduce) {
   .snaarp-sheets-page .tmai-typing span { animation: none !important; }
 }
+
+/* =====================================================================
+   "Living dashboard" demo (canvas tpl 311) — keyframes for the JS-driven
+   loop (sheetsDashboardDemo.ts). The Sales-by-Region donut rotates slowly
+   while its centre total counter-rotates to stay upright. No structural
+   styles; the demo toggles everything else inline.
+   ===================================================================== */
+@keyframes shdash-donut {
+  0%, 100% { transform: scale(1); box-shadow: rgba(124,58,237,0) 0 0 0 0; }
+  50%      { transform: scale(1.035); box-shadow: rgba(124,58,237,0.18) 0 0 24px 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-sheets-page [data-dc-tpl="357"] { animation: none !important; }
+}

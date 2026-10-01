@@ -1,0 +1,196 @@
+/* =====================================================================
+   Snaarp Teams — site-wide interaction polish (hover + reveal accents).
+   Hand-authored, kept separate from the auto-generated teams.css so a
+   regeneration won't wipe it. Namespaced under .snaarp-teams-page and
+   targets the bundle's inline-styled elements via their stable data-dc-tpl
+   "type" numbers or the scp* behaviour classes. Inline styles win the
+   cascade, so hover overrides use !important where needed.
+
+   Layout-safety rules:
+   - Never style style="display:contents" wrappers.
+   - Never add transforms to the static/interactive mockup canvases
+     (tpl 70 hero workspace, tpl 279 features, tpl 454 phone, tpl 605) —
+     they are zoom-scaled and hold their own composed art/demos. Their
+     inner scp2..scp9 / scpe / scpf / scpi controls are part of that art
+     and are intentionally left untouched here.
+   - Prefer transform / box-shadow / border hovers; they compose cleanly.
+   ===================================================================== */
+
+.snaarp-teams-page {
+  --tm-brand: #7C3AED;
+  --tm-brand-dark: #6D28D9;
+  --tm-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Smooth base transition for the interactive element types we hover. */
+.snaarp-teams-page [data-dc-tpl="64"],
+.snaarp-teams-page [data-dc-tpl="66"],
+.snaarp-teams-page [data-dc-tpl="258"],
+.snaarp-teams-page [data-dc-tpl="270"],
+.snaarp-teams-page [data-dc-tpl="371"],
+.snaarp-teams-page [data-dc-tpl="387"],
+.snaarp-teams-page [data-dc-tpl="729"],
+.snaarp-teams-page [data-dc-tpl="731"],
+.snaarp-teams-page [data-dc-tpl="742"],
+.snaarp-teams-page [data-dc-tpl="736"] {
+  transition: transform 0.28s var(--tm-ease), box-shadow 0.28s var(--tm-ease),
+              border-color 0.28s var(--tm-ease), background 0.28s var(--tm-ease),
+              filter 0.28s var(--tm-ease), opacity 0.28s var(--tm-ease) !important;
+  will-change: transform;
+}
+
+/* ── Hero primary CTA ("Get Started Free", tpl 64 / .scp4) — lift + arrow ── */
+.snaarp-teams-page .scp4:hover,
+.snaarp-teams-page [data-dc-tpl="64"]:hover {
+  transform: translateY(-2px) !important;
+  background: var(--tm-brand-dark) !important;
+  box-shadow: rgba(124, 58, 237, 0.6) 0px 20px 34px -12px !important;
+}
+.snaarp-teams-page [data-dc-tpl="64"]:active { transform: translateY(0) !important; }
+.snaarp-teams-page [data-dc-tpl="64"] [data-dc-tpl="65"] { transition: transform 0.3s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="64"]:hover [data-dc-tpl="65"] { transform: translateX(4px); }
+
+/* ── Hero secondary CTA ("See How It Works", tpl 66 / .scp5) — play glyph pop ── */
+.snaarp-teams-page .scp5:hover,
+.snaarp-teams-page [data-dc-tpl="66"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--tm-brand) !important;
+  background: rgb(247, 244, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 14px 26px -12px !important;
+}
+.snaarp-teams-page [data-dc-tpl="66"] [data-dc-tpl="67"] { transition: transform 0.3s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="66"]:hover [data-dc-tpl="67"] { transform: scale(1.12); }
+
+/* ── Benefits tiles ("replace endless..." grid, tpl 258 / .scpc) ── */
+.snaarp-teams-page .scpc:hover,
+.snaarp-teams-page [data-dc-tpl="258"]:hover {
+  transform: translateY(-6px) !important;
+}
+.snaarp-teams-page [data-dc-tpl="258"] [data-dc-tpl="259"] { transition: transform 0.32s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="258"]:hover [data-dc-tpl="259"] { transform: scale(1.08); }
+/* the vivid inner chip tilts + lifts on card hover */
+.snaarp-teams-page [data-dc-tpl="258"] [data-dc-tpl="257b"] { transition: transform 0.4s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="258"]:hover [data-dc-tpl="257b"] { transform: rotate(-6deg) scale(1.08); }
+
+/* ── Feature list items ("More Than Chat", tpl 270 / .scpd) ── */
+.snaarp-teams-page .scpd:hover,
+.snaarp-teams-page [data-dc-tpl="270"]:hover {
+  transform: translateY(-3px) !important;
+  border-color: rgb(221, 212, 255) !important;
+  background: rgb(249, 247, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.16) 0px 14px 26px -14px !important;
+}
+
+/* ── Integration logo tiles (tpl 371 / .scpg) — lift + saturate ── */
+.snaarp-teams-page [data-dc-tpl="371"] { filter: grayscale(0.1); }
+.snaarp-teams-page .scpg:hover,
+.snaarp-teams-page [data-dc-tpl="371"]:hover {
+  transform: translateY(-4px) scale(1.04) !important;
+  filter: grayscale(0) !important;
+  background: rgb(249, 247, 255) !important;
+}
+
+/* ── App-stack tiles ("Works Across the Stack", tpl 387 / .scph) ── */
+.snaarp-teams-page [data-dc-tpl="387"]:hover {
+  transform: translateY(-4px) scale(1.05) !important;
+  box-shadow: rgba(20, 40, 120, 0.5) 0px 14px 26px -12px !important;
+}
+
+/* ── Final-CTA buttons (tpl 729 / .scpj filled, tpl 731 / .scpk outlined) ── */
+.snaarp-teams-page .scpj:hover,
+.snaarp-teams-page [data-dc-tpl="729"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 0px 0px 1px, rgba(124, 58, 237, 0.95) 0px 20px 34px -10px !important;
+}
+.snaarp-teams-page .scpk:hover,
+.snaarp-teams-page [data-dc-tpl="731"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(15, 20, 60, 0.35) 0px 18px 30px -12px !important;
+}
+.snaarp-teams-page [data-dc-tpl="729"]:active,
+.snaarp-teams-page [data-dc-tpl="731"]:active { transform: translateY(0) !important; }
+
+/* ── FAQ items (tpl 742) — subtle lift ── */
+.snaarp-teams-page [data-dc-tpl="742"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgb(183, 166, 255) !important;
+  box-shadow: rgba(60, 40, 140, 0.14) 0px 14px 26px -16px !important;
+}
+
+/* ── "View all FAQs" link (tpl 736) — nudge ── */
+.snaarp-teams-page [data-dc-tpl="736"] { transition: color 0.2s var(--tm-ease), transform 0.2s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="736"]:hover { color: var(--tm-brand-dark) !important; transform: translateX(3px); }
+
+/* ── Collaboration cards ("Built for how modern teams work", tpl 340) ── */
+.snaarp-teams-page [data-dc-tpl="340"] {
+  transition: transform 0.3s var(--tm-ease), box-shadow 0.3s var(--tm-ease) !important;
+}
+.snaarp-teams-page [data-dc-tpl="340"]:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: rgba(124, 58, 237, 0.2) 0px 22px 44px -24px !important;
+}
+
+/* ── "Part of Snaarp 360" app tiles (tpl 386 link, white tile tpl 387) ── */
+.snaarp-teams-page [data-dc-tpl="386"] [data-dc-tpl="387"] {
+  transition: transform 0.28s var(--tm-ease), box-shadow 0.28s var(--tm-ease) !important;
+}
+.snaarp-teams-page [data-dc-tpl="386"]:hover [data-dc-tpl="387"] {
+  transform: translateY(-4px) scale(1.06) !important;
+  box-shadow: rgba(20, 40, 120, 0.5) 0px 14px 26px -12px !important;
+}
+.snaarp-teams-page [data-dc-tpl="386"] [data-dc-tpl="388"] { transition: transform 0.4s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="386"]:hover [data-dc-tpl="388"] { transform: rotate(-6deg) scale(1.08); }
+
+/* ── Testimonial card (tpl 703) + portrait (tpl 704) ── */
+.snaarp-teams-page [data-dc-tpl="703"] { transition: transform 0.3s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="704"] { transition: transform 0.4s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="703"]:hover [data-dc-tpl="704"] { transform: scale(1.04) rotate(-2deg); }
+
+/* ── Feature-check rows: pop the check bullet on hover (tpl 359/360) ── */
+.snaarp-teams-page [data-dc-tpl="359"] [data-dc-tpl="360"] { transition: transform 0.25s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="359"]:hover [data-dc-tpl="360"] { transform: scale(1.22); }
+
+/* ── Reveal accent: springy scale-in for card grids flagged .tm-pop ── */
+.snaarp-teams-page [data-reveal].tm-pop { transform: translateY(26px) scale(0.97); }
+.snaarp-teams-page [data-reveal].tm-pop.is-revealed { transform: translateY(0) scale(1); }
+
+/* ── Reduced motion: disable movement ── */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-teams-page [data-dc-tpl]:hover,
+  .snaarp-teams-page [data-dc-tpl]:hover * { transform: none !important; }
+  .snaarp-teams-page [data-reveal].tm-pop { transform: none !important; }
+}
+
+/* =====================================================================
+   Hero workspace chat demo (canvas tpl 70) — keyframes for the JS-driven
+   continuous "Product Team" conversation (teamsChatDemo.ts). Message rows,
+   file cards and shared-file tiles ease in; reaction chips pop; the typing
+   indicator's three dots bounce. Namespaced helper classes are created by
+   the demo script at runtime.
+   ===================================================================== */
+@keyframes tmchat-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes tmchat-pop {
+  0%   { opacity: 0; transform: scale(0.6); }
+  70%  { opacity: 1; transform: scale(1.12); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.snaarp-teams-page .tmchat-typing span {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgb(150, 157, 184);
+  display: inline-block;
+  animation: tmchat-bounce 1.2s infinite ease-in-out;
+}
+.snaarp-teams-page .tmchat-typing span:nth-child(2) { animation-delay: 0.18s; }
+.snaarp-teams-page .tmchat-typing span:nth-child(3) { animation-delay: 0.36s; }
+@keyframes tmchat-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30%           { transform: translateY(-4px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-teams-page .tmchat-typing span { animation: none !important; }
+}
+
+

@@ -1,0 +1,88 @@
+/* =====================================================================
+   Snaarp Lock — site-wide interaction polish (hover + reveal accents).
+   Hand-authored, kept separate from the auto-generated lock.css so a
+   regeneration won't wipe it. Namespaced under .snaarp-lock-page and
+   targets the bundle's inline-styled elements via stable data-dc-tpl
+   numbers or scp* behaviour classes. Inline styles win the cascade, so
+   hover overrides use !important where needed.
+
+   Layout-safety: never transform the zoom-scaled mockup canvases
+   (tpl 71 hero vault, tpl 353 real-life, tpl 468 how-it-works phone) or
+   display:contents wrappers. Their inner scp* controls are frozen demo
+   art and are intentionally left untouched.
+   ===================================================================== */
+
+.snaarp-lock-page {
+  --lk-brand: #7C3AED;
+  --lk-brand-dark: #6D28D9;
+  --lk-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Smooth base transition for the interactive element types we hover. */
+.snaarp-lock-page [data-dc-tpl="60"],
+.snaarp-lock-page [data-dc-tpl="62"],
+.snaarp-lock-page [data-dc-tpl="259"],
+.snaarp-lock-page [data-dc-tpl="546"],
+.snaarp-lock-page [data-dc-tpl="548"] {
+  transition: transform 0.28s var(--lk-ease), box-shadow 0.28s var(--lk-ease),
+              border-color 0.28s var(--lk-ease), background 0.28s var(--lk-ease),
+              filter 0.28s var(--lk-ease), opacity 0.28s var(--lk-ease) !important;
+  will-change: transform;
+}
+
+/* ── Hero primary CTA ("Get Started Free", tpl 60 / .scp4) ── */
+.snaarp-lock-page .scp4:hover,
+.snaarp-lock-page [data-dc-tpl="60"]:hover {
+  transform: translateY(-2px) !important;
+  background: var(--lk-brand-dark) !important;
+  box-shadow: rgba(124, 58, 237, 0.7) 0px 20px 34px -12px !important;
+}
+.snaarp-lock-page [data-dc-tpl="60"]:active { transform: translateY(0) !important; }
+.snaarp-lock-page [data-dc-tpl="60"] [data-dc-tpl="61"] { transition: transform 0.3s var(--lk-ease); }
+.snaarp-lock-page [data-dc-tpl="60"]:hover [data-dc-tpl="61"] { transform: translateX(4px); }
+
+/* ── Hero secondary CTA ("Watch a Demo", tpl 62 / .scp5) ── */
+.snaarp-lock-page .scp5:hover,
+.snaarp-lock-page [data-dc-tpl="62"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--lk-brand) !important;
+  background: rgb(247, 244, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 14px 26px -12px !important;
+}
+.snaarp-lock-page [data-dc-tpl="62"] [data-dc-tpl="63"] { transition: transform 0.3s var(--lk-ease); }
+.snaarp-lock-page [data-dc-tpl="62"]:hover [data-dc-tpl="63"] { transform: scale(1.12); }
+
+/* ── Feature cards ("everything you need" grid, tpl 259 / .scpc) ── */
+.snaarp-lock-page .scpc:hover,
+.snaarp-lock-page [data-dc-tpl="259"]:hover {
+  transform: translateY(-6px) !important;
+}
+.snaarp-lock-page [data-dc-tpl="259"] [data-dc-tpl="260"] { transition: transform 0.32s var(--lk-ease); }
+.snaarp-lock-page [data-dc-tpl="259"]:hover [data-dc-tpl="260"] { transform: scale(1.08) rotate(-4deg); }
+
+/* ── Final-CTA buttons (tpl 546 / .scp3 filled, tpl 548 / .scpe outlined) ── */
+.snaarp-lock-page .scp3:hover,
+.snaarp-lock-page [data-dc-tpl="546"]:hover {
+  transform: translateY(-2px) !important;
+  background: var(--lk-brand-dark) !important;
+  box-shadow: rgba(124, 58, 237, 0.6) 0px 20px 34px -12px !important;
+}
+.snaarp-lock-page .scpe:hover,
+.snaarp-lock-page [data-dc-tpl="548"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--lk-brand) !important;
+  background: rgb(247, 244, 255) !important;
+}
+.snaarp-lock-page [data-dc-tpl="546"]:active,
+.snaarp-lock-page [data-dc-tpl="548"]:active { transform: translateY(0) !important; }
+
+/* ── Reveal accent: springy scale-in for card grids flagged .lk-pop ── */
+.snaarp-lock-page [data-reveal].lk-pop { transform: translateY(26px) scale(0.97); }
+.snaarp-lock-page [data-reveal].lk-pop.is-revealed { transform: translateY(0) scale(1); }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-lock-page [data-dc-tpl]:hover,
+  .snaarp-lock-page [data-dc-tpl]:hover * { transform: none !important; }
+  .snaarp-lock-page [data-reveal].lk-pop { transform: none !important; }
+}

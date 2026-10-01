@@ -1,0 +1,75 @@
+/* =====================================================================
+   Snaarp PDF — site-wide interaction polish (hover + reveal accents).
+   Hand-authored, kept separate from the auto-generated pdf-reader.css so a
+   regeneration won't wipe it. Namespaced under .snaarp-pdf-reader-page and
+   targets the bundle's inline-styled elements via stable data-dc-tpl
+   numbers or scp* behaviour classes. Inline styles win the cascade, so
+   hover overrides use !important where needed.
+
+   Layout-safety: never transform the zoom-scaled hero mockup canvas
+   (tpl 64) or the display:contents wrappers. Its inner scp* controls are
+   frozen demo art and are intentionally left untouched.
+   ===================================================================== */
+
+.snaarp-pdf-reader-page {
+  --pdf-brand: #7C3AED;
+}
+
+/* ── Hero CTAs ── */
+.snaarp-pdf-reader-page .scp4 {
+  transition: transform .2s cubic-bezier(.22,1,.36,1), background .2s, box-shadow .2s !important;
+}
+.snaarp-pdf-reader-page .scp4:hover {
+  transform: translateY(-2px) !important;
+  background: rgb(109, 40, 217) !important;
+  box-shadow: rgba(124, 58, 237, 0.9) 0px 18px 36px -12px !important;
+}
+.snaarp-pdf-reader-page .scp5 {
+  transition: transform .2s cubic-bezier(.22,1,.36,1), border-color .2s, background .2s !important;
+}
+.snaarp-pdf-reader-page .scp5:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgb(124, 58, 237) !important;
+  background: rgb(250, 248, 255) !important;
+}
+
+/* ── Feature cards (tpl 249 / .scpb): lift + icon-tile pop ── */
+.snaarp-pdf-reader-page [data-dc-tpl="249"] { transition: transform .25s cubic-bezier(.22,1,.36,1) !important; }
+.snaarp-pdf-reader-page [data-dc-tpl="249"] [data-dc-tpl="250"] { transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease; }
+.snaarp-pdf-reader-page [data-dc-tpl="249"]:hover { transform: translateY(-6px) !important; }
+.snaarp-pdf-reader-page [data-dc-tpl="249"]:hover [data-dc-tpl="250"] { transform: scale(1.08) translateY(-2px); }
+
+/* ── FAQ items (tpl 544 wrapper, tpl 545 button): tint on hover ── */
+.snaarp-pdf-reader-page [data-dc-tpl="544"] { transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.snaarp-pdf-reader-page [data-dc-tpl="544"]:hover {
+  border-color: rgb(183, 166, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.14) 0px 8px 20px -12px;
+  transform: translateY(-1px);
+}
+
+/* ── Generic CTA / primary scp buttons in tail sections ── */
+.snaarp-pdf-reader-page .scpf,
+.snaarp-pdf-reader-page .scp3 {
+  transition: transform .2s cubic-bezier(.22,1,.36,1), box-shadow .2s ease !important;
+}
+.snaarp-pdf-reader-page .scpf:hover,
+.snaarp-pdf-reader-page .scp3:hover { transform: translateY(-2px) !important; }
+
+/* ── Scroll reveal (shared system; .pdf-pop = springy scale-in) ── */
+.snaarp-pdf-reader-page [data-reveal].pdf-pop {
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  transition: opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1);
+}
+.snaarp-pdf-reader-page [data-reveal].pdf-pop.is-revealed { opacity: 1; transform: translateY(0) scale(1); }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-pdf-reader-page [data-dc-tpl]:hover,
+  .snaarp-pdf-reader-page [data-dc-tpl]:hover * { transform: none !important; }
+  .snaarp-pdf-reader-page .scp4:hover,
+  .snaarp-pdf-reader-page .scp5:hover,
+  .snaarp-pdf-reader-page .scpf:hover,
+  .snaarp-pdf-reader-page .scp3:hover { transform: none !important; }
+  .snaarp-pdf-reader-page [data-reveal].pdf-pop { transform: none !important; }
+}

@@ -879,10 +879,6 @@ export const SHEETS_AFTER_HERO = `<section data-dc-tpl="232" data-screen-label="
       </div>
       <div data-dc-tpl="377" style="margin-top: 28px; display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap;">
         <button data-dc-tpl="378" class="scp3" style="white-space: nowrap; height: 52px; padding: 0px 26px; border-radius: 10px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: rgb(124, 58, 237); color: rgb(255, 255, 255); font-weight: 600; font-size: 15px; cursor: pointer; display: flex; align-items: center; gap: 12px; box-shadow: rgba(124, 58, 237, 0.6) 0px 14px 30px -12px;">Create Your Dashboard <span data-dc-tpl="379" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 19px; line-height: 1;">arrow_forward</span></button>
-        <div data-dc-tpl="380" style="display: flex; flex-direction: column; align-items: center; color: rgb(18, 161, 80); pointer-events: none;">
-          <div data-dc-tpl="381" style="font-family: Caveat, cursive; font-size: 27px; line-height: 1.02; transform: rotate(-7deg); font-weight: 500;">See the<br data-dc-tpl="382">bigger picture.</div>
-          <svg data-dc-tpl="383" width="40" height="40"><path data-dc-tpl="384" d="M30 2 C 36 20, 26 32, 8 34" style="fill: none; stroke: rgb(18, 161, 80); stroke-width: 1.8; stroke-linecap: round;"></path><path data-dc-tpl="385" d="M15 27 L7 34 L16 39" style="fill: none; stroke: rgb(18, 161, 80); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"></path></svg>
-        </div>
       </div>
     </div>
   </div></section><section data-dc-tpl="386" id="devices" data-screen-label="Every Device" style="background: rgb(251, 252, 255);">

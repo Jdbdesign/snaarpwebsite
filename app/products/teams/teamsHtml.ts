@@ -253,8 +253,6 @@ Here’s the latest version.</span></div>
               
                 <div data-dc-tpl="208" style="position: relative; height: 184px; border-radius: 10px; overflow: hidden; border: 2px solid transparent; transition: border-color 0.3s;">
                   <video data-dc-tpl="209" src="/assets/teams/speaker-video.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Snaarp Teams video call" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: none; transition: filter 0.3s;"></video>
-                  <span data-dc-tpl="210" style="position: absolute; left: 7px; top: 7px; display: flex; align-items: center; gap: 5px; height: 20px; padding: 0px 7px; border-radius: 6px; background: rgba(10, 14, 30, 0.6); color: rgb(255, 255, 255); font-size: 10px; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap;"><span data-dc-tpl="211" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(74, 222, 128);"></span><span class="sc-interp">LIVE 12:07</span></span>
-                  <span data-dc-tpl="212" style="position: absolute; left: 7px; bottom: 6px; font-size: 10.5px; font-weight: 600; color: rgb(255, 255, 255); text-shadow: rgba(0, 0, 0, 0.6) 0px 1px 4px;">Tunde Bakare</span>
                   
                 </div>
                 <div data-dc-tpl="224" style="position: relative; margin-top: 6px; height: 34px; display: flex; align-items: center; justify-content: center; gap: 7px;">

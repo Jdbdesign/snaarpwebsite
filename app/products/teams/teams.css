@@ -324,13 +324,15 @@
   }
 }
 
-/* Reconstructed hero row (JSX) — same container treatment + top align. */
+/* Reconstructed hero row (JSX) — same container treatment. Center the
+   columns vertically so the mockup fills the space left by the removed
+   annotation instead of sitting top-aligned with a gap above it. */
 .snaarp-teams-page .teams-hero-row {
   max-width: 1280px;
   margin: 0 auto;
   padding-left: 40px;
   padding-right: 40px;
-  align-items: flex-start !important;
+  align-items: center !important;
 }
 @media (min-width: 1440px) {
   .snaarp-teams-page .teams-hero-row {

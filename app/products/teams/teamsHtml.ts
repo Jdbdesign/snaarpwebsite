@@ -9,7 +9,6 @@
 
 export const TEAMS_HERO_TEXTCOL = `<div data-dc-tpl="46" style="flex: 1 1 400px; min-width: 0px; max-width: 500px;">
       <div data-dc-tpl="47" style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px;">
-        <span data-dc-tpl="48" style="width: 56px; height: 56px; border-radius: 13px; background: linear-gradient(145deg, rgb(139, 92, 246), rgb(124, 58, 237)); display: grid; place-items: center; box-shadow: rgba(124, 58, 237, 0.7) 0px 10px 22px -8px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset; flex: 0 0 auto;"><span data-dc-tpl="49" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 30px; line-height: 1; color: rgb(255, 255, 255);">groups</span></span>
         <span data-dc-tpl="50" style="display: flex; flex-direction: column; gap: 4px;"><span data-dc-tpl="51" style="font-weight: 800; font-size: 22px; letter-spacing: -0.02em;">Snaarp Teams</span><span data-dc-tpl="52" style="font-size: 15px; color: rgb(91, 99, 128);">Chat. Collaborate. Get Work Done.</span></span>
       </div>
       <h1 data-dc-tpl="53" style="margin: 0px; font-size: clamp(44px, 5.4vw, 72px); line-height: 1.02; letter-spacing: -0.045em; font-weight: 800; color: rgb(11, 20, 55);">Where Your<br data-dc-tpl="54">Team Gets<br data-dc-tpl="55"><span data-dc-tpl="56" style="color: rgb(124, 58, 237);">Work Done.</span></h1>

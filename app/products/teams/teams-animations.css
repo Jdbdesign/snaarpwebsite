@@ -121,6 +121,35 @@
 .snaarp-teams-page [data-dc-tpl="736"] { transition: color 0.2s var(--tm-ease), transform 0.2s var(--tm-ease); }
 .snaarp-teams-page [data-dc-tpl="736"]:hover { color: var(--tm-brand-dark) !important; transform: translateX(3px); }
 
+/* ── Collaboration cards ("Built for how modern teams work", tpl 340) ── */
+.snaarp-teams-page [data-dc-tpl="340"] {
+  transition: transform 0.3s var(--tm-ease), box-shadow 0.3s var(--tm-ease) !important;
+}
+.snaarp-teams-page [data-dc-tpl="340"]:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: rgba(124, 58, 237, 0.2) 0px 22px 44px -24px !important;
+}
+
+/* ── "Part of Snaarp 360" app tiles (tpl 386 link, white tile tpl 387) ── */
+.snaarp-teams-page [data-dc-tpl="386"] [data-dc-tpl="387"] {
+  transition: transform 0.28s var(--tm-ease), box-shadow 0.28s var(--tm-ease) !important;
+}
+.snaarp-teams-page [data-dc-tpl="386"]:hover [data-dc-tpl="387"] {
+  transform: translateY(-4px) scale(1.06) !important;
+  box-shadow: rgba(20, 40, 120, 0.5) 0px 14px 26px -12px !important;
+}
+.snaarp-teams-page [data-dc-tpl="386"] [data-dc-tpl="388"] { transition: transform 0.4s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="386"]:hover [data-dc-tpl="388"] { transform: rotate(-6deg) scale(1.08); }
+
+/* ── Testimonial card (tpl 703) + portrait (tpl 704) ── */
+.snaarp-teams-page [data-dc-tpl="703"] { transition: transform 0.3s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="704"] { transition: transform 0.4s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="703"]:hover [data-dc-tpl="704"] { transform: scale(1.04) rotate(-2deg); }
+
+/* ── Feature-check rows: pop the check bullet on hover (tpl 359/360) ── */
+.snaarp-teams-page [data-dc-tpl="359"] [data-dc-tpl="360"] { transition: transform 0.25s var(--tm-ease); }
+.snaarp-teams-page [data-dc-tpl="359"]:hover [data-dc-tpl="360"] { transform: scale(1.22); }
+
 /* ── Reveal accent: springy scale-in for card grids flagged .tm-pop ── */
 .snaarp-teams-page [data-reveal].tm-pop { transform: translateY(26px) scale(0.97); }
 .snaarp-teams-page [data-reveal].tm-pop.is-revealed { transform: translateY(0) scale(1); }

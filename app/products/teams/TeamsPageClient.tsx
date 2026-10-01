@@ -88,6 +88,16 @@ export default function TeamsPageClient() {
     root.querySelectorAll<HTMLElement>('[data-dc-tpl="742"]').forEach((c) => {
       if (!inMockup(c)) tag(c, { group: 'tm-faq', batch: 'faq', pop: true });
     });
+
+    // 6) Collaboration cards (tpl 340) — batch, springy pop.
+    root.querySelectorAll<HTMLElement>('[data-dc-tpl="340"]').forEach((c) => {
+      if (!inMockup(c)) tag(c, { group: 'tm-collab', batch: 'collab', pop: true });
+    });
+
+    // 7) "Part of Snaarp 360" app tiles (tpl 386) — batch.
+    root.querySelectorAll<HTMLElement>('[data-dc-tpl="386"]').forEach((c) => {
+      if (!inMockup(c)) tag(c, { group: 'tm-apps360', batch: 'apps360', pop: true });
+    });
   }, []);
 
   // Continuous "Product Team" chat demo inside the hero workspace mockup

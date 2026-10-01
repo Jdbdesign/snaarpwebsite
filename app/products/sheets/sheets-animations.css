@@ -115,3 +115,28 @@
   .snaarp-sheets-page [data-dc-tpl]:hover * { transform: none !important; }
   .snaarp-sheets-page [data-reveal].sh-pop { transform: none !important; }
 }
+
+/* =====================================================================
+   Hero "Ask Snaarp AI × Sheet" demo (canvas tpl 76) — keyframes for the
+   JS-driven continuous loop (sheetsAiDemo.ts). Chat turns ease in; the
+   AI typing indicator's three dots bounce. Helper classes are created by
+   the demo script at runtime; this adds no structural styles.
+   ===================================================================== */
+@keyframes tmai-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.snaarp-sheets-page .tmai-typing span {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgb(150, 157, 184); display: inline-block;
+  animation: tmai-bounce 1.2s infinite ease-in-out;
+}
+.snaarp-sheets-page .tmai-typing span:nth-child(2) { animation-delay: 0.18s; }
+.snaarp-sheets-page .tmai-typing span:nth-child(3) { animation-delay: 0.36s; }
+@keyframes tmai-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30%           { transform: translateY(-4px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-sheets-page .tmai-typing span { animation: none !important; }
+}

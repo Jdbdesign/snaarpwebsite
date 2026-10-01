@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef, type CSSProperties } from 'react';
+import { useEffect, useLayoutEffect, useRef, type CSSProperties } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import './sheets.css';
 import './sheets-animations.css';
@@ -9,6 +9,7 @@ import {
   SHEETS_HERO_MOCK,
   SHEETS_AFTER_HERO,
 } from './sheetsHtml';
+import { startSheetsAiDemo } from './sheetsAiDemo';
 
 // The Snaarp Sheet hero is reconstructed in JSX (the row shell only) so the
 // spreadsheet mockup canvas sits top-aligned and fills the right column the
@@ -81,6 +82,34 @@ export default function SheetsPageClient() {
     root.querySelectorAll<HTMLElement>('[data-dc-tpl="536"]').forEach((c) => {
       if (!inMockup(c)) tag(c, { group: 'sh-faq', batch: 'faq', pop: true });
     });
+  }, []);
+
+  // Continuous "Ask Snaarp AI × Sheet" demo inside the hero mockup (canvas
+  // tpl 76): the AI panel asks questions on a loop, the spreadsheet reacts
+  // (cell reference + formula bar update, cells highlight), and the AI
+  // answers — all via runtime DOM mutation, restored each loop, no hover.
+  // This does NOT alter the hero's authored structure/layout; it only reads
+  // existing elements and animates them. Starts when the hero scrolls in.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const canvas = root.querySelector<HTMLElement>('[data-dc-tpl="76"]');
+    if (!canvas) return;
+    let stop: (() => void) | null = null;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting && !stop) {
+            stop = startSheetsAiDemo(canvas);
+            io.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(canvas);
+    return () => { io.disconnect(); if (stop) stop(); };
   }, []);
 
   useScrollReveal(rootRef);

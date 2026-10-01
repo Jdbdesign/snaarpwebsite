@@ -30,11 +30,6 @@ export const PDF_HERO_TEXTCOL = `<div data-dc-tpl="43" style="flex: 1 1 380px; m
 
 export const PDF_HERO_MOCK = `<div data-dc-tpl="63" style="flex: 1 1 560px; min-width: 0px; max-width: 700px; margin-left: auto;">
       <div data-dc-tpl="64" style="position: relative; width: 700px; height: 520px; zoom: 0.951;">
-        <div data-dc-tpl="65" style="position: absolute; right: 0px; top: -4px; display: flex; align-items: flex-start; gap: 4px; pointer-events: none; z-index: 3;">
-          <svg data-dc-tpl="66" width="60" height="46" style="margin-top: 4px;"><path data-dc-tpl="67" d="M56 22 C 44 4, 20 2, 12 30" style="fill: none; stroke: rgb(124, 58, 237); stroke-width: 1.8; stroke-linecap: round;"></path><path data-dc-tpl="68" d="M5 22 L12 32 L21 25" style="fill: none; stroke: rgb(124, 58, 237); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"></path></svg>
-          <div data-dc-tpl="69" style="font-family: Caveat, cursive; font-size: 24px; line-height: 1.05; transform: rotate(-4deg); font-weight: 600; color: rgb(124, 58, 237);">More than a viewer.<br data-dc-tpl="70">A complete PDF workspace.</div>
-        </div>
-
         <div data-dc-tpl="71" style="position: absolute; left: 0px; top: 52px; width: 700px; height: 466px; border-radius: 16px; background: rgb(255, 255, 255); border: 1px solid rgb(236, 233, 248); box-shadow: rgba(60, 30, 180, 0.4) 0px 50px 90px -40px, rgba(14, 18, 56, 0.22) 0px 16px 36px -24px; overflow: hidden; display: flex; flex-direction: column;">
           <div data-dc-tpl="72" style="height: 50px; flex: 0 0 auto; display: flex; align-items: center; gap: 12px; padding: 0px 16px; border-bottom: 1px solid rgb(240, 238, 248);">
             <span data-dc-tpl="73" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 20px; line-height: 1; color: rgb(62, 68, 102);">menu</span>

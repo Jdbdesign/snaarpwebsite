@@ -9,6 +9,8 @@ import {
   LOCK_HERO_MOCK,
   LOCK_AFTER_HERO,
 } from './lockHtml';
+import { startLockDemo } from './lockDemo';
+import { startLockSections } from './lockSections';
 
 // The Snaarp Lock hero is reconstructed in JSX (the row shell only) so the
 // vault mockup canvas sits top-aligned and fills the right column the way
@@ -167,6 +169,20 @@ export default function LockPageClient() {
     return () => {
       if (barTimer) window.clearInterval(barTimer);
       buttons.forEach((b) => b.removeEventListener('click', onClick));
+    };
+  }, []);
+
+  // Hero dashboard guided-tour demo + the rest of the page's section
+  // interactions. Both are plain DOM controllers over the injected markup, so
+  // they run after mount and return their own cleanup.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const stopDemo = startLockDemo(root);
+    const stopSections = startLockSections(root);
+    return () => {
+      stopDemo();
+      stopSections();
     };
   }, []);
 

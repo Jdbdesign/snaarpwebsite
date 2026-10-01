@@ -1,0 +1,149 @@
+/* =====================================================================
+   Snaarp PDF — site-wide interaction polish (hover + reveal accents).
+   Hand-authored, kept separate from the auto-generated pdf-reader.css so a
+   regeneration won't wipe it. Namespaced under .snaarp-pdf-reader-page and
+   targets the bundle's inline-styled elements via stable data-dc-tpl
+   numbers or scp* behaviour classes. Inline styles win the cascade, so
+   hover overrides use !important where needed.
+
+   Layout-safety: never transform the zoom-scaled hero mockup canvas
+   (tpl 64) or the display:contents wrappers. Its inner scp* controls are
+   frozen demo art and are intentionally left untouched.
+   ===================================================================== */
+
+.snaarp-pdf-reader-page {
+  --pdf-brand: #7C3AED;
+}
+
+/* ── Hero CTAs ── */
+.snaarp-pdf-reader-page .scp4 {
+  transition: transform .2s cubic-bezier(.22,1,.36,1), background .2s, box-shadow .2s !important;
+}
+.snaarp-pdf-reader-page .scp4:hover {
+  transform: translateY(-2px) !important;
+  background: rgb(109, 40, 217) !important;
+  box-shadow: rgba(124, 58, 237, 0.9) 0px 18px 36px -12px !important;
+}
+.snaarp-pdf-reader-page .scp5 {
+  transition: transform .2s cubic-bezier(.22,1,.36,1), border-color .2s, background .2s !important;
+}
+.snaarp-pdf-reader-page .scp5:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgb(124, 58, 237) !important;
+  background: rgb(250, 248, 255) !important;
+}
+
+/* ── Feature cards (tpl 249 / .scpb): lift + icon-tile pop ── */
+.snaarp-pdf-reader-page [data-dc-tpl="249"] { transition: transform .25s cubic-bezier(.22,1,.36,1) !important; }
+.snaarp-pdf-reader-page [data-dc-tpl="249"] [data-dc-tpl="250"] { transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease; }
+.snaarp-pdf-reader-page [data-dc-tpl="249"]:hover { transform: translateY(-6px) !important; }
+.snaarp-pdf-reader-page [data-dc-tpl="249"]:hover [data-dc-tpl="250"] { transform: scale(1.08) translateY(-2px); }
+
+/* ── FAQ items (tpl 544 wrapper, tpl 545 button): tint on hover ── */
+.snaarp-pdf-reader-page [data-dc-tpl="544"] { transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.snaarp-pdf-reader-page [data-dc-tpl="544"]:hover {
+  border-color: rgb(183, 166, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.14) 0px 8px 20px -12px;
+  transform: translateY(-1px);
+}
+
+/* ── Generic CTA / primary scp buttons in tail sections ── */
+.snaarp-pdf-reader-page .scpf,
+.snaarp-pdf-reader-page .scp3 {
+  transition: transform .2s cubic-bezier(.22,1,.36,1), box-shadow .2s ease !important;
+}
+.snaarp-pdf-reader-page .scpf:hover,
+.snaarp-pdf-reader-page .scp3:hover { transform: translateY(-2px) !important; }
+
+/* ── Hero editor guided-tour demo (pdfEditorDemo) ── */
+/* Toolbar tools auto-cycle (and stay clickable); smooth the active tint. */
+.snaarp-pdf-reader-page [data-pdf-toolbar] [data-dc-tpl="109"] { transition: background .2s ease, color .2s ease !important; }
+/* The injected "edit text" caret blinks while that tool is active. */
+@keyframes pdfCaretBlink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+.snaarp-pdf-reader-page [data-pdf-caret],
+.snaarp-pdf-reader-page [data-pdf-titlecaret] { animation: pdfCaretBlink 1s step-end infinite; }
+/* The document title/subtitle swap (translate) gets a soft fade. */
+.snaarp-pdf-reader-page [data-pdf-title],
+.snaarp-pdf-reader-page [data-pdf-subtitle] { transition: background .25s ease; }
+.snaarp-pdf-reader-page [data-pdf-signature] { transition: opacity .3s ease; }
+
+/* ── AI Tools cards (tpl 389 / .scpb): lift + icon pop + tint ── */
+.snaarp-pdf-reader-page [data-dc-tpl="389"] { transition: transform .25s cubic-bezier(.22,1,.36,1), border-color .2s ease, box-shadow .25s ease !important; }
+.snaarp-pdf-reader-page [data-dc-tpl="389"] [data-dc-tpl="390"] { transition: transform .25s cubic-bezier(.22,1,.36,1); }
+.snaarp-pdf-reader-page [data-dc-tpl="389"]:hover {
+  transform: translateY(-5px) !important;
+  border-color: rgb(183, 166, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.2) 0px 16px 30px -14px !important;
+}
+.snaarp-pdf-reader-page [data-dc-tpl="389"]:hover [data-dc-tpl="390"] { transform: scale(1.1) translateY(-2px); }
+/* the auto-cycling spotlight (ai section loop) */
+.snaarp-pdf-reader-page [data-dc-tpl="389"].pdf-ai-on {
+  transform: translateY(-5px) !important;
+  border-color: rgb(183, 166, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 16px 32px -14px !important;
+}
+.snaarp-pdf-reader-page [data-dc-tpl="389"].pdf-ai-on [data-dc-tpl="390"] { transform: scale(1.1) translateY(-2px); }
+
+/* ── Convert tiles (tpl 478 / .scpd): lift + border; reveal "Click to convert" ── */
+.snaarp-pdf-reader-page [data-dc-tpl="478"] { transition: transform .2s cubic-bezier(.22,1,.36,1), border-color .2s ease, box-shadow .2s ease !important; }
+.snaarp-pdf-reader-page [data-dc-tpl="478"] [data-dc-tpl="492"] { opacity: 0; transition: opacity .2s ease; }
+.snaarp-pdf-reader-page [data-dc-tpl="478"]:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgb(183, 166, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.18) 0px 14px 26px -14px !important;
+}
+.snaarp-pdf-reader-page [data-dc-tpl="478"]:hover [data-dc-tpl="492"] { opacity: 1; color: rgb(124, 58, 237); }
+.snaarp-pdf-reader-page [data-dc-tpl="478"]:hover [data-dc-tpl="479"] { transform: scale(1.06); }
+.snaarp-pdf-reader-page [data-dc-tpl="478"] [data-dc-tpl="479"] { transition: transform .2s ease; }
+
+/* ── Ecosystem tiles (tpl 499 / .scp8): lift + soft tint ── */
+.snaarp-pdf-reader-page [data-dc-tpl="499"] { transition: transform .2s cubic-bezier(.22,1,.36,1), background .2s ease !important; }
+.snaarp-pdf-reader-page [data-dc-tpl="499"] [data-dc-tpl="500"] { transition: transform .25s cubic-bezier(.22,1,.36,1); }
+.snaarp-pdf-reader-page [data-dc-tpl="499"]:hover { transform: translateY(-4px) !important; background: rgb(249, 247, 255) !important; }
+.snaarp-pdf-reader-page [data-dc-tpl="499"]:hover [data-dc-tpl="500"] { transform: scale(1.08) rotate(-3deg); }
+
+/* ── CTA buttons (tpl 531 .scpe primary, tpl 533 .scpf outline) ── */
+.snaarp-pdf-reader-page .scpe,
+.snaarp-pdf-reader-page .scpf { transition: transform .2s cubic-bezier(.22,1,.36,1), background .2s ease, box-shadow .2s ease !important; }
+.snaarp-pdf-reader-page .scpe:hover { transform: translateY(-2px) !important; box-shadow: rgba(0,0,0,.55) 0px 18px 36px -12px !important; }
+.snaarp-pdf-reader-page .scpf:hover { transform: translateY(-2px) !important; background: rgba(255,255,255,.12) !important; }
+
+/* ── "View all FAQs" link (tpl 538) + section eyebrow links ── */
+.snaarp-pdf-reader-page [data-dc-tpl="538"] { transition: gap .2s ease, color .2s ease; }
+.snaarp-pdf-reader-page [data-dc-tpl="538"]:hover { gap: 10px !important; color: rgb(124, 58, 237); }
+
+/* ── FAQ accordion (tpl 544 wrapper, 545 button, 547 chevron, 549 panel) ── */
+.snaarp-pdf-reader-page [data-dc-tpl="545"] { cursor: pointer; }
+.snaarp-pdf-reader-page [data-dc-tpl="547"] { transition: transform .25s ease !important; }
+.snaarp-pdf-reader-page [data-dc-tpl="549"] { overflow: hidden; }
+
+/* ── Scroll reveal (shared system; .pdf-pop = springy scale-in) ── */
+.snaarp-pdf-reader-page [data-reveal].pdf-pop {
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  transition: opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1);
+}
+.snaarp-pdf-reader-page [data-reveal].pdf-pop.is-revealed { opacity: 1; transform: translateY(0) scale(1); }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-pdf-reader-page [data-dc-tpl]:hover,
+  .snaarp-pdf-reader-page [data-dc-tpl]:hover * { transform: none !important; }
+  .snaarp-pdf-reader-page .scp4:hover,
+  .snaarp-pdf-reader-page .scp5:hover,
+  .snaarp-pdf-reader-page .scpf:hover,
+  .snaarp-pdf-reader-page .scp3:hover { transform: none !important; }
+  .snaarp-pdf-reader-page [data-reveal].pdf-pop { transform: none !important; }
+  .snaarp-pdf-reader-page [data-pdf-caret],
+  .snaarp-pdf-reader-page [data-pdf-titlecaret] { animation: none !important; }
+  .snaarp-pdf-reader-page [data-dc-tpl="389"]:hover,
+  .snaarp-pdf-reader-page [data-dc-tpl="389"].pdf-ai-on,
+  .snaarp-pdf-reader-page [data-dc-tpl="478"]:hover,
+  .snaarp-pdf-reader-page [data-dc-tpl="499"]:hover,
+  .snaarp-pdf-reader-page .scpe:hover,
+  .snaarp-pdf-reader-page .scpf:hover { transform: none !important; }
+  .snaarp-pdf-reader-page [data-dc-tpl="389"]:hover [data-dc-tpl="390"],
+  .snaarp-pdf-reader-page [data-dc-tpl="478"]:hover [data-dc-tpl="479"],
+  .snaarp-pdf-reader-page [data-dc-tpl="499"]:hover [data-dc-tpl="500"] { transform: none !important; }
+  .snaarp-pdf-reader-page [data-dc-tpl="478"] [data-dc-tpl="492"] { opacity: 1 !important; }
+}

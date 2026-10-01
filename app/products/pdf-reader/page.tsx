@@ -1,40 +1,20 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { PdfReaderHero } from '@/components/pdf-reader/PdfReaderHero';
-import { PdfReaderTrustBar } from '@/components/pdf-reader/PdfReaderTrustBar';
-import { PdfReaderStatsRow } from '@/components/pdf-reader/PdfReaderStatsRow';
-import { PdfReaderSteps } from '@/components/pdf-reader/PdfReaderSteps';
-import { PdfReaderBentoGrid } from '@/components/pdf-reader/PdfReaderBentoGrid';
-import { PdfReaderToolsTabs } from '@/components/pdf-reader/PdfReaderToolsTabs';
-import { PdfReaderAltAnnotate } from '@/components/pdf-reader/PdfReaderAltAnnotate';
-import { PdfReaderAltSigning } from '@/components/pdf-reader/PdfReaderAltSigning';
-import { PdfReaderTestimonials } from '@/components/pdf-reader/PdfReaderTestimonials';
-import { PdfReaderFAQ } from '@/components/pdf-reader/PdfReaderFAQ';
-import { HomeFinalCTA } from '@/components/HomeFinalCTA';
+import PDFReaderPageClient from './PDFReaderPageClient';
 
 export const metadata: Metadata = {
-  title: 'PDF Reader — One PDF Reader, every signature sorted | Snaarp',
+  title: 'Snaarp PDF — Everything You Need to Do With a PDF. In One Place.',
   description:
-    'View, mark up, and legally sign any PDF without leaving the Stack. Open attachments straight from Mail, files from Work Drive, or drag one in — no install, no separate signing tool.',
+    'Edit, convert, sign, redact, translate and more — all in a single, powerful PDF workspace. With AI by your side, Snaarp PDF helps you get things done faster, safer and simpler.',
 };
 
-export default function PdfReaderProductPage() {
+export default function PDFReaderPage() {
   return (
     <>
       <Header />
-      <main id="main-content" className="pdf-reader-page">
-        <PdfReaderHero />
-        <PdfReaderTrustBar />
-        <PdfReaderStatsRow />
-        <PdfReaderSteps />
-        {/* <PdfReaderBentoGrid /> */}
-        <PdfReaderToolsTabs />
-        <PdfReaderAltAnnotate />
-        <PdfReaderAltSigning />
-        <PdfReaderTestimonials />
-        <PdfReaderFAQ />
-        <HomeFinalCTA />
+      <main id="main-content">
+        <PDFReaderPageClient />
       </main>
       <Footer />
     </>

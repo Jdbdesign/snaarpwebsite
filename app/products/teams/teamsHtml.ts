@@ -36,10 +36,6 @@ export const TEAMS_HERO_TEXTCOL = `<div data-dc-tpl="46" style="flex: 1 1 400px;
 
 export const TEAMS_HERO_MOCK = `<div data-dc-tpl="69" style="flex: 1 1 560px; min-width: 0px; max-width: 780px; margin-left: auto;">
       <div data-dc-tpl="70" style="position: relative; width: 780px; height: 690px; zoom: 0.838;">
-        <div data-dc-tpl="71" style="position: absolute; right: 6px; top: 0px; display: flex; align-items: flex-start; gap: 4px; color: rgb(124, 58, 237);">
-          <svg data-dc-tpl="72" width="60" height="60" style="margin-top: 26px;"><path data-dc-tpl="73" d="M56 12 C 34 6, 14 18, 10 48" style="fill: none; stroke: rgb(124, 58, 237); stroke-width: 1.8; stroke-linecap: round;"></path><path data-dc-tpl="74" d="M3 40 L10 50 L18 42" style="fill: none; stroke: rgb(124, 58, 237); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"></path></svg>
-          <div data-dc-tpl="75" style="font-family: Caveat, cursive; font-size: 28px; line-height: 1.05; transform: rotate(-8deg); transform-origin: left top; font-weight: 500;">Communication<br data-dc-tpl="76">&nbsp;that gets things done.</div>
-        </div>
 
         <div data-dc-tpl="77" style="position: absolute; left: 0px; top: 82px; width: 780px; height: 600px; border-radius: 18px; background: rgb(255, 255, 255); border: 1px solid rgb(231, 236, 248); box-shadow: rgba(20, 50, 150, 0.38) 0px 50px 90px -40px, rgba(10, 20, 60, 0.18) 0px 16px 36px -24px; overflow: hidden;">
           

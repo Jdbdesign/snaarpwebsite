@@ -339,13 +339,28 @@
 @media (min-width: 1440px) { .snaarp-meet-page [data-dc-tpl="52"] { font-size: 80px !important; } }
 @media (max-width: 640px) { .snaarp-meet-page [data-dc-tpl="52"] { font-size: 42px !important; } }
 
-/* Hero mock column anchor LEFT + wide; canvas tpl 68 (640x500 zoom 0.994) ramps.
-   The injected mock root is tpl 67 — override its inline max-width so it fills
-   the right column with no wide-screen gap. */
+/* Hero mock column anchor LEFT + wide; canvas tpl 68 (640x500) ramps.
+   The injected mock root (tpl 67) sits inside a display:contents wrapper, so it
+   is NOT a direct child of .meet-hero-row — match it by attribute (no '>' child
+   combinator) and override its inline max-width:660px so the column grows.
+   The canvas is small (640px), so on large screens it must zoom ABOVE 1 to
+   actually fill the wider column (otherwise it floats small, leaving a gap). */
 .snaarp-meet-page .meet-hero-mockcol,
-.snaarp-meet-page .meet-hero-row > [data-dc-tpl="67"] {
+.snaarp-meet-page [data-dc-tpl="67"] {
   flex: 1 1 560px !important; min-width: 0 !important; max-width: 760px !important; margin-left: 0 !important;
+  display: flex !important; justify-content: center !important;
 }
-.snaarp-meet-page [data-dc-tpl="68"] { zoom: 0.9 !important; }
-@media (min-width: 1440px) { .snaarp-meet-page [data-dc-tpl="68"] { zoom: 1 !important; } }
-@media (min-width: 1024px) and (max-width: 1439px) { .snaarp-meet-page [data-dc-tpl="68"] { zoom: 0.82 !important; } }
+/* On large screens the grown column can get wide; pin it to the right edge and
+   bump the canvas so the small (640px) mockup actually fills the space instead
+   of floating with a gap. The explicit max-widths per breakpoint keep the
+   zoomed canvas from overflowing the column at the low end of each range. */
+.snaarp-meet-page [data-dc-tpl="68"] { zoom: 0.92 !important; }
+@media (min-width: 1440px) {
+  /* Let the mock column grow to the row's right edge and right-align the canvas
+     inside it, so the mockup hugs the right edge (no awkward right-side gap).
+     Any slack sits as breathing room between the text column and the canvas. */
+  .snaarp-meet-page .meet-hero-mockcol,
+  .snaarp-meet-page [data-dc-tpl="67"] { flex: 1 1 640px !important; max-width: 1100px !important; justify-content: flex-end !important; }
+  .snaarp-meet-page [data-dc-tpl="68"] { zoom: 1.12 !important; }
+}
+@media (min-width: 1024px) and (max-width: 1439px) { .snaarp-meet-page [data-dc-tpl="68"] { zoom: 0.84 !important; } }

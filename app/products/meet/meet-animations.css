@@ -1,0 +1,64 @@
+/* =====================================================================
+   Snaarp Meet — site-wide interaction polish (hover + reveal accents).
+   Hand-authored, kept separate from the auto-generated meet.css so a
+   regeneration won't wipe it. Namespaced under .snaarp-meet-page and
+   targets the bundle's inline-styled elements via stable data-dc-tpl
+   numbers or scp* behaviour classes. Inline styles win the cascade, so
+   hover overrides use !important where needed.
+
+   Layout-safety: never transform the zoom-scaled hero mockup canvas
+   (tpl 68) or the display:contents wrappers.
+   ===================================================================== */
+
+.snaarp-meet-page {
+  --meet-brand: #7C3AED;
+}
+
+/* ── Hero CTAs (tpl 58 .scp2 primary, tpl 60 .scp1 outline) ── */
+.snaarp-meet-page .scp2 { transition: transform .2s cubic-bezier(.22,1,.36,1), background .2s, box-shadow .2s !important; }
+.snaarp-meet-page .scp2:hover { transform: translateY(-2px) !important; background: rgb(109, 40, 217) !important; box-shadow: rgba(124, 58, 237, 0.9) 0px 18px 36px -12px !important; }
+.snaarp-meet-page .scp1 { transition: transform .2s cubic-bezier(.22,1,.36,1), border-color .2s, background .2s !important; }
+.snaarp-meet-page .scp1:hover { transform: translateY(-2px) !important; border-color: rgb(124, 58, 237) !important; background: rgb(250, 248, 255) !important; }
+
+/* ── Feature cards (tpl 249) + integration tiles (tpl 449): both .scp7 ── */
+.snaarp-meet-page [data-dc-tpl="249"],
+.snaarp-meet-page [data-dc-tpl="449"] { transition: transform .25s cubic-bezier(.22,1,.36,1), background .2s ease, border-color .2s ease !important; }
+.snaarp-meet-page [data-dc-tpl="249"] [data-dc-tpl="250"],
+.snaarp-meet-page [data-dc-tpl="449"] [data-dc-tpl="450"] { transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease; }
+.snaarp-meet-page [data-dc-tpl="249"]:hover { transform: translateY(-5px) !important; background: rgb(249, 248, 255) !important; }
+.snaarp-meet-page [data-dc-tpl="249"]:hover [data-dc-tpl="250"] { transform: scale(1.1) translateY(-2px); }
+.snaarp-meet-page [data-dc-tpl="449"]:hover { transform: translateY(-4px) !important; }
+.snaarp-meet-page [data-dc-tpl="449"]:hover [data-dc-tpl="450"] { transform: scale(1.06); }
+
+/* ── FAQ accordion (tpl 540 wrapper, 541 button, 543 chevron, 544 panel) ── */
+.snaarp-meet-page [data-dc-tpl="541"] { cursor: pointer; }
+.snaarp-meet-page [data-dc-tpl="542"] { transition: transform .25s ease !important; }
+.snaarp-meet-page [data-dc-tpl="544"] { overflow: hidden; }
+.snaarp-meet-page [data-dc-tpl="540"] { transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.snaarp-meet-page [data-dc-tpl="540"]:hover { border-color: rgb(183, 166, 255) !important; transform: translateY(-1px); }
+
+/* ── Generic CTA / tail buttons (scpe outline on dark, scp2 reused) ── */
+.snaarp-meet-page .scpe { transition: transform .2s cubic-bezier(.22,1,.36,1), background .2s ease !important; }
+.snaarp-meet-page .scpe:hover { transform: translateY(-2px) !important; background: rgba(255,255,255,.12) !important; }
+
+/* ── "View all FAQs" link (tpl 534) ── */
+.snaarp-meet-page [data-dc-tpl="534"] { transition: gap .2s ease, color .2s ease; }
+.snaarp-meet-page [data-dc-tpl="534"]:hover { gap: 12px !important; color: rgb(124, 58, 237); }
+
+/* ── Scroll reveal (shared system; .meet-pop = springy scale-in) ── */
+.snaarp-meet-page [data-reveal].meet-pop {
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  transition: opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1);
+}
+.snaarp-meet-page [data-reveal].meet-pop.is-revealed { opacity: 1; transform: translateY(0) scale(1); }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-meet-page [data-dc-tpl]:hover,
+  .snaarp-meet-page [data-dc-tpl]:hover * { transform: none !important; }
+  .snaarp-meet-page .scp1:hover,
+  .snaarp-meet-page .scp2:hover,
+  .snaarp-meet-page .scpe:hover { transform: none !important; }
+  .snaarp-meet-page [data-reveal].meet-pop { transform: none !important; }
+}

@@ -364,3 +364,38 @@
   .snaarp-meet-page [data-dc-tpl="68"] { zoom: 1.12 !important; }
 }
 @media (min-width: 1024px) and (max-width: 1439px) { .snaarp-meet-page [data-dc-tpl="68"] { zoom: 0.84 !important; } }
+
+/* =====================================================================
+   Large-screen (>=1440) fixes for the post-hero two-column sections.
+   Their inner containers go full-bleed via the recipe above, but each
+   column caps at ~560-600px, so the row content packs center-left and
+   leaves a big empty gap on the right. On large screens we let the
+   media/right column grow to the content's right edge and right-align
+   its contents, mirroring the hero fix. Desktop/laptop (<1440) unchanged.
+   ===================================================================== */
+@media (min-width: 1440px) {
+  /* "Unlimited" (tpl 255 row): text col 256, media col 262. */
+  .snaarp-meet-page [data-dc-tpl="256"] { max-width: 620px !important; }
+  .snaarp-meet-page [data-dc-tpl="262"] {
+    flex: 1 1 560px !important; max-width: 980px !important;
+    display: flex !important; flex-direction: column !important; align-items: flex-end !important;
+  }
+  /* the inner photo card is width:78% of its column — widen it so it fills */
+  .snaarp-meet-page [data-dc-tpl="262"] > [data-dc-tpl="263"] { width: 86% !important; }
+
+  /* "More Than Video" (tpl 413 row): text col 414, media col 425. */
+  .snaarp-meet-page [data-dc-tpl="414"] { max-width: 620px !important; }
+  .snaarp-meet-page [data-dc-tpl="425"] {
+    flex: 1 1 560px !important; max-width: 980px !important;
+    display: flex !important; flex-direction: column !important; align-items: flex-end !important;
+  }
+  .snaarp-meet-page [data-dc-tpl="425"] > [data-dc-tpl="426"] { width: 80% !important; }
+
+  /* "Meet anywhere" dark panel (tpl 471): its container uses max-width:1440px
+     (not 1280) so the global recipe misses it — go full-bleed here too, and
+     give the right text column (504) room so the heading isn't crowded. */
+  .snaarp-meet-page [style*="max-width: 1440px"] {
+    max-width: none !important; padding-left: 120px !important; padding-right: 120px !important;
+  }
+  .snaarp-meet-page [data-dc-tpl="504"] { flex: 1 1 420px !important; max-width: 620px !important; }
+}

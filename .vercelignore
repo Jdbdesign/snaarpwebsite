@@ -1,0 +1,47 @@
+# .vercelignore — files excluded from the Vercel deployment upload.
+# These are design sources, original standalone HTML bundles, loose exported
+# images/videos, scratch scripts and docs that live at the repo ROOT. None of
+# them are imported by the app or served at runtime (only /public is served),
+# so excluding them shrinks every deployment without affecting the site.
+#
+# NOTE: patterns are anchored with a leading "/" so they ONLY match the repo
+# root — the app's real assets under /public, /app, /components are untouched.
+
+# ---- Root-level standalone HTML bundles & exported pages (design sources) ----
+/*.html
+
+# ---- Root-level source/export media (originals; app uses /public copies) ----
+/*.mp4
+/*.mov
+/*.webm
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.svg
+
+# ---- Root-level docs, notes and scratch scripts (not needed to build) ----
+/*.md
+/CLAUDE.md
+/*.cjs
+/screenshot.mjs
+/serve.mjs
+/audit-all.cjs
+/skills-lock.json
+/*.code-workspace
+
+# ---- Dev / tooling folders not needed in the deployment ----
+/.agents
+/.claude
+/.git
+/.vscode
+/temporary screenshots
+/scripts
+
+# ---- Scratch/temp files from local tooling (defensive) ----
+/_*.mjs
+/_*.cjs
+/_*.html
+/_*.json
+/_*.png
+/_*.jpg

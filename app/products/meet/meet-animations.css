@@ -45,6 +45,24 @@
 .snaarp-meet-page [data-dc-tpl="534"] { transition: gap .2s ease, color .2s ease; }
 .snaarp-meet-page [data-dc-tpl="534"]:hover { gap: 12px !important; color: rgb(124, 58, 237); }
 
+/* ── "More Than Video" use-case rows (tpl 420 .scp9): JS sets the active row;
+   add a hover tint for the inactive ones. ── */
+.snaarp-meet-page [data-dc-tpl="420"] { transition: background .2s ease, color .2s ease !important; cursor: pointer; }
+.snaarp-meet-page [data-dc-tpl="420"]:hover { background: rgb(248, 246, 255) !important; }
+
+/* ── "Screen sharing" capability rows (tpl 407 .scp8): hover lift/tint ── */
+.snaarp-meet-page [data-dc-tpl="407"] { transition: background .2s ease, border-color .2s ease, transform .2s ease !important; }
+.snaarp-meet-page [data-dc-tpl="407"]:hover { border-color: rgb(183, 166, 255) !important; background: rgb(248, 246, 255) !important; }
+
+/* ── "Meet anywhere" feature chips (tpl 510 .scpb, on the dark panel) ── */
+.snaarp-meet-page [data-dc-tpl="510"] { transition: background .2s ease, border-color .2s ease, transform .2s ease !important; }
+.snaarp-meet-page [data-dc-tpl="510"]:hover { background: rgba(124, 58, 237, 0.22) !important; transform: translateY(-2px); }
+
+/* ── Integration tiles are JS-toggle (connect/disconnect); keep the existing
+   .scp7 hover lift (defined above) and add a pointer cursor affordance. ── */
+.snaarp-meet-page [data-dc-tpl="449"] { cursor: pointer; }
+.snaarp-meet-page [data-dc-tpl="450"] { transition: box-shadow .2s ease, transform .2s ease; }
+
 /* ── Scroll reveal (shared system; .meet-pop = springy scale-in) ── */
 .snaarp-meet-page [data-reveal].meet-pop {
   opacity: 0;
@@ -59,6 +77,8 @@
   .snaarp-meet-page [data-dc-tpl]:hover * { transform: none !important; }
   .snaarp-meet-page .scp1:hover,
   .snaarp-meet-page .scp2:hover,
-  .snaarp-meet-page .scpe:hover { transform: none !important; }
+  .snaarp-meet-page .scpe:hover,
+  .snaarp-meet-page [data-dc-tpl="407"]:hover,
+  .snaarp-meet-page [data-dc-tpl="510"]:hover { transform: none !important; }
   .snaarp-meet-page [data-reveal].meet-pop { transform: none !important; }
 }

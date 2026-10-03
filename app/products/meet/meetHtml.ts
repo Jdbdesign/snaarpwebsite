@@ -9,7 +9,6 @@
 
 export const MEET_HERO_TEXTCOL = `<div data-dc-tpl="45" style="flex: 1 1 420px; min-width: 0px; max-width: 520px;">
       <div data-dc-tpl="46" style="display: flex; align-items: center; gap: 16px; margin-bottom: 26px;">
-        <span data-dc-tpl="47" style="width: 56px; height: 56px; border-radius: 13px; background: linear-gradient(145deg, rgb(139, 92, 246), rgb(124, 58, 237)); display: grid; place-items: center; box-shadow: rgba(124, 58, 237, 0.7) 0px 10px 22px -8px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset;"><span data-dc-tpl="48" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 30px; line-height: 1; color: rgb(255, 255, 255);">videocam</span></span>
         <span data-dc-tpl="49" style="display: flex; flex-direction: column; gap: 4px;"><span data-dc-tpl="50" style="font-weight: 800; font-size: 22px; letter-spacing: -0.02em;">Snaarp Meet</span><span data-dc-tpl="51" style="font-size: 15px; color: rgb(91, 99, 128);">Video Meetings for a Smarter Business</span></span>
       </div>
       <h1 data-dc-tpl="52" style="margin: 0px; font-size: clamp(50px, 6.2vw, 80px); line-height: 0.98; letter-spacing: -0.05em; font-weight: 800;">Meet Without<br data-dc-tpl="53"><span data-dc-tpl="54" style="color: rgb(124, 58, 237);">Limits.</span></h1>
@@ -39,75 +38,10 @@ export const MEET_HERO_MOCK = `<div data-dc-tpl="67" style="flex: 1 1 560px; min
 
         <div data-dc-tpl="75" style="position: absolute; left: 0px; top: 72px; width: 640px; height: 424px; border-radius: 18px; background: rgb(14, 19, 34); overflow: hidden; box-shadow: rgba(20, 50, 150, 0.55) 0px 50px 90px -40px, rgba(10, 20, 60, 0.4) 0px 16px 36px -20px; outline: rgba(255, 255, 255, 0.06) solid 1px;">
           
-            <img data-dc-tpl="77" src="/assets/meet/img-01.png" alt="Victor Ariyibi-Oke on a Snaarp Meet call" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 40% 30%; display: block;">
-            
-            <div data-dc-tpl="100" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 110px; background: linear-gradient(rgba(8, 12, 26, 0.7), rgba(8, 12, 26, 0)); pointer-events: none;"></div>
-            <div data-dc-tpl="101" style="position: absolute; left: 20px; top: 16px; z-index: 3;">
-              <div data-dc-tpl="102" style="display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 700; color: rgb(255, 255, 255); letter-spacing: -0.01em;"><span class="sc-interp">Victor Ariyibi-Oke</span><span data-dc-tpl="104" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 18px; line-height: 1; color: rgb(74, 222, 128);">graphic_eq</span></div>
-              <div data-dc-tpl="105" style="margin-top: 2px; font-size: 12px; color: rgb(201, 208, 230); font-weight: 500;"><span class="sc-interp">Founder &amp; CEO</span></div>
-              
-            </div>
+            <video data-dc-tpl="77" src="/assets/meet/hero-call.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Snaarp Meet video call" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;"></video>
           
 
-          
-
-          <div data-dc-tpl="131" style="position: absolute; left: 20px; top: 62px; display: flex; gap: 6px; z-index: 3;">
-            <span data-dc-tpl="132" style="height: 22px; padding: 0px 7px; border-radius: 6px; background: rgba(8, 12, 26, 0.55); color: rgb(255, 255, 255); font-size: 10px; font-weight: 800; letter-spacing: 0.04em; display: flex; align-items: center; transition: background 0.3s;">HD</span>
-            <span data-dc-tpl="133" style="height: 22px; padding: 0px 8px; border-radius: 6px; background: rgba(8, 12, 26, 0.55); color: rgb(255, 255, 255); font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 5px; font-variant-numeric: tabular-nums;"><span data-dc-tpl="134" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(74, 222, 128);"></span><span class="sc-interp">30:51</span></span>
-            
-          </div>
-
-          
-            <div data-dc-tpl="139" style="position: absolute; right: 12px; top: 12px; width: 112px; display: flex; flex-direction: column; gap: 8px; z-index: 4;">
-              
-                <div data-dc-tpl="141" style="position: relative;">
-                  <button data-dc-tpl="142" title="Sofia Martinez" style="position: relative; display: block; width: 112px; height: 104px; padding: 0px; border-radius: 12px; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.14); background: rgb(35, 42, 64); cursor: pointer; transition: border-color 0.2s, height 0.25s;">
-                    <img data-dc-tpl="143" src="/assets/meet/img-02.png" alt="Sofia Martinez" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block;">
-                    <span data-dc-tpl="144" style="position: absolute; left: 5px; bottom: 5px; display: flex; align-items: center; gap: 2px; padding: 2px 6px; border-radius: 5px; background: rgba(8, 12, 26, 0.6); font-size: 9.5px; font-weight: 700; color: rgb(255, 255, 255);"><span class="sc-interp">Sofia</span></span>
-                    
-                  </button>
-                  
-                </div>
-              
-                <div data-dc-tpl="141" style="position: relative;">
-                  <button data-dc-tpl="142" title="Daniel Reyes" style="position: relative; display: block; width: 112px; height: 104px; padding: 0px; border-radius: 12px; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.14); background: rgb(35, 42, 64); cursor: pointer; transition: border-color 0.2s, height 0.25s;">
-                    <img data-dc-tpl="143" src="/assets/meet/img-03.png" alt="Daniel Reyes" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block;">
-                    <span data-dc-tpl="144" style="position: absolute; left: 5px; bottom: 5px; display: flex; align-items: center; gap: 2px; padding: 2px 6px; border-radius: 5px; background: rgba(8, 12, 26, 0.6); font-size: 9.5px; font-weight: 700; color: rgb(255, 255, 255);"><span class="sc-interp">Daniel</span></span>
-                    
-                  </button>
-                  
-                </div>
-              
-                <div data-dc-tpl="141" style="position: relative;">
-                  <button data-dc-tpl="142" title="Amara Okafor" style="position: relative; display: block; width: 112px; height: 104px; padding: 0px; border-radius: 12px; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.14); background: rgb(35, 42, 64); cursor: pointer; transition: border-color 0.2s, height 0.25s;">
-                    <img data-dc-tpl="143" src="/assets/meet/img-04.png" alt="Amara Okafor" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block;">
-                    <span data-dc-tpl="144" style="position: absolute; left: 5px; bottom: 5px; display: flex; align-items: center; gap: 2px; padding: 2px 6px; border-radius: 5px; background: rgba(8, 12, 26, 0.6); font-size: 9.5px; font-weight: 700; color: rgb(255, 255, 255);"><span data-dc-tpl="146" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 11px; line-height: 1; color: rgb(248, 113, 113);">mic_off</span><span class="sc-interp">Amara</span></span>
-                    
-                  </button>
-                  
-                </div>
-              
-            </div>
-          
-
-          
-            <div data-dc-tpl="160" style="position: absolute; left: 12px; bottom: 12px; width: 104px; height: 64px; border-radius: 12px; overflow: hidden; background: rgb(35, 42, 64); border: 1.5px solid rgba(255, 255, 255, 0.16); z-index: 6;">
-              <img data-dc-tpl="162" src="/assets/meet/img-05.png" alt="You" style="width: 100%; height: 100%; object-fit: cover; display: block; transform: scaleX(-1);">
-              
-              <span data-dc-tpl="166" style="position: absolute; left: 5px; bottom: 4px; display: flex; align-items: center; gap: 2px; padding: 2px 6px; border-radius: 5px; background: rgba(8, 12, 26, 0.6); font-size: 9.5px; font-weight: 700; color: rgb(255, 255, 255);">You</span>
-              
-            </div>
-          
-
-          
-
-          
-
-          
-
-          
-
-          <div data-dc-tpl="226" style="position: absolute; left: 124px; right: 12px; bottom: 12px; height: 64px; border-radius: 16px; background: rgba(14, 19, 34, 0.74); backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; padding: 0px 10px 0px 8px; z-index: 6;">
+          <div data-dc-tpl="226" style="position: absolute; left: 12px; right: 12px; bottom: 12px; height: 64px; border-radius: 16px; background: rgba(14, 19, 34, 0.74); backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; padding: 0px 10px 0px 8px; z-index: 6;">
             
               <button data-dc-tpl="228" title="Mute" class="scp5" style="position: relative; width: 52px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0px; color: rgb(255, 255, 255);">
                 <span data-dc-tpl="229" style="width: 36px; height: 36px; border-radius: 11px; background: rgba(255, 255, 255, 0.1); display: grid; place-items: center; transition: background 0.15s;"><span data-dc-tpl="230" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 20px; line-height: 1; color: rgb(255, 255, 255);"><span class="sc-interp">mic</span></span></span>
@@ -153,8 +87,6 @@ export const MEET_HERO_MOCK = `<div data-dc-tpl="67" style="flex: 1 1 560px; min
             
             <button data-dc-tpl="234" title="Leave meeting" class="scp6" style="width: 46px; height: 46px; border-radius: 50%; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: rgb(239, 68, 68); color: rgb(255, 255, 255); cursor: pointer; display: grid; place-items: center; box-shadow: rgba(239, 68, 68, 0.8) 0px 8px 18px -6px;"><span data-dc-tpl="235" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 24px; line-height: 1;">call_end</span></button>
           </div>
-
-          <div style="position: absolute; left: 12px; bottom: 84px; width: 140px; height: 260px; pointer-events: none; z-index: 9;"></div>
 
           
         </div>
@@ -210,7 +142,7 @@ export const MEET_AFTER_HERO = `<section data-dc-tpl="246" id="features" data-sc
     </div>
     <div data-dc-tpl="262" style="flex: 1 1 440px; min-width: 0px; max-width: 600px; position: relative; padding-bottom: 64px;">
       <div data-dc-tpl="263" style="position: relative; width: 78%; aspect-ratio: 172 / 170; border-radius: 18px; overflow: hidden; box-shadow: rgba(20, 40, 120, 0.5) 0px 40px 70px -40px;">
-        <img data-dc-tpl="264" src="/assets/meet/img-06.png" alt="Woman smiling on a video meeting" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <img data-dc-tpl="264" src="/assets/meet/unlimited-meeting.jpg" alt="Person smiling on a video meeting" style="width: 100%; height: 100%; object-fit: cover; display: block;">
         <div data-dc-tpl="265" style="position: absolute; left: 14px; top: 14px; display: flex; gap: 6px; flex-wrap: wrap;">
           <span data-dc-tpl="266" style="height: 28px; padding: 0px 10px; border-radius: 8px; background: rgba(8, 12, 26, 0.62); backdrop-filter: blur(6px); color: rgb(255, 255, 255); font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums;"><span data-dc-tpl="267" style="width: 7px; height: 7px; border-radius: 50%; background: rgb(239, 68, 68); animation: 1.4s ease 0s infinite normal none running blink;"></span>Live · <span class="sc-interp">1:12:49</span></span>
           <span data-dc-tpl="268" style="height: 28px; padding: 0px 10px; border-radius: 8px; background: rgba(255, 255, 255, 0.92); color: rgb(124, 58, 237); font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 5px;"><span data-dc-tpl="269" style="font-family: &quot;Material Symbols Rounded&quot;; font-size: 15px; line-height: 1;">all_inclusive</span>No time limit</span>
@@ -348,7 +280,7 @@ export const MEET_AFTER_HERO = `<section data-dc-tpl="246" id="features" data-sc
     </div>
     <div data-dc-tpl="425" style="flex: 1 1 440px; min-width: 0px; max-width: 600px; position: relative;">
       <div data-dc-tpl="426" style="position: relative; width: 72%; aspect-ratio: 164 / 207; border-radius: 18px; overflow: hidden; box-shadow: rgba(20, 40, 120, 0.5) 0px 40px 70px -40px;">
-        <img data-dc-tpl="427" src="/assets/meet/img-07.png" alt="Daniel K. on a video meeting" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <img data-dc-tpl="427" src="/assets/meet/more-than-video.jpg" alt="Daniel K. on a video meeting" style="width: 100%; height: 100%; object-fit: cover; display: block;">
         <div data-dc-tpl="428" style="position: absolute; left: 12px; right: 12px; bottom: 12px; padding: 12px 14px; border-radius: 12px; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(8px); box-shadow: rgba(10, 20, 60, 0.5) 0px 14px 30px -14px;">
           <div data-dc-tpl="429" style="font-size: 11.5px; font-weight: 700; color: rgb(91, 99, 128);">Recommended for <span data-dc-tpl="430" style="color: rgb(124, 58, 237);"><span class="sc-interp">sales demos</span></span></div>
           <div data-dc-tpl="431" style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px;">

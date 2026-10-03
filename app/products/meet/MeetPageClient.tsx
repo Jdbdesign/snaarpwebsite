@@ -10,6 +10,7 @@ import {
   MEET_AFTER_HERO,
 } from './meetHtml';
 import { startMeetFaq } from './meetFaq';
+import { startMeetSections } from './meetSections';
 
 // The Snaarp Meet hero is reconstructed in JSX (the row shell only) so the
 // video-call mockup canvas sits top-aligned and fills the right column the way
@@ -75,11 +76,14 @@ export default function MeetPageClient() {
     });
   }, []);
 
-  // FAQ accordion (plain DOM controller over the injected markup).
+  // Plain DOM controllers over the injected markup (no structural changes):
+  // the FAQ accordion plus the ported section interactions (use-case selector
+  // + integration connect/disconnect toggles).
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
-    return startMeetFaq(root);
+    const stops = [startMeetFaq(root), startMeetSections(root)];
+    return () => stops.forEach((stop) => stop());
   }, []);
 
   useScrollReveal(rootRef);

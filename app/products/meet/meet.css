@@ -374,22 +374,50 @@
    its contents, mirroring the hero fix. Desktop/laptop (<1440) unchanged.
    ===================================================================== */
 @media (min-width: 1440px) {
-  /* "Unlimited" (tpl 255 row): text col 256, media col 262. */
-  .snaarp-meet-page [data-dc-tpl="256"] { max-width: 620px !important; }
+  /* "Unlimited" (tpl 255 row): text col 256, media col 262. Let the media
+     column grow to the row's right edge. The photo card EXPANDS IN WIDTH only:
+     its height is pinned and aspect-ratio dropped to auto, so widening it shows
+     more of the photo horizontally (object-fit: cover) WITHOUT getting taller. */
+  /* The section photo cards are sized to MATCH THE HERO MOCKUP width/position:
+     same right edge, and the same card width as the hero canvas (tpl 68, a
+     640px base at zoom 1.12 => ~684px at 1440, growing to ~717px at >=1920).
+     Width-only expansion with a pinned height so the photos never tower. */
+  /* Media column is fixed to the hero mock width (684px) and right-anchored, so
+     the photo card lines up with the hero mockup's left + right edges. The text
+     column takes the remaining space on the left. */
+  .snaarp-meet-page [data-dc-tpl="256"] { flex: 1 1 420px !important; max-width: 520px !important; }
   .snaarp-meet-page [data-dc-tpl="262"] {
-    flex: 1 1 560px !important; max-width: 980px !important;
+    flex: 0 0 684px !important; max-width: 684px !important; margin-left: auto !important;
     display: flex !important; flex-direction: column !important; align-items: flex-end !important;
   }
-  /* the inner photo card is width:78% of its column — widen it so it fills */
-  .snaarp-meet-page [data-dc-tpl="262"] > [data-dc-tpl="263"] { width: 86% !important; }
+  .snaarp-meet-page [data-dc-tpl="262"] > [data-dc-tpl="263"] {
+    width: 684px !important; max-width: 100% !important;
+    aspect-ratio: auto !important;
+    height: 360px !important;
+  }
 
   /* "More Than Video" (tpl 413 row): text col 414, media col 425. */
-  .snaarp-meet-page [data-dc-tpl="414"] { max-width: 620px !important; }
+  .snaarp-meet-page [data-dc-tpl="414"] { flex: 1 1 420px !important; max-width: 520px !important; }
   .snaarp-meet-page [data-dc-tpl="425"] {
-    flex: 1 1 560px !important; max-width: 980px !important;
+    flex: 0 0 684px !important; max-width: 684px !important; margin-left: auto !important;
     display: flex !important; flex-direction: column !important; align-items: flex-end !important;
   }
-  .snaarp-meet-page [data-dc-tpl="425"] > [data-dc-tpl="426"] { width: 80% !important; }
+  .snaarp-meet-page [data-dc-tpl="425"] > [data-dc-tpl="426"] {
+    width: 684px !important; max-width: 100% !important;
+    aspect-ratio: auto !important;
+    height: 440px !important;
+  }
+
+  /* "Screen sharing" (tpl 277 row): media col 279 (laptop) on the LEFT, text
+     col 401 on the RIGHT. Spread the row edge-to-edge and widen the text column
+     so its content reaches the right content edge like the other sections,
+     instead of stopping short with a gap. */
+  .snaarp-meet-page [data-dc-tpl="278"] {
+    justify-content: space-between !important;
+  }
+  .snaarp-meet-page [data-dc-tpl="401"] {
+    flex: 1 1 520px !important; max-width: 640px !important; margin-left: auto !important;
+  }
 
   /* "Meet anywhere" dark panel (tpl 471): its container uses max-width:1440px
      (not 1280) so the global recipe misses it — go full-bleed here too, and
@@ -398,4 +426,18 @@
     max-width: none !important; padding-left: 120px !important; padding-right: 120px !important;
   }
   .snaarp-meet-page [data-dc-tpl="504"] { flex: 1 1 420px !important; max-width: 620px !important; }
+}
+
+/* At very wide screens the hero mock canvas grows to ~717px (zoom 1.12 on its
+   640px base). Match the section photo cards to that so their width tracks the
+   hero mockup rather than ballooning. */
+@media (min-width: 1920px) {
+  .snaarp-meet-page [data-dc-tpl="262"],
+  .snaarp-meet-page [data-dc-tpl="425"] {
+    flex: 0 0 717px !important; max-width: 717px !important;
+  }
+  .snaarp-meet-page [data-dc-tpl="262"] > [data-dc-tpl="263"],
+  .snaarp-meet-page [data-dc-tpl="425"] > [data-dc-tpl="426"] {
+    width: 717px !important;
+  }
 }

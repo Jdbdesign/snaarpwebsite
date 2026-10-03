@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WorkDrivePage } from '@/components/work-drive/WorkDrivePage';
+import WorkDrivePageClient from './WorkDrivePageClient';
 
 export const metadata: Metadata = {
-  title: 'Work Drive — One shared drive for every team file | Snaarp',
-  description: 'Store, share, and find every team file in one connected work drive, already linked to Mail, Teams, and the rest of the Snaarp Stack.',
+  title: 'Snaarp Drive — Everything Your Business Creates. One Place to Keep It.',
+  description:
+    'Store, organise, share and access all your files across the Snaarp ecosystem. From everyday documents to large media files — and a secure data room for sensitive information and due diligence.',
 };
 
 export default function WorkDriveProductPage() {
@@ -13,7 +14,7 @@ export default function WorkDriveProductPage() {
     <>
       <Header />
       <main id="main-content">
-        <WorkDrivePage />
+        <WorkDrivePageClient />
       </main>
       <Footer />
     </>

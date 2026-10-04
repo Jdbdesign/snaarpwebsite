@@ -1,0 +1,127 @@
+/* =====================================================================
+   Document — hand-authored hover polish + reveal accents. Scoped under
+   .snaarp-docs-page, targeting stable data-dc-tpl numbers / scp* behaviour
+   classes. Kept separate from the auto-generated docs.css so regenerating
+   that file won't wipe these. Mirrors the PDF/Meet/Work-Drive pages.
+
+   NEVER transform a zoom-scaled mockup canvas (tpl 69) or a display:contents
+   wrapper — the reveal tagging in the client already excludes the mock.
+   ===================================================================== */
+
+/* ---- Hero + CTA buttons (tpl 58 .scp2 primary; CTA 445 .scpe primary,
+        447 .scpf outline; 226 .scpb) ---- */
+.snaarp-docs-page [data-dc-tpl="58"],
+.snaarp-docs-page .scp2,
+.snaarp-docs-page .scpe,
+.snaarp-docs-page .scpf,
+.snaarp-docs-page .scpb {
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease,
+    background 0.2s ease, border-color 0.2s ease !important;
+  will-change: transform;
+}
+.snaarp-docs-page [data-dc-tpl="58"]:hover,
+.snaarp-docs-page .scp2:hover,
+.snaarp-docs-page .scpe:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(124, 58, 237, 0.9) 0px 22px 38px -14px !important;
+}
+.snaarp-docs-page .scpf:hover {
+  transform: translateY(-2px);
+  border-color: rgb(124, 58, 237) !important;
+  box-shadow: rgba(124, 58, 237, 0.28) 0px 14px 26px -14px !important;
+}
+.snaarp-docs-page .scpb:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(124, 58, 237, 0.18) 0px 12px 24px -14px !important;
+}
+
+/* ---- Feature cards (tpl 203 .scpa) ---- */
+.snaarp-docs-page [data-dc-tpl="203"] {
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s ease,
+    border-color 0.2s ease, box-shadow 0.22s ease !important;
+}
+.snaarp-docs-page [data-dc-tpl="203"]:hover {
+  transform: translateY(-4px);
+  background: rgb(251, 248, 255) !important;
+  border-color: rgb(228, 214, 252) !important;
+  box-shadow: rgba(124, 58, 237, 0.16) 0px 16px 30px -18px !important;
+}
+
+/* ---- Ecosystem tiles (tpl 373 .scpd) ---- */
+.snaarp-docs-page [data-dc-tpl="373"] {
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s ease,
+    border-color 0.2s ease, box-shadow 0.22s ease !important;
+}
+.snaarp-docs-page [data-dc-tpl="373"]:hover {
+  transform: translateY(-3px);
+  border-color: rgba(124, 58, 237, 0.25) !important;
+  box-shadow: rgba(124, 58, 237, 0.16) 0px 14px 28px -18px !important;
+}
+
+/* ---- Template cards (tpl 387 .scp4) ---- */
+.snaarp-docs-page [data-dc-tpl="387"] {
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s ease,
+    background 0.2s ease, box-shadow 0.22s ease !important;
+}
+.snaarp-docs-page [data-dc-tpl="387"]:hover {
+  transform: translateY(-4px);
+  border-color: rgb(206, 180, 250) !important;
+  background: rgb(250, 247, 254) !important;
+  box-shadow: rgba(124, 58, 237, 0.16) 0px 14px 26px -18px !important;
+}
+
+/* ---- "View all FAQs" link (tpl 452) — arrow slide + colour ---- */
+.snaarp-docs-page [data-dc-tpl="452"] {
+  transition: gap 0.2s ease, color 0.2s ease !important;
+}
+.snaarp-docs-page [data-dc-tpl="452"]:hover {
+  gap: 12px !important;
+  color: rgb(124, 58, 237) !important;
+}
+
+/* ---- FAQ items (tpl 458) ---- */
+.snaarp-docs-page [data-dc-tpl="458"] {
+  transition: border-color 0.2s ease, box-shadow 0.22s ease !important;
+}
+.snaarp-docs-page [data-dc-tpl="458"]:hover {
+  border-color: rgb(211, 188, 250) !important;
+  box-shadow: rgba(124, 58, 237, 0.14) 0px 10px 22px -14px !important;
+}
+
+/* =====================================================================
+   Reveal accent — springy scale-in for batched card grids. The shared
+   reveal system (globals.css + useScrollReveal) handles the base fade/rise;
+   .docs-pop adds a gentle overshoot. Applied to feature + FAQ cards in the
+   client's useLayoutEffect.
+   ===================================================================== */
+.snaarp-docs-page .docs-pop {
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-docs-page [data-dc-tpl="58"],
+  .snaarp-docs-page .scp2,
+  .snaarp-docs-page .scpe,
+  .snaarp-docs-page .scpf,
+  .snaarp-docs-page .scpb,
+  .snaarp-docs-page [data-dc-tpl="203"],
+  .snaarp-docs-page [data-dc-tpl="373"],
+  .snaarp-docs-page [data-dc-tpl="387"],
+  .snaarp-docs-page [data-dc-tpl="452"],
+  .snaarp-docs-page [data-dc-tpl="458"] {
+    transition: none !important;
+  }
+  .snaarp-docs-page [data-dc-tpl="58"]:hover,
+  .snaarp-docs-page .scp2:hover,
+  .snaarp-docs-page .scpe:hover,
+  .snaarp-docs-page .scpf:hover,
+  .snaarp-docs-page .scpb:hover,
+  .snaarp-docs-page [data-dc-tpl="203"]:hover,
+  .snaarp-docs-page [data-dc-tpl="373"]:hover,
+  .snaarp-docs-page [data-dc-tpl="387"]:hover {
+    transform: none !important;
+  }
+  .snaarp-docs-page .docs-pop {
+    transition-timing-function: ease !important;
+  }
+}

@@ -401,3 +401,47 @@
     grid-template-columns: repeat(6, 1fr) !important;
   }
 }
+
+/* =====================================================================
+   Large screens (>=1440) ONLY: the hero goes full-bleed and its mockup is
+   pushed to the right content edge (120px from the viewport). The "Don't
+   Start With a Blank Page" section (container tpl 209) and the "Great
+   Documents Are Written Together" section (container tpl 270) share the same
+   full-bleed container, but their inner flex columns stay bunched toward the
+   centre, so the Blank-page mockup+image and the Great-documents text column
+   do NOT reach the hero's right edge.
+
+   Fix: spread both section rows edge-to-edge (space-between) so the right-hand
+   column lands on the right content edge, matching the hero mockup. For the
+   Blank-page section the right column is the mockup+image (tpl 217): let it
+   shrink to its content and right-align the fixed 690px canvas (tpl 218) so
+   its right edge sits on the content edge. For the Great-documents section the
+   right column is the text (tpl 350): space-between pushes its box to the edge.
+   Desktop/laptop (1024-1439) and mobile (<1024) are untouched.
+   ===================================================================== */
+@media (min-width: 1440px) {
+  .snaarp-docs-page [data-dc-tpl="209"],
+  .snaarp-docs-page [data-dc-tpl="270"] {
+    justify-content: space-between !important;
+  }
+
+  /* Blank page: right column = mockup+image. Shrink to content and right-align
+     the canvas inside it so the mockup's right edge meets the content edge. */
+  .snaarp-docs-page [data-dc-tpl="217"] {
+    flex: 0 1 auto !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+  }
+  .snaarp-docs-page [data-dc-tpl="218"] {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+
+  /* Great documents: right column = text. Pin it to the right content edge. */
+  .snaarp-docs-page [data-dc-tpl="350"] {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+}

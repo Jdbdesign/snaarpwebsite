@@ -1,0 +1,111 @@
+/* =====================================================================
+   Snaarp Slides (/products/presentation) — hover polish + scroll reveal.
+   Hand-authored; kept separate from presentation.css so regenerating the
+   base stylesheet never wipes these. All rules scoped under
+   .snaarp-presentation-page. Mockup canvas (tpl 69) and display:contents
+   injection wrappers are NEVER transformed.
+   ===================================================================== */
+
+/* ---- Interactive hover lift / shadow ------------------------------- */
+/* Hero + section CTAs, template cards, ecosystem tiles, FAQ items.      */
+
+.snaarp-presentation-page [data-dc-tpl="252"],   /* template category button (scp1) */
+.snaarp-presentation-page [data-dc-tpl="214"],   /* small action button (scp2) */
+.snaarp-presentation-page [data-dc-tpl="268"],   /* template thumbnail button */
+.snaarp-presentation-page [data-dc-tpl="327"],   /* ecosystem app tile (scpj) */
+.snaarp-presentation-page [data-dc-tpl="357"],   /* final CTA (scp4) */
+.snaarp-presentation-page [data-dc-tpl="370"] {  /* FAQ item card */
+  transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.22s cubic-bezier(0.22, 0.61, 0.36, 1),
+              border-color 0.22s ease, background-color 0.22s ease !important;
+  will-change: transform;
+}
+
+/* Cards: gentle lift + deeper shadow + purple border tint on hover. */
+.snaarp-presentation-page [data-dc-tpl="268"]:hover,
+.snaarp-presentation-page [data-dc-tpl="327"]:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 18px 34px -18px,
+              rgba(124, 58, 237, 0.10) 0px 0px 0px 1px !important;
+}
+
+.snaarp-presentation-page [data-dc-tpl="370"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgb(124, 58, 237) !important;
+  box-shadow: rgba(124, 58, 237, 0.30) 0px 10px 22px -14px !important;
+}
+
+/* Buttons: slight lift + purple glow, no border shift. */
+.snaarp-presentation-page [data-dc-tpl="252"]:hover,
+.snaarp-presentation-page [data-dc-tpl="214"]:hover,
+.snaarp-presentation-page [data-dc-tpl="357"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(124, 58, 237, 0.38) 0px 12px 26px -12px !important;
+}
+.snaarp-presentation-page [data-dc-tpl="252"]:active,
+.snaarp-presentation-page [data-dc-tpl="214"]:active,
+.snaarp-presentation-page [data-dc-tpl="357"]:active {
+  transform: translateY(0) !important;
+}
+
+/* Template thumbnail hover overlay (scpi, tpl 306) reveals on card hover. */
+.snaarp-presentation-page [data-dc-tpl="268"]:hover [data-dc-tpl="306"],
+.snaarp-presentation-page [data-dc-tpl="269"]:hover [data-dc-tpl="306"],
+.snaarp-presentation-page [data-dc-tpl="306"]:hover {
+  opacity: 1 !important;
+}
+
+/* "View all" / inline anchor links — subtle slide. */
+.snaarp-presentation-page a.scpj:hover { transform: translateY(-2px) !important; }
+
+/* ---- Scroll reveal -------------------------------------------------- */
+.snaarp-presentation-page [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.snaarp-presentation-page [data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Springy pop variant for card grids. */
+.snaarp-presentation-page [data-reveal].presentation-pop {
+  transform: translateY(16px) scale(0.965);
+  transition: opacity 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.snaarp-presentation-page [data-reveal].presentation-pop.is-revealed {
+  transform: translateY(0) scale(1);
+}
+
+/* ---- Never animate the mockup canvas or injection wrappers ---------- */
+.snaarp-presentation-page [data-dc-tpl="69"],
+.snaarp-presentation-page [data-dc-tpl="69"] * {
+  transition: none !important;
+}
+.snaarp-presentation-page [data-dc-tpl="69"]:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ---- Reduced motion ------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-presentation-page [data-reveal],
+  .snaarp-presentation-page [data-reveal].presentation-pop {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .snaarp-presentation-page [data-dc-tpl="252"]:hover,
+  .snaarp-presentation-page [data-dc-tpl="214"]:hover,
+  .snaarp-presentation-page [data-dc-tpl="268"]:hover,
+  .snaarp-presentation-page [data-dc-tpl="327"]:hover,
+  .snaarp-presentation-page [data-dc-tpl="357"]:hover,
+  .snaarp-presentation-page [data-dc-tpl="370"]:hover {
+    transform: none !important;
+  }
+}

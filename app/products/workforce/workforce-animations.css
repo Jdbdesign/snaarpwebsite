@@ -1,0 +1,195 @@
+/* =====================================================================
+   Snaarp Workforce (/products/workforce) — hover polish + scroll reveal.
+   Hand-authored; kept separate from workforce.css so regenerating the base
+   stylesheet never wipes these. All rules scoped under
+   .snaarp-workforce-page. The HR dashboard mockup canvas (tpl 74) and the
+   display:contents injection wrappers are NEVER transformed.
+   ===================================================================== */
+
+/* ---- Interactive hover lift / shadow ------------------------------- */
+.snaarp-workforce-page [data-dc-tpl="643"],   /* AI section mini-card (scp7) */
+.snaarp-workforce-page [data-dc-tpl="665"],   /* feature card (scp8) */
+.snaarp-workforce-page [data-dc-tpl="747"],   /* ecosystem tile (scpa) */
+.snaarp-workforce-page [data-dc-tpl="732"],   /* business CTA button */
+.snaarp-workforce-page [data-dc-tpl="810"],   /* final CTA button */
+.snaarp-workforce-page [data-dc-tpl="812"] {  /* final CTA secondary button */
+  transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.22s cubic-bezier(0.22, 0.61, 0.36, 1),
+              border-color 0.22s ease, background-color 0.22s ease !important;
+  will-change: transform;
+}
+
+/* Cards: gentle lift + deeper purple-tinted shadow + border tint. */
+.snaarp-workforce-page [data-dc-tpl="643"]:hover,
+.snaarp-workforce-page [data-dc-tpl="665"]:hover,
+.snaarp-workforce-page [data-dc-tpl="747"]:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgb(201, 169, 255) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 18px 34px -18px,
+              rgba(124, 58, 237, 0.10) 0px 0px 0px 1px !important;
+}
+
+/* Buttons: slight lift + purple glow. */
+.snaarp-workforce-page [data-dc-tpl="732"]:hover,
+.snaarp-workforce-page [data-dc-tpl="810"]:hover,
+.snaarp-workforce-page [data-dc-tpl="812"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(124, 58, 237, 0.38) 0px 12px 26px -12px !important;
+}
+.snaarp-workforce-page [data-dc-tpl="732"]:active,
+.snaarp-workforce-page [data-dc-tpl="810"]:active,
+.snaarp-workforce-page [data-dc-tpl="812"]:active {
+  transform: translateY(0) !important;
+}
+
+/* ---- Scroll reveal -------------------------------------------------- */
+.snaarp-workforce-page [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.snaarp-workforce-page [data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Springy pop variant for card grids. */
+.snaarp-workforce-page [data-reveal].workforce-pop {
+  transform: translateY(16px) scale(0.965);
+  transition: opacity 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.snaarp-workforce-page [data-reveal].workforce-pop.is-revealed {
+  transform: translateY(0) scale(1);
+}
+
+/* ---- Never animate the mockup canvas or injection wrappers ---------- */
+.snaarp-workforce-page [data-dc-tpl="74"],
+.snaarp-workforce-page [data-dc-tpl="74"] * {
+  transition: none !important;
+}
+.snaarp-workforce-page [data-dc-tpl="74"]:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ---- Reduced motion ------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-workforce-page [data-reveal],
+  .snaarp-workforce-page [data-reveal].workforce-pop {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .snaarp-workforce-page [data-dc-tpl="643"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="665"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="747"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="732"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="810"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="812"]:hover {
+    transform: none !important;
+  }
+}
+
+/* =====================================================================
+   Additional hover coverage — buttons/links the base recipe missed.
+   These carry the bundle's default `transition: all`, so a transform/shadow
+   on hover animates cleanly. Grouped by role:
+     - Primary filled purple CTAs: hero (64), AI (593), analytics (679),
+       AI-chat send (639)  -> lift + purple glow.
+     - Secondary / outline white buttons: hero "Book a Demo" (66), AI "New
+       chat" (607), analytics "Export" (684)  -> lift + soft shadow + tint.
+     - AI suggestion chips (631)  -> small lift + glow.
+     - "View all features" link (661)  -> subtle slide.
+     - Analytics tab buttons (689)  -> background tint (no lift; they sit in a
+       tab bar, a lift would look detached).
+     - AI model chips (648 / 651)  -> subtle background tint.
+   None of these live inside the hero mockup canvas, so none affect the
+   zoom-scaled artboard.
+   ===================================================================== */
+.snaarp-workforce-page [data-dc-tpl="64"],
+.snaarp-workforce-page [data-dc-tpl="66"],
+.snaarp-workforce-page [data-dc-tpl="593"],
+.snaarp-workforce-page [data-dc-tpl="679"],
+.snaarp-workforce-page [data-dc-tpl="639"],
+.snaarp-workforce-page [data-dc-tpl="607"],
+.snaarp-workforce-page [data-dc-tpl="684"],
+.snaarp-workforce-page [data-dc-tpl="631"],
+.snaarp-workforce-page [data-dc-tpl="661"],
+.snaarp-workforce-page [data-dc-tpl="689"],
+.snaarp-workforce-page [data-dc-tpl="648"],
+.snaarp-workforce-page [data-dc-tpl="651"] {
+  transition: transform 0.2s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.2s cubic-bezier(0.22, 0.61, 0.36, 1),
+              border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease !important;
+  will-change: transform;
+}
+
+/* Primary filled purple CTAs — lift + purple glow. */
+.snaarp-workforce-page [data-dc-tpl="64"]:hover,
+.snaarp-workforce-page [data-dc-tpl="593"]:hover,
+.snaarp-workforce-page [data-dc-tpl="679"]:hover,
+.snaarp-workforce-page [data-dc-tpl="639"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(124, 58, 237, 0.4) 0px 12px 26px -12px !important;
+}
+
+/* Secondary / outline white buttons — lift + soft shadow + purple border tint. */
+.snaarp-workforce-page [data-dc-tpl="66"]:hover,
+.snaarp-workforce-page [data-dc-tpl="607"]:hover,
+.snaarp-workforce-page [data-dc-tpl="684"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgb(124, 58, 237) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 10px 22px -14px !important;
+}
+
+/* AI suggestion chips — small lift + glow. */
+.snaarp-workforce-page [data-dc-tpl="631"]:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: rgba(124, 58, 237, 0.34) 0px 8px 18px -10px !important;
+}
+
+/* "View all features" link — subtle slide to the right. */
+.snaarp-workforce-page [data-dc-tpl="661"]:hover {
+  transform: translateX(3px) !important;
+}
+
+/* Analytics tab buttons — background tint, no lift (they sit in a tab bar). */
+.snaarp-workforce-page [data-dc-tpl="689"]:hover {
+  background-color: rgba(124, 58, 237, 0.08) !important;
+  color: rgb(124, 58, 237) !important;
+}
+
+/* AI model chips — subtle background tint. */
+.snaarp-workforce-page [data-dc-tpl="648"]:hover,
+.snaarp-workforce-page [data-dc-tpl="651"]:hover {
+  background-color: rgba(124, 58, 237, 0.08) !important;
+}
+
+/* Press feedback for the new filled/outline CTAs. */
+.snaarp-workforce-page [data-dc-tpl="64"]:active,
+.snaarp-workforce-page [data-dc-tpl="66"]:active,
+.snaarp-workforce-page [data-dc-tpl="593"]:active,
+.snaarp-workforce-page [data-dc-tpl="679"]:active,
+.snaarp-workforce-page [data-dc-tpl="639"]:active,
+.snaarp-workforce-page [data-dc-tpl="631"]:active {
+  transform: translateY(0) !important;
+}
+
+/* Respect reduced motion for all the above. */
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-workforce-page [data-dc-tpl="64"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="66"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="593"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="679"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="639"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="607"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="684"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="631"]:hover,
+  .snaarp-workforce-page [data-dc-tpl="661"]:hover {
+    transform: none !important;
+  }
+}

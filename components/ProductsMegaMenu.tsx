@@ -98,6 +98,7 @@ export const CATEGORIES: ProductCategory[] = [
       { name: 'Books', title: 'Invoicing & bookkeeping', desc: 'Invoicing & bookkeeping', icon: { kind: 'img', src: '/assets/icons/logos/books.svg' }, href: '/products/books', platforms: ['web'] },
       // { name: 'Accounting Software', desc: 'Full accounting & reporting', icon: { kind: 'lucide', Icon: Calculator }, href: '/products/accounting-software', platforms: ['web'] },
       { name: 'Project Management', title: 'Project management', desc: 'Sprints, tasks & tracking', icon: { kind: 'img', src: '/assets/icons/logos/project-management.svg' }, href: '/products/project-management', platforms: ['web'] },
+      { name: 'Workforce', title: 'HR & people', desc: 'People, payroll & performance', icon: { kind: 'img', src: '/assets/icons/logos/workforce.svg' }, href: '/products/workforce', platforms: ['web'] },
       // { name: 'Elearn', desc: 'Team training & onboarding', icon: { kind: 'lucide', Icon: GraduationCap }, href: '/products/elearn', platforms: ['ios', 'android', 'web'] },
       { name: 'Business Card', title: 'Digital business card', desc: 'Digital business card sharing', icon: { kind: 'img', src: '/assets/icons/logos/business-card.svg' }, href: '/products/business-card', platforms: ['ios', 'android'] },
       { name: 'ID Card', title: 'Digital ID card', desc: 'Digital staff ID & access', icon: { kind: 'img', src: '/assets/icons/logos/id-card.svg' }, href: '/products/digital-id-card', platforms: ['ios', 'android', 'web', 'windows', 'macos'] },

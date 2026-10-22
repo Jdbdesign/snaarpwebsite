@@ -1,0 +1,113 @@
+/* =====================================================================
+   Snaarp 360 landing page — hover polish + scroll reveal.
+   Hand-authored; scoped under .snaarp-360-page. Hover/reveal selectors are
+   added after probing the live sections (CTAs, app cards, pricing, etc.).
+   ===================================================================== */
+
+/* ---- Scroll reveal -------------------------------------------------- */
+.snaarp-360-page [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.snaarp-360-page [data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.snaarp-360-page [data-reveal].s360-pop {
+  transform: translateY(16px) scale(0.965);
+  transition: opacity 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.snaarp-360-page [data-reveal].s360-pop.is-revealed {
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-360-page [data-reveal],
+  .snaarp-360-page [data-reveal].s360-pop {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* =====================================================================
+   Hover polish — CTAs, cards, toggles, app tiles. All elements carry the
+   bundle's `transition: all`, so a transform/shadow/bg change on hover
+   animates cleanly. Scoped under .snaarp-360-page.
+   ===================================================================== */
+.snaarp-360-page [data-dc-tpl="336"],   /* hero form CTA */
+.snaarp-360-page [data-dc-tpl="424"],   /* pricing CTA */
+.snaarp-360-page [data-dc-tpl="511"],   /* final CTA */
+.snaarp-360-page [data-dc-tpl="383"],   /* See all applications */
+.snaarp-360-page [data-dc-tpl="433"],   /* See full comparison */
+.snaarp-360-page [data-dc-tpl="376"],   /* application card */
+.snaarp-360-page [data-dc-tpl="399"],   /* pricing plan card */
+.snaarp-360-page [data-dc-tpl="394"],   /* billing toggle: Monthly */
+.snaarp-360-page [data-dc-tpl="395"],   /* billing toggle: Yearly */
+.snaarp-360-page [data-dc-tpl="148"],   /* hero app icon */
+.snaarp-360-page [data-dc-tpl="153"] {  /* hero "More Apps" icon */
+  transition: transform 0.2s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.2s cubic-bezier(0.22, 0.61, 0.36, 1),
+              border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease !important;
+  will-change: transform;
+}
+
+/* Primary filled purple CTAs — lift + purple glow. */
+.snaarp-360-page [data-dc-tpl="336"]:hover,
+.snaarp-360-page [data-dc-tpl="424"]:hover,
+.snaarp-360-page [data-dc-tpl="511"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: rgba(124, 58, 237, 0.42) 0px 14px 28px -12px !important;
+}
+.snaarp-360-page [data-dc-tpl="336"]:active,
+.snaarp-360-page [data-dc-tpl="424"]:active,
+.snaarp-360-page [data-dc-tpl="511"]:active {
+  transform: translateY(0) !important;
+}
+
+/* Secondary buttons — lift + soft shadow + purple border tint. */
+.snaarp-360-page [data-dc-tpl="383"]:hover,
+.snaarp-360-page [data-dc-tpl="433"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgb(124, 58, 237) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 10px 22px -14px !important;
+}
+
+/* Application cards + pricing plan card — gentle lift + purple-tinted shadow. */
+.snaarp-360-page [data-dc-tpl="376"]:hover,
+.snaarp-360-page [data-dc-tpl="399"]:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: rgba(124, 58, 237, 0.22) 0px 18px 34px -18px !important;
+}
+
+/* Billing toggle buttons — background tint. */
+.snaarp-360-page [data-dc-tpl="394"]:hover,
+.snaarp-360-page [data-dc-tpl="395"]:hover {
+  background-color: rgba(124, 58, 237, 0.08) !important;
+}
+
+/* Hero app icon tiles — small lift. */
+.snaarp-360-page [data-dc-tpl="148"]:hover,
+.snaarp-360-page [data-dc-tpl="153"]:hover {
+  transform: translateY(-2px) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snaarp-360-page [data-dc-tpl="336"]:hover,
+  .snaarp-360-page [data-dc-tpl="424"]:hover,
+  .snaarp-360-page [data-dc-tpl="511"]:hover,
+  .snaarp-360-page [data-dc-tpl="383"]:hover,
+  .snaarp-360-page [data-dc-tpl="433"]:hover,
+  .snaarp-360-page [data-dc-tpl="376"]:hover,
+  .snaarp-360-page [data-dc-tpl="399"]:hover,
+  .snaarp-360-page [data-dc-tpl="148"]:hover,
+  .snaarp-360-page [data-dc-tpl="153"]:hover {
+    transform: none !important;
+  }
+}

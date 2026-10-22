@@ -191,14 +191,9 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef }: ProductsMegaMe
             })}
           </div>
 
-          {/* Promo image panel */}
-          <a href="/pricing" className="mega-menu-hero" onClick={onClose}>
+          {/* Promo image panel (image only) */}
+          <a href="/pricing" className="mega-menu-hero" onClick={onClose} aria-label="See pricing">
             <span className="mega-menu-hero-media" aria-hidden="true" />
-            <span className="mega-menu-hero-overlay" aria-hidden="true" />
-            <span className="mega-menu-hero-content">
-              <span className="mega-menu-hero-title">Everything your business runs on, in one place</span>
-              <span className="mega-menu-hero-cta">Create a free account</span>
-            </span>
           </a>
         </div>
       </div>

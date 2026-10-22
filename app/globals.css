@@ -575,9 +575,11 @@ body {
   position: absolute;
   inset: 0;
   z-index: -2;
-  background-image: url('/assets/products-menu-promo.jpg');
+  background-image: url('/assets/products-menu-promo.png');
   background-size: cover;
-  background-position: center;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-color: hsl(258, 70%, 14%);
   transform: scale(1);
   transition: transform 600ms var(--ease-out);
   will-change: transform;

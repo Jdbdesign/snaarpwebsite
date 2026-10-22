@@ -577,7 +577,7 @@ body {
   z-index: -2;
   background-image: url('/assets/products-menu-promo.png');
   background-size: cover;
-  background-position: top center;
+  background-position: center 88%;
   background-repeat: no-repeat;
   background-color: hsl(258, 70%, 14%);
   transform: scale(1);

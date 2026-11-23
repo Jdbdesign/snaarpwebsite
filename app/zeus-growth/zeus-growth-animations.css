@@ -1,0 +1,75 @@
+/* =====================================================================
+   ZEUS Growth Bundle — hover polish + scroll reveal. Scoped under
+   .zeus-growth-page. Hover selectors added after probing the live sections.
+   ===================================================================== */
+.zeus-growth-page [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.zeus-growth-page [data-reveal].is-revealed { opacity: 1; transform: translateY(0); }
+
+.zeus-growth-page [data-reveal].zeus-pop {
+  transform: translateY(16px) scale(0.965);
+  transition: opacity 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.zeus-growth-page [data-reveal].zeus-pop.is-revealed { transform: translateY(0) scale(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .zeus-growth-page [data-reveal],
+  .zeus-growth-page [data-reveal].zeus-pop {
+    opacity: 1 !important; transform: none !important; transition: none !important;
+  }
+}
+
+/* =====================================================================
+   Hover polish — CTAs + hero credit cards. Scoped under .zeus-growth-page.
+   ===================================================================== */
+.zeus-growth-page [data-dc-tpl="146"],  /* hero form: Claim my £499 */
+.zeus-growth-page [data-dc-tpl="249"],  /* bundle: JUST £499 */
+.zeus-growth-page [data-dc-tpl="301"],  /* possibilities: Try your own numbers */
+.zeus-growth-page [data-dc-tpl="371"],  /* offer: Claim my £499 */
+.zeus-growth-page [data-dc-tpl="48"],   /* hero credit card FIND */
+.zeus-growth-page [data-dc-tpl="60"],   /* hero credit card VALIDATE */
+.zeus-growth-page [data-dc-tpl="68"] {  /* hero credit card SEND */
+  transition: transform 0.2s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.2s cubic-bezier(0.22, 0.61, 0.36, 1),
+              filter 0.2s ease !important;
+  will-change: transform;
+}
+
+/* Primary CTAs — lift + glow (green buttons keep their colour; glow is neutral-dark). */
+.zeus-growth-page [data-dc-tpl="146"]:hover,
+.zeus-growth-page [data-dc-tpl="249"]:hover,
+.zeus-growth-page [data-dc-tpl="301"]:hover,
+.zeus-growth-page [data-dc-tpl="371"]:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.05) !important;
+  box-shadow: rgba(31, 166, 74, 0.4) 0px 14px 28px -12px !important;
+}
+.zeus-growth-page [data-dc-tpl="146"]:active,
+.zeus-growth-page [data-dc-tpl="249"]:active,
+.zeus-growth-page [data-dc-tpl="301"]:active,
+.zeus-growth-page [data-dc-tpl="371"]:active { transform: translateY(0) !important; }
+
+/* Hero credit cards — gentle lift + purple-tinted shadow. */
+.zeus-growth-page [data-dc-tpl="48"]:hover,
+.zeus-growth-page [data-dc-tpl="60"]:hover,
+.zeus-growth-page [data-dc-tpl="68"]:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: rgba(124, 58, 237, 0.3) 0px 14px 28px -12px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zeus-growth-page [data-dc-tpl="146"]:hover,
+  .zeus-growth-page [data-dc-tpl="249"]:hover,
+  .zeus-growth-page [data-dc-tpl="301"]:hover,
+  .zeus-growth-page [data-dc-tpl="371"]:hover,
+  .zeus-growth-page [data-dc-tpl="48"]:hover,
+  .zeus-growth-page [data-dc-tpl="60"]:hover,
+  .zeus-growth-page [data-dc-tpl="68"]:hover { transform: none !important; }
+}

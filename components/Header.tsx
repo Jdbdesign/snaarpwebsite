@@ -2,17 +2,22 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ProductsMegaMenu } from '@/components/ProductsMegaMenu';
 import { SolutionMegaMenu } from '@/components/SolutionMegaMenu';
+import { ResourcesMegaMenu } from '@/components/ResourcesMegaMenu';
 import { DownloadMegaMenu } from '@/components/DownloadMegaMenu';
 import { LoginMegaMenu } from '@/components/LoginMegaMenu';
 import { CurrencySwitcher } from '@/components/currency/CurrencySwitcher';
 
 export function Header() {
+  const pathname = usePathname();
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const [isSolutionOpen, setIsSolutionOpen] = useState(false);
   const solutionTriggerRef = useRef<HTMLButtonElement>(null);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
+  const resourcesTriggerRef = useRef<HTMLButtonElement>(null);
   const [isDownloadOpen, setIsDownloadOpen] = useState(false);
   const downloadTriggerRef = useRef<HTMLButtonElement>(null);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -23,12 +28,23 @@ export function Header() {
   // pre-scrolled to their category, instead of routing to a dead link.
   const [forceCategoryId, setForceCategoryId] = useState<string | null>(null);
 
+  const isResourcesActive = Boolean(pathname?.startsWith('/resources'));
+
+  useEffect(() => {
+    setIsProductsOpen(false);
+    setIsSolutionOpen(false);
+    setIsResourcesOpen(false);
+    setIsDownloadOpen(false);
+    setIsLoginOpen(false);
+  }, [pathname]);
+
   useEffect(() => {
     function onOpenProductsMenu(e: Event) {
       const detail = (e as CustomEvent<{ categoryId?: string }>).detail;
       setForceCategoryId(detail?.categoryId ?? null);
       setIsProductsOpen(true);
       setIsSolutionOpen(false);
+      setIsResourcesOpen(false);
       setIsDownloadOpen(false);
       setIsLoginOpen(false);
     }
@@ -45,7 +61,7 @@ export function Header() {
           </Link>
 
           <nav aria-label="Primary navigation" className="hidden md:block">
-            <ul className="flex items-center gap-8 list-none m-0 p-0">
+            <ul className="flex items-center gap-4 lg:gap-6 xl:gap-8 list-none m-0 p-0">
               <li>
                 <button
                   ref={triggerRef}
@@ -57,6 +73,7 @@ export function Header() {
                     setIsProductsOpen((open) => !open);
                     setForceCategoryId(null);
                     setIsSolutionOpen(false);
+                    setIsResourcesOpen(false);
                     setIsDownloadOpen(false);
                     setIsLoginOpen(false);
                   }}
@@ -84,6 +101,7 @@ export function Header() {
                   onClick={() => {
                     setIsSolutionOpen((open) => !open);
                     setIsProductsOpen(false);
+                    setIsResourcesOpen(false);
                     setIsDownloadOpen(false);
                     setIsLoginOpen(false);
                   }}
@@ -101,7 +119,35 @@ export function Header() {
                   </svg>
                 </button>
               </li>
-              <li><Link href="/pricing" className="nav-link">Pricing</Link></li>
+              <li>
+                <button
+                  ref={resourcesTriggerRef}
+                  type="button"
+                  className={`nav-link inline-flex items-center gap-1 min-h-[44px]${isResourcesActive ? ' font-semibold text-[var(--color-brand)]' : ''}`}
+                  aria-haspopup="true"
+                  aria-expanded={isResourcesOpen}
+                  onClick={() => {
+                    setIsResourcesOpen((open) => !open);
+                    setIsProductsOpen(false);
+                    setIsSolutionOpen(false);
+                    setIsDownloadOpen(false);
+                    setIsLoginOpen(false);
+                  }}
+                >
+                  Resources
+                  <svg
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    aria-hidden="true"
+                    className={`nav-chevron${isResourcesOpen ? ' nav-chevron-open' : ''}`}
+                  >
+                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </li>
+              <li><Link href="/pricing" className={`nav-link${pathname === '/pricing' ? ' font-semibold text-[var(--color-brand)]' : ''}`}>Pricing</Link></li>
               <li>
                 <button
                   ref={downloadTriggerRef}
@@ -113,6 +159,7 @@ export function Header() {
                     setIsDownloadOpen((open) => !open);
                     setIsProductsOpen(false);
                     setIsSolutionOpen(false);
+                    setIsResourcesOpen(false);
                     setIsLoginOpen(false);
                   }}
                 >
@@ -145,6 +192,7 @@ export function Header() {
               setIsLoginOpen((open) => !open);
               setIsProductsOpen(false);
               setIsSolutionOpen(false);
+              setIsResourcesOpen(false);
               setIsDownloadOpen(false);
             }}
           >
@@ -177,6 +225,11 @@ export function Header() {
         isOpen={isSolutionOpen}
         onClose={() => setIsSolutionOpen(false)}
         triggerRef={solutionTriggerRef}
+      />
+      <ResourcesMegaMenu
+        isOpen={isResourcesOpen}
+        onClose={() => setIsResourcesOpen(false)}
+        triggerRef={resourcesTriggerRef}
       />
       <DownloadMegaMenu
         isOpen={isDownloadOpen}

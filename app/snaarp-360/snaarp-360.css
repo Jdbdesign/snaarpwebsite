@@ -392,6 +392,22 @@
 .snaarp-360-page .s360-hero-row [data-dc-tpl="286"] {
   flex: 0 1 440px !important; min-width: 0 !important; max-width: 460px !important; margin-left: auto !important;
 }
+
+/* ---- Desktop / laptop (981-1280): keep the 2-column hero from wrapping ----
+   At these widths the content column (max-width 820) + the fixed form (440)
+   plus the gap exceed the row, so the form dropped onto a second row. Set the
+   row to nowrap and let the content column SHRINK (flex:1 1 0) so the form
+   stays beside it - matching the large-screen layout. Below 981 it stacks. */
+@media (min-width: 981px) and (max-width: 1280px) {
+  .snaarp-360-page .s360-hero-row { flex-wrap: nowrap !important; gap: 32px !important; }
+  .snaarp-360-page .s360-hero-row [data-dc-tpl="75"] {
+    flex: 1 1 0% !important; min-width: 0 !important; max-width: none !important;
+  }
+  .snaarp-360-page .s360-hero-row [data-dc-tpl="286"] {
+    flex: 0 0 400px !important; min-width: 0 !important; max-width: 400px !important; margin-left: 0 !important;
+  }
+}
+
 @media (max-width: 980px) {
   /* stack: content first, form second, both full width */
   .snaarp-360-page .s360-hero-row [data-dc-tpl="75"],
@@ -407,3 +423,16 @@
 
 /* Hero subhead (tpl 79) size ramp. */
 @media (max-width: 640px) { .snaarp-360-page [data-dc-tpl="79"] { font-size: 24px !important; } }
+
+/* ---- Hero mockup scale (981-1280): the 710px dashboard+phone mockup (and its
+   "20+ Apps" badge) overlapped the sign-up form at desktop widths. Scale the
+   mockup down and cap its box so it stays clear of the form. Large screens and
+   mobile unchanged. */
+@media (min-width: 981px) and (max-width: 1280px) {
+  .snaarp-360-page .s360-hero-row [data-dc-tpl="112"] {
+    max-width: 500px !important; height: 300px !important;
+  }
+  .snaarp-360-page .s360-hero-row [data-dc-tpl="113"] {
+    transform: scale(0.7) !important; transform-origin: left top !important;
+  }
+}

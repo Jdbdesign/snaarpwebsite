@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, type RefObject } from 'react';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   // Calculator and GraduationCap were used by the now-commented-out
@@ -191,9 +192,21 @@ export function ProductsMegaMenu({ isOpen, onClose, triggerRef }: ProductsMegaMe
             })}
           </div>
 
-          {/* Promo image panel (image only) */}
-          <a href="/pricing" className="mega-menu-hero" onClick={onClose} aria-label="See pricing">
-            <span className="mega-menu-hero-media" aria-hidden="true" />
+          {/* Promo flyer panel */}
+          <a
+            href="#"
+            className="mega-menu-hero"
+            onClick={onClose}
+            aria-label="Get a UK or US number for your business"
+          >
+            <Image
+              src="/images/dropdown-promo-poster.png"
+              alt="Get a UK or US number for your business"
+              width={1164}
+              height={1351}
+              priority
+              className="mega-menu-flyer-img"
+            />
           </a>
         </div>
       </div>
